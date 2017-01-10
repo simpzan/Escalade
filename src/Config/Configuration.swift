@@ -9,7 +9,7 @@ public enum ConfigurationParserError: Error {
 ///
 /// Note: It is not recommended to use this class in production app. This is merely used as a helper to build a toy app.
 open class Configuration {
-    var adapterFactoryManager: AdapterFactoryManager!
+    open var adapterFactoryManager: AdapterFactoryManager!
     open var proxyPort: Int?
     open var ruleManager: RuleManager!
 

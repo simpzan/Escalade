@@ -4,7 +4,7 @@ import Foundation
 ///
 /// Use it as a normal dict.
 public class AdapterFactoryManager {
-    private var factoryDict: [String: AdapterFactory]
+    var factoryDict: [String: AdapterFactory]
 
     public subscript(index: String) -> AdapterFactory? {
         get {
