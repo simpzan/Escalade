@@ -35,10 +35,11 @@ class HttpPingSpec: QuickSpec {
                                          port: 59671,
                                          encryption: "rc4-md5",
                                          password: "l6j0kU26cK")
-                waitUntil(timeout: 3, action: { (done) in
-                    httpPing(factory:factory, timeout: 2) { (error, result) in
+                let timeout: TimeInterval = 4
+                waitUntil(timeout: timeout + 1, action: { (done) in
+                    httpPing(factory:factory, timeout: timeout) { (error, result) in
                         print("ping result \(error) \(result)")
-                        expect(result) < 2.5
+                        expect(result) < timeout + 0.5
                         expect(error).to(beNil())
                         done()
                     }
