@@ -5,11 +5,15 @@ import Foundation
 /// Use it as a normal dict.
 public class AdapterFactoryManager {
     var factoryDict: [String: AdapterFactory]
+    let directFactory = DirectAdapterFactory()
+    public let selectFactory: SelectAdapterFactory
 
     public subscript(index: String) -> AdapterFactory? {
         get {
             if index == "direct" {
-                return DirectAdapterFactory()
+                return directFactory
+            } else if index == "proxy" {
+                return selectFactory
             }
             return factoryDict[index]
         }
@@ -23,5 +27,6 @@ public class AdapterFactoryManager {
      */
     public init(factoryDict: [String: AdapterFactory]) {
         self.factoryDict = factoryDict
+        self.selectFactory = SelectAdapterFactory(factories: factoryDict)
     }
 }

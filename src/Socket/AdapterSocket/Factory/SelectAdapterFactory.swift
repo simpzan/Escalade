@@ -9,27 +9,28 @@
 import Foundation
 
 public class SelectAdapterFactory: AdapterFactory {
-    let manager: AdapterFactoryManager
-    var currentAdapterId: String? = nil
 
-    public init(manager: AdapterFactoryManager) {
-        self.manager = manager
+    public var pingResults: [(String, TimeInterval)] = []
+    private let factories: [String: AdapterFactory]
+
+    public var currentId: String = "direct"
+
+    public init(factories: [String: AdapterFactory]) {
+        self.factories = factories
+        for (id, _) in factories {
+            pingResults.append((id, 0))
+        }
     }
 
     override func getAdapterFor(session: ConnectSession) -> AdapterSocket {
-        var id = "direct"
-        if currentAdapterId != nil {
-            id = currentAdapterId!
-        }
-        let factory = manager[id]
+        let factory = factories[currentId]
         return (factory?.getAdapterFor(session: session))!
     }
 
-    var pingResults: [(String, TimeInterval)] = []
     public func autoselect(callback: @escaping ([(String, TimeInterval)]) -> Void) {
         var adapterIds: [(String,TimeInterval)] = []
-        let total = manager.factoryDict.count
-        for (id, factory) in manager.factoryDict {
+        let total = self.factories.count
+        for (id, factory) in factories {
             httpPing(factory: factory, timeout: 2, callback: { (error, result) in
                 print("ping \(id) result \(error) \(result)")
                 let pingResult = error != nil ? -1 : result
@@ -42,7 +43,7 @@ public class SelectAdapterFactory: AdapterFactory {
         }
     }
 
-    func sortAndSelectId(ids: [(String, TimeInterval)]) {
+    private func sortAndSelectId(ids: [(String, TimeInterval)]) {
         pingResults = ids.sorted { (item1, item2) -> Bool in
             if item1.1 == -1 {
                 return false
@@ -57,7 +58,7 @@ public class SelectAdapterFactory: AdapterFactory {
             return !(item.1 == -1 || item.0.hasSuffix("*"))
         }
         if let selected = selected {
-            currentAdapterId = selected.0
+            currentId = selected.0
         }
     }
 
