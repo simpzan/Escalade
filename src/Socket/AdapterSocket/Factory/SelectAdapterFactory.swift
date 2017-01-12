@@ -44,11 +44,11 @@ public class SelectAdapterFactory: AdapterFactory {
         return (factory?.getAdapterFor(session: session))!
     }
 
-    public func autoselect(callback: @escaping ([(String, TimeInterval)]) -> Void) {
+    public func autoselect(timeout:TimeInterval, callback: @escaping ([(String, TimeInterval)]) -> Void) {
         var adapterIds: [(String,TimeInterval)] = []
         let total = self.factories.count
         for (id, factory) in factories {
-            httpPing(factory: factory, timeout: 2, callback: { (error, result) in
+            httpPing(factory: factory, timeout: timeout, callback: { (error, result) in
                 print("ping \(id) result \(error) \(result)")
                 let pingResult = error != nil ? -1 : result
                 adapterIds.append((id, pingResult))

@@ -34,8 +34,9 @@ class SelectAdapterFactorySpec: QuickSpec {
                 let connect = ConnectSession(host: "www.google.com", port: 80, fakeIPEnabled: false)
                 let adapter = factory.getAdapterFor(session: connect!)
                 expect(adapter).to(beAKindOf(DirectAdapter.self))
-                waitUntil(timeout: 3, action: { (done) in
-                    factory.autoselect(callback: { (ids) in
+                let timeout:TimeInterval = 2
+                waitUntil(timeout: timeout + 1, action: { (done) in
+                    factory.autoselect(timeout: timeout, callback: { (ids) in
                         print("ids \(ids)")
                         let id = factory.currentId
                         expect(id).to(equal("cn2t-52"))
