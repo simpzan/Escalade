@@ -13,7 +13,24 @@ public class SelectAdapterFactory: AdapterFactory {
     public var pingResults: [(String, TimeInterval)] = []
     private let factories: [String: AdapterFactory]
 
-    public var currentId: String = "direct"
+    private let currentIdKey = "currentIdKey"
+    private var currentId_: String?
+    private let defaults = UserDefaults.standard
+    public var currentId: String {
+        get {
+            if currentId_ == nil {
+                currentId_ = defaults.string(forKey: currentIdKey)
+            }
+            if currentId_ == nil {
+                return "direct"
+            }
+            return currentId_!
+        }
+        set(id) {
+            currentId_ = id
+            defaults.set(id, forKey: currentIdKey)
+        }
+    }
 
     public init(factories: [String: AdapterFactory]) {
         self.factories = factories

@@ -25,8 +25,10 @@ class SelectAdapterFactorySpec: QuickSpec {
             it("auto select") {
                 let config = try! Yaml.load(configString)
                 let manager = try! AdapterFactoryParser.parseAdapterFactoryManager(config["adapter"])
-
                 let factory = manager["proxy"] as! SelectAdapterFactory
+
+                UserDefaults.standard.removeObject(forKey: "currentIdKey")
+
                 let id = factory.currentId
                 expect(id).to(equal("direct"))
                 let connect = ConnectSession(host: "www.google.com", port: 80, fakeIPEnabled: false)
