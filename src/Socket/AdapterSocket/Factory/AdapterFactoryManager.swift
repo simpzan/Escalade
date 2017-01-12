@@ -5,7 +5,7 @@ import Foundation
 /// Use it as a normal dict.
 public class AdapterFactoryManager {
     var factoryDict: [String: AdapterFactory]
-    let directFactory = DirectAdapterFactory()
+    public let directFactory = DirectAdapterFactory()
     public let selectFactory: SelectAdapterFactory
 
     public subscript(index: String) -> AdapterFactory? {

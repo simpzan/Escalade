@@ -5,7 +5,7 @@ struct AdapterFactoryParser {
     // swiftlint:disable:next cyclomatic_complexity
     static func parseAdapterFactoryManager(_ config: Yaml) throws -> AdapterFactoryManager {
         var factoryDict: [String: AdapterFactory] = [:]
-        factoryDict["direct"] = DirectAdapterFactory()
+        // factoryDict["direct"] = DirectAdapterFactory()
         guard let adapterConfigs = config.array else {
             throw ConfigurationParserError.noAdapterDefined
         }
