@@ -21,7 +21,7 @@ public class SelectAdapterFactory: AdapterFactory {
             if currentId_ == nil {
                 currentId_ = defaults.string(forKey: currentIdKey)
             }
-            if currentId_ == nil {
+            if currentId_ == nil || factories[currentId_!] == nil {
                 return "direct"
             }
             return currentId_!
