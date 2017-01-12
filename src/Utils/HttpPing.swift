@@ -18,8 +18,10 @@ class HttpPing : SocketDelegate {
 
     var adapter: AdapterSocket!
     let factory: AdapterFactory
-    init(factory: AdapterFactory) {
+    let url: URL
+    init(factory: AdapterFactory, url: URL) {
         self.factory = factory
+        self.url = url
     }
 
     var startTimestamp: Date!
@@ -28,7 +30,7 @@ class HttpPing : SocketDelegate {
     var callback: ((Error?, TimeInterval) -> Void)?
 
     func start(timeout: TimeInterval, callback: @escaping (Error?, TimeInterval) -> Void) {
-        let request = ConnectSession(host:"www.google.com", port:80, fakeIPEnabled:false)
+        let request = ConnectSession(host: url.host!, port:80, fakeIPEnabled:false)
         let adapter = factory.getAdapterFor(session: request!)
         adapter.delegate = self
         adapter.openSocketWith(session: request!)
@@ -53,19 +55,23 @@ class HttpPing : SocketDelegate {
     }
 
     func didBecomeReadyToForwardWith(socket: SocketProtocol) {
-        let requestContent = "GET /generate_204 HTTP/1.1\r\nHOST: www.google.com\r\n\r\n"
+        var path = url.path
+        if path.characters.count == 0 { path = "/" }
+        let requestContent = "HEAD \(path) HTTP/1.1\r\nHOST: \(url.host!)\r\n\r\n"
         adapter.write(data: requestContent.data(using: String.Encoding.utf8)!)
         adapter.readData()
     }
     func didRead(data: Data, from: SocketProtocol) {
         done = true
+
+        let response204Prefix = "HTTP/1.1 204 No Content\r\n"
+        let response200Prefix = "HTTP/1.1 200 OK\r\n"
+        let responsePrefix = url.path.hasSuffix("_204") ? response204Prefix : response200Prefix
+
         let res = String(data: data as Data, encoding: String.Encoding.utf8)
-        let responseContentPrefix = "HTTP/1.1 204 No Content\r\nContent-Length: 0\r\n"
-        if res!.hasPrefix(responseContentPrefix) {
-            finish(error: nil)
-        } else {
-            finish(error: PingError.PingUnexpectedResultError)
-        }
+        let error = res!.hasPrefix(responsePrefix) ? nil : PingError.PingUnexpectedResultError
+        finish(error: error)
+
         adapter.disconnect()
     }
 
@@ -76,7 +82,8 @@ class HttpPing : SocketDelegate {
     func updateAdapterWith(newAdapter: AdapterSocket) {}
 }
 
-public func httpPing(factory: AdapterFactory, timeout: TimeInterval, callback: @escaping (Error?, TimeInterval) -> Void) {
-    let ping = HttpPing(factory: factory)
+public func httpPing(url: String = "http://gstatic.com/generate_204", factory: AdapterFactory,
+                     timeout: TimeInterval, callback: @escaping (Error?, TimeInterval) -> Void) {
+    let ping = HttpPing(factory: factory, url: URL(string: url)!)
     ping.start(timeout: timeout, callback: callback)
 }
