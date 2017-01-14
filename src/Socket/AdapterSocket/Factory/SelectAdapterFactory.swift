@@ -46,8 +46,13 @@ public class SelectAdapterFactory: AdapterFactory {
 
     public func autoselect(timeout:TimeInterval, callback: @escaping ([(String, TimeInterval)]) -> Void) {
         var adapterIds: [(String,TimeInterval)] = []
-        let total = self.factories.count
+        var total = self.factories.count
+
         for (id, factory) in factories {
+            if id.hasSuffix("-") {
+                total -= 1
+                print("autoselect skip \(id)")
+            }
             httpPing(factory: factory, timeout: timeout, callback: { (error, result) in
                 print("ping \(id) result \(error) \(result)")
                 let pingResult = error != nil ? -1 : result
@@ -72,7 +77,7 @@ public class SelectAdapterFactory: AdapterFactory {
         }
 
         let selected = pingResults.first { (item) -> Bool in
-            return !(item.1 == -1 || item.0.hasSuffix("*"))
+            return !(item.1 == -1 || item.0.hasSuffix("+"))
         }
         if let selected = selected {
             currentId = selected.0
