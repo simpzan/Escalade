@@ -98,6 +98,9 @@ class HttpPingSpec: QuickSpec {
                 self.directTest(url: "http://http204.sinaapp.com/generate_204")
             }
 
+            it("direct ping aliyun.com") {
+                self.directTest(url: "http://client.aliyun.com/generate_204")
+            }
         }
     }
 }
