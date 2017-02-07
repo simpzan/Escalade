@@ -6,20 +6,149 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */; };
+		76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76C493601E4A0AA200A0D066 /* Assets.xcassets */; };
+		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
+		76C4936F1E4A0AA200A0D066 /* Escalade_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4936E1E4A0AA200A0D066 /* Escalade_macOSTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		76C4936B1E4A0AA200A0D066 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76C4935A1E4A0AA100A0D066;
+			remoteInfo = "Escalade-macOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Escalade-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		76C493601E4A0AA200A0D066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		76C493631E4A0AA200A0D066 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		76C493651E4A0AA200A0D066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76C4936A1E4A0AA200A0D066 /* Escalade-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Escalade-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C4936E1E4A0AA200A0D066 /* Escalade_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Escalade_macOSTests.swift; sourceTree = "<group>"; };
+		76C493701E4A0AA200A0D066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		76C493581E4A0AA100A0D066 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76C493671E4A0AA200A0D066 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		76C493501E4A0A8C00A0D066 = {
 			isa = PBXGroup;
 			children = (
+				76C4935D1E4A0AA100A0D066 /* Escalade-macOS */,
+				76C4936D1E4A0AA200A0D066 /* Escalade-macOSTests */,
+				76C4935C1E4A0AA100A0D066 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
+		76C4935C1E4A0AA100A0D066 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */,
+				76C4936A1E4A0AA200A0D066 /* Escalade-macOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		76C4935D1E4A0AA100A0D066 /* Escalade-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
+				76C493601E4A0AA200A0D066 /* Assets.xcassets */,
+				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
+				76C493651E4A0AA200A0D066 /* Info.plist */,
+			);
+			path = "Escalade-macOS";
+			sourceTree = "<group>";
+		};
+		76C4936D1E4A0AA200A0D066 /* Escalade-macOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				76C4936E1E4A0AA200A0D066 /* Escalade_macOSTests.swift */,
+				76C493701E4A0AA200A0D066 /* Info.plist */,
+			);
+			path = "Escalade-macOSTests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		76C4935A1E4A0AA100A0D066 /* Escalade-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76C493711E4A0AA200A0D066 /* Build configuration list for PBXNativeTarget "Escalade-macOS" */;
+			buildPhases = (
+				76C493571E4A0AA100A0D066 /* Sources */,
+				76C493581E4A0AA100A0D066 /* Frameworks */,
+				76C493591E4A0AA100A0D066 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Escalade-macOS";
+			productName = "Escalade-macOS";
+			productReference = 76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		76C493691E4A0AA200A0D066 /* Escalade-macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76C493741E4A0AA200A0D066 /* Build configuration list for PBXNativeTarget "Escalade-macOSTests" */;
+			buildPhases = (
+				76C493661E4A0AA200A0D066 /* Sources */,
+				76C493671E4A0AA200A0D066 /* Frameworks */,
+				76C493681E4A0AA200A0D066 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				76C4936C1E4A0AA200A0D066 /* PBXTargetDependency */,
+			);
+			name = "Escalade-macOSTests";
+			productName = "Escalade-macOSTests";
+			productReference = 76C4936A1E4A0AA200A0D066 /* Escalade-macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		76C493511E4A0A8C00A0D066 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
+				TargetAttributes = {
+					76C4935A1E4A0AA100A0D066 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = UGK9FAJ697;
+						ProvisioningStyle = Automatic;
+					};
+					76C493691E4A0AA200A0D066 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = UGK9FAJ697;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 76C4935A1E4A0AA100A0D066;
+					};
+				};
 			};
 			buildConfigurationList = 76C493541E4A0A8C00A0D066 /* Build configuration list for PBXProject "Escalade" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -27,14 +156,75 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 76C493501E4A0A8C00A0D066;
+			productRefGroup = 76C4935C1E4A0AA100A0D066 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				76C4935A1E4A0AA100A0D066 /* Escalade-macOS */,
+				76C493691E4A0AA200A0D066 /* Escalade-macOSTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		76C493591E4A0AA100A0D066 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */,
+				76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76C493681E4A0AA200A0D066 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		76C493571E4A0AA100A0D066 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		76C493661E4A0AA200A0D066 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76C4936F1E4A0AA200A0D066 /* Escalade_macOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		76C4936C1E4A0AA200A0D066 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76C4935A1E4A0AA100A0D066 /* Escalade-macOS */;
+			targetProxy = 76C4936B1E4A0AA200A0D066 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		76C493621E4A0AA200A0D066 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				76C493631E4A0AA200A0D066 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		76C493551E4A0A8C00A0D066 /* Debug */ = {
@@ -49,6 +239,222 @@
 			};
 			name = Release;
 		};
+		76C493721E4A0AA200A0D066 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UGK9FAJ697;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Escalade-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		76C493731E4A0AA200A0D066 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = UGK9FAJ697;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Escalade-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		76C493751E4A0AA200A0D066 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UGK9FAJ697;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Escalade-macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Escalade-macOS.app/Contents/MacOS/Escalade-macOS";
+			};
+			name = Debug;
+		};
+		76C493761E4A0AA200A0D066 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = UGK9FAJ697;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Escalade-macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Escalade-macOS.app/Contents/MacOS/Escalade-macOS";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -60,6 +466,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		76C493711E4A0AA200A0D066 /* Build configuration list for PBXNativeTarget "Escalade-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76C493721E4A0AA200A0D066 /* Debug */,
+				76C493731E4A0AA200A0D066 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		76C493741E4A0AA200A0D066 /* Build configuration list for PBXNativeTarget "Escalade-macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76C493751E4A0AA200A0D066 /* Debug */,
+				76C493761E4A0AA200A0D066 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
