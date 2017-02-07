@@ -12,6 +12,7 @@
 		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
 		76C4936F1E4A0AA200A0D066 /* Escalade_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4936E1E4A0AA200A0D066 /* Escalade_macOSTests.swift */; };
 		76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C493771E4A0B5E00A0D066 /* MainMenuController.swift */; };
+		76C4937B1E4A0C8A00A0D066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C4937A1E4A0C8A00A0D066 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,8 @@
 		76C4936E1E4A0AA200A0D066 /* Escalade_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Escalade_macOSTests.swift; sourceTree = "<group>"; };
 		76C493701E4A0AA200A0D066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76C493771E4A0B5E00A0D066 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
+		76C493791E4A0C8900A0D066 /* Escalade-macOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Escalade-macOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		76C4937A1E4A0C8A00A0D066 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +82,9 @@
 				76C493601E4A0AA200A0D066 /* Assets.xcassets */,
 				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
+				76C4937A1E4A0C8A00A0D066 /* main.m */,
 				76C493651E4A0AA200A0D066 /* Info.plist */,
+				76C493791E4A0C8900A0D066 /* Escalade-macOS-Bridging-Header.h */,
 			);
 			path = "Escalade-macOS";
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 					76C4935A1E4A0AA100A0D066 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = UGK9FAJ697;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					76C493691E4A0AA200A0D066 = {
@@ -197,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */,
+				76C4937B1E4A0C8A00A0D066 /* main.m in Sources */,
 				76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +302,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Escalade-macOS/Escalade-macOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -344,6 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Escalade-macOS/Escalade-macOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};

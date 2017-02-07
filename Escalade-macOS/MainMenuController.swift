@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainMenuController: NSObject {
+class MainMenuController: NSObject, NSMenuDelegate {
 
     @IBOutlet weak var mainMenu: NSMenu!
 
@@ -17,5 +17,22 @@ class MainMenuController: NSObject {
     override func awakeFromNib() {
         statusItem.title = "Escalade"
         statusItem.menu = mainMenu
+
+        mainMenu.delegate = self
     }
+
+    func menuWillOpen(_ menu: NSMenu) {
+        print("open")
+    }
+    func menuDidClose(_ menu: NSMenu) {
+        print("close")
+    }
+    
+    class func injected() {
+        print("I've been injected+: \(self)")
+    }
+    func injected() {
+        print("I've been injected-: \(self)")
+    }
+
 }
