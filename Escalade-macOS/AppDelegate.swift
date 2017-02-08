@@ -12,6 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var mainMenuController: MainMenuController!
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
