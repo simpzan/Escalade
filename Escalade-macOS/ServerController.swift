@@ -24,8 +24,24 @@ class ServerController: NSObject {
             }
         }
     }
-    public func autoSelectServer() {
-
+    public func pingValue(ofServer server: String) -> TimeInterval {
+        let item = selectFactory?.pingResults.first { $0.0 == server }
+        if item == nil { return 0 }
+        return (item?.1)!
+    }
+    public func autoSelectServer(callback: @escaping (Error?) -> Void) {
+        func pingProxy() {
+            selectFactory?.autoselect(timeout:2, callback: { (pingResults) in
+                callback(nil)
+            })
+        }
+        directTest() { (err, result) in
+            if err != nil {
+                callback(err)
+            } else {
+                pingProxy()
+            }
+        }
     }
     public func pingTest() {
 
@@ -38,5 +54,18 @@ class ServerController: NSObject {
 
     private var selectFactory: SelectAdapterFactory?
     private var directFactory: DirectAdapterFactory?
+
+    private func directTest(callback: @escaping (Error?, TimeInterval) -> Void) {
+        httpPing(url: "http://bdstatic.com/", factory: directFactory!, timeout: 2) { (err, result) in
+            print("ping baidu result \(err) \(result)")
+            if err != nil {
+                self.domesticPing = -1
+            } else {
+                self.domesticPing = result
+            }
+            callback(err, result)
+        }
+    }
+    var domesticPing: TimeInterval = 0
 
 }

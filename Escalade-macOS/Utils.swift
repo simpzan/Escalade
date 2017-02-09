@@ -8,6 +8,19 @@
 
 import Cocoa
 
+func sendNotification(title: String, text: String) {
+    let notification = NSUserNotification()
+    notification.title = title
+    notification.informativeText = text
+    NSUserNotificationCenter.default.deliver(notification)
+}
+
+func miliseconds(fromSecond time: TimeInterval) -> String {
+    let pingResult = Int(time * 1000.0)
+    let pingStatus = "\(pingResult)ms"
+    return pingStatus
+}
+
 extension NSObject {
     func createMenuItem(title: String, tag: Int, state: Bool, action: Selector) -> NSMenuItem {
         let item = NSMenuItem()

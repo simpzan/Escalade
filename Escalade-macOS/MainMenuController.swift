@@ -19,6 +19,23 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var configurationsItem: NSMenuItem!
 
     @IBAction func autoSelectClicked(_ sender: Any) {
+        guard let controller = configManager.serverController else { return }
+
+        sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
+        controller.autoSelectServer { err in
+            var text, title: String
+            if err != nil {
+                text = "Your network connection is not connected to the Internet."
+                title = "Can't connect to Baidu"
+            } else {
+                let id = controller.currentServer!
+                let ping = controller.pingValue(ofServer: id)
+                text = "auto selected \(id)(\(ping))"
+                title = "Servers Testing Finished"
+            }
+            sendNotification(title: title, text: text)
+            self.updateServerList()
+        }
     }
     @IBAction func openConfigFolderClicked(_ sender: Any) {
     }
@@ -63,7 +80,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
     }
 
     func serverClicked(sender: NSMenuItem) {
-        let name = sender.toolTip!
+        let name = sender.representedObject as! String
         print("server \(name)")
         guard let controller = configManager.serverController else { return }
 
@@ -79,9 +96,12 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
         let currentId = controller.currentServer
         for name in controller.servers {
+            let pingValue = controller.pingValue(ofServer: name)
+            let title = "\(name) \t\t\(pingValue)s"
             let action = #selector(serverClicked(sender:))
             let state = currentId == name
-            let item = createMenuItem(title: name, tag: tag, state: state, action: action)
+            let item = createMenuItem(title: title, tag: tag, state: state, action: action)
+            item.representedObject = name
             menu.addItem(item)
         }
     }
