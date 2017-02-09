@@ -50,8 +50,10 @@ class HttpPing : SocketDelegate {
 
     func finish(error: Error?) -> Void {
         let result = Date().timeIntervalSince(startTimestamp)
-        self.callback?(error, result)
-        self.callback = nil
+        queue.async {
+            self.callback?(error, result)
+            self.callback = nil
+        }
     }
 
     func didBecomeReadyToForwardWith(socket: SocketProtocol) {
