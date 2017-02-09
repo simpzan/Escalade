@@ -99,11 +99,13 @@ class ConfigurationManager: NSObject {
 
         guard let config = loadConfiguration(content: content) else { return }
         RuleManager.currentManager = config.ruleManager
+        serverController = ServerController(manager: config.adapterFactoryManager)
 
         let port = UInt16(config.proxyPort ?? 9090)
         proxyServerManager.startProxyServers(port: port, address: "127.0.0.1")
     }
     private let proxyServerManager = ProxyServerManager()
+    public var serverController: ServerController?
 
     func injected() {
         print("I've been injected-: \(self)")

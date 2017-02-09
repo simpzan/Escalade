@@ -62,6 +62,30 @@ class MainMenuController: NSObject, NSMenuDelegate {
         }
     }
 
+    func serverClicked(sender: NSMenuItem) {
+        let name = sender.toolTip!
+        print("server \(name)")
+        guard let controller = configManager.serverController else { return }
+
+        controller.currentServer = name
+        updateServerList()
+    }
+    func updateServerList() {
+        guard let controller = configManager.serverController else { return }
+
+        let tag = 10
+        let menu = serversItem.submenu!
+        menu.removeItems(withTag: tag)
+
+        let currentId = controller.currentServer
+        for name in controller.servers {
+            let action = #selector(serverClicked(sender:))
+            let state = currentId == name
+            let item = createMenuItem(title: name, tag: tag, state: state, action: action)
+            menu.addItem(item)
+        }
+    }
+
     override func awakeFromNib() {
         statusItem.title = "Escalade"
         statusItem.menu = mainMenu
@@ -70,6 +94,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
         configManager.reloadConfigurations()
         updateConfigList()
+        updateServerList()
     }
 
     func menuWillOpen(_ menu: NSMenu) {
