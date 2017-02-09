@@ -7,15 +7,78 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
+		768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; };
+		768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; };
+		768D4A2A1E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A211E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework */; };
+		768D4A2B1E4B4E8B00B73E10 /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A221E4B4E8B00B73E10 /* lwip.framework */; };
+		768D4A2C1E4B4E8B00B73E10 /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A231E4B4E8B00B73E10 /* MMDB.framework */; };
+		768D4A2D1E4B4E8B00B73E10 /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A241E4B4E8B00B73E10 /* Resolver.framework */; };
+		768D4A2E1E4B4E8B00B73E10 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A251E4B4E8B00B73E10 /* Sodium.framework */; };
+		768D4A2F1E4B4E8B00B73E10 /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A261E4B4E8B00B73E10 /* tun2socks.framework */; };
+		768D4A301E4B4E8B00B73E10 /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A271E4B4E8B00B73E10 /* Yaml.framework */; };
+		768D4A321E4B4ED000B73E10 /* NEKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		768D4A331E4B4ED000B73E10 /* CocoaAsyncSocket.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		768D4A341E4B4ED000B73E10 /* CocoaLumberjack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		768D4A351E4B4ED000B73E10 /* CocoaLumberjackSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A211E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		768D4A361E4B4ED000B73E10 /* lwip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A221E4B4E8B00B73E10 /* lwip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		768D4A371E4B4ED000B73E10 /* MMDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A231E4B4E8B00B73E10 /* MMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		768D4A381E4B4ED000B73E10 /* Resolver.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A241E4B4E8B00B73E10 /* Resolver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		768D4A391E4B4ED000B73E10 /* Sodium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A251E4B4E8B00B73E10 /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		768D4A3A1E4B4ED000B73E10 /* tun2socks.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A261E4B4E8B00B73E10 /* tun2socks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		768D4A3B1E4B4ED000B73E10 /* Yaml.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A271E4B4E8B00B73E10 /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */; };
 		76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76C493601E4A0AA200A0D066 /* Assets.xcassets */; };
 		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
 		76C4936F1E4A0AA200A0D066 /* Escalade_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4936E1E4A0AA200A0D066 /* Escalade_macOSTests.swift */; };
 		76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C493771E4A0B5E00A0D066 /* MainMenuController.swift */; };
 		76C4937B1E4A0C8A00A0D066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C4937A1E4A0C8A00A0D066 /* main.m */; };
+		76E112F21E4CB80D00966580 /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E112F11E4CB80D00966580 /* ProxyServerManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		768D4A0D1E4B4AB900B73E10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 36463A301CDCD5EB0040579C;
+			remoteInfo = "NEKit-macOS";
+		};
+		768D4A0F1E4B4AB900B73E10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 36C48D4D1CF88DED0071804F;
+			remoteInfo = "NEKit-iOS";
+		};
+		768D4A111E4B4AB900B73E10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 36A719981D5EEB4900DC35F5;
+			remoteInfo = NEKitDemo;
+		};
+		768D4A131E4B4AB900B73E10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 362347131D7D44E700A047DE;
+			remoteInfo = "NEKitTest-macOS";
+		};
+		768D4A151E4B4AB900B73E10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 362347221D7D458E00A047DE;
+			remoteInfo = "NEKitTests-iOS";
+		};
+		768D4A1B1E4B4DF000B73E10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 36463A2F1CDCD5EB0040579C;
+			remoteInfo = "NEKit-macOS";
+		};
 		76C4936B1E4A0AA200A0D066 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
@@ -25,7 +88,39 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		768D4A311E4B4E9E00B73E10 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				768D4A321E4B4ED000B73E10 /* NEKit.framework in CopyFiles */,
+				768D4A331E4B4ED000B73E10 /* CocoaAsyncSocket.framework in CopyFiles */,
+				768D4A341E4B4ED000B73E10 /* CocoaLumberjack.framework in CopyFiles */,
+				768D4A351E4B4ED000B73E10 /* CocoaLumberjackSwift.framework in CopyFiles */,
+				768D4A361E4B4ED000B73E10 /* lwip.framework in CopyFiles */,
+				768D4A371E4B4ED000B73E10 /* MMDB.framework in CopyFiles */,
+				768D4A381E4B4ED000B73E10 /* Resolver.framework in CopyFiles */,
+				768D4A391E4B4ED000B73E10 /* Sodium.framework in CopyFiles */,
+				768D4A3A1E4B4ED000B73E10 /* tun2socks.framework in CopyFiles */,
+				768D4A3B1E4B4ED000B73E10 /* Yaml.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NEKit.xcodeproj; path = NEKit/NEKit.xcodeproj; sourceTree = "<group>"; };
+		768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = NEKit/Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
+		768D4A211E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = NEKit/Carthage/Build/Mac/CocoaLumberjackSwift.framework; sourceTree = "<group>"; };
+		768D4A221E4B4E8B00B73E10 /* lwip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = lwip.framework; path = NEKit/Carthage/Build/Mac/lwip.framework; sourceTree = "<group>"; };
+		768D4A231E4B4E8B00B73E10 /* MMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMDB.framework; path = NEKit/Carthage/Build/Mac/MMDB.framework; sourceTree = "<group>"; };
+		768D4A241E4B4E8B00B73E10 /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = NEKit/Carthage/Build/Mac/Resolver.framework; sourceTree = "<group>"; };
+		768D4A251E4B4E8B00B73E10 /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = NEKit/Carthage/Build/Mac/Sodium.framework; sourceTree = "<group>"; };
+		768D4A261E4B4E8B00B73E10 /* tun2socks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = tun2socks.framework; path = NEKit/Carthage/Build/Mac/tun2socks.framework; sourceTree = "<group>"; };
+		768D4A271E4B4E8B00B73E10 /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/Mac/Yaml.framework; sourceTree = "<group>"; };
 		76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Escalade-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76C493601E4A0AA200A0D066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,6 +132,7 @@
 		76C493771E4A0B5E00A0D066 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		76C493791E4A0C8900A0D066 /* Escalade-macOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Escalade-macOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		76C4937A1E4A0C8A00A0D066 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		76E112F11E4CB80D00966580 /* ProxyServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyServerManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +140,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */,
+				768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */,
+				768D4A2A1E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework in Frameworks */,
+				768D4A2B1E4B4E8B00B73E10 /* lwip.framework in Frameworks */,
+				768D4A2C1E4B4E8B00B73E10 /* MMDB.framework in Frameworks */,
+				768D4A2D1E4B4E8B00B73E10 /* Resolver.framework in Frameworks */,
+				768D4A2E1E4B4E8B00B73E10 /* Sodium.framework in Frameworks */,
+				768D4A2F1E4B4E8B00B73E10 /* tun2socks.framework in Frameworks */,
+				768D4A301E4B4E8B00B73E10 /* Yaml.framework in Frameworks */,
+				768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,12 +163,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		768D4A061E4B4AB900B73E10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				768D4A0E1E4B4AB900B73E10 /* NEKit.framework */,
+				768D4A101E4B4AB900B73E10 /* NEKit.framework */,
+				768D4A121E4B4AB900B73E10 /* NEKitDemo.app */,
+				768D4A141E4B4AB900B73E10 /* NEKitTest-macOS.xctest */,
+				768D4A161E4B4AB900B73E10 /* NEKitTests-iOS.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		768D4A1E1E4B4E8B00B73E10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */,
+				768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */,
+				768D4A211E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework */,
+				768D4A221E4B4E8B00B73E10 /* lwip.framework */,
+				768D4A231E4B4E8B00B73E10 /* MMDB.framework */,
+				768D4A241E4B4E8B00B73E10 /* Resolver.framework */,
+				768D4A251E4B4E8B00B73E10 /* Sodium.framework */,
+				768D4A261E4B4E8B00B73E10 /* tun2socks.framework */,
+				768D4A271E4B4E8B00B73E10 /* Yaml.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		76C493501E4A0A8C00A0D066 = {
 			isa = PBXGroup;
 			children = (
+				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
 				76C4935D1E4A0AA100A0D066 /* Escalade-macOS */,
 				76C4936D1E4A0AA200A0D066 /* Escalade-macOSTests */,
 				76C4935C1E4A0AA100A0D066 /* Products */,
+				768D4A1E1E4B4E8B00B73E10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,12 +215,13 @@
 			isa = PBXGroup;
 			children = (
 				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
-				76C493601E4A0AA200A0D066 /* Assets.xcassets */,
-				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
+				76E112F11E4CB80D00966580 /* ProxyServerManager.swift */,
 				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
+				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C4937A1E4A0C8A00A0D066 /* main.m */,
 				76C493651E4A0AA200A0D066 /* Info.plist */,
 				76C493791E4A0C8900A0D066 /* Escalade-macOS-Bridging-Header.h */,
+				76C493601E4A0AA200A0D066 /* Assets.xcassets */,
 			);
 			path = "Escalade-macOS";
 			sourceTree = "<group>";
@@ -108,10 +245,12 @@
 				76C493571E4A0AA100A0D066 /* Sources */,
 				76C493581E4A0AA100A0D066 /* Frameworks */,
 				76C493591E4A0AA100A0D066 /* Resources */,
+				768D4A311E4B4E9E00B73E10 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				768D4A1C1E4B4DF000B73E10 /* PBXTargetDependency */,
 			);
 			name = "Escalade-macOS";
 			productName = "Escalade-macOS";
@@ -170,6 +309,12 @@
 			mainGroup = 76C493501E4A0A8C00A0D066;
 			productRefGroup = 76C4935C1E4A0AA100A0D066 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 768D4A061E4B4AB900B73E10 /* Products */;
+					ProjectRef = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				76C4935A1E4A0AA100A0D066 /* Escalade-macOS */,
@@ -177,6 +322,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		768D4A0E1E4B4AB900B73E10 /* NEKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NEKit.framework;
+			remoteRef = 768D4A0D1E4B4AB900B73E10 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		768D4A101E4B4AB900B73E10 /* NEKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NEKit.framework;
+			remoteRef = 768D4A0F1E4B4AB900B73E10 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		768D4A121E4B4AB900B73E10 /* NEKitDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = NEKitDemo.app;
+			remoteRef = 768D4A111E4B4AB900B73E10 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		768D4A141E4B4AB900B73E10 /* NEKitTest-macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NEKitTest-macOS.xctest";
+			remoteRef = 768D4A131E4B4AB900B73E10 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		768D4A161E4B4AB900B73E10 /* NEKitTests-iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "NEKitTests-iOS.xctest";
+			remoteRef = 768D4A151E4B4AB900B73E10 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		76C493591E4A0AA100A0D066 /* Resources */ = {
@@ -202,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76E112F21E4CB80D00966580 /* ProxyServerManager.swift in Sources */,
 				76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */,
 				76C4937B1E4A0C8A00A0D066 /* main.m in Sources */,
 				76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */,
@@ -219,6 +403,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		768D4A1C1E4B4DF000B73E10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "NEKit-macOS";
+			targetProxy = 768D4A1B1E4B4DF000B73E10 /* PBXContainerItemProxy */;
+		};
 		76C4936C1E4A0AA200A0D066 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76C4935A1E4A0AA100A0D066 /* Escalade-macOS */;
@@ -279,6 +468,10 @@
 				DEVELOPMENT_TEAM = UGK9FAJ697;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -337,6 +530,10 @@
 				DEVELOPMENT_TEAM = UGK9FAJ697;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -487,6 +684,7 @@
 				76C493731E4A0AA200A0D066 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		76C493741E4A0AA200A0D066 /* Build configuration list for PBXNativeTarget "Escalade-macOSTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +693,7 @@
 				76C493761E4A0AA200A0D066 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
