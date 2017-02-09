@@ -32,6 +32,12 @@ public class SelectAdapterFactory: AdapterFactory {
         }
     }
 
+    public var selected: AdapterFactory? {
+        get {
+            return factories[self.currentId]
+        }
+    }
+
     public init(factories: [String: AdapterFactory]) {
         self.factories = factories
         for (id, _) in factories {
@@ -42,6 +48,19 @@ public class SelectAdapterFactory: AdapterFactory {
     override func getAdapterFor(session: ConnectSession) -> AdapterSocket {
         let factory = factories[currentId]
         return (factory?.getAdapterFor(session: session))!
+    }
+
+
+    public func pingSelected(callback: @escaping (Error?, TimeInterval) -> Void) {
+        httpPing(factory: selected!, timeout: 2) { (err, result) in
+            print("ping google result \(err) \(result)")
+            let id = self.currentId
+            let pingResult = err != nil ? -1 : result
+            var pingResults = self.pingResults.filter { $0.0 != id }
+            pingResults.insert((id, pingResult), at: 0)
+            self.pingResults = pingResults
+            callback(err, result)
+        }
     }
 
     public func autoselect(timeout:TimeInterval, callback: @escaping ([(String, TimeInterval)]) -> Void) {
