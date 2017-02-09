@@ -109,6 +109,32 @@ class MainMenuController: NSObject, NSMenuDelegate {
         }
     }
 
+    func updateConnectivityInfo() {
+        guard let controller = configManager.serverController else { return }
+
+        let baiduPing = controller.domesticPing
+        let currentServer = controller.currentServer
+        let googlePing = controller.pingValue(ofServer: currentServer!)
+        var title = ""
+        if baiduPing == -1 {
+            title = "No Network"
+        } else if baiduPing == 0 || googlePing == 0 {
+            title = "Testing..."
+        } else {
+            title = "Baidu \(baiduPing)s, Google \(googlePing)s"
+        }
+        connectivityItem.title = title
+    }
+    func pingTest() {
+        guard let controller = configManager.serverController else { return }
+        // disable autoselect
+        controller.pingTest { err in
+            // enable autoselect
+            self.updateConnectivityInfo()
+            self.updateServerList()
+        }
+    }
+
     override func awakeFromNib() {
         statusItem.title = "Escalade"
         statusItem.menu = mainMenu
@@ -118,13 +144,13 @@ class MainMenuController: NSObject, NSMenuDelegate {
         configManager.reloadConfigurations()
         updateConfigList()
         updateServerList()
+        updateConnectivityInfo()
     }
 
     func menuWillOpen(_ menu: NSMenu) {
-        print("open")
+        pingTest()
     }
     func menuDidClose(_ menu: NSMenu) {
-        print("close")
     }
     
     class func injected() {

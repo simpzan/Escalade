@@ -43,8 +43,20 @@ class ServerController: NSObject {
             }
         }
     }
-    public func pingTest() {
-
+    public func pingTest(callback: @escaping (Error?) -> Void) {
+        var count = 0
+        func done() {
+            count += 1
+            if count == 2 {
+                callback(nil)
+            }
+        }
+        directTest { (err, result) in
+            done()
+        }
+        selectFactory!.pingSelected { (err, result) in
+            done()
+        }
     }
 
     public init(manager: AdapterFactoryManager) {
