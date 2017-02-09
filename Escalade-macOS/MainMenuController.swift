@@ -38,6 +38,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBAction func helpClicked(_ sender: Any) {
     }
     @IBAction func quitClicked(_ sender: Any) {
+        NSApp.terminate(nil)
     }
 
     let configManager = ConfigurationManager()
