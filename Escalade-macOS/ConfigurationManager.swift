@@ -101,11 +101,12 @@ class ConfigurationManager: NSObject {
         RuleManager.currentManager = config.ruleManager
         serverController = ServerController(manager: config.adapterFactoryManager)
 
-        let port = UInt16(config.proxyPort ?? 9090)
-        proxyServerManager.startProxyServers(port: port, address: "127.0.0.1")
+        port = UInt16(config.proxyPort ?? 9990)
+        proxyServerManager.startProxyServers(port: port!, address: "127.0.0.1")
     }
     private let proxyServerManager = ProxyServerManager()
     public var serverController: ServerController?
+    public var port: UInt16? = nil
 
     func injected() {
         print("I've been injected-: \(self)")

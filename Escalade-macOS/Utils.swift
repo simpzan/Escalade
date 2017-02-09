@@ -8,6 +8,12 @@
 
 import Cocoa
 
+func copyString(string: String) {
+    let pasteboard = NSPasteboard.general()
+    pasteboard.clearContents()
+    pasteboard.setString(string, forType: NSStringPboardType)
+}
+
 func sendNotification(title: String, text: String) {
     let notification = NSUserNotification()
     notification.title = title

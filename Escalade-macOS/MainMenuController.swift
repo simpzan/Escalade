@@ -41,6 +41,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
         }
     }
     @IBAction func openConfigFolderClicked(_ sender: Any) {
+        NSWorkspace.shared().openFile(configManager.configuraionFolder)
     }
     @IBAction func reloadConfigClicked(_ sender: Any) {
         configManager.reloadConfigurations()
@@ -50,12 +51,19 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBAction func showLogClicked(_ sender: Any) {
     }
     @IBAction func copyExportCommandClicked(_ sender: Any) {
+        var proxy = ""
+        if let port = configManager.port {
+            proxy = "http://127.0.0.1:\(port + 1)"
+        }
+        let content = "export https_proxy=\(proxy); export http_proxy=\(proxy)"
+        copyString(string: content)
     }
     @IBAction func checkUpdatesClicked(_ sender: Any) {
     }
     @IBAction func startAtLoginClicked(_ sender: Any) {
     }
     @IBAction func helpClicked(_ sender: Any) {
+        NSWorkspace.shared().open(URL(string: "https://github.com/simpzan/Escalade")!)
     }
     @IBAction func quitClicked(_ sender: Any) {
         NSApp.terminate(nil)
