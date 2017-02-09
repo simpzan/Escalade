@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76277F0D1E4CEA7E006C06A6 /* TrafficMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */; };
 		768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
 		768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; };
 		768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; };
@@ -114,6 +115,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMonitor.swift; sourceTree = "<group>"; };
 		768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NEKit.xcodeproj; path = NEKit/NEKit.xcodeproj; sourceTree = "<group>"; };
 		768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = NEKit/Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				76E112FE1E4CC40900966580 /* ConfigurationManager.swift */,
 				76E112F11E4CB80D00966580 /* ProxyServerManager.swift */,
 				76E1130D1E4CC79600966580 /* ServerController.swift */,
+				76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */,
 				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
 				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C4937A1E4A0C8A00A0D066 /* main.m */,
@@ -400,6 +403,7 @@
 				76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */,
 				76C4937B1E4A0C8A00A0D066 /* main.m in Sources */,
 				76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */,
+				76277F0D1E4CEA7E006C06A6 /* TrafficMonitor.swift in Sources */,
 				76E113071E4CC49200966580 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -145,12 +145,23 @@ class MainMenuController: NSObject, NSMenuDelegate {
         updateConfigList()
         updateServerList()
         updateConnectivityInfo()
+        updateNetworkTrafficItem()
     }
+
+    func updateNetworkTrafficItem(rate: (Int, Int) = (0, 0)) {
+        let (rx, tx) = rate
+        let title = "⬇︎ \(rx)/s, ⬆︎ \(tx)/s"
+        print(title)
+        self.networkTrafficItem.title = title
+    }
+    let trafficMonitor = TrafficMonitor.shared
 
     func menuWillOpen(_ menu: NSMenu) {
         pingTest()
+        trafficMonitor.startUpdate { self.updateNetworkTrafficItem(rate: $0) }
     }
     func menuDidClose(_ menu: NSMenu) {
+        trafficMonitor.stopUpdate()
     }
     
     class func injected() {
