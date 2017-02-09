@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		76277F0D1E4CEA7E006C06A6 /* TrafficMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */; };
+		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
+		76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
 		768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
 		768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; };
 		768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; };
@@ -41,6 +43,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		76277F1D1E4CF637006C06A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76277F151E4CF5D3006C06A6;
+			remoteInfo = SystemProxyConfig;
+		};
 		768D4A0D1E4B4AB900B73E10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
@@ -93,6 +102,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		76277F141E4CF5D3006C06A6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		768D4A311E4B4E9E00B73E10 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -116,6 +134,8 @@
 
 /* Begin PBXFileReference section */
 		76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMonitor.swift; sourceTree = "<group>"; };
+		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
+		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NEKit.xcodeproj; path = NEKit/NEKit.xcodeproj; sourceTree = "<group>"; };
 		768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = NEKit/Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
@@ -144,6 +164,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		76277F131E4CF5D3006C06A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76C493581E4A0AA100A0D066 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -171,6 +198,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76277F171E4CF5D3006C06A6 /* SystemProxyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				76277F181E4CF5D3006C06A6 /* main.m */,
+			);
+			path = SystemProxyConfig;
+			sourceTree = "<group>";
+		};
 		768D4A061E4B4AB900B73E10 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +240,7 @@
 				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
 				76C4935D1E4A0AA100A0D066 /* Escalade-macOS */,
 				76C4936D1E4A0AA200A0D066 /* Escalade-macOSTests */,
+				76277F171E4CF5D3006C06A6 /* SystemProxyConfig */,
 				76C4935C1E4A0AA100A0D066 /* Products */,
 				768D4A1E1E4B4E8B00B73E10 /* Frameworks */,
 			);
@@ -215,6 +251,7 @@
 			children = (
 				76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */,
 				76C4936A1E4A0AA200A0D066 /* Escalade-macOSTests.xctest */,
+				76277F161E4CF5D3006C06A6 /* SystemProxyConfig */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -250,6 +287,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		76277F151E4CF5D3006C06A6 /* SystemProxyConfig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76277F1A1E4CF5D3006C06A6 /* Build configuration list for PBXNativeTarget "SystemProxyConfig" */;
+			buildPhases = (
+				76277F121E4CF5D3006C06A6 /* Sources */,
+				76277F131E4CF5D3006C06A6 /* Frameworks */,
+				76277F141E4CF5D3006C06A6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SystemProxyConfig;
+			productName = SystemProxyConfig;
+			productReference = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */;
+			productType = "com.apple.product-type.tool";
+		};
 		76C4935A1E4A0AA100A0D066 /* Escalade-macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76C493711E4A0AA200A0D066 /* Build configuration list for PBXNativeTarget "Escalade-macOS" */;
@@ -262,6 +316,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				76277F1E1E4CF637006C06A6 /* PBXTargetDependency */,
 				768D4A1C1E4B4DF000B73E10 /* PBXTargetDependency */,
 			);
 			name = "Escalade-macOS";
@@ -296,6 +351,11 @@
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				TargetAttributes = {
+					76277F151E4CF5D3006C06A6 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = UGK9FAJ697;
+						ProvisioningStyle = Automatic;
+					};
 					76C4935A1E4A0AA100A0D066 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = UGK9FAJ697;
@@ -331,6 +391,7 @@
 			targets = (
 				76C4935A1E4A0AA100A0D066 /* Escalade-macOS */,
 				76C493691E4A0AA200A0D066 /* Escalade-macOSTests */,
+				76277F151E4CF5D3006C06A6 /* SystemProxyConfig */,
 			);
 		};
 /* End PBXProject section */
@@ -378,6 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */,
 				76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */,
 				76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */,
 			);
@@ -393,6 +455,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		76277F121E4CF5D3006C06A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76277F191E4CF5D3006C06A6 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76C493571E4A0AA100A0D066 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -419,6 +489,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		76277F1E1E4CF637006C06A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76277F151E4CF5D3006C06A6 /* SystemProxyConfig */;
+			targetProxy = 76277F1D1E4CF637006C06A6 /* PBXContainerItemProxy */;
+		};
 		768D4A1C1E4B4DF000B73E10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "NEKit-macOS";
@@ -443,6 +518,97 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		76277F1B1E4CF5D3006C06A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UGK9FAJ697;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		76277F1C1E4CF5D3006C06A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = UGK9FAJ697;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		76C493551E4A0A8C00A0D066 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -684,6 +850,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		76277F1A1E4CF5D3006C06A6 /* Build configuration list for PBXNativeTarget "SystemProxyConfig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76277F1B1E4CF5D3006C06A6 /* Debug */,
+				76277F1C1E4CF5D3006C06A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		76C493541E4A0A8C00A0D066 /* Build configuration list for PBXProject "Escalade" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
