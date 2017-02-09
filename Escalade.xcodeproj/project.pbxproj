@@ -35,6 +35,7 @@
 		76C4937B1E4A0C8A00A0D066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C4937A1E4A0C8A00A0D066 /* main.m */; };
 		76E112F21E4CB80D00966580 /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E112F11E4CB80D00966580 /* ProxyServerManager.swift */; };
 		76E112FF1E4CC40900966580 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E112FE1E4CC40900966580 /* ConfigurationManager.swift */; };
+		76E113071E4CC49200966580 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E113061E4CC49200966580 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		76C4937A1E4A0C8A00A0D066 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76E112F11E4CB80D00966580 /* ProxyServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyServerManager.swift; sourceTree = "<group>"; };
 		76E112FE1E4CC40900966580 /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
+		76E113061E4CC49200966580 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 		76C4935D1E4A0AA100A0D066 /* Escalade-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				76E113061E4CC49200966580 /* Utils.swift */,
 				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
 				76E112FE1E4CC40900966580 /* ConfigurationManager.swift */,
 				76E112F11E4CB80D00966580 /* ProxyServerManager.swift */,
@@ -393,6 +396,7 @@
 				76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */,
 				76C4937B1E4A0C8A00A0D066 /* main.m in Sources */,
 				76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */,
+				76E113071E4CC49200966580 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

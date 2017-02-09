@@ -23,6 +23,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBAction func openConfigFolderClicked(_ sender: Any) {
     }
     @IBAction func reloadConfigClicked(_ sender: Any) {
+        configManager.reloadConfigurations()
     }
     @IBAction func systemProxyClicked(_ sender: Any) {
     }
@@ -39,11 +40,35 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBAction func quitClicked(_ sender: Any) {
     }
 
+    let configManager = ConfigurationManager()
+
+    func configClicked(sender: NSMenuItem) {
+        let name = sender.title
+        print("server \(name)")
+        configManager.currentConfiguration = name
+    }
+    func updateConfigList() {
+        let menu = configurationsItem.submenu!
+        let tag = 11
+        menu.removeItems(withTag: tag)
+
+        let currentConfig = configManager.currentConfiguration
+        for name in configManager.configurations {
+            let action = #selector(configClicked(sender:))
+            let state = currentConfig == name
+            let item = createMenuItem(title: name, tag: tag, state: state, action: action)
+            menu.addItem(item)
+        }
+    }
+
     override func awakeFromNib() {
         statusItem.title = "Escalade"
         statusItem.menu = mainMenu
 
         mainMenu.delegate = self
+
+        configManager.reloadConfigurations()
+        updateConfigList()
     }
 
     func menuWillOpen(_ menu: NSMenu) {
