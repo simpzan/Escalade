@@ -21,8 +21,11 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBAction func autoSelectClicked(_ sender: Any) {
         guard let controller = configManager.serverController else { return }
 
+        let item = sender as! NSMenuItem
+        item.isEnabled = false
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
         controller.autoSelectServer { err in
+            item.isEnabled = true
             var text, title: String
             if err != nil {
                 text = "Your network connection is not connected to the Internet."

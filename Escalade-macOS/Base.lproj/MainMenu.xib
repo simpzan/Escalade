@@ -18,7 +18,7 @@
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <menu id="32I-cj-ef3">
+        <menu autoenablesItems="NO" id="32I-cj-ef3">
             <items>
                 <menuItem title="Network Traffic" enabled="NO" toolTip="Network Traffic" id="ema-mF-xc1">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -28,7 +28,7 @@
                 </menuItem>
                 <menuItem title="Servers" id="mT5-4y-6tc">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Servers" id="O7b-nn-k8e">
+                    <menu key="submenu" title="Servers" autoenablesItems="NO" id="O7b-nn-k8e">
                         <items>
                             <menuItem title="Auto Select" keyEquivalent="a" toolTip="Select the best server automatically." id="BSC-Yd-CeE">
                                 <connections>
@@ -41,7 +41,7 @@
                 </menuItem>
                 <menuItem title="Configurations" id="daz-V7-ed3">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Configurations" id="dDZ-tb-SSh">
+                    <menu key="submenu" title="Configurations" autoenablesItems="NO" id="dDZ-tb-SSh">
                         <items>
                             <menuItem title="Open Configuration Folder" keyEquivalent="o" id="hWg-Au-8eB">
                                 <connections>
@@ -59,7 +59,7 @@
                 </menuItem>
                 <menuItem title="Advanced" id="jWL-KD-XMj">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Advanced" id="EVc-Yv-RoR">
+                    <menu key="submenu" title="Advanced" autoenablesItems="NO" id="EVc-Yv-RoR">
                         <items>
                             <menuItem title="System Proxy" state="on" keyEquivalent="s" id="Sdp-cf-5a9">
                                 <connections>
