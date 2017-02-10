@@ -16,19 +16,18 @@ class ConfigurationManager: NSObject {
 
     public var currentConfiguration: String? {
         get {
-            // load from defaults
-            // validate
-            // use the first one as default
+            let config = defaults.string(forKey: currentConfigKey)
+            if isValidConfig(name: config) { return config }
             return configurations.first
         }
         set(name) {
-            // validate
-            guard name != nil && isValidConfig(name: name!) else { return }
-            // save to defaults
-            // apply config
+            guard isValidConfig(name: name) else { return }
+            defaults.set(name!, forKey: currentConfigKey)
             applyConfiguration(name: name)
         }
     }
+    private let defaults = UserDefaults.standard
+    private let currentConfigKey = "currentConfig"
 
     public func reloadConfigurations() {
         print("\(#function)")
@@ -56,7 +55,8 @@ class ConfigurationManager: NSObject {
 
     // MARK: - 
     private var profiles: [String:String] = [:]
-    private func isValidConfig(name: String) -> Bool {
+    private func isValidConfig(name: String!) -> Bool {
+        if name == nil { return false }
         return profiles[name] != nil
     }
     private func loadConfiguration(content: String) -> Configuration? {

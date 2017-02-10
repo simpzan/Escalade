@@ -83,6 +83,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
         let name = sender.title
         print("server \(name)")
         configManager.currentConfiguration = name
+        updateConfigList()
     }
     func updateConfigList() {
         let menu = configurationsItem.submenu!
