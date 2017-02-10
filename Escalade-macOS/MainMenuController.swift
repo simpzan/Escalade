@@ -46,8 +46,16 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBAction func reloadConfigClicked(_ sender: Any) {
         configManager.reloadConfigurations()
     }
-    @IBAction func systemProxyClicked(_ sender: Any) {
+
+    func updateSystemProxyItem() {
+        systemProxyItem.state = systemProxyController.enabled ? NSOnState : NSOffState
     }
+    @IBOutlet weak var systemProxyItem: NSMenuItem!
+    @IBAction func systemProxyClicked(_ sender: Any) {
+        systemProxyController.enabled = !systemProxyController.enabled
+        updateSystemProxyItem()
+    }
+
     @IBAction func showLogClicked(_ sender: Any) {
     }
     @IBAction func copyExportCommandClicked(_ sender: Any) {
@@ -143,6 +151,8 @@ class MainMenuController: NSObject, NSMenuDelegate {
         }
     }
 
+    let systemProxyController = SystemProxyController()
+
     override func awakeFromNib() {
         statusItem.title = "Escalade"
         statusItem.menu = mainMenu
@@ -150,6 +160,11 @@ class MainMenuController: NSObject, NSMenuDelegate {
         mainMenu.delegate = self
 
         configManager.reloadConfigurations()
+
+        systemProxyController.port = configManager.port!
+        systemProxyController.load()
+        updateSystemProxyItem()
+
         updateConfigList()
         updateServerList()
         updateConnectivityInfo()
@@ -171,7 +186,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
     func menuDidClose(_ menu: NSMenu) {
         trafficMonitor.stopUpdate()
     }
-    
+
     class func injected() {
         print("I've been injected+: \(self)")
     }
