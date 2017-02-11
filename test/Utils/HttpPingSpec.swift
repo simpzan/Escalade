@@ -75,7 +75,7 @@ class HttpPingSpec: QuickSpec {
                 waitUntil(timeout: 3, action: { (done) in
                     httpPing(factory:factory, timeout: 1) { (error, result) in
                         print("ping result \(error) \(result)")
-                        expect(result) >= 1
+                        expect(result) == -1
                         expect(error).toNot(beNil())
                         done()
                     }

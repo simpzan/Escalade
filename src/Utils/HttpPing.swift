@@ -49,7 +49,7 @@ class HttpPing : SocketDelegate {
     }
 
     func finish(error: Error?) -> Void {
-        let result = Date().timeIntervalSince(startTimestamp)
+        let result = error == nil ? Date().timeIntervalSince(startTimestamp) : -1
         queue.async {
             self.callback?(error, result)
             self.callback = nil
