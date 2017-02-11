@@ -10,14 +10,88 @@ import Cocoa
 
 class MainMenuController: NSObject, NSMenuDelegate {
 
+    override func awakeFromNib() {
+        statusItem.title = "Escalade"
+        statusItem.menu = mainMenu
+
+        mainMenu.delegate = self
+
+        configManager.reloadConfigurations()
+
+        systemProxyController.port = configManager.port!
+        systemProxyController.load()
+        updateSystemProxyItem()
+
+        updateConfigList()
+        updateServerList()
+        updateConnectivityInfo()
+        updateNetworkTrafficItem()
+    }
     @IBOutlet weak var mainMenu: NSMenu!
-
     let statusItem = NSStatusBar.system().statusItem(withLength: -1)
-    @IBOutlet weak var networkTrafficItem: NSMenuItem!
-    @IBOutlet weak var connectivityItem: NSMenuItem!
-    @IBOutlet weak var serversItem: NSMenuItem!
-    @IBOutlet weak var configurationsItem: NSMenuItem!
 
+    func menuWillOpen(_ menu: NSMenu) {
+        pingTest()
+        trafficMonitor.startUpdate { self.updateNetworkTrafficItem(rate: $0) }
+    }
+    func menuDidClose(_ menu: NSMenu) {
+        trafficMonitor.stopUpdate()
+    }
+
+    // MARK: -
+    func updateNetworkTrafficItem(rate: (Int, Int) = (0, 0)) {
+        let (rx, tx) = rate
+        let title = "⬇︎ \(rx)/s, ⬆︎ \(tx)/s"
+        print(title)
+        networkTrafficItem.title = title
+    }
+    let trafficMonitor = TrafficMonitor.shared
+    @IBOutlet weak var networkTrafficItem: NSMenuItem!
+
+
+    func updateSystemProxyItem() {
+        systemProxyItem.state = systemProxyController.enabled ? NSOnState : NSOffState
+    }
+    @IBOutlet weak var systemProxyItem: NSMenuItem!
+    @IBAction func systemProxyClicked(_ sender: Any) {
+        systemProxyController.enabled = !systemProxyController.enabled
+        updateSystemProxyItem()
+    }
+    let systemProxyController = SystemProxyController()
+
+
+
+    // MARK: - configurations
+    func configClicked(sender: NSMenuItem) {
+        let name = sender.title
+        print("server \(name)")
+        configManager.currentConfiguration = name
+        updateConfigList()
+    }
+    func updateConfigList() {
+        let menu = configurationsItem.submenu!
+        let tag = 11
+        menu.removeItems(withTag: tag)
+
+        let currentConfig = configManager.currentConfiguration
+        for name in configManager.configurations {
+            let action = #selector(configClicked(sender:))
+            let state = currentConfig == name
+            let item = createMenuItem(title: name, tag: tag, state: state, action: action)
+            menu.addItem(item)
+        }
+    }
+    @IBAction func openConfigFolderClicked(_ sender: Any) {
+        NSWorkspace.shared().openFile(configManager.configuraionFolder)
+    }
+    @IBAction func reloadConfigClicked(_ sender: Any) {
+        configManager.reloadConfigurations()
+    }
+    @IBOutlet weak var configurationsItem: NSMenuItem!
+    let configManager = ConfigurationManager()
+
+
+    // MARK: - servers
     @IBAction func autoSelectClicked(_ sender: Any) {
         guard let controller = configManager.serverController else { return }
 
@@ -40,65 +114,6 @@ class MainMenuController: NSObject, NSMenuDelegate {
             self.updateServerList()
         }
     }
-    @IBAction func openConfigFolderClicked(_ sender: Any) {
-        NSWorkspace.shared().openFile(configManager.configuraionFolder)
-    }
-    @IBAction func reloadConfigClicked(_ sender: Any) {
-        configManager.reloadConfigurations()
-    }
-
-    func updateSystemProxyItem() {
-        systemProxyItem.state = systemProxyController.enabled ? NSOnState : NSOffState
-    }
-    @IBOutlet weak var systemProxyItem: NSMenuItem!
-    @IBAction func systemProxyClicked(_ sender: Any) {
-        systemProxyController.enabled = !systemProxyController.enabled
-        updateSystemProxyItem()
-    }
-
-    @IBAction func showLogClicked(_ sender: Any) {
-    }
-    @IBAction func copyExportCommandClicked(_ sender: Any) {
-        var proxy = ""
-        if let port = configManager.port {
-            proxy = "http://127.0.0.1:\(port + 1)"
-        }
-        let content = "export https_proxy=\(proxy); export http_proxy=\(proxy)"
-        copyString(string: content)
-    }
-    @IBAction func checkUpdatesClicked(_ sender: Any) {
-    }
-    @IBAction func startAtLoginClicked(_ sender: Any) {
-    }
-    @IBAction func helpClicked(_ sender: Any) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/simpzan/Escalade")!)
-    }
-    @IBAction func quitClicked(_ sender: Any) {
-        NSApp.terminate(nil)
-    }
-
-    let configManager = ConfigurationManager()
-
-    func configClicked(sender: NSMenuItem) {
-        let name = sender.title
-        print("server \(name)")
-        configManager.currentConfiguration = name
-        updateConfigList()
-    }
-    func updateConfigList() {
-        let menu = configurationsItem.submenu!
-        let tag = 11
-        menu.removeItems(withTag: tag)
-
-        let currentConfig = configManager.currentConfiguration
-        for name in configManager.configurations {
-            let action = #selector(configClicked(sender:))
-            let state = currentConfig == name
-            let item = createMenuItem(title: name, tag: tag, state: state, action: action)
-            menu.addItem(item)
-        }
-    }
-
     func serverClicked(sender: NSMenuItem) {
         let name = sender.representedObject as! String
         print("server \(name)")
@@ -124,6 +139,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
             menu.addItem(item)
         }
     }
+    @IBOutlet weak var serversItem: NSMenuItem!
 
     func updateConnectivityInfo() {
         guard let controller = configManager.serverController else { return }
@@ -140,6 +156,8 @@ class MainMenuController: NSObject, NSMenuDelegate {
         }
         connectivityItem.title = title
     }
+    @IBOutlet weak var connectivityItem: NSMenuItem!
+
     func pingTest() {
         guard let controller = configManager.serverController else { return }
         // disable autoselect
@@ -150,40 +168,27 @@ class MainMenuController: NSObject, NSMenuDelegate {
         }
     }
 
-    let systemProxyController = SystemProxyController()
+    // MARK: -
 
-    override func awakeFromNib() {
-        statusItem.title = "Escalade"
-        statusItem.menu = mainMenu
-
-        mainMenu.delegate = self
-
-        configManager.reloadConfigurations()
-
-        systemProxyController.port = configManager.port!
-        systemProxyController.load()
-        updateSystemProxyItem()
-
-        updateConfigList()
-        updateServerList()
-        updateConnectivityInfo()
-        updateNetworkTrafficItem()
+    @IBAction func showLogClicked(_ sender: Any) {
     }
-
-    func updateNetworkTrafficItem(rate: (Int, Int) = (0, 0)) {
-        let (rx, tx) = rate
-        let title = "⬇︎ \(rx)/s, ⬆︎ \(tx)/s"
-        print(title)
-        self.networkTrafficItem.title = title
+    @IBAction func copyExportCommandClicked(_ sender: Any) {
+        var proxy = ""
+        if let port = configManager.port {
+            proxy = "http://127.0.0.1:\(port + 1)"
+        }
+        let content = "export https_proxy=\(proxy); export http_proxy=\(proxy)"
+        copyString(string: content)
     }
-    let trafficMonitor = TrafficMonitor.shared
-
-    func menuWillOpen(_ menu: NSMenu) {
-        pingTest()
-        trafficMonitor.startUpdate { self.updateNetworkTrafficItem(rate: $0) }
+    @IBAction func checkUpdatesClicked(_ sender: Any) {
     }
-    func menuDidClose(_ menu: NSMenu) {
-        trafficMonitor.stopUpdate()
+    @IBAction func startAtLoginClicked(_ sender: Any) {
+    }
+    @IBAction func helpClicked(_ sender: Any) {
+        NSWorkspace.shared().open(URL(string: "https://github.com/simpzan/Escalade")!)
+    }
+    @IBAction func quitClicked(_ sender: Any) {
+        NSApp.terminate(nil)
     }
 
     class func injected() {
