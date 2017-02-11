@@ -22,7 +22,7 @@ class ESObserverFactory: ObserverFactory {
     open class ESProxySocketObserver: Observer<ProxySocketEvent> {
         override open func signal(_ event: ProxySocketEvent) {
             switch event {
-            case .readData(let data, let _):
+            case .readData(let data, _):
                 TrafficMonitor.shared.updateTx(tx: data.count)
             default:
                 break;
@@ -33,7 +33,7 @@ class ESObserverFactory: ObserverFactory {
     class ESAdapterSocketObserver: Observer<AdapterSocketEvent> {
         override func signal(_ event: AdapterSocketEvent) {
             switch event {
-            case .readData(let data, let _):
+            case .readData(let data, _):
                 TrafficMonitor.shared.updateRx(rx: data.count)
             default:
                 break

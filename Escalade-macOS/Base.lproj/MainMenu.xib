@@ -61,7 +61,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Advanced" autoenablesItems="NO" id="EVc-Yv-RoR">
                         <items>
-                            <menuItem title="System Proxy" state="on" keyEquivalent="s" id="Sdp-cf-5a9">
+                            <menuItem title="System Proxy" keyEquivalent="s" id="Sdp-cf-5a9">
                                 <connections>
                                     <action selector="systemProxyClicked:" target="Fot-qt-aSu" id="9LE-nz-LKS"/>
                                 </connections>

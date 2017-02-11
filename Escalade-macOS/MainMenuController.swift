@@ -16,33 +16,34 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
         mainMenu.delegate = self
 
-        configManager.reloadConfigurations()
-
-        systemProxyController.port = configManager.port!
-        systemProxyController.load()
         updateSystemProxyItem()
-
-        updateConfigList()
-        updateServerList()
-        updateConnectivityInfo()
+        reloadConfigurations()
     }
     @IBOutlet weak var mainMenu: NSMenu!
     let statusItem = NSStatusBar.system().statusItem(withLength: -1)
 
 
     func menuWillOpen(_ menu: NSMenu) {
+        if serverController == nil { return }
+        
+        updateConfigList()
+        updateServerList()
+        updateConnectivityInfo()
+
         pingTest()
         trafficMonitor.startUpdate { rx, tx in
             self.networkTrafficItem.title = "⬇︎ \(rx)/s, ⬆︎ \(tx)/s"
         }
     }
     func menuDidClose(_ menu: NSMenu) {
+        if serverController == nil { return }
+
         trafficMonitor.stopUpdate()
     }
     let trafficMonitor = TrafficMonitor.shared
     @IBOutlet weak var networkTrafficItem: NSMenuItem!
 
-    
+
     // MARK: -
     func updateSystemProxyItem() {
         systemProxyItem.state = systemProxyController.enabled ? NSOnState : NSOffState
@@ -55,13 +56,22 @@ class MainMenuController: NSObject, NSMenuDelegate {
     let systemProxyController = SystemProxyController()
 
 
-
     // MARK: - configurations
+    func reloadConfigurations() {
+        serverController = configManager.reloadConfigurations()
+        if serverController == nil { return }
+
+        systemProxyController.port = configManager.port!
+        systemProxyController.load()
+    }
     func configClicked(sender: NSMenuItem) {
         let name = sender.title
-        print("server \(name)")
-        configManager.currentConfiguration = name
-        updateConfigList()
+        let controller = configManager.setConfiguration(name: name)
+        if controller == nil {
+            print("setConfiguration \(name) failed")
+        } else {
+            serverController = controller
+        }
     }
     func updateConfigList() {
         let menu = configurationsItem.submenu!
@@ -80,7 +90,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
         NSWorkspace.shared().openFile(configManager.configuraionFolder)
     }
     @IBAction func reloadConfigClicked(_ sender: Any) {
-        configManager.reloadConfigurations()
+        reloadConfigurations()
     }
     @IBOutlet weak var configurationsItem: NSMenuItem!
     let configManager = ConfigurationManager()
@@ -88,8 +98,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
     // MARK: - servers
     @IBAction func autoSelectClicked(_ sender: Any) {
-        guard let controller = configManager.serverController else { return }
-
+        guard let controller = serverController else { return }
         let item = sender as! NSMenuItem
         item.isEnabled = false
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
@@ -111,18 +120,14 @@ class MainMenuController: NSObject, NSMenuDelegate {
     }
     func serverClicked(sender: NSMenuItem) {
         let name = sender.representedObject as! String
-        print("server \(name)")
-        guard let controller = configManager.serverController else { return }
-
-        controller.currentServer = name
+        serverController.currentServer = name
         updateServerList()
     }
     func updateServerList() {
-        guard let controller = configManager.serverController else { return }
-
         let tag = 10
         let menu = serversItem.submenu!
         menu.removeItems(withTag: tag)
+        guard let controller = serverController else { return }
 
         let currentId = controller.currentServer
         for (name, pingValue) in controller.servers {
@@ -135,12 +140,11 @@ class MainMenuController: NSObject, NSMenuDelegate {
         }
     }
     @IBOutlet weak var serversItem: NSMenuItem!
+    var serverController: ServerController!
 
     func updateConnectivityInfo() {
-        guard let controller = configManager.serverController else { return }
-
-        let baiduPing = controller.domesticPing
-        let googlePing = controller.internationalPing
+        let baiduPing = serverController.domesticPing
+        let googlePing = serverController.internationalPing
         var title = ""
         if baiduPing == -1 {
             title = "No Network"
@@ -154,9 +158,8 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var connectivityItem: NSMenuItem!
 
     func pingTest() {
-        guard let controller = configManager.serverController else { return }
         // disable autoselect
-        controller.pingTest { err in
+        serverController.pingTest { err in
             // enable autoselect
             self.updateConnectivityInfo()
             self.updateServerList()

@@ -14,25 +14,25 @@ class ConfigurationManager: NSObject {
         return profiles.keys.sorted()
     }
 
+    public func setConfiguration(name: String) -> ServerController? {
+        let controller = applyConfiguration(name: name)
+        if controller != nil {
+            defaults.set(name, forKey: currentConfigKey)
+        }
+        return controller
+    }
     public var currentConfiguration: String? {
-        get {
-            let config = defaults.string(forKey: currentConfigKey)
-            if isValidConfig(name: config) { return config }
-            return configurations.first
-        }
-        set(name) {
-            guard isValidConfig(name: name) else { return }
-            defaults.set(name!, forKey: currentConfigKey)
-            applyConfiguration(name: name)
-        }
+        let config = defaults.string(forKey: currentConfigKey)
+        if isValidConfig(name: config) { return config }
+        return configurations.first
     }
     private let defaults = UserDefaults.standard
     private let currentConfigKey = "currentConfig"
 
-    public func reloadConfigurations() {
+    public func reloadConfigurations() -> ServerController? {
         print("\(#function)")
         profiles = loadAllConfigurations()
-        applyConfiguration()
+        return applyConfiguration()
     }
 
     public lazy var configuraionFolder: String = {
@@ -90,22 +90,22 @@ class ConfigurationManager: NSObject {
     }
 
     // MARK: -
-    private func applyConfiguration(name: String? = nil) {
+    private func applyConfiguration(name: String? = nil) -> ServerController? {
         let key = name ?? currentConfiguration
         guard key != nil, let content = profiles[key!] else {
             print("config \(name) not found")
-            return
+            return nil
         }
 
-        guard let config = loadConfiguration(content: content) else { return }
+        guard let config = loadConfiguration(content: content) else { return nil }
         RuleManager.currentManager = config.ruleManager
-        serverController = ServerController(selectFactory: config.adapterFactoryManager.selectFactory)
+        let serverController = ServerController(selectFactory: config.adapterFactoryManager.selectFactory)
 
         port = UInt16(config.proxyPort ?? 9990)
         proxyServerManager.startProxyServers(port: port!, address: "127.0.0.1")
+        return serverController
     }
     private let proxyServerManager = ProxyServerManager()
-    public var serverController: ServerController?
     public var port: UInt16? = nil
 
     func injected() {
