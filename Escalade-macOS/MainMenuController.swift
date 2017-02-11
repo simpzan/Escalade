@@ -25,30 +25,25 @@ class MainMenuController: NSObject, NSMenuDelegate {
         updateConfigList()
         updateServerList()
         updateConnectivityInfo()
-        updateNetworkTrafficItem()
     }
     @IBOutlet weak var mainMenu: NSMenu!
     let statusItem = NSStatusBar.system().statusItem(withLength: -1)
 
+
     func menuWillOpen(_ menu: NSMenu) {
         pingTest()
-        trafficMonitor.startUpdate { self.updateNetworkTrafficItem(rate: $0) }
+        trafficMonitor.startUpdate { rx, tx in
+            self.networkTrafficItem.title = "⬇︎ \(rx)/s, ⬆︎ \(tx)/s"
+        }
     }
     func menuDidClose(_ menu: NSMenu) {
         trafficMonitor.stopUpdate()
     }
-
-    // MARK: -
-    func updateNetworkTrafficItem(rate: (Int, Int) = (0, 0)) {
-        let (rx, tx) = rate
-        let title = "⬇︎ \(rx)/s, ⬆︎ \(tx)/s"
-        print(title)
-        networkTrafficItem.title = title
-    }
     let trafficMonitor = TrafficMonitor.shared
     @IBOutlet weak var networkTrafficItem: NSMenuItem!
 
-
+    
+    // MARK: -
     func updateSystemProxyItem() {
         systemProxyItem.state = systemProxyController.enabled ? NSOnState : NSOffState
     }
