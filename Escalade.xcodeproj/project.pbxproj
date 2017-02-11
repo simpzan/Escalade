@@ -31,6 +31,7 @@
 		768D4A391E4B4ED000B73E10 /* Sodium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A251E4B4E8B00B73E10 /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		768D4A3A1E4B4ED000B73E10 /* tun2socks.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A261E4B4E8B00B73E10 /* tun2socks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		768D4A3B1E4B4ED000B73E10 /* Yaml.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A271E4B4E8B00B73E10 /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		76A416121E4F4A7C003C2CE2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
 		76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */; };
 		76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76C493601E4A0AA200A0D066 /* Assets.xcassets */; };
 		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
@@ -149,6 +150,7 @@
 		768D4A251E4B4E8B00B73E10 /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = NEKit/Carthage/Build/Mac/Sodium.framework; sourceTree = "<group>"; };
 		768D4A261E4B4E8B00B73E10 /* tun2socks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = tun2socks.framework; path = NEKit/Carthage/Build/Mac/tun2socks.framework; sourceTree = "<group>"; };
 		768D4A271E4B4E8B00B73E10 /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/Mac/Yaml.framework; sourceTree = "<group>"; };
+		76A416111E4F4A7B003C2CE2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Escalade-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76C493601E4A0AA200A0D066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		76C4935D1E4A0AA100A0D066 /* Escalade-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
 				76E113061E4CC49200966580 /* Utils.swift */,
 				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
 				76E112FE1E4CC40900966580 /* ConfigurationManager.swift */,
@@ -482,6 +485,7 @@
 				76C4937B1E4A0C8A00A0D066 /* main.m in Sources */,
 				76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */,
 				76277F0D1E4CEA7E006C06A6 /* TrafficMonitor.swift in Sources */,
+				76A416121E4F4A7C003C2CE2 /* Reachability.swift in Sources */,
 				76E113071E4CC49200966580 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

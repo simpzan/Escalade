@@ -18,6 +18,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
         updateSystemProxyItem()
         reloadConfigurations()
+        listenReachabilityChange()
     }
     @IBOutlet weak var mainMenu: NSMenu!
     let statusItem = NSStatusBar.system().statusItem(withLength: -1)
@@ -30,14 +31,14 @@ class MainMenuController: NSObject, NSMenuDelegate {
         updateServerList()
         updateConnectivityInfo()
 
+        if !reachability.isReachable { return }
+
         pingTest()
         trafficMonitor.startUpdate { rx, tx in
             self.networkTrafficItem.title = "⬇︎ \(rx)/s, ⬆︎ \(tx)/s"
         }
     }
     func menuDidClose(_ menu: NSMenu) {
-        if serverController == nil { return }
-
         trafficMonitor.stopUpdate()
     }
     let trafficMonitor = TrafficMonitor.shared
@@ -142,12 +143,27 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var serversItem: NSMenuItem!
     var serverController: ServerController!
 
+
+    func listenReachabilityChange() {
+        func onReachabilityChange(_: Any) {
+            DispatchQueue.main.async {
+                self.updateConnectivityInfo()
+            }
+        }
+        reachability.whenReachable = onReachabilityChange
+        reachability.whenUnreachable = onReachabilityChange
+        try? reachability.startNotifier()
+    }
+    let reachability = Reachability()!
+
     func updateConnectivityInfo() {
         let baiduPing = serverController.domesticPing
         let googlePing = serverController.internationalPing
         var title = ""
-        if baiduPing == -1 {
+        if !reachability.isReachable {
             title = "No Network"
+        } else if baiduPing == -1 {
+            title = "No Internet"
         } else if baiduPing == 0 || googlePing == 0 {
             title = "Testing..."
         } else {

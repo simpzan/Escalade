@@ -97,7 +97,7 @@ class TrafficMonitor: NSObject {
         updateTraffic()
     }
     public func stopUpdate() {
-        timer.invalidate()
+        timer?.invalidate()
         timer = nil
         self.callback = nil
     }
