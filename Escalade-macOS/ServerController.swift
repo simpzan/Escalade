@@ -10,36 +10,48 @@ import Cocoa
 import NEKit
 
 class ServerController: NSObject {
-    public var servers: [String] {
-        guard let factory = selectFactory else { return [] }
-        return factory.pingResults.map{ $0.0 }
+    public var servers: [(String, TimeInterval)] {
+        return factory.servers.map { server in
+            let ping = factory.pingValue(forServer: server)
+            return (server, ping)
+        }.sorted(by: { (item1, item2) -> Bool in
+            let ping1 = item1.1, ping2 = item2.1
+            if ping1 > 0 && ping2 > 0 {
+                return ping1 < ping2
+            } else {
+                return ping1 > ping2
+            }
+        })
     }
+
     public var currentServer: String? {
         get {
-            return selectFactory?.currentId
+            return factory.current
         }
         set(name) {
-            if name != nil {
-                selectFactory?.currentId = name!
-            }
+            if name == nil { return }
+            factory.current = name!
+            defaults.set(name, forKey: currentServerKey)
         }
     }
-    public func pingValue(ofServer server: String) -> TimeInterval {
-        let item = selectFactory?.pingResults.first { $0.0 == server }
-        if item == nil { return 0 }
-        return (item?.1)!
+    private let defaults = UserDefaults.standard
+    private let currentServerKey = "currentServer"
+
+    public var domesticPing: TimeInterval {
+        return factory.domesticPing
     }
+    public var internationalPing: TimeInterval {
+        return factory.pingValue(forServer: factory.current)
+    }
+
     public func autoSelectServer(callback: @escaping (Error?) -> Void) {
-        func pingProxy() {
-            selectFactory?.autoselect(timeout:2, callback: { (pingResults) in
-                callback(nil)
-            })
-        }
-        directTest() { (err, result) in
+        factory.testDirect { (err, result) in
             if err != nil {
                 callback(err)
-            } else {
-                pingProxy()
+                return
+            }
+            self.factory.autoSelect(timeout:2) { (_) in
+                callback(nil)
             }
         }
     }
@@ -51,33 +63,15 @@ class ServerController: NSObject {
                 callback(nil)
             }
         }
-        directTest { (err, result) in
-            done()
-        }
-        selectFactory!.pingSelected { (err, result) in
-            done()
-        }
+        factory.testDirect { _,_ in done() }
+        factory.testCurrent { _,_ in done() }
     }
 
-    public init(manager: AdapterFactoryManager) {
-        selectFactory = manager.selectFactory
-        directFactory = manager.directFactory
-    }
-
-    private var selectFactory: SelectAdapterFactory?
-    private var directFactory: DirectAdapterFactory?
-
-    private func directTest(callback: @escaping (Error?, TimeInterval) -> Void) {
-        httpPing(url: "http://bdstatic.com/", factory: directFactory!, timeout: 2) { (err, result) in
-            print("ping baidu result \(err) \(result)")
-            if err != nil {
-                self.domesticPing = -1
-            } else {
-                self.domesticPing = result
-            }
-            callback(err, result)
+    public init(selectFactory: SelectAdapterFactory) {
+        factory = selectFactory
+        if let name = defaults.string(forKey: currentServerKey) {
+            factory.current = name
         }
     }
-    var domesticPing: TimeInterval = 0
-
+    private let factory: SelectAdapterFactory
 }

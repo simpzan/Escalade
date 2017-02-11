@@ -32,7 +32,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
                 title = "Can't connect to Baidu"
             } else {
                 let id = controller.currentServer!
-                let ping = controller.pingValue(ofServer: id)
+                let ping = controller.internationalPing
                 text = "auto selected \(id)(\(ping))"
                 title = "Servers Testing Finished"
             }
@@ -115,8 +115,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
         menu.removeItems(withTag: tag)
 
         let currentId = controller.currentServer
-        for name in controller.servers {
-            let pingValue = controller.pingValue(ofServer: name)
+        for (name, pingValue) in controller.servers {
             let title = "\(name) \t\t\(pingValue)s"
             let action = #selector(serverClicked(sender:))
             let state = currentId == name
@@ -130,8 +129,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
         guard let controller = configManager.serverController else { return }
 
         let baiduPing = controller.domesticPing
-        let currentServer = controller.currentServer
-        let googlePing = controller.pingValue(ofServer: currentServer!)
+        let googlePing = controller.internationalPing
         var title = ""
         if baiduPing == -1 {
             title = "No Network"

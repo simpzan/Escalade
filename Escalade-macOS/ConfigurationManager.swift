@@ -99,7 +99,7 @@ class ConfigurationManager: NSObject {
 
         guard let config = loadConfiguration(content: content) else { return }
         RuleManager.currentManager = config.ruleManager
-        serverController = ServerController(manager: config.adapterFactoryManager)
+        serverController = ServerController(selectFactory: config.adapterFactoryManager.selectFactory)
 
         port = UInt16(config.proxyPort ?? 9990)
         proxyServerManager.startProxyServers(port: port!, address: "127.0.0.1")
