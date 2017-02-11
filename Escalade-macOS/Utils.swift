@@ -81,7 +81,6 @@ extension NSObject {
 extension NSMenu {
     func removeItems(withTag tag: Int) {
         let itemsToKeep = items.filter { $0.tag != tag }
-        print("keeping \(itemsToKeep.count) items")
         removeAllItems()
         itemsToKeep.forEach { addItem($0) }
     }

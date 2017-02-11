@@ -98,13 +98,16 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
 
     // MARK: - servers
+    var autoSelecting = false
     @IBAction func autoSelectClicked(_ sender: Any) {
         guard let controller = serverController else { return }
         let item = sender as! NSMenuItem
         item.isEnabled = false
+        autoSelecting = true
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
         controller.autoSelectServer { err in
             item.isEnabled = true
+            self.autoSelecting = false
             var text, title: String
             if err != nil {
                 text = "Your network connection is not connected to the Internet."
@@ -117,6 +120,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
             }
             sendNotification(title: title, text: text)
             self.updateServerList()
+            self.updateConnectivityInfo()
         }
     }
     func serverClicked(sender: NSMenuItem) {
@@ -174,11 +178,14 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var connectivityItem: NSMenuItem!
 
     func pingTest() {
+        if autoSelecting { return }
+        print("pingTesting...")
         // disable autoselect
         serverController.pingTest { err in
             // enable autoselect
             self.updateConnectivityInfo()
             self.updateServerList()
+            print("pingTest done")
         }
     }
 
