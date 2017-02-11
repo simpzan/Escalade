@@ -35,7 +35,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
         pingTest()
         trafficMonitor.startUpdate { rx, tx in
-            self.networkTrafficItem.title = "⬇︎ \(rx)/s, ⬆︎ \(tx)/s"
+            self.networkTrafficItem.title = "⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s"
         }
     }
     func menuDidClose(_ menu: NSMenu) {
@@ -112,7 +112,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
             } else {
                 let id = controller.currentServer!
                 let ping = controller.internationalPing
-                text = "auto selected \(id)(\(ping))"
+                text = "auto selected \(id)(\(miliseconds(ping)))"
                 title = "Servers Testing Finished"
             }
             sendNotification(title: title, text: text)
@@ -132,7 +132,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
         let currentId = controller.currentServer
         for (name, pingValue) in controller.servers {
-            let title = "\(name) \t\t\(pingValue)s"
+            let title = "\(name) \t\t\t \(miliseconds(pingValue))"
             let action = #selector(serverClicked(sender:))
             let state = currentId == name
             let item = createMenuItem(title: title, tag: tag, state: state, action: action)
@@ -167,7 +167,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
         } else if baiduPing == 0 || googlePing == 0 {
             title = "Testing..."
         } else {
-            title = "Baidu \(baiduPing)s, Google \(googlePing)s"
+            title = "Baidu \(miliseconds(baiduPing)), Google \(miliseconds(googlePing))"
         }
         connectivityItem.title = title
     }
@@ -210,6 +210,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
     }
     func injected() {
         print("I've been injected-: \(self)")
+        updateServerList()
     }
 
 }

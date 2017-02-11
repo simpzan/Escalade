@@ -46,10 +46,23 @@ func sendNotification(title: String, text: String) {
     NSUserNotificationCenter.default.deliver(notification)
 }
 
-func miliseconds(fromSecond time: TimeInterval) -> String {
+func miliseconds(_ time: TimeInterval) -> String {
+    if time == 0 { return "" }
+    if time == -1 { return "Failed" }
     let pingResult = Int(time * 1000.0)
     let pingStatus = "\(pingResult)ms"
     return pingStatus
+}
+
+func readableSize(_ byteCount: Int) -> String {
+    let units = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB", "BB", "NB", "DB", "CB"]
+    let step = 1024
+    var count = byteCount
+    for i in 0...(units.count) {
+        if count < step { return "\(count)\(units[i])" }
+        count /= step
+    }
+    return ""
 }
 
 extension NSObject {
