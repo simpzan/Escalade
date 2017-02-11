@@ -27,23 +27,24 @@ class SelectAdapterFactorySpec: QuickSpec {
                 let manager = try! AdapterFactoryParser.parseAdapterFactoryManager(config["adapter"])
                 let factory = manager["proxy"] as! SelectAdapterFactory
 
-                UserDefaults.standard.removeObject(forKey: "currentIdKey")
+                let us40 = "us-40"
+                factory.current = us40
+                expect(factory.current).to(equal(us40))
 
-                let id = factory.currentId
-                expect(id).to(equal("direct"))
                 let connect = ConnectSession(host: "www.google.com", port: 80, fakeIPEnabled: false)
                 let adapter = factory.getAdapterFor(session: connect!)
-                expect(adapter).to(beAKindOf(DirectAdapter.self))
+                expect(adapter.description).to(contain(us40))
+
                 let timeout:TimeInterval = 2
                 waitUntil(timeout: timeout + 1, action: { (done) in
-                    factory.autoselect(timeout: timeout, callback: { (ids) in
-                        print("ids \(ids)")
-                        let id = factory.currentId
-                        expect(id).to(equal("cn2t-52"))
+                    factory.autoSelect(timeout: timeout) { results in
+                        print(results)
+                        let cn52 = "cn2t-52"
+                        expect(factory.current).to(equal(cn52))
                         let adapter = factory.getAdapterFor(session: connect!)
-                        expect(adapter).to(beAKindOf(ShadowsocksAdapter.self))
+                        expect(adapter.description).to(contain(cn52))
                         done()
-                    })
+                    }
                 })
             }
 

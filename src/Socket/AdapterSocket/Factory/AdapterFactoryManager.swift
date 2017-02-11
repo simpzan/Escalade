@@ -27,6 +27,6 @@ public class AdapterFactoryManager {
      */
     public init(factoryDict: [String: AdapterFactory]) {
         self.factoryDict = factoryDict
-        self.selectFactory = SelectAdapterFactory(factories: factoryDict)
+        self.selectFactory = SelectAdapterFactory(factories: factoryDict, directFactory: directFactory)
     }
 }

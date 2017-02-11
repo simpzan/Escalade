@@ -10,97 +10,88 @@ import Foundation
 
 public class SelectAdapterFactory: AdapterFactory {
 
-    public var pingResults: [(String, TimeInterval)] = []
-    private let factories: [String: AdapterFactory]
-
-    private let currentIdKey = "currentIdKey"
-    private var currentId_: String?
-    private let defaults = UserDefaults.standard
-    public var currentId: String {
-        get {
-            if currentId_ == nil {
-                currentId_ = defaults.string(forKey: currentIdKey)
-            }
-            if currentId_ == nil || factories[currentId_!] == nil {
-                return "direct"
-            }
-            return currentId_!
-        }
-        set(id) {
-            currentId_ = id
-            defaults.set(id, forKey: currentIdKey)
-        }
-    }
-
-    public var selected: AdapterFactory? {
-        get {
-            return factories[self.currentId]
-        }
-    }
-
-    public init(factories: [String: AdapterFactory]) {
+    public init(factories: [String: AdapterFactory], directFactory: AdapterFactory) {
         self.factories = factories
-        for (id, _) in factories {
-            pingResults.append((id, 0))
-        }
+        self.directFactory = directFactory
     }
 
     override func getAdapterFor(session: ConnectSession) -> AdapterSocket {
-        let factory = factories[currentId]
-        return (factory?.getAdapterFor(session: session))!
+        return currentFactory.getAdapterFor(session: session)
     }
 
+    // MARK: -
+    public var servers: [String] {
+        return factories.keys.sorted()
+    }
+    private let factories: [String: AdapterFactory]
+    private let directFactory: AdapterFactory
 
-    public func pingSelected(callback: @escaping (Error?, TimeInterval) -> Void) {
-        httpPing(factory: selected!, timeout: 2) { (err, result) in
+    public var current: String {
+        get {
+            if isValid(server: _current) { return _current }
+            return servers.first ?? "direct"
+        }
+        set(name) {
+            if isValid(server: name) { _current = name }
+        }
+    }
+    private var _current: String! = nil
+    private func isValid(server: String!) -> Bool {
+        return server != nil && factories[server] != nil
+    }
+    private var currentFactory: AdapterFactory {
+        return factories[current] ?? directFactory
+    }
+
+    // MARK: -
+    public func pingValue(forServer server: String) -> TimeInterval {
+        return _pingResults[server] ?? 0
+    }
+    private var _pingResults: [String: TimeInterval] = [:]
+
+
+    public func testCurrent(callback: @escaping (Error?, TimeInterval) -> Void) {
+        let id = current
+        httpPing(factory: currentFactory, timeout: 2) { (err, result) in
             print("ping google result \(err) \(result)")
-            let id = self.currentId
-            let pingResult = err != nil ? -1 : result
-            var pingResults = self.pingResults.filter { $0.0 != id }
-            pingResults.insert((id, pingResult), at: 0)
-            self.pingResults = pingResults
+            self._pingResults[id] = result
             callback(err, result)
         }
     }
 
-    public func autoselect(timeout:TimeInterval, callback: @escaping ([(String, TimeInterval)]) -> Void) {
-        var adapterIds: [(String,TimeInterval)] = []
-        var total = self.factories.count
-
-        for (id, factory) in factories {
-            if id.hasSuffix("-") {
-                total -= 1
-                print("autoselect skip \(id)")
-            }
-            httpPing(factory: factory, timeout: timeout, callback: { (error, result) in
-                print("ping \(id) result \(error) \(result)")
-                let pingResult = error != nil ? -1 : result
-                adapterIds.append((id, pingResult))
-                if adapterIds.count == total {
-                    self.sortAndSelectId(ids: adapterIds)
-                    callback(self.pingResults)
-                }
-            })
+    public func testDirect(callback: @escaping (Error?, TimeInterval) -> Void) {
+        httpPing(url: "http://bdstatic.com/", factory: directFactory, timeout: 2) { (err, result) in
+            print("ping baidu result \(err) \(result)")
+            self.domesticPing = result
+            callback(err, result)
         }
     }
+    public var domesticPing: TimeInterval = 0
 
-    private func sortAndSelectId(ids: [(String, TimeInterval)]) {
-        pingResults = ids.sorted { (item1, item2) -> Bool in
-            if item1.1 == -1 {
-                return false
-            } else if item2.1 == -1 {
-                return true
-            } else {
-                return item1.1 - item2.1 < 0
+
+    public func autoSelect(timeout: TimeInterval, callback: @escaping ([String: TimeInterval]) -> Void) {
+        var results: [String: TimeInterval] = [:]
+        var fastestFound = false
+        func pingDone(server: String, ping: TimeInterval, total: Int) {
+            results[server] = ping
+            if !fastestFound && !server.hasSuffix("+") {
+                fastestFound = true
+                self._current = server
+            }
+            if results.count == total {
+                self._pingResults = results
+                callback(results)
+            }
+
+        }
+
+        let serversToTest = servers.filter { !$0.hasSuffix("-") }
+        let total = serversToTest.count
+        for server in serversToTest {
+            let factory = factories[server]!
+            httpPing(factory: factory, timeout: timeout) {
+                pingDone(server: server, ping: $1, total: total)
             }
         }
-
-        let selected = pingResults.first { (item) -> Bool in
-            return !(item.1 == -1 || item.0.hasSuffix("+"))
-        }
-        if let selected = selected {
-            currentId = selected.0
-        }
     }
-
 }
