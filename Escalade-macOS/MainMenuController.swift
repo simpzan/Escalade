@@ -18,6 +18,10 @@ class MainMenuController: NSObject, NSMenuDelegate {
         mainMenu.delegate = self
 
         setUpLogger()
+
+        let _ = launchHelper.validate()
+        updateStartAtLoginItem()
+
         systemProxyController = SystemProxyController(configDir: configManager.configuraionFolder)
         updateSystemProxyItem()
         reloadConfigurations()
@@ -169,6 +173,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
     let reachability = Reachability()!
 
     func updateConnectivityInfo() {
+        if serverController == nil { return }
         let baiduPing = serverController.domesticPing
         let googlePing = serverController.internationalPing
         var title = ""
@@ -225,8 +230,22 @@ class MainMenuController: NSObject, NSMenuDelegate {
     }
     @IBAction func checkUpdatesClicked(_ sender: Any) {
     }
+
     @IBAction func startAtLoginClicked(_ sender: Any) {
+        let enabled = !launchHelper.enabled
+        let result = launchHelper.setEnabled(enabled: enabled)
+        if !result {
+            DDLogError("failed to set auto launch \(enabled)")
+        }
+        updateStartAtLoginItem()
     }
+    @IBOutlet weak var startAtLoginItem: NSMenuItem!
+    func updateStartAtLoginItem() {
+        startAtLoginItem.state = launchHelper.enabled ? NSOnState : NSOffState
+    }
+    let launchHelper = AutoLaunchHelper(identifier: "com.simpzan.EscaladeLaunchHelper-macOS")
+
+
     @IBAction func helpClicked(_ sender: Any) {
         NSWorkspace.shared().open(URL(string: "https://github.com/simpzan/Escalade")!)
     }

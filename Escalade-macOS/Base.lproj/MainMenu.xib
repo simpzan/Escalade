@@ -110,6 +110,7 @@
                 <outlet property="mainMenu" destination="32I-cj-ef3" id="Pb2-1i-Z4K"/>
                 <outlet property="networkTrafficItem" destination="ema-mF-xc1" id="afh-h3-T0J"/>
                 <outlet property="serversItem" destination="mT5-4y-6tc" id="uaB-W6-4w5"/>
+                <outlet property="startAtLoginItem" destination="0DH-Er-RLY" id="VML-MK-mEu"/>
                 <outlet property="systemProxyItem" destination="Sdp-cf-5a9" id="ukC-ii-jwM"/>
             </connections>
         </customObject>

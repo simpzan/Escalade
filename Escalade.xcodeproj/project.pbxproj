@@ -15,6 +15,8 @@
 		76841E891E505EA300685B0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E881E505EA300685B0F /* main.m */; };
 		76841E8B1E505EA300685B0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76841E8A1E505EA300685B0F /* Assets.xcassets */; };
 		76841E8E1E505EA300685B0F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76841E8C1E505EA300685B0F /* MainMenu.xib */; };
+		76841E9A1E50603B00685B0F /* EscaladeLaunchHelper-macOS.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		76841E9C1E5060DE00685B0F /* AutoLaunchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */; };
 		768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
 		768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; };
 		768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; };
@@ -57,6 +59,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 76277F151E4CF5D3006C06A6;
 			remoteInfo = SystemProxyConfig;
+		};
+		76841E971E50602000685B0F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76841E811E505EA300685B0F;
+			remoteInfo = "EscaladeLaunchHelper-macOS";
 		};
 		768D4A0D1E4B4AB900B73E10 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -119,6 +128,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		76841E991E50602900685B0F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				76841E9A1E50603B00685B0F /* EscaladeLaunchHelper-macOS.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		768D4A311E4B4E9E00B73E10 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -153,6 +172,7 @@
 		76841E8A1E505EA300685B0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76841E8D1E505EA300685B0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		76841E8F1E505EA300685B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLaunchHelper.swift; sourceTree = "<group>"; };
 		768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NEKit.xcodeproj; path = NEKit/NEKit.xcodeproj; sourceTree = "<group>"; };
 		768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = NEKit/Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
@@ -330,6 +350,7 @@
 				76E1130D1E4CC79600966580 /* ServerController.swift */,
 				76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */,
 				76277F201E4CF758006C06A6 /* SystemProxyController.swift */,
+				76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */,
 				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
 				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C4937A1E4A0C8A00A0D066 /* main.m */,
@@ -398,10 +419,12 @@
 				768D4A311E4B4E9E00B73E10 /* CopyFiles */,
 				9D9B5C15C5C3BFD436A26E53 /* [CP] Embed Pods Frameworks */,
 				6F4104ABFF16156CACCEF6FF /* [CP] Copy Pods Resources */,
+				76841E991E50602900685B0F /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				76841E981E50602000685B0F /* PBXTargetDependency */,
 				76277F1E1E4CF637006C06A6 /* PBXTargetDependency */,
 				768D4A1C1E4B4DF000B73E10 /* PBXTargetDependency */,
 			);
@@ -631,6 +654,7 @@
 				76E112F21E4CB80D00966580 /* ProxyServerManager.swift in Sources */,
 				76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */,
 				76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */,
+				76841E9C1E5060DE00685B0F /* AutoLaunchHelper.swift in Sources */,
 				76C4937B1E4A0C8A00A0D066 /* main.m in Sources */,
 				76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */,
 				76277F0D1E4CEA7E006C06A6 /* TrafficMonitor.swift in Sources */,
@@ -654,6 +678,11 @@
 			isa = PBXTargetDependency;
 			target = 76277F151E4CF5D3006C06A6 /* SystemProxyConfig */;
 			targetProxy = 76277F1D1E4CF637006C06A6 /* PBXContainerItemProxy */;
+		};
+		76841E981E50602000685B0F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76841E811E505EA300685B0F /* EscaladeLaunchHelper-macOS */;
+			targetProxy = 76841E971E50602000685B0F /* PBXContainerItemProxy */;
 		};
 		768D4A1C1E4B4DF000B73E10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1140,6 +1169,7 @@
 				76841E911E505EA300685B0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		76C493541E4A0A8C00A0D066 /* Build configuration list for PBXProject "Escalade" */ = {
 			isa = XCConfigurationList;
