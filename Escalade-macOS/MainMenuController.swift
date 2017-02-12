@@ -81,6 +81,8 @@ class MainMenuController: NSObject, NSMenuDelegate {
         menu.removeItems(withTag: tag)
 
         let currentConfig = configManager.currentConfiguration
+        configurationsItem.title = "Config: \(currentConfig ?? "")"
+
         for name in configManager.configurations {
             let action = #selector(configClicked(sender:))
             let state = currentConfig == name
@@ -133,13 +135,16 @@ class MainMenuController: NSObject, NSMenuDelegate {
         let tag = 10
         let menu = serversItem.submenu!
         menu.removeItems(withTag: tag)
+        serversItem.title = "Servers"
         guard let controller = serverController else { return }
 
-        let currentId = controller.currentServer
+        let current = controller.currentServer
+        serversItem.title = "Server: \(current ?? "")"
+
         for (name, pingValue) in controller.servers {
             let title = "\(name) \t\t\t \(miliseconds(pingValue))"
             let action = #selector(serverClicked(sender:))
-            let state = currentId == name
+            let state = current == name
             let item = createMenuItem(title: title, tag: tag, state: state, action: action)
             item.representedObject = name
             menu.addItem(item)
