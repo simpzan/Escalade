@@ -8,6 +8,7 @@
 
 import Cocoa
 import CocoaLumberjackSwift
+import Sparkle
 
 class MainMenuController: NSObject, NSMenuDelegate {
 
@@ -228,7 +229,9 @@ class MainMenuController: NSObject, NSMenuDelegate {
         let content = "export https_proxy=\(proxy); export http_proxy=\(proxy)"
         copyString(string: content)
     }
+
     @IBAction func checkUpdatesClicked(_ sender: Any) {
+        SUUpdater.shared().checkForUpdates(nil)
     }
 
     @IBAction func startAtLoginClicked(_ sender: Any) {

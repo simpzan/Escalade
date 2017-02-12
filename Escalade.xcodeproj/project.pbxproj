@@ -11,6 +11,7 @@
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
 		76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
+		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
 		76841E861E505EA300685B0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E851E505EA300685B0F /* AppDelegate.m */; };
 		76841E891E505EA300685B0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E881E505EA300685B0F /* main.m */; };
 		76841E8B1E505EA300685B0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76841E8A1E505EA300685B0F /* Assets.xcassets */; };
@@ -165,6 +166,7 @@
 		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76277F201E4CF758006C06A6 /* SystemProxyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemProxyController.swift; sourceTree = "<group>"; };
+		7641854F1E506C13003C7FFC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EscaladeLaunchHelper-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76841E841E505EA300685B0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76841E851E505EA300685B0F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C4937A1E4A0C8A00A0D066 /* main.m */,
 				76C493651E4A0AA200A0D066 /* Info.plist */,
+				7641854F1E506C13003C7FFC /* dsa_pub.pem */,
 				76DCB6ED1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh */,
 				76C493791E4A0C8900A0D066 /* Escalade-macOS-Bridging-Header.h */,
 				76C493601E4A0AA200A0D066 /* Assets.xcassets */,
@@ -563,6 +566,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				764185501E506C13003C7FFC /* dsa_pub.pem in Resources */,
 				76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */,
 				76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */,
 				76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */,
