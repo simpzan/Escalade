@@ -8,8 +8,12 @@
 
 import Cocoa
 
-class SystemProxyController: NSObject {
-    private let toolPath = "/Library/Application Support/Escalade/SystemProxyConfig"
+class SystemProxyController {
+    public init(configDir: String) {
+        toolPath = "\(configDir)/SystemProxyConfig"
+    }
+
+    private let toolPath: String
     private let version = "0.1.0"
 
     private let defaults = UserDefaults.standard

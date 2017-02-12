@@ -6,8 +6,8 @@
 #  Created by Samuel Zhang on 2/10/17.
 #
 
-DIR="/Library/Application Support/Escalade/"
-FILE="${DIR}SystemProxyConfig"
+DIR="${HOME}/Library/Application Support/Escalade"
+FILE="${DIR}/SystemProxyConfig"
 
 cd `dirname "${BASH_SOURCE[0]}"`
 sudo mkdir -p "${DIR}"

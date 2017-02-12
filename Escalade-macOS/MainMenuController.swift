@@ -16,6 +16,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
         mainMenu.delegate = self
 
+        systemProxyController = SystemProxyController(configDir: configManager.configuraionFolder)
         updateSystemProxyItem()
         reloadConfigurations()
         listenReachabilityChange()
@@ -54,7 +55,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
         systemProxyController.enabled = !systemProxyController.enabled
         updateSystemProxyItem()
     }
-    let systemProxyController = SystemProxyController()
+    var systemProxyController: SystemProxyController! = nil
 
 
     // MARK: - configurations
@@ -212,9 +213,6 @@ class MainMenuController: NSObject, NSMenuDelegate {
         NSApp.terminate(nil)
     }
 
-    class func injected() {
-        print("I've been injected+: \(self)")
-    }
     func injected() {
         print("I've been injected-: \(self)")
         updateServerList()
