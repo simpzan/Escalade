@@ -43,6 +43,7 @@
 		76E112FF1E4CC40900966580 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E112FE1E4CC40900966580 /* ConfigurationManager.swift */; };
 		76E113071E4CC49200966580 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E113061E4CC49200966580 /* Utils.swift */; };
 		76E1130E1E4CC79600966580 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E1130D1E4CC79600966580 /* ServerController.swift */; };
+		7E560DD6A38EE8B7A83C6A9D /* Pods_Escalade_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1E8385670F7E654A184646 /* Pods_Escalade_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		47448188CDC5329F975263B8 /* Pods-Escalade-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Escalade-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMonitor.swift; sourceTree = "<group>"; };
 		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -167,6 +169,8 @@
 		76E112FE1E4CC40900966580 /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
 		76E113061E4CC49200966580 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		76E1130D1E4CC79600966580 /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
+		C4029B342D6BE0E9F66E7868 /* Pods-Escalade-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Escalade-macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS.debug.xcconfig"; sourceTree = "<group>"; };
+		CC1E8385670F7E654A184646 /* Pods_Escalade_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Escalade_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,7 @@
 				768D4A2F1E4B4E8B00B73E10 /* tun2socks.framework in Frameworks */,
 				768D4A301E4B4E8B00B73E10 /* Yaml.framework in Frameworks */,
 				768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */,
+				7E560DD6A38EE8B7A83C6A9D /* Pods_Escalade_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +209,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48525F7B31ACD3B2546D6AD8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C4029B342D6BE0E9F66E7868 /* Pods-Escalade-macOS.debug.xcconfig */,
+				47448188CDC5329F975263B8 /* Pods-Escalade-macOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		76277F171E4CF5D3006C06A6 /* SystemProxyConfig */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +250,7 @@
 				768D4A251E4B4E8B00B73E10 /* Sodium.framework */,
 				768D4A261E4B4E8B00B73E10 /* tun2socks.framework */,
 				768D4A271E4B4E8B00B73E10 /* Yaml.framework */,
+				CC1E8385670F7E654A184646 /* Pods_Escalade_macOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -249,6 +264,7 @@
 				76277F171E4CF5D3006C06A6 /* SystemProxyConfig */,
 				76C4935C1E4A0AA100A0D066 /* Products */,
 				768D4A1E1E4B4E8B00B73E10 /* Frameworks */,
+				48525F7B31ACD3B2546D6AD8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -317,10 +333,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76C493711E4A0AA200A0D066 /* Build configuration list for PBXNativeTarget "Escalade-macOS" */;
 			buildPhases = (
+				393ADD9E85569889F82B272F /* [CP] Check Pods Manifest.lock */,
 				76C493571E4A0AA100A0D066 /* Sources */,
 				76C493581E4A0AA100A0D066 /* Frameworks */,
 				76C493591E4A0AA100A0D066 /* Resources */,
 				768D4A311E4B4E9E00B73E10 /* CopyFiles */,
+				9D9B5C15C5C3BFD436A26E53 /* [CP] Embed Pods Frameworks */,
+				6F4104ABFF16156CACCEF6FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -463,6 +482,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		393ADD9E85569889F82B272F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6F4104ABFF16156CACCEF6FF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D9B5C15C5C3BFD436A26E53 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		76277F121E4CF5D3006C06A6 /* Sources */ = {
@@ -635,6 +702,7 @@
 		};
 		76C493721E4A0AA200A0D066 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4029B342D6BE0E9F66E7868 /* Pods-Escalade-macOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -697,6 +765,7 @@
 		};
 		76C493731E4A0AA200A0D066 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47448188CDC5329F975263B8 /* Pods-Escalade-macOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
