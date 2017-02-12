@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CocoaLumberjackSwift
 
 class MainMenuController: NSObject, NSMenuDelegate {
 
@@ -16,6 +17,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
         mainMenu.delegate = self
 
+        setUpLogger()
         systemProxyController = SystemProxyController(configDir: configManager.configuraionFolder)
         updateSystemProxyItem()
         reloadConfigurations()
@@ -198,7 +200,21 @@ class MainMenuController: NSObject, NSMenuDelegate {
     // MARK: -
 
     @IBAction func showLogClicked(_ sender: Any) {
+        if let logfile = logger.logFileManager?.sortedLogFilePaths?.first {
+            let _ = runCommand(path: "/usr/bin/env", args: ["open", "-a", "Console", logfile])
+        }
     }
+    func setUpLogger() {
+        DDLog.add(DDTTYLogger.sharedInstance(), with: .info)
+
+        let logger = DDFileLogger()
+        logger?.rollingFrequency = TimeInterval(60*60*3)
+        logger?.logFileManager.maximumNumberOfLogFiles = 1
+        DDLog.add(logger, with: .info)
+        self.logger = logger
+    }
+    var logger: DDFileLogger!
+
     @IBAction func copyExportCommandClicked(_ sender: Any) {
         var proxy = ""
         if let port = configManager.port {

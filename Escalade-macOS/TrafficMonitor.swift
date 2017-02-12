@@ -8,7 +8,7 @@
 
 import Cocoa
 import NEKit
-
+import CocoaLumberjackSwift
 
 class ESObserverFactory: ObserverFactory {
     override func getObserverForAdapterSocket(_ socket: AdapterSocket) -> Observer<AdapterSocketEvent>? {
@@ -35,6 +35,8 @@ class ESObserverFactory: ObserverFactory {
             switch event {
             case .readData(let data, _):
                 TrafficMonitor.shared.updateRx(rx: data.count)
+            case .socketOpened(let socket, let request):
+                DDLogInfo("Request: \(request.host) Type: \(socket) Rule: \(request.matchedRule?.description ?? "")")
             default:
                 break
             }
