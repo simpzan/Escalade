@@ -423,6 +423,7 @@
 				9D9B5C15C5C3BFD436A26E53 /* [CP] Embed Pods Frameworks */,
 				6F4104ABFF16156CACCEF6FF /* [CP] Copy Pods Resources */,
 				76841E991E50602900685B0F /* CopyFiles */,
+				761745BD1E50840D008BDA7D /* Increment Build Version */,
 			);
 			buildRules = (
 			);
@@ -613,6 +614,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		761745BD1E50840D008BDA7D /* Increment Build Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Build Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh $SRCROOT/Scripts/IncrementBuild.sh";
 		};
 		9D9B5C15C5C3BFD436A26E53 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
