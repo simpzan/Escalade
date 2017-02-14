@@ -115,22 +115,27 @@ class MainMenuController: NSObject, NSMenuDelegate {
         item.isEnabled = false
         autoSelecting = true
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
-        controller.autoSelectServer { err in
-            item.isEnabled = true
-            self.autoSelecting = false
-            var text, title: String
-            if err != nil {
-                text = "Your network connection is not connected to the Internet."
-                title = "Can't connect to Baidu"
-            } else {
+        controller.autoSelect { err, server in
+            if err == nil && server != nil { // found ok, first time.
                 let id = controller.currentServer!
                 let ping = controller.internationalPing
-                text = "auto selected \(id)(\(miliseconds(ping)))"
-                title = "Servers Testing Finished"
+                let text = "auto selected \(id)(\(miliseconds(ping)))"
+                let title = "Servers Testing Finished"
+                sendNotification(title: title, text: text)
+                self.updateConnectivityInfo()
+            } else if err == nil && server == nil { // found ok, second time.
+                item.isEnabled = true
+                self.autoSelecting = false
+                self.updateServerList()
+            } else if err != nil && server == nil { // found error.
+                let text = "Your network connection is not connected to the Internet."
+                let title = "Can't connect to Baidu"
+                sendNotification(title: title, text: text)
+                item.isEnabled = true
+                self.autoSelecting = false
+                self.updateServerList()
+                self.updateConnectivityInfo()
             }
-            sendNotification(title: title, text: text)
-            self.updateServerList()
-            self.updateConnectivityInfo()
         }
     }
     func serverClicked(sender: NSMenuItem) {

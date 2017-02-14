@@ -45,16 +45,28 @@ class ServerController: NSObject {
         return factory.pingValue(forServer: factory.current)
     }
 
-    public func autoSelectServer(callback: @escaping (Error?) -> Void) {
-        factory.testDirect { (err, result) in
+    public enum AutoSelectError: Error {
+        case DirectPingError, ProxyPingError
+    }
+    public func autoSelect(callback: @escaping (Error?, String?) -> Void) {
+        factory.testDirect { err, result in
             DDLogInfo("ping direct when selecting: \(err) \(result)")
             if err != nil {
-                callback(err)
+                callback(AutoSelectError.DirectPingError, nil)
                 return
             }
-            self.factory.autoSelect(timeout:2) { (results) in
-                DDLogInfo("auto select: \(results)")
-                callback(nil)
+            var selected: String? = nil
+            self.factory.autoSelect(timeout: 2) { server in
+                if server != nil {
+                    selected = server
+                    callback(nil, server)
+                } else if selected != nil {
+                    DDLogInfo("auto select: \(selected) \(self.servers)")
+                    callback(nil, nil)
+                } else {
+                    DDLogInfo("auto select failed: \(self.servers)")
+                    callback(AutoSelectError.ProxyPingError, nil)
+                }
             }
         }
     }
