@@ -53,7 +53,6 @@ public class SelectAdapterFactory: AdapterFactory {
     public func testCurrent(callback: @escaping (Error?, TimeInterval) -> Void) {
         let id = current
         httpPing(factory: currentFactory, timeout: 2) { (err, result) in
-            print("ping google result \(err) \(result)")
             self._pingResults[id] = result
             callback(err, result)
         }
@@ -61,7 +60,6 @@ public class SelectAdapterFactory: AdapterFactory {
 
     public func testDirect(callback: @escaping (Error?, TimeInterval) -> Void) {
         httpPing(url: "http://bdstatic.com/", factory: directFactory, timeout: 2) { (err, result) in
-            print("ping baidu result \(err) \(result)")
             self.domesticPing = result
             callback(err, result)
         }
@@ -69,7 +67,7 @@ public class SelectAdapterFactory: AdapterFactory {
     public var domesticPing: TimeInterval = 0
 
 
-    public func autoSelect(timeout: TimeInterval, callback: @escaping ([String: TimeInterval]) -> Void) {
+    public func autoSelect(timeout: TimeInterval, callback: @escaping (String?) -> Void) {
         var results: [String: TimeInterval] = [:]
         var fastestFound = false
         func pingDone(server: String, ping: TimeInterval, total: Int) {
@@ -77,12 +75,12 @@ public class SelectAdapterFactory: AdapterFactory {
             if !fastestFound && !server.hasSuffix("+") {
                 fastestFound = true
                 self._current = server
+                callback(server) // optionally called once with server name when found ok.
             }
             if results.count == total {
                 self._pingResults = results
-                callback(results)
+                callback(nil)   // always called to indicate completion.
             }
-
         }
 
         let serversToTest = servers.filter { !$0.hasSuffix("-") }
