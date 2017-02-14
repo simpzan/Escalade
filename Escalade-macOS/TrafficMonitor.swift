@@ -36,7 +36,9 @@ class ESObserverFactory: ObserverFactory {
             case .readData(let data, _):
                 TrafficMonitor.shared.updateRx(rx: data.count)
             case .socketOpened(let socket, let request):
-                DDLogInfo("Request: \(request.host) Type: \(socket) Rule: \(request.matchedRule?.description ?? "")")
+                if let rule = request.matchedRule {
+                    DDLogInfo("Request: \(request.host) Type: \(socket) Rule: \(rule)")
+                }
             default:
                 break
             }

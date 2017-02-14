@@ -8,6 +8,7 @@
 
 import Cocoa
 import NEKit
+import CocoaLumberjackSwift
 
 class ServerController: NSObject {
     public var servers: [(String, TimeInterval)] {
@@ -46,11 +47,13 @@ class ServerController: NSObject {
 
     public func autoSelectServer(callback: @escaping (Error?) -> Void) {
         factory.testDirect { (err, result) in
+            DDLogInfo("ping direct when selecting: \(err) \(result)")
             if err != nil {
                 callback(err)
                 return
             }
-            self.factory.autoSelect(timeout:2) { (_) in
+            self.factory.autoSelect(timeout:2) { (results) in
+                DDLogInfo("auto select: \(results)")
                 callback(nil)
             }
         }
@@ -63,8 +66,14 @@ class ServerController: NSObject {
                 callback(nil)
             }
         }
-        factory.testDirect { _,_ in done() }
-        factory.testCurrent { _,_ in done() }
+        factory.testDirect { err, result in
+            DDLogInfo("ping direct: \(err) \(result)")
+            done()
+        }
+        factory.testCurrent { err, result in
+            DDLogInfo("ping proxy: \(err) \(result)")
+            done()
+        }
     }
 
     public init(selectFactory: SelectAdapterFactory) {
