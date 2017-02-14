@@ -13,7 +13,7 @@ import Sparkle
 class MainMenuController: NSObject, NSMenuDelegate {
 
     override func awakeFromNib() {
-        statusItem.title = "Escalade"
+        statusItem.image = NSImage(named: "MenuBarIcon")
         statusItem.menu = mainMenu
 
         mainMenu.delegate = self
