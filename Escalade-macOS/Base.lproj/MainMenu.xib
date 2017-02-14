@@ -105,6 +105,7 @@
         </menu>
         <customObject id="Fot-qt-aSu" customClass="MainMenuController" customModule="Escalade_macOS" customModuleProvider="target">
             <connections>
+                <outlet property="autoSelectItem" destination="BSC-Yd-CeE" id="i94-p4-v47"/>
                 <outlet property="configurationsItem" destination="daz-V7-ed3" id="lwc-Y1-IK8"/>
                 <outlet property="connectivityItem" destination="Ffx-Dh-25v" id="5Y3-Jk-8ZA"/>
                 <outlet property="mainMenu" destination="32I-cj-ef3" id="Pb2-1i-Z4K"/>

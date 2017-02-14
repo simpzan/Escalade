@@ -108,12 +108,10 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
 
     // MARK: - servers
-    var autoSelecting = false
+    @IBOutlet weak var autoSelectItem: NSMenuItem!
     @IBAction func autoSelectClicked(_ sender: Any) {
         guard let controller = serverController else { return }
-        let item = sender as! NSMenuItem
-        item.isEnabled = false
-        autoSelecting = true
+        autoSelectItem.isEnabled = false
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
         controller.autoSelect { err, server in
             if err == nil && server != nil { // found ok, first time.
@@ -124,15 +122,13 @@ class MainMenuController: NSObject, NSMenuDelegate {
                 sendNotification(title: title, text: text)
                 self.updateConnectivityInfo()
             } else if err == nil && server == nil { // found ok, second time.
-                item.isEnabled = true
-                self.autoSelecting = false
+                self.autoSelectItem.isEnabled = true
                 self.updateServerList()
             } else if err != nil && server == nil { // found error.
                 let text = "Your network connection is not connected to the Internet."
                 let title = "Can't connect to Baidu"
                 sendNotification(title: title, text: text)
-                item.isEnabled = true
-                self.autoSelecting = false
+                self.autoSelectItem.isEnabled = true
                 self.updateServerList()
                 self.updateConnectivityInfo()
             }
@@ -197,11 +193,11 @@ class MainMenuController: NSObject, NSMenuDelegate {
     @IBOutlet weak var connectivityItem: NSMenuItem!
 
     func pingTest() {
-        if autoSelecting { return }
+        if !autoSelectItem.isEnabled { return }
         print("pingTesting...")
-        // disable autoselect
+        autoSelectItem.isEnabled = false
         serverController.pingTest { err in
-            // enable autoselect
+            self.autoSelectItem.isEnabled = true
             self.updateConnectivityInfo()
             self.updateServerList()
             print("pingTest done")
