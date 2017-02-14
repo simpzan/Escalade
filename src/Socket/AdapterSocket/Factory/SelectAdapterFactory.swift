@@ -68,27 +68,26 @@ public class SelectAdapterFactory: AdapterFactory {
 
 
     public func autoSelect(timeout: TimeInterval, callback: @escaping (String?) -> Void) {
-        var results: [String: TimeInterval] = [:]
         var fastestFound = false
-        func pingDone(server: String, ping: TimeInterval, total: Int) {
-            results[server] = ping
+        func pingDone(server: String, ping: TimeInterval) {
+            self._pingResults[server] = ping
             if !fastestFound && !server.hasSuffix("+") {
                 fastestFound = true
                 self._current = server
                 callback(server) // optionally called once with server name when found ok.
             }
-            if results.count == total {
-                self._pingResults = results
-                callback(nil)   // always called to indicate completion.
-            }
         }
 
         let serversToTest = servers.filter { !$0.hasSuffix("-") }
         let total = serversToTest.count
+        var count = 0
         for server in serversToTest {
             let factory = factories[server]!
             httpPing(factory: factory, timeout: timeout) {
-                pingDone(server: server, ping: $1, total: total)
+                pingDone(server: server, ping: $1)
+
+                count += 1
+                if count == total { callback(nil) }
             }
         }
     }
