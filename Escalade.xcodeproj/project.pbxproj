@@ -186,7 +186,7 @@
 		768D4A261E4B4E8B00B73E10 /* tun2socks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = tun2socks.framework; path = NEKit/Carthage/Build/Mac/tun2socks.framework; sourceTree = "<group>"; };
 		768D4A271E4B4E8B00B73E10 /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/Mac/Yaml.framework; sourceTree = "<group>"; };
 		76A416111E4F4A7B003C2CE2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Escalade-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C4935B1E4A0AA100A0D066 /* Escalade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Escalade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76C493601E4A0AA200A0D066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76C493631E4A0AA200A0D066 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 		76C4935C1E4A0AA100A0D066 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */,
+				76C4935B1E4A0AA100A0D066 /* Escalade.app */,
 				76C4936A1E4A0AA200A0D066 /* Escalade-macOSTests.xctest */,
 				76277F161E4CF5D3006C06A6 /* SystemProxyConfig */,
 				76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */,
@@ -434,7 +434,7 @@
 			);
 			name = "Escalade-macOS";
 			productName = "Escalade-macOS";
-			productReference = 76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */;
+			productReference = 76C4935B1E4A0AA100A0D066 /* Escalade.app */;
 			productType = "com.apple.product-type.application";
 		};
 		76C493691E4A0AA200A0D066 /* Escalade-macOSTests */ = {
@@ -995,7 +995,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Escalade;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Escalade-macOS/Escalade-macOS-Bridging-Header.h";
@@ -1051,7 +1051,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Escalade;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Escalade-macOS/Escalade-macOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
