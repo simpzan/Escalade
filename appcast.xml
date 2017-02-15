@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+    <title>Escalade</title>
+    <link>https://simpzan.github.io/Escalade/appcast.xml</link>
+    <description>The stable channel of Escalade.</description>
+    <language>en</language>
+    <item>
+        <title>Escalade 0.1.0</title>
+        <pubDate>Wed, 15 Feb 2017 10:35:33 GMT</pubDate>
+        <description>
+            <![CDATA[
+                
+            ]]>
+        </description>
+        <enclosure
+            url="https://github.com/simpzan/Escalade/releases/download/0.1.0/Escalade.zip"
+            sparkle:version="42"
+            sparkle:shortVersionString="0.1.0"
+            sparkle:dsaSignature="MC0CFQCf8flP/ZrNdWfMQIRNE6PM4AC8jAIUM1tqC++8Dx1VCNasUiQ/y5fFqLQ="
+            length="6261339"
+            type="application/octet-stream" />
+    </item>
+</channel>
+</rss>
