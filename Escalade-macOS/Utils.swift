@@ -9,6 +9,12 @@
 import Cocoa
 
 
+public func alert(_ message: String) {
+    let alert = NSAlert()
+    alert.messageText = message
+    alert.runModal()
+}
+
 public func runCommand(path: String, args: [String]) -> (output: String, error: String, exitCode: Int32) {
     print("\(path) \(args)")
     let task = Process()

@@ -15,6 +15,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        let id = Bundle.main.bundleIdentifier!
+        let runningApps = NSRunningApplication.runningApplications(withBundleIdentifier: id)
+        if runningApps.count > 1 {
+            alert("Another app with same bundle id is already running! Please quit that app first.")
+            NSApp.terminate(nil)
+        } else {
+            mainMenuController.reloadConfigurations()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

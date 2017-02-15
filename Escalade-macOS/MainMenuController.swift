@@ -28,7 +28,6 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
         systemProxyController = SystemProxyController(configDir: configManager.configuraionFolder)
         updateSystemProxyItem()
-        reloadConfigurations()
         listenReachabilityChange()
     }
     @IBOutlet weak var mainMenu: NSMenu!
