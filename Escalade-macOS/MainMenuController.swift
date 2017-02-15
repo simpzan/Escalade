@@ -17,6 +17,9 @@ class MainMenuController: NSObject, NSMenuDelegate {
         statusItem.menu = mainMenu
 
         mainMenu.delegate = self
+        
+        serversItem.action = #selector(autoSelectClicked(_:))
+        serversItem.target = self
 
         setUpLogger()
 
@@ -109,8 +112,9 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
     // MARK: - servers
     @IBOutlet weak var autoSelectItem: NSMenuItem!
-    @IBAction func autoSelectClicked(_ sender: Any) {
+    @objc @IBAction func autoSelectClicked(_ sender: Any) {
         guard let controller = serverController else { return }
+        if !autoSelectItem.isEnabled { return }
         autoSelectItem.isEnabled = false
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
         controller.autoSelect { err, server in
