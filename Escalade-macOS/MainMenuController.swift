@@ -200,11 +200,15 @@ class MainMenuController: NSObject, NSMenuDelegate {
         if !autoSelectItem.isEnabled { return }
         print("pingTesting...")
         autoSelectItem.isEnabled = false
+        let start = Date()
         serverController.pingTest { err in
-            self.autoSelectItem.isEnabled = true
-            self.updateConnectivityInfo()
-            self.updateServerList()
-            print("pingTest done")
+            let cost = Date().timeIntervalSince(start)
+            delay(0.5 - cost) { // update at least 0.5s later to let user see the transition easily.
+                self.autoSelectItem.isEnabled = true
+                self.updateConnectivityInfo()
+                self.updateServerList()
+                print("pingTest done")
+            }
         }
     }
 

@@ -8,6 +8,10 @@
 
 import Cocoa
 
+public func delay(_ delay: Double, closure: @escaping () -> Void) {
+    let time = delay > 0 ? delay : 0;
+    DispatchQueue.main.asyncAfter(deadline: .now() + time, execute: closure)
+}
 
 public func alert(_ message: String) {
     let alert = NSAlert()
