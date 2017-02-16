@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SystemConfiguration
 
 class SystemProxyController {
     public init(configDir: String) {
@@ -16,6 +17,14 @@ class SystemProxyController {
     private let toolPath: String
     private let version = "0.1.0"
 
+    private var persistedEnableState: Bool {
+        get {
+            return defaults.bool(forKey: systemProxyEnabledKey)
+        }
+        set(value) {
+            defaults.set(value, forKey: systemProxyEnabledKey)
+        }
+    }
     private let defaults = UserDefaults.standard
     private let systemProxyEnabledKey = "systemProxyEnabled"
 
@@ -26,7 +35,7 @@ class SystemProxyController {
         NotificationCenter.default.addObserver(self, selector: #selector(clearSystemProxyState), name: NSNotification.Name.NSApplicationWillTerminate, object: nil)
     }
     private func restoreSystemProxyState() {
-        if enabled {
+        if persistedEnableState {
             setProxy(enable: true)
         }
     }
@@ -39,12 +48,28 @@ class SystemProxyController {
 
     public var enabled: Bool {
         get {
-            return defaults.bool(forKey: systemProxyEnabledKey)
+            return isEnabled()
         }
         set(state) {
-            defaults.set(state, forKey: systemProxyEnabledKey)
+            persistedEnableState = state
             setProxy(enable: state)
         }
+    }
+    private func isEnabled() -> Bool {
+        guard let proxies = SCDynamicStoreCopyProxies(nil) as? [String: AnyObject] else {
+            return false
+        }
+        func enabled(_ enableKey: CFString, _ hostKey: CFString, _ portKey: CFString, _ portNumber: UInt16) -> Bool {
+            let enable = proxies[enableKey as String] as? NSNumber
+            let host = proxies[hostKey as String] as? String
+            let port = proxies[portKey as String] as? NSNumber
+            return enable?.intValue == 1 && host == "127.0.0.1" && port?.uint16Value == portNumber
+        }
+        let p = port + 1
+        let http = enabled(kCFNetworkProxiesHTTPEnable, kCFNetworkProxiesHTTPProxy, kCFNetworkProxiesHTTPPort, p)
+        let https = enabled(kCFNetworkProxiesHTTPSEnable, kCFNetworkProxiesHTTPSProxy, kCFNetworkProxiesHTTPSPort, p)
+        let socks = enabled(kCFNetworkProxiesSOCKSEnable, kCFNetworkProxiesSOCKSProxy, kCFNetworkProxiesSOCKSPort, port)
+        return http && https && socks
     }
     private func setProxy(enable: Bool) {
         if needInstall() && !installCommand() {

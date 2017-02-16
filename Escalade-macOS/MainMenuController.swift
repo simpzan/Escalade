@@ -40,6 +40,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
         updateConfigList()
         updateServerList()
         updateConnectivityInfo()
+        updateSystemProxyItem()
 
         if !reachability.isReachable { return }
 
