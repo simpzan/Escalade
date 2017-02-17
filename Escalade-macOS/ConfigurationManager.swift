@@ -8,6 +8,7 @@
 
 import Cocoa
 import NEKit
+import CocoaLumberjackSwift
 
 class ConfigurationManager: NSObject {
     public var configurations : [String] {
@@ -64,7 +65,7 @@ class ConfigurationManager: NSObject {
         do {
             try configuration.load(fromConfigString: content)
         } catch let error {
-            print("Error when parsing profile file: \(error)")
+            DDLogError("Error when parsing profile file: \(error)")
             return nil
         }
         return configuration
@@ -93,7 +94,7 @@ class ConfigurationManager: NSObject {
     private func applyConfiguration(name: String? = nil) -> ServerController? {
         let key = name ?? currentConfiguration
         guard key != nil, let content = profiles[key!] else {
-            print("config \(name) not found")
+            DDLogError("config \(name) not found")
             return nil
         }
 
