@@ -27,7 +27,11 @@ class MainMenuController: NSObject, NSMenuDelegate {
         updateStartAtLoginItem()
 
         systemProxyController = SystemProxyController(configDir: configManager.configuraionFolder)
-        updateSystemProxyItem()
+        systemProxyController.startMonitor {
+            delay(0.5, closure: {
+                self.updateSystemProxyItem()
+            })
+        }
         listenReachabilityChange()
     }
     @IBOutlet weak var mainMenu: NSMenu!
@@ -40,7 +44,6 @@ class MainMenuController: NSObject, NSMenuDelegate {
         updateConfigList()
         updateServerList()
         updateConnectivityInfo()
-        updateSystemProxyItem()
 
         if !reachability.isReachable { return }
 
@@ -58,12 +61,14 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
     // MARK: -
     func updateSystemProxyItem() {
-        systemProxyItem.state = systemProxyController.enabled ? NSOnState : NSOffState
+        let enabled = systemProxyController.enabled
+        let file = enabled ? "MenuBarIcon" : "MenuBarIconDisabled"
+        statusItem.image = NSImage(named: file)
+        systemProxyItem.state = enabled ? NSOnState : NSOffState
     }
     @IBOutlet weak var systemProxyItem: NSMenuItem!
     @IBAction func systemProxyClicked(_ sender: Any) {
         systemProxyController.enabled = !systemProxyController.enabled
-        updateSystemProxyItem()
     }
     var systemProxyController: SystemProxyController! = nil
 

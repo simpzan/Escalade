@@ -8,6 +8,7 @@
 
 import Cocoa
 import SystemConfiguration
+import CocoaLumberjackSwift
 
 class SystemProxyController {
     public init(configDir: String) {
@@ -45,6 +46,42 @@ class SystemProxyController {
             setProxy(enable: false)
         }
     }
+
+    typealias SystemProxyChangeCallback = () -> Void
+    public func startMonitor(callback: @escaping SystemProxyChangeCallback) {
+        func changed(pref: SCPreferences, notification: SCPreferencesNotification, info: UnsafeMutableRawPointer?) {
+            guard notification.contains(.apply) && info != nil else { return }
+            let controller = Unmanaged<SystemProxyController>.fromOpaque(info!).takeUnretainedValue()
+            guard let callback = controller.callback else { return }
+            DispatchQueue.main.async {
+                callback()
+            }
+        }
+
+        var context = SCPreferencesContext()
+        context.info = UnsafeMutableRawPointer(Unmanaged<SystemProxyController>.passUnretained(self).toOpaque())
+        if !SCPreferencesSetCallback(prefs, changed, &context) {
+            DDLogError("SCPreferencesSetCallback failed")
+            return
+        }
+        if !SCPreferencesSetDispatchQueue(prefs, queue) {
+            DDLogError("SCPreferencesSetDispatchQueue failed")
+            return
+        }
+        self.callback = callback
+        monitoring = true
+        callback()
+    }
+    public func stopMonitor() {
+        SCPreferencesSetCallback(prefs, nil, nil)
+        SCPreferencesSetDispatchQueue(prefs, nil)
+        callback = nil
+        monitoring = false
+    }
+    private let prefs = SCPreferencesCreate(nil, "Escalade" as CFString, nil)!
+    private var monitoring = false
+    private var callback: (SystemProxyChangeCallback)?
+    private let queue = DispatchQueue(label: "com.simpzan.Escalade.SystemProxyController")
 
     public var enabled: Bool {
         get {
