@@ -10,14 +10,19 @@ import Cocoa
 import CocoaLumberjackSwift
 import Sparkle
 
-class MainMenuController: NSObject, NSMenuDelegate {
+class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDelegate {
+
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
+        return true
+    }
 
     override func awakeFromNib() {
         statusItem.image = NSImage(named: "MenuBarIcon")
         statusItem.menu = mainMenu
 
         mainMenu.delegate = self
-        
+        NSUserNotificationCenter.default.delegate = self
+
         serversItem.action = #selector(autoSelectClicked(_:))
         serversItem.target = self
 
