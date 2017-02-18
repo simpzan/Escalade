@@ -68,3 +68,4 @@ fastlane/test_output
 Pods/
 dsa_priv.pem
 out/
+.idea/
