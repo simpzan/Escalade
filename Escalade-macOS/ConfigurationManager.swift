@@ -54,13 +54,12 @@ class ConfigurationManager: NSObject {
     }()
 
     public func importConfig() -> ServerController? {
-        let dialog = NSOpenPanel()
-        dialog.runModal()
-        guard let file = dialog.url?.path else { return nil }
+        guard let file = selectFile() else { return nil }
 
-        guard let content = try? String(contentsOfFile: file) else { return nil }
-
-        if loadConfiguration(content: content) == nil { return nil }
+        guard loadConfigurationFile(file: file) != nil else {
+            _ = alert("invalid config file: \(file)")
+            return importConfig()
+        }
 
         let filename = (file as NSString).lastPathComponent
         let destPath = "\(configuraionFolder)/\(filename)"
@@ -68,11 +67,17 @@ class ConfigurationManager: NSObject {
         return reloadConfigurations()
     }
 
-    // MARK: - 
+    // MARK: -
     private var profiles: [String:String] = [:]
     private func isValidConfig(name: String!) -> Bool {
         if name == nil { return false }
         return profiles[name] != nil
+    }
+    private func loadConfigurationFile(file: String) -> (String, Configuration)? {
+        guard let size = filesize(file), size <= 1024 * 1024 else { return nil }
+        guard let content = try? String(contentsOfFile: file) else { return nil }
+        guard let result = loadConfiguration(content: content) else { return nil }
+        return (content, result)
     }
     private func loadConfiguration(content: String) -> Configuration? {
         let configuration = Configuration()
@@ -94,12 +99,9 @@ class ConfigurationManager: NSObject {
         for file in yamlFiles {
             let name = (file as NSString).deletingPathExtension
             let fullpath = (configuraionFolder as NSString).appendingPathComponent(file)
-            let content = try? String(contentsOfFile: fullpath, encoding: String.Encoding.utf8)
-            if content == nil { continue }
+            guard let result = loadConfigurationFile(file: fullpath) else { continue }
 
-            if loadConfiguration(content: content!) == nil { continue }
-
-            configs[name] = content
+            configs[name] = result.0
         }
         return configs
     }

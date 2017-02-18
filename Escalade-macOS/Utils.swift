@@ -8,6 +8,19 @@
 
 import Cocoa
 
+public func filesize(_ file: String) -> UInt64? {
+    guard let attr = try? FileManager.default.attributesOfItem(atPath: file) else { return nil }
+    return attr[FileAttributeKey.size] as? UInt64
+}
+
+public func selectFile() -> String? {
+    let dialog = NSOpenPanel()
+    if dialog.runModal() == NSFileHandlingPanelOKButton {
+        return dialog.url?.path
+    }
+    return nil
+}
+
 public func delay(_ delay: Double, closure: @escaping () -> Void) {
     let time = delay > 0 ? delay : 0;
     DispatchQueue.main.asyncAfter(deadline: .now() + time, execute: closure)
