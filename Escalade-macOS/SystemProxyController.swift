@@ -124,7 +124,7 @@ class SystemProxyController {
         print(out)
     }
 
-    private func needInstall() -> Bool {
+    public func needInstall() -> Bool {
         guard FileManager.default.fileExists(atPath: toolPath) else { return true }
 
         let out = runCommand(path: toolPath, args: ["version"])

@@ -17,6 +17,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     }
 
     override func awakeFromNib() {
+        statusItem.toolTip = "Escalade"
         statusItem.image = NSImage(named: "MenuBarIcon")
         statusItem.menu = mainMenu
 
@@ -83,9 +84,17 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         serverController = configManager.importConfig()
         if serverController == nil { return }
 
-        let enable = confirm("enable system proxy?")
+        var message = "Enable system proxy?"
+        let hint = "Setting system proxy requires administrator privileges." +
+"If you want to enable system proxy, please input your user password in the following system dialog.\n" +
+"This is required only for ONCE."
+        if systemProxyController.needInstall() {
+            message += "\n\(hint)"
+        }
         systemProxyController.port = configManager.port!
-        systemProxyController.enabled = enable
+        if confirm(message) {
+            systemProxyController.enabled = true
+        }
 
         autoSelectClicked(nil)
     }
