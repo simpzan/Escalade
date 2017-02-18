@@ -29,18 +29,18 @@ function getherInfo(args) {
     const project = getProp('CFBundleName');
     const fileSize = run(`stat -f%z ${project}.zip`);
 
-    const tag = getProp('CFBundleShortVersionString');
+    const build = getProp('CFBundleVersion');
+    const release = getProp('CFBundleShortVersionString');
     const feedUrl = getProp('SUFeedURL');
     const user = feedUrl.match(/https:\/\/(.*).github.io/)[1];
-    const url = `https://github.com/${user}/${project}/releases/download/${tag}/${project}.zip`;
+    const url = `https://github.com/${user}/${project}/releases/download/${release}.${build}/${project}.zip`;
 
-    const build = getProp('CFBundleVersion');
     const description = args.description ? run(`marked --gfm ${args.description}`) : "";
     const date = (new Date()).toUTCString();
 
     const signature = run(`cat signature | openssl enc -base64`);
 
-    const result = {project, feedUrl, url, build, tag, fileSize, signature, date, description};
+    const result = {project, feedUrl, url, build, release, fileSize, signature, date, description};
     DEBUG("generated info", result);
     return result;
 
@@ -54,7 +54,7 @@ function getherInfo(args) {
 }
 
 function generateXml(info) {
-    const {project, feedUrl, url, build, tag, fileSize, signature, date, description} = info;
+    const {project, feedUrl, url, build, release, fileSize, signature, date, description} = info;
     const xml = `
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"
@@ -66,7 +66,7 @@ function generateXml(info) {
     <description>The stable channel of ${project}.</description>
     <language>en</language>
     <item>
-        <title>${project} ${tag}</title>
+        <title>${project} ${release}</title>
         <pubDate>${date}</pubDate>
         <description>
             <![CDATA[
@@ -76,7 +76,7 @@ function generateXml(info) {
         <enclosure
             url="${url}"
             sparkle:version="${build}"
-            sparkle:shortVersionString="${tag}"
+            sparkle:shortVersionString="${release}"
             sparkle:dsaSignature="${signature}"
             length="${fileSize}"
             type="application/octet-stream" />

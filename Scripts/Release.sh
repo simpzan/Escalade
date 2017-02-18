@@ -28,10 +28,11 @@ echo "signing the $zip..."
 openssl dgst -sha1 -binary < $zip | openssl dgst -dss1 -sign ../../dsa_priv.pem | tee signature | openssl enc -base64
 openssl dgst -sha1 -binary < $zip | openssl dgst -dss1 -verify ../../dsa_pub.pem -signature signature
 
-echo "uploading $zip..."
 release=`$PlistBuddy -c "Print CFBundleShortVersionString" $InfoPlist`
 build=`$PlistBuddy -c "Print CFBundleVersion" $InfoPlist`
 tag=$release.$build
+
+echo "uploading $zip..."
 github-release release --user simpzan --repo $project --tag $tag --name $tag --description $tag
 github-release upload --user simpzan --repo $project --tag $tag --name $zip --file $zip
 
@@ -42,7 +43,7 @@ echo "uploading appcast..."
 rm -rf $appcast
 git clone --depth=1 --branch=gh-pages https://github.com/simpzan/$project.git $appcast
 cd $appcast
-cp -rf ../appcast.xml .
+cp -rf ../appcast.xml ../../README.md .
 git add .
 git -c user.name="Release.sh" commit -m "$tag"
 git push origin gh-pages
