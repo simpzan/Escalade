@@ -50,16 +50,16 @@ public class SelectAdapterFactory: AdapterFactory {
     private var _pingResults: [String: TimeInterval] = [:]
 
 
-    public func testCurrent(callback: @escaping (Error?, TimeInterval) -> Void) {
+    public func testCurrent(timeout: TimeInterval = 2, callback: @escaping (Error?, TimeInterval) -> Void) {
         let id = current
-        httpPing(factory: currentFactory, timeout: 2) { (err, result) in
+        httpPing(factory: currentFactory, timeout: timeout) { (err, result) in
             self._pingResults[id] = result
             callback(err, result)
         }
     }
 
-    public func testDirect(callback: @escaping (Error?, TimeInterval) -> Void) {
-        httpPing(url: "http://bdstatic.com/", factory: directFactory, timeout: 2) { (err, result) in
+    public func testDirect(timeout: TimeInterval = 2, callback: @escaping (Error?, TimeInterval) -> Void) {
+        httpPing(url: "http://bdstatic.com/", factory: directFactory, timeout: timeout) { (err, result) in
             self.domesticPing = result
             callback(err, result)
         }
