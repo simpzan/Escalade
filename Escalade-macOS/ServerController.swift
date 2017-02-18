@@ -49,11 +49,9 @@ class ServerController: NSObject {
         case DirectPingError, ProxyPingError
     }
     public func autoSelect(callback: @escaping (Error?, String?) -> Void) {
-        factory.testDirect { err, result in
-            DDLogInfo("ping direct when selecting: \(err) \(result)")
+        testDirect { err, _ in
             if err != nil {
-                callback(AutoSelectError.DirectPingError, nil)
-                return
+                return callback(AutoSelectError.DirectPingError, nil)
             }
             var selected: String? = nil
             self.factory.autoSelect(timeout: 2) { server in
@@ -78,13 +76,22 @@ class ServerController: NSObject {
                 callback(nil)
             }
         }
-        factory.testDirect { err, result in
-            DDLogInfo("ping direct: \(err) \(result)")
-            done()
-        }
+        testDirect { _, _ in done() }
         factory.testCurrent { err, result in
             DDLogInfo("ping proxy: \(err) \(result)")
             done()
+        }
+    }
+    private func testDirect(done: @escaping (Error?, TimeInterval) -> Void) {
+        factory.testDirect(timeout: 1) { err, result in
+            DDLogInfo("ping direct 1: \(err) \(result)")
+            if err == nil {
+                return done(nil, result)
+            }
+            self.factory.testDirect(timeout: 1) { err, result in
+                DDLogInfo("ping direct 2: \(err) \(result)")
+                done(err, result)
+            }
         }
     }
 
