@@ -18,10 +18,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let id = Bundle.main.bundleIdentifier!
         let runningApps = NSRunningApplication.runningApplications(withBundleIdentifier: id)
         if runningApps.count > 1 {
-            alert("Another app with same bundle id is already running! Please quit that app first.")
+            _ = alert("Another app with same bundle id is already running! Please quit that app first.")
             NSApp.terminate(nil)
         } else {
-            mainMenuController.reloadConfigurations()
+            if !mainMenuController.reloadConfigurations() {
+                mainMenuController.showSetupGuide()
+            }
         }
     }
 

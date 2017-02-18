@@ -53,6 +53,20 @@ class ConfigurationManager: NSObject {
         return path
     }()
 
+    public func importConfig() -> ServerController? {
+        let dialog = NSOpenPanel()
+        dialog.runModal()
+        guard let file = dialog.url?.path else { return nil }
+
+        guard let content = try? String(contentsOfFile: file) else { return nil }
+
+        if loadConfiguration(content: content) == nil { return nil }
+
+        let filename = (file as NSString).lastPathComponent
+        let destPath = "\(configuraionFolder)/\(filename)"
+        try? FileManager.default.copyItem(atPath: file, toPath: destPath)
+        return reloadConfigurations()
+    }
 
     // MARK: - 
     private var profiles: [String:String] = [:]

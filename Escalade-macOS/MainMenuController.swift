@@ -74,12 +74,23 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
 
     // MARK: - configurations
-    func reloadConfigurations() {
-        serverController = configManager.reloadConfigurations()
+    func showSetupGuide() {
+        serverController = configManager.importConfig()
         if serverController == nil { return }
+
+        let enable = confirm("enable system proxy?")
+        systemProxyController.port = configManager.port!
+        systemProxyController.enabled = enable
+
+        autoSelectClicked(nil)
+    }
+    func reloadConfigurations() -> Bool {
+        serverController = configManager.reloadConfigurations()
+        if serverController == nil { return false }
 
         systemProxyController.port = configManager.port!
         systemProxyController.load()
+        return true
     }
     func configClicked(sender: NSMenuItem) {
         let name = sender.title
@@ -109,7 +120,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
         NSWorkspace.shared().openFile(configManager.configuraionFolder)
     }
     @IBAction func reloadConfigClicked(_ sender: Any) {
-        reloadConfigurations()
+        _ = reloadConfigurations()
     }
     @IBOutlet weak var configurationsItem: NSMenuItem!
     let configManager = ConfigurationManager()
@@ -117,7 +128,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
     // MARK: - servers
     @IBOutlet weak var autoSelectItem: NSMenuItem!
-    @objc @IBAction func autoSelectClicked(_ sender: Any) {
+    @objc @IBAction func autoSelectClicked(_ sender: Any?) {
         guard let controller = serverController else { return }
         if !autoSelectItem.isEnabled { return }
         autoSelectItem.isEnabled = false
@@ -221,7 +232,7 @@ class MainMenuController: NSObject, NSMenuDelegate {
 
     @IBAction func showLogClicked(_ sender: Any) {
         if let logfile = logger.logFileManager?.sortedLogFilePaths?.first {
-            let _ = runCommand(path: "/usr/bin/env", args: ["open", "-a", "Console", logfile])
+            _ = runCommand(path: "/usr/bin/env", args: ["open", "-a", "Console", logfile])
         }
     }
     func setUpLogger() {

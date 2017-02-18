@@ -13,10 +13,15 @@ public func delay(_ delay: Double, closure: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + time, execute: closure)
 }
 
-public func alert(_ message: String) {
+public func alert(_ title: String, buttons: [String] = ["OK"]) -> Int {
     let alert = NSAlert()
-    alert.messageText = message
-    alert.runModal()
+    buttons.forEach { alert.addButton(withTitle: $0) }
+    alert.messageText = title
+    return alert.runModal() - NSAlertFirstButtonReturn
+}
+
+public func confirm(_ title: String) -> Bool {
+    return alert(title, buttons: ["OK", "Cancel"]) == 0
 }
 
 public func runCommand(path: String, args: [String]) -> (output: String, error: String, exitCode: Int32) {
