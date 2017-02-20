@@ -9,7 +9,7 @@
 import Foundation
 
 public enum PingError:Error {
-    case PingTimeoutError, PingUnexpectedResultError
+    case PingTimeoutError, PingUnexpectedResultError, PingConnectError
 }
 
 class HttpPing : SocketDelegate {
@@ -26,7 +26,6 @@ class HttpPing : SocketDelegate {
 
     var startTimestamp: Date!
 
-    var done = false
     var callback: ((Error?, TimeInterval) -> Void)?
 
     func start(timeout: TimeInterval, callback: @escaping (Error?, TimeInterval) -> Void) {
@@ -39,21 +38,14 @@ class HttpPing : SocketDelegate {
         startTimestamp = Date()
 
         queue.asyncAfter(deadline: DispatchTime.now() + timeout) {
-            if (!self.done) {
+            if (!adapter.isDisconnected) {
                 adapter.forceDisconnect()
-                self.finish(error: PingError.PingTimeoutError)
+                self.error = PingError.PingTimeoutError
+                self.finish(Date())
             }
         }
 
         self.callback = callback
-    }
-
-    func finish(error: Error?) -> Void {
-        let result = error == nil ? Date().timeIntervalSince(startTimestamp) : -1
-        queue.async {
-            self.callback?(error, result)
-            self.callback = nil
-        }
     }
 
     func didBecomeReadyToForwardWith(socket: SocketProtocol) {
@@ -64,21 +56,37 @@ class HttpPing : SocketDelegate {
         adapter.readData()
     }
     func didRead(data: Data, from: SocketProtocol) {
-        done = true
-
         let response204Prefix = "HTTP/1.1 204 No Content\r\n"
         let response200Prefix = "HTTP/1.1 200 OK\r\n"
         let responsePrefix = url.path.hasSuffix("_204") ? response204Prefix : response200Prefix
 
         let res = String(data: data as Data, encoding: String.Encoding.utf8)
-        let error = res!.hasPrefix(responsePrefix) ? nil : PingError.PingUnexpectedResultError
-        finish(error: error)
+        error = res!.hasPrefix(responsePrefix) ? nil : PingError.PingUnexpectedResultError
 
         adapter.disconnect()
     }
+    func didDisconnectWith(socket: SocketProtocol) {
+        let now = Date()
+        queue.async {
+            self.finish(now)
+        }
+    }
+    private var error: Error? = PingError.PingConnectError
+
+    private var done = false
+    private func finish(_ now: Date) {
+        if done {
+            return print("error finish has been called")
+        }
+        done = true
+        let diff = now.timeIntervalSince(startTimestamp)
+        print("\(url) cost \(diff) \(error)")
+        let result = error == nil ? diff : -1
+        self.callback?(self.error, result)
+        self.callback = nil
+    }
 
     func didConnectWith(adapterSocket: AdapterSocket) {}
-    func didDisconnectWith(socket: SocketProtocol) {}
     func didWrite(data: Data?, by: SocketProtocol) {}
     func didReceive(session: ConnectSession, from: ProxySocket) {}
     func updateAdapterWith(newAdapter: AdapterSocket) {}
