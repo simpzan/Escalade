@@ -29,7 +29,7 @@ Escalade is a network tool to accelerate your international network speed.
 - configuration
     + it contains proxy server infomation and routing rules.
 
-## menus ui
+## menu ui
 - the ladder icon: white one means system proxy disabled, colorful one means enabled.
 - network traffic: the realtime data flow traffic go through this app.
 - connectivity quality: normally there are 2 values: baidu and google.
@@ -121,6 +121,9 @@ googlevideo\.com
 
 ## known issues
 - ping baidu directly may fail randomly though the Internet connection is ok.
+
+## question, suggestion and bug report
+please create new issue at https://github.com/simpzan/Escalade/issues.
 
 ## related projects
 - https://github.com/zhuhaow/SpechtLite
