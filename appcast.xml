@@ -8,19 +8,19 @@
     <description>The stable channel of Escalade.</description>
     <language>en</language>
     <item>
-        <title>Escalade 0.1.1</title>
-        <pubDate>Mon, 20 Feb 2017 15:35:58 GMT</pubDate>
+        <title>Escalade 0.1.0</title>
+        <pubDate>Sat, 18 Feb 2017 13:39:06 GMT</pubDate>
         <description>
             <![CDATA[
                 
             ]]>
         </description>
         <enclosure
-            url="https://github.com/simpzan/Escalade/releases/download/0.1.1.57/Escalade.zip"
+            url="https://github.com/simpzan/Escalade/releases/download/0.1.0.57/Escalade.zip"
             sparkle:version="57"
-            sparkle:shortVersionString="0.1.1"
-            sparkle:dsaSignature="MC0CFBf/d//wvM/ibkHDkNXh1Msp/923AhUAwny8wwpE4xJ8j+DUX9txWjBuzSs="
-            length="6275711"
+            sparkle:shortVersionString="0.1.0"
+            sparkle:dsaSignature="MCwCFBU4YftHMtxGZ9KpsjFCRVdunxIzAhRNQl90V89kbYJOGN1bI/ntLkI9Ww=="
+            length="6273864"
             type="application/octet-stream" />
     </item>
 </channel>
