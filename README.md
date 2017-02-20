@@ -25,7 +25,7 @@ Escalade is a network tool to accelerate your international network speed.
 - ping test and connectivity quality
     + to test if you can connect to a server and how is the speed, you send a small message to the server and record the timestamp(T1), then wait for the reply from the server with 2 seconds timeout, namely you record the timestamp(T2) when the first of the two events happens: you get the reply or 2 seconds elapsed. then the time it costs(Q=T2-T1) is what we used to measure the connectivity quality of the network, so Q is the smaller the better. and this sending/receiving process is called ping test. 
 - routing rule
-    + the one weakness of vpn is that when you open it, the Chinese websites is getting slow, but when you close it, the international websites is slow. what if we can connect to Chinese websites directly while connect tot international sites via proxy server? this is just what routing rule does. it tells the app how to connect to the server of the website, directly or via proxy.
+    + the one weakness of vpn is that when you open it, the Chinese websites is getting slow, but when you close it, the international websites is slow. what if we can connect to Chinese websites directly while connect to international sites via proxy server? this is just what routing rule does. it tells the app how to connect to the server of the website, directly or via proxy.
 - configuration
     + it contains proxy server infomation and routing rules.
 
@@ -57,8 +57,8 @@ Escalade is a network tool to accelerate your international network speed.
 port: 9990
 # Adapter is the remote proxy server you want to connect to
 adapter:
-     # id is used to distinguish adapter when defining rules.
-     # There is a 'direct' adapter that connect directly to target host without proxy.
+  # id is used to distinguish adapter when defining rules.
+  # There is a 'direct' adapter that connect directly to target host without proxy.
   # - id: adapter1
   #    # HTTP server is a http proxy server.
   #   type: HTTP
@@ -75,7 +75,6 @@ adapter:
   #   auth: true
   #   username: proxy_username
   #   password: proxy_password
-  # - { id: "🇨🇳homecn1-", type: ss, host: homecn1.hxg.cc, port: 59671, method: rc4-md5, password: l6j0kU26cK }
   - { id: example, type: ss, host: ss.example.com, port: 23114, method: rc4-md5, password: password }
   # Speed adapter automatically connects to all specified adapters (with given delay)
   # and uses the fastest one that becomes ready.
@@ -91,12 +90,12 @@ adapter:
 # Rule will be matched one by one.
 rule:
   # Forward requests based on whether the host matches the given regular expressions.
-  - type: list
-    file: ~/.SpechtLite/DirectDomains
-    adapter: direct
-  - type: list
-    file: ~/.SpechtLite/ProxyDomains
-    adapter: proxy
+  # - type: list
+  #   file: ~/DirectDomains
+  #   adapter: direct
+  # - type: list
+  #   file: ~/ProxyDomains
+  #   adapter: proxy
   # When the DNS lookup of the host fails.
   # - type: DNSFail
   #   adapter: speed
@@ -113,5 +112,16 @@ rule:
   # Match all other requests.
   - type: all
     adapter: proxy
-
 ```
+And the `ProxyDomains` file.
+```
+google\.com
+googlevideo\.com
+```
+
+## known issues
+- ping baidu directly may fail randomly though the Internet connection is ok.
+
+## related projects
+- https://github.com/zhuhaow/SpechtLite
+- https://github.com/zhuhaow/NEKit
