@@ -32,8 +32,14 @@ class ServerController: NSObject {
         set(name) {
             if name == nil { return }
             factory.current = name!
-            defaults.set(name, forKey: currentServerKey)
+            saveCurrentServer(name: name!)
         }
+    }
+    private func saveCurrentServer(name: String) {
+        defaults.set(name, forKey: currentServerKey)
+    }
+    private func loadCurrentServer() -> String? {
+        return defaults.string(forKey: currentServerKey)
     }
     private let defaults = UserDefaults.standard
     private let currentServerKey = "currentServer"
@@ -57,6 +63,7 @@ class ServerController: NSObject {
             self.factory.autoSelect(timeout: 2) { server in
                 if server != nil {
                     selected = server
+                    self.saveCurrentServer(name: server!)
                     callback(nil, server)
                 } else if selected != nil {
                     DDLogInfo("auto select: \(selected) \(self.servers)")
@@ -97,7 +104,8 @@ class ServerController: NSObject {
 
     public init(selectFactory: SelectAdapterFactory) {
         factory = selectFactory
-        if let name = defaults.string(forKey: currentServerKey) {
+        super.init()
+        if let name = loadCurrentServer() {
             factory.current = name
         }
     }
