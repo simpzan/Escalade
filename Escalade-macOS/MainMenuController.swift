@@ -33,10 +33,8 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         updateStartAtLoginItem()
 
         systemProxyController = SystemProxyController(configDir: configManager.configuraionFolder)
-        systemProxyController.startMonitor {
-            delay(0.5, closure: {
-                self.updateSystemProxyItem()
-            })
+        systemProxyController.startMonitor { enabled in
+            self.updateSystemProxyItem(enabled: enabled)
         }
         listenReachabilityChange()
     }
@@ -66,8 +64,8 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
 
     // MARK: -
-    func updateSystemProxyItem() {
-        let enabled = systemProxyController.enabled
+    func updateSystemProxyItem(enabled: Bool) {
+        NSLog("update system proxy state to \(enabled)")
         let file = enabled ? "MenuBarIcon" : "MenuBarIconDisabled"
         statusItem.image = NSImage(named: file)
         systemProxyItem.state = enabled ? NSOnState : NSOffState

@@ -29,7 +29,18 @@ class SystemProxyController {
     private let defaults = UserDefaults.standard
     private let systemProxyEnabledKey = "systemProxyEnabled"
 
-    public var port: UInt16 = 0
+    public var port: UInt16 {
+        set(p) {
+            if thePort != p {
+                thePort = p
+                callback?(enabled)
+            }
+        }
+        get {
+            return thePort
+        }
+    }
+    private var thePort: UInt16 = 0
 
     public func load() {
         restoreSystemProxyState()
@@ -47,41 +58,38 @@ class SystemProxyController {
         }
     }
 
-    typealias SystemProxyChangeCallback = () -> Void
+    typealias SystemProxyChangeCallback = (Bool) -> Void
     public func startMonitor(callback: @escaping SystemProxyChangeCallback) {
-        func changed(pref: SCPreferences, notification: SCPreferencesNotification, info: UnsafeMutableRawPointer?) {
-            guard notification.contains(.apply) && info != nil else { return }
-            let controller = Unmanaged<SystemProxyController>.fromOpaque(info!).takeUnretainedValue()
-            guard let callback = controller.callback else { return }
-            DispatchQueue.main.async {
-                callback()
-            }
+        if !SCDynamicStoreSetNotificationKeys(store, ["State:/Network/Global/Proxies"] as CFArray, nil) {
+            return DDLogError("SCDynamicStoreSetNotificationKeys failed")
         }
-
-        var context = SCPreferencesContext()
-        context.info = UnsafeMutableRawPointer(Unmanaged<SystemProxyController>.passUnretained(self).toOpaque())
-        if !SCPreferencesSetCallback(prefs, changed, &context) {
-            DDLogError("SCPreferencesSetCallback failed")
-            return
-        }
-        if !SCPreferencesSetDispatchQueue(prefs, queue) {
-            DDLogError("SCPreferencesSetDispatchQueue failed")
-            return
+        if !SCDynamicStoreSetDispatchQueue(store, DispatchQueue.main) {
+            return DDLogError("SCDynamicStoreSetDispatchQueue failed")
         }
         self.callback = callback
-        monitoring = true
-        callback()
+        callback(self.enabled)
     }
     public func stopMonitor() {
-        SCPreferencesSetCallback(prefs, nil, nil)
-        SCPreferencesSetDispatchQueue(prefs, nil)
+        if !SCDynamicStoreSetNotificationKeys(store, nil, nil) {
+            return DDLogError("SCDynamicStoreSetNotificationKeys nil failed")
+        }
+        if !SCDynamicStoreSetDispatchQueue(store, nil) {
+            return DDLogError("SCDynamicStoreSetDispatchQueue nil failed")
+        }
         callback = nil
-        monitoring = false
     }
-    private let prefs = SCPreferencesCreate(nil, "Escalade" as CFString, nil)!
-    private var monitoring = false
     private var callback: (SystemProxyChangeCallback)?
-    private let queue = DispatchQueue(label: "com.simpzan.Escalade.SystemProxyController")
+    private lazy var store: SCDynamicStore = {
+        let changed: SCDynamicStoreCallBack = { dynamicStore, keys, context in
+            guard let info = context else { return }
+            let controller = Unmanaged<SystemProxyController>.fromOpaque(info).takeUnretainedValue()
+            controller.callback?(controller.enabled)
+        }
+        var context = SCDynamicStoreContext()
+        context.info = UnsafeMutableRawPointer(Unmanaged<SystemProxyController>.passUnretained(self).toOpaque())
+        let dcAddress = withUnsafeMutablePointer(to: &context, {UnsafeMutablePointer<SCDynamicStoreContext>($0)})
+        return SCDynamicStoreCreate(nil, "Escalade" as CFString, changed, dcAddress)!
+    }()
 
     public var enabled: Bool {
         get {
@@ -110,12 +118,10 @@ class SystemProxyController {
     }
     private func setProxy(enable: Bool) {
         if needInstall() && !installCommand() {
-            print("failed to install command")
-            return
+            return print("failed to install command")
         }
         if port < 3 {
-            print("invalid port number: \(port)")
-            return
+            return print("invalid port number: \(port)")
         }
 
         let state = enable ? "enable" : "disable"
