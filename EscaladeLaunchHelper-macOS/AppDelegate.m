@@ -11,8 +11,13 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    NSString *appPath = [[[[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]  stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
-    [[NSWorkspace sharedWorkspace] launchApplication:appPath];
+    NSString *appPath = [[[[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] stringByDeletingLastPathComponent] stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
+
+    NSString *bundleId = [[NSBundle bundleWithPath:appPath] bundleIdentifier];
+    NSArray *runningApps = [NSRunningApplication runningApplicationsWithBundleIdentifier:bundleId];
+    if (runningApps.count == 0) {
+        [[NSWorkspace sharedWorkspace] launchApplication:appPath];
+    }
     [NSApp terminate:nil];
 }
 
