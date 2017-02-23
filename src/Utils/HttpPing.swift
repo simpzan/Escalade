@@ -31,6 +31,7 @@ class HttpPing : SocketDelegate {
     func start(timeout: TimeInterval, callback: @escaping (Error?, TimeInterval) -> Void) {
         let request = ConnectSession(host: url.host!, port:80, fakeIPEnabled:false)
         let adapter = factory.getAdapterFor(session: request!)
+        (adapter.socket as? GCDTCPSocket)?.verbose = true
         adapter.delegate = self
         adapter.openSocketWith(session: request!)
         self.adapter = adapter

@@ -1,5 +1,6 @@
 import Foundation
 import CocoaAsyncSocket
+import CocoaLumberjackSwift
 
 /// The TCP socket build upon `GCDAsyncSocket`.
 ///
@@ -19,6 +20,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
             self.socket.setDelegate(nil, delegateQueue: QueueFactory.getQueue())
         } else {
             self.socket = GCDAsyncSocket(delegate: nil, delegateQueue: QueueFactory.getQueue(), socketQueue: QueueFactory.getQueue())
+            self.socket.isIPv6Enabled = false
         }
         super.init()
 
@@ -196,6 +198,8 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
      - throws: The error occured when connecting to host.
      */
     func connectTo(host: String, withPort port: Int) throws {
+        h = host
+        ts = Date()
         try socket.connect(toHost: host, onPort: UInt16(port))
     }
 
@@ -222,12 +226,14 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
     }
 
     open func socketDidDisconnect(_ socket: GCDAsyncSocket, withError err: Error?) {
+        log("disconnected", done: true);
         delegate?.didDisconnectWith(socket: self)
         delegate = nil
         socket.setDelegate(nil, delegateQueue: nil)
     }
 
     open func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+        log("connected");
         if !enableTLS {
             delegate?.didConnectWith(socket: self)
         }
@@ -238,5 +244,44 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
             delegate?.didConnectWith(socket: self)
         }
     }
+
+    open func socket(_ sock: GCDAsyncSocket, didLookupWithAddress4 address4: Data?, address6: Data?) {
+        addr4 = address4
+        addr6 = address6
+        log("lookup")
+    }
+
+    func getIpv4String(_ data: Data?) -> String {
+        guard let data = data as? NSData else { return "" }
+
+        var storage = sockaddr_storage()
+        data.getBytes(&storage, length: MemoryLayout<sockaddr_storage>.size)
+
+        if Int32(storage.ss_family) != AF_INET { return "" }
+
+        let addr4 = withUnsafePointer(to: &storage) {
+            $0.withMemoryRebound(to: sockaddr_in.self, capacity: 1) { $0.pointee }
+        }
+        return String(cString: inet_ntoa(addr4.sin_addr), encoding: .ascii)!
+    }
+    var addr4: Data?
+    var addr6: Data?
+
+    var ts: Date! = nil
+    func log(_ what: String, done: Bool = false) {
+        guard verbose else { return }
+        let now = Date()
+        let diff = Int(now.timeIntervalSince(ts!) * 1000.0)
+        timestamps[what] = diff
+        if done {
+            let ip4 = getIpv4String(addr4)
+            let ip6 = addr6 != nil
+            DDLogInfo("timing: \(h ?? "") \(timestamps) \(ip4) \(ip6)")
+        }
+    }
+    var h: String?
+    var timestamps = [String: Int]()
+
+    public var verbose: Bool = false
 
 }
