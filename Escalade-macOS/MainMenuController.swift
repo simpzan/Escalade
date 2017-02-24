@@ -180,11 +180,16 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         let current = controller.currentServer
         serversItem.title = "Server: \(current ?? "")"
 
+        let maxNameLength = controller.servers.map { $0.0.utf16.count as Int }.max()!
         for (name, pingValue) in controller.servers {
-            let title = "\(name) \t\t\t \(miliseconds(pingValue))"
             let action = #selector(serverClicked(sender:))
             let state = current == name
-            let item = createMenuItem(title: title, tag: tag, state: state, action: action)
+            let item = createMenuItem(title: "", tag: tag, state: state, action: action)
+
+            let nameRightPadded = name.padding(toLength: maxNameLength, withPad: " ", startingAt: 0)
+            let title = "\(nameRightPadded) \t\(miliseconds(pingValue))"
+            let attr = [NSFontAttributeName: NSFont.userFixedPitchFont(ofSize: 14.0)!]
+            item.attributedTitle = NSAttributedString(string: title, attributes: attr)
             item.representedObject = name
             menu.addItem(item)
         }
