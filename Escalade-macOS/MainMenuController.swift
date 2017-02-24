@@ -66,8 +66,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     // MARK: -
     func updateSystemProxyItem(enabled: Bool) {
         NSLog("update system proxy state to \(enabled)")
-        let file = enabled ? "MenuBarIcon" : "MenuBarIconDisabled"
-        statusItem.image = NSImage(named: file)
+        statusItem.button?.appearsDisabled = !enabled
         systemProxyItem.state = enabled ? NSOnState : NSOffState
     }
     @IBOutlet weak var systemProxyItem: NSMenuItem!
