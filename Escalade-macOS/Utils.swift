@@ -76,7 +76,7 @@ func sendNotification(title: String, text: String) {
 
 func miliseconds(_ time: TimeInterval) -> String {
     if time == 0 { return "" }
-    if time == -1 { return "Failed" }
+    if time < 0 { return "Failed" }
     let pingResult = Int(time * 1000.0)
     let pingStatus = "\(pingResult)ms"
     return pingStatus
