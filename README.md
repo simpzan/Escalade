@@ -1,5 +1,6 @@
 # Escalade 
 Escalade is a network tool to accelerate your international network speed.
+Download the latest app [HERE](https://github.com/simpzan/Escalade/releases/latest)!
 
 ## features
 - rule based routing: directly connect Chinese sites, and connect to international sites via proxy server.
@@ -123,8 +124,8 @@ googlevideo\.com
 - ping baidu directly may fail randomly though the Internet connection is ok.
 
 ## question, suggestion and bug report
-please create new issue at https://github.com/simpzan/Escalade/issues.
+please create new issue at [HERE](https://github.com/simpzan/Escalade/issues).
 
 ## related projects
-- https://github.com/zhuhaow/SpechtLite
-- https://github.com/zhuhaow/NEKit
+- [SpechtLite](https://github.com/zhuhaow/SpechtLite)
+- [NEKit](https://github.com/zhuhaow/NEKit)
