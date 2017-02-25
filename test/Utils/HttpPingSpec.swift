@@ -11,6 +11,7 @@ import Foundation
 import Quick
 import Nimble
 @testable import NEKit
+import CocoaLumberjackSwift
 
 class HttpPingSpec: QuickSpec {
 
@@ -58,6 +59,8 @@ class HttpPingSpec: QuickSpec {
     }
 
     override func spec() {
+        DDLog.add(DDTTYLogger.sharedInstance(), with: .info)
+
         describe("http ping tests") {
             it("ping google") {
                 self.proxyTest(url: "http://google.com/generate_204", proxy: "cn2t-52.hxg.cc")
@@ -75,7 +78,7 @@ class HttpPingSpec: QuickSpec {
                 waitUntil(timeout: 3, action: { (done) in
                     httpPing(factory:factory, timeout: 1) { (error, result) in
                         print("ping result \(error) \(result)")
-                        expect(result) == -1
+                        expect(result) < 0
                         expect(error).toNot(beNil())
                         done()
                     }

@@ -74,15 +74,11 @@ class HttpPing : SocketDelegate {
     }
     private var error: Error? = PingError.PingConnectError
 
-    private var done = false
     private func finish(_ now: Date) {
-        if done {
-            return print("error finish has been called")
-        }
-        done = true
+        if self.callback == nil { return }
         let diff = now.timeIntervalSince(startTimestamp)
         print("\(url) cost \(diff) \(error)")
-        let result = error == nil ? diff : -1
+        let result = error == nil ? diff : -diff
         self.callback?(self.error, result)
         self.callback = nil
     }
