@@ -37,7 +37,7 @@ github-release release --user simpzan --repo $project --tag $tag --name $tag --d
 github-release upload --user simpzan --repo $project --tag $tag --name $zip --file $zip
 
 echo "generating appcast..."
-node ../Scripts/appcast.js $project.app appcast.xml
+node ../Scripts/appcast.js $project.app ../Changelog.md appcast.xml
 
 echo "uploading appcast..."
 rm -rf $appcast
