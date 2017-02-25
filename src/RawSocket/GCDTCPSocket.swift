@@ -252,10 +252,10 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
     }
 
     func getIpv4String(_ data: Data?) -> String {
-        guard let data = data as? NSData else { return "" }
+        guard let data = data else { return "" }
 
         var storage = sockaddr_storage()
-        data.getBytes(&storage, length: MemoryLayout<sockaddr_storage>.size)
+        (data as NSData).getBytes(&storage, length: MemoryLayout<sockaddr_storage>.size)
 
         if Int32(storage.ss_family) != AF_INET { return "" }
 

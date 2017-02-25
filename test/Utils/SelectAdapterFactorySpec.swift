@@ -38,7 +38,6 @@ class SelectAdapterFactorySpec: QuickSpec {
                 let timeout:TimeInterval = 2
                 waitUntil(timeout: timeout + 1, action: { (done) in
                     factory.autoSelect(timeout: timeout) { results in
-                        print(results)
                         let cn52 = "cn2t-52"
                         expect(factory.current).to(equal(cn52))
                         let adapter = factory.getAdapterFor(session: connect!)
