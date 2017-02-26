@@ -71,7 +71,7 @@ public class SelectAdapterFactory: AdapterFactory {
         var fastestFound = false
         func pingDone(server: String, ping: TimeInterval) {
             self._pingResults[server] = ping
-            if !fastestFound && !server.hasSuffix("+") {
+            if !fastestFound && ping > 0 && !server.hasSuffix("+") {
                 fastestFound = true
                 self._current = server
                 callback(server) // optionally called once with server name when found ok.
