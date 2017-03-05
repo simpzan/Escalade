@@ -7,8 +7,44 @@
 //
 
 import NetworkExtension
+import NEKit
+import CocoaLumberjackSwift
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
+    func getFactory(host: String, port: Int, encryption: String, password: String) -> AdapterFactory {
+        let protocolObfuscaterFactory = ShadowsocksAdapter.ProtocolObfuscater.OriginProtocolObfuscater.Factory()
+        let streamObfuscaterFactory = ShadowsocksAdapter.StreamObfuscater.OriginStreamObfuscater.Factory()
+        let algorithm = CryptoAlgorithm(rawValue: encryption.uppercased())
+        let cryptoFactory = ShadowsocksAdapter.CryptoStreamProcessor.Factory(password: password, algorithm: algorithm!)
+        return ShadowsocksAdapterFactory(serverHost: host,
+                                        serverPort: port,
+                                        protocolObfuscaterFactory: protocolObfuscaterFactory,
+                                        cryptorFactory: cryptoFactory,
+                                        streamObfuscaterFactory: streamObfuscaterFactory)
+    }
+    func setupRuleManager() {
+        let ssAdapterFactory = getFactory(host: "cn2t-52.hxg.cc",
+                                          port: 59671,
+                                          encryption: "rc4-md5",
+                                          password: "")
+        let chinaRule = CountryRule(countryCode: "CN", match: true, adapterFactory: DirectAdapterFactory())
+        let allRule = AllRule(adapterFactory: ssAdapterFactory)
+        let manager = RuleManager(fromRules: [chinaRule, allRule], appendDirect: true)
+        RuleManager.currentManager = manager
+    }
+    func startProxyServer() {
+        NSLog("startProxyServer")
+
+        setupRuleManager()
+
+        httpProxyServer = GCDHTTPProxyServer(address: IPAddress(fromString: httpProxyAddress), port: Port(port: httpProxyPort))
+        try! httpProxyServer!.start()
+
+        NSLog("proxy started!")
+    }
+    var httpProxyServer: GCDProxyServer?
+
+
     public let httpProxyAddress = "127.0.0.1"
     public let httpProxyPort: UInt16 = 9090
     public let socksProxyPort: UInt16 = 9091
@@ -35,13 +71,27 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         NSLog("startTunnel \(options)")
+
+        DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
+        DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
+        ObserverFactory.currentFactory = DebugObserverFactory()
+
+        self.startProxyServer()
         setTunnelNetworkSettings(getTunnelSettings()) { (error) in
             if error != nil {
                 NSLog("\(#function) error:\(error)")
                 return
             }
             NSLog("connected")
+            self.readTun()
             completionHandler(nil)
+        }
+    }
+
+    func readTun() {
+        packetFlow.readPackets { (packets, protocols) in
+            NSLog("read packets \(protocols)")
+            self.readTun()
         }
     }
 
