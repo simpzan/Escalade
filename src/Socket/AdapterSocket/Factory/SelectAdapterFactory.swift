@@ -15,7 +15,7 @@ public class SelectAdapterFactory: AdapterFactory {
         self.directFactory = directFactory
     }
 
-    override func getAdapterFor(session: ConnectSession) -> AdapterSocket {
+    override public func getAdapterFor(session: ConnectSession) -> AdapterSocket {
         return currentFactory.getAdapterFor(session: session)
     }
 
