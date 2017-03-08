@@ -1,6 +1,6 @@
-github "robbiehanson/CocoaAsyncSocket" "7.5.1"
+github "simpzan/CocoaAsyncSocket" "be28be3cd15706a1217e34288cbd6ae588affdcc"
 github "CocoaLumberjack/CocoaLumberjack" "3.0.0"
-github "lexrus/MMDB-Swift" "0.2.1"
+github "simpzan/MMDB-Swift" "fab29fcceca0847cfd3f96725420993ebe01e1d6"
 github "Quick/Nimble" "v5.1.1"
 github "Quick/Quick" "v1.0.0"
 github "zhuhaow/Resolver" "0.1.3"
