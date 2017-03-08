@@ -57,7 +57,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         v4Settings.includedRoutes = [NEIPv4Route.default()]
         v4Settings.excludedRoutes = [NEIPv4Route(destinationAddress:"114.114.114.114", subnetMask:"255.255.255.255")]
         settings.iPv4Settings = v4Settings
-        settings.proxySettings = getProxySettings()
+//        settings.proxySettings = getProxySettings()
         return settings
     }
     func getProxySettings() -> NEProxySettings {
@@ -82,11 +82,33 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 NSLog("\(#function) error:\(error)")
                 return
             }
+            self.startPacketProcessor()
             NSLog("connected")
-            self.readTun()
             completionHandler(nil)
         }
     }
+
+    func startPacketProcessor() {
+        RawSocketFactory.TunnelProvider = self
+        self.interface = TUNInterface(packetFlow: self.packetFlow)
+
+        let ipRange = try! IPRange(startIP: IPAddress(fromString: "198.18.1.1")!, endIP: IPAddress(fromString: "198.18.255.255")!)
+        let fakeIPPool = IPPool(range: ipRange)
+        let dnsServer = DNSServer(address: IPAddress(fromString: "198.18.0.1")!, port: Port(port: 53), fakeIPPool: fakeIPPool)
+        let resolver = UDPDNSResolver(address: IPAddress(fromString: "114.114.114.114")!, port: Port(port: 53))
+        dnsServer.registerResolver(resolver)
+        self.interface.register(stack: dnsServer)
+        DNSServer.currentServer = dnsServer
+
+        let udpStack = UDPDirectStack()
+        self.interface.register(stack: udpStack)
+
+        let tcpStack = TCPStack.stack
+        tcpStack.proxyServer = self.httpProxyServer
+        self.interface.register(stack: tcpStack)
+        self.interface.start()
+    }
+    var interface: TUNInterface!
 
     func readTun() {
         packetFlow.readPackets { (packets, protocols) in
@@ -96,6 +118,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
+        interface.stop()
+        httpProxyServer?.stop()
         completionHandler()
     }
 
