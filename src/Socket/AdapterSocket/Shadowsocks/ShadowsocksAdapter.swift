@@ -45,6 +45,10 @@ public class ShadowsocksAdapter: AdapterSocket {
         streamObfuscator.outputStreamProcessor = cryptor
     }
 
+    open override var description: String {
+        return "<\(typeName) proxy:\(self.host)>"
+    }
+
     override public func openSocketWith(session: ConnectSession) {
         super.openSocketWith(session: session)
 

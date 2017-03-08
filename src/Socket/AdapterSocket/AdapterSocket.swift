@@ -6,7 +6,7 @@ open class AdapterSocket: NSObject, SocketProtocol, RawTCPSocketDelegate {
     open var observer: Observer<AdapterSocketEvent>?
 
     open override var description: String {
-        return "<\(typeName) host:\(session.host) port:\(session.port))>"
+        return "<\(typeName)>"
     }
 
     internal var _cancelled = false
