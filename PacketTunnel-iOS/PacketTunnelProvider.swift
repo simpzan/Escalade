@@ -55,7 +55,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         settings.dnsSettings = NEDNSSettings(servers: ["114.114.114.114"])
         let v4Settings = NEIPv4Settings(addresses:["192.0.2.1"], subnetMasks:["255.255.255.0"])
         v4Settings.includedRoutes = [NEIPv4Route.default()]
-        v4Settings.excludedRoutes = [NEIPv4Route(destinationAddress:"114.114.114.114", subnetMask:"255.255.255.255")]
+//        v4Settings.excludedRoutes = [NEIPv4Route(destinationAddress:"114.114.114.114", subnetMask:"255.255.255.255")]
         settings.iPv4Settings = v4Settings
 //        settings.proxySettings = getProxySettings()
         return settings
@@ -89,12 +89,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 
     func startPacketProcessor() {
+        Opt.MAXNWTCPSocketReadDataSize = 60 * 1024
         RawSocketFactory.TunnelProvider = self
         self.interface = TUNInterface(packetFlow: self.packetFlow)
 
         let ipRange = try! IPRange(startIP: IPAddress(fromString: "198.18.1.1")!, endIP: IPAddress(fromString: "198.18.255.255")!)
         let fakeIPPool = IPPool(range: ipRange)
-        let dnsServer = DNSServer(address: IPAddress(fromString: "198.18.0.1")!, port: Port(port: 53), fakeIPPool: fakeIPPool)
+        let dnsServer = DNSServer(address: IPAddress(fromString: "114.114.114.114")!, port: Port(port: 53), fakeIPPool: fakeIPPool)
         let resolver = UDPDNSResolver(address: IPAddress(fromString: "114.114.114.114")!, port: Port(port: 53))
         dnsServer.registerResolver(resolver)
         self.interface.register(stack: dnsServer)
