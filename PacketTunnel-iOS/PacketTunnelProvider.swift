@@ -83,6 +83,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 return
             }
             self.startPacketProcessor()
+            self.listenReachabilityChange()
             NSLog("connected")
             completionHandler(nil)
         }
@@ -111,12 +112,25 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
     var interface: TUNInterface!
 
-    func readTun() {
-        packetFlow.readPackets { (packets, protocols) in
-            NSLog("read packets \(protocols)")
-            self.readTun()
-        }
+    func restartProxy() {
+        NSLog("restarting proxy")
+        interface.stop()
+        httpProxyServer?.stop()
+        try! httpProxyServer?.start()
+        interface.start()
     }
+
+    func listenReachabilityChange() {
+        func onReachabilityChange(_: Any) {
+            DispatchQueue.main.async {
+                self.restartProxy()
+            }
+        }
+        reachability.whenReachable = onReachabilityChange
+        reachability.whenUnreachable = onReachabilityChange
+        try? reachability.startNotifier()
+    }
+    let reachability = Reachability()!
 
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
         interface.stop()
