@@ -19,6 +19,7 @@
 		76312ACE1E6BEE7C000B66C9 /* Escalade_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312ACD1E6BEE7C000B66C9 /* Escalade_iOSTests.swift */; };
 		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
 		764FA0531E71CAD400FB537D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
+		7665BBEB1E729710004588C5 /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7665BBEA1E729710004588C5 /* VPNManager.swift */; };
 		76841E861E505EA300685B0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E851E505EA300685B0F /* AppDelegate.m */; };
 		76841E891E505EA300685B0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E881E505EA300685B0F /* main.m */; };
 		76841E8B1E505EA300685B0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76841E8A1E505EA300685B0F /* Assets.xcassets */; };
@@ -267,6 +268,7 @@
 		76312ACD1E6BEE7C000B66C9 /* Escalade_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Escalade_iOSTests.swift; sourceTree = "<group>"; };
 		76312ACF1E6BEE7C000B66C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7641854F1E506C13003C7FFC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		7665BBEA1E729710004588C5 /* VPNManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
 		76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EscaladeLaunchHelper-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76841E841E505EA300685B0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76841E851E505EA300685B0F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 		76DB4CB91E6BF0B80019FA42 /* PacketTunnel-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				7665BBEA1E729710004588C5 /* VPNManager.swift */,
 				76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */,
 				76DB4CBE1E6BF0B80019FA42 /* Info.plist */,
 				76DB4CBA1E6BF0B80019FA42 /* Supporting Files */,
@@ -1026,6 +1029,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				764FA0531E71CAD400FB537D /* Reachability.swift in Sources */,
+				7665BBEB1E729710004588C5 /* VPNManager.swift in Sources */,
 				76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
