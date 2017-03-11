@@ -69,3 +69,4 @@ Pods/
 dsa_priv.pem
 out/
 .idea/
+config.plist

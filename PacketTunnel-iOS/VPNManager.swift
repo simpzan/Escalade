@@ -24,10 +24,12 @@ class VPNManager {
                                          streamObfuscaterFactory: streamObfuscaterFactory)
     }
     private func setupRuleManager() {
-        let ssAdapterFactory = getFactory(host: "cn2t-52.hxg.cc",
-                                          port: 59671,
-                                          encryption: "rc4-md5",
-                                          password: "")
+        let file = Bundle(for: type(of: self)).path(forResource: "config", ofType: "plist")!
+        let config = NSDictionary(contentsOfFile: file)!
+        let ssAdapterFactory = getFactory(host: config["host"] as! String,
+                                          port: config["port"] as! Int,
+                                          encryption: config["encryption"] as! String,
+                                          password: config["password"] as! String)
         let chinaRule = CountryRule(countryCode: "CN", match: true, adapterFactory: DirectAdapterFactory())
         let allRule = AllRule(adapterFactory: ssAdapterFactory)
         let manager = RuleManager(fromRules: [chinaRule, allRule], appendDirect: true)
