@@ -82,31 +82,42 @@ class VPNManager {
         RawSocketFactory.TunnelProvider = provider
         packetFlow = provider.packetFlow
         ObserverFactory.currentFactory = DebugObserverFactory()
+        listenReachabilityChange()
     }
 
     public func start() {
-        setupRuleManager()
-        startProxyServer()
-        startPacketProcessor(packetFlow: packetFlow)
-        DDLogInfo("vpn started")
+        queue.async {
+            self.setupRuleManager()
+            self.startProxyServer()
+            self.startPacketProcessor(packetFlow: self.packetFlow)
+            DDLogInfo("vpn started")
+        }
     }
 
     public func stop() {
-        interface?.stop()
-        httpProxyServer?.stop()
-        DDLogInfo("vpn stopped")
+        queue.async {
+            self.interface?.stop()
+            self.httpProxyServer?.stop()
+            DDLogInfo("vpn stopped")
+        }
     }
 
     public func restart() {
-//        httpProxyServer?.stop()
-//        try! httpProxyServer?.start()
+        queue.async {
+            self.interface?.stop()
+            self.httpProxyServer?.stop()
+            try! self.httpProxyServer?.start()
+            self.startPacketProcessor(packetFlow: self.packetFlow)
+            NSLog("restarted")
+        }
     }
+
+    let queue = DispatchQueue(label: "com.simpzan.Escalade.iOS")
 
     func listenReachabilityChange() {
         func onReachabilityChange(_: Any) {
-            DispatchQueue.main.async {
-                self.restart()
-            }
+            NSLog("reachable \(reachability.currentReachabilityString)")
+            self.restart()
         }
         reachability.whenReachable = onReachabilityChange
         reachability.whenUnreachable = onReachabilityChange
