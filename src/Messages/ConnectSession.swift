@@ -1,4 +1,5 @@
 import Foundation
+import CocoaLumberjackSwift
 
 /// Representing all the information in one connect session.
 public final class ConnectSession {
@@ -35,8 +36,7 @@ public final class ConnectSession {
     /// The resolved IP address.
     ///
     /// - note: This will always be real IP address.
-    public lazy var ipAddress: String = {
-        [unowned self] in
+    public lazy var ipAddress: String = { [unowned self] in
         if self.isIP() {
             return self.host
         } else {
@@ -64,16 +64,15 @@ public final class ConnectSession {
             
             return session.realIP?.presentation ?? ""
         }
-        }()
+    }()
     
     /// The location of the host.
-    public lazy var country: String = {
-        [unowned self] in
+    public lazy var country: String = { [unowned self] in
         guard let c = Utils.GeoIPLookup.Lookup(self.ipAddress) else {
             return ""
         }
         return c
-        }()
+    }()
     
     public init?(host: String, port: Int, fakeIPEnabled: Bool = true) {
         self.requestedHost = host
@@ -84,6 +83,7 @@ public final class ConnectSession {
         self.host = host
         if fakeIPEnabled {
             guard lookupRealIP() else {
+                DDLogError("failed to loopkup real IP")
                 return nil
             }
         }
@@ -121,6 +121,7 @@ public final class ConnectSession {
         
         // Look up fake IP reversely should never fail.
         guard let session = dnsServer.lookupFakeIP(address) else {
+            DDLogError("failed to lookup fake IP")
             return false
         }
         

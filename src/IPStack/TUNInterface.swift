@@ -1,5 +1,6 @@
 import Foundation
 import NetworkExtension
+import CocoaLumberjackSwift
 
 /// TUN interface provide a scheme to register a set of IP Stacks (implementing `IPStackProtocol`) to process IP packets from a virtual TUN interface.
 open class TUNInterface {
@@ -62,11 +63,9 @@ open class TUNInterface {
         packetFlow?.readPackets { packets, versions in
             QueueFactory.getQueue().async {
                 for (i, packet) in packets.enumerated() {
-                    for stack in self.stacks {
-                        if stack.input(packet: packet, version: versions[i]) {
-                            break
-                        }
-                    }
+                    let stack = self.stacks.first { $0.input(packet: packet, version: versions[i]) }
+                    if let s = stack { DDLogDebug("packet \(packet) found processor \(s)") }
+                    else { DDLogError("packet \(packet) not processed!") }
                 }
             }
             
