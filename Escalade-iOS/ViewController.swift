@@ -51,15 +51,21 @@ class ViewController: UIViewController {
     @IBAction func tunnel(_ sender: Any) {
         getManager { manager in
             if manager == nil { return NSLog("get manager failed") }
+            self.startVPN(manager: manager!)
+        }
+    }
+    func startVPN(manager: NETunnelProviderManager) {
+        manager.isEnabled = true
+        manager.saveToPreferences { error in
+            if error != nil { return NSLog("failed to enable manager") }
 
             do {
-                try manager!.connection.startVPNTunnel(options: nil)
+                try manager.connection.startVPNTunnel(options: nil)
                 NSLog("started")
             } catch {
                 NSLog("start error \(error)")
             }
         }
-
     }
 
     override func viewDidLoad() {
