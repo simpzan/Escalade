@@ -72,6 +72,7 @@ public class NWUDPSocket: NSObject {
                 
                 guard error == nil, let dataArray = dataArray else {
                     DDLogError("Error when reading from remote server. \(error?.localizedDescription ?? "Connection reset")")
+                    sSelf.disconnect()
                     return
                 }
                 
@@ -79,7 +80,7 @@ public class NWUDPSocket: NSObject {
                     sSelf.delegate?.didReceive(data: data, from: sSelf)
                 }
             }
-            }, maxDatagrams: 32)
+        }, maxDatagrams: 32)
     }
     
     /**
