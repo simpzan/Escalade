@@ -11,6 +11,12 @@
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
 		76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
+		762B6F841E756654003E8B55 /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B6F7F1E7565AD003E8B55 /* tun2socks.framework */; };
+		762B6F851E756654003E8B55 /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B6F831E7565AD003E8B55 /* lwip.framework */; };
+		762B6F861E756672003E8B55 /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B6F7F1E7565AD003E8B55 /* tun2socks.framework */; };
+		762B6F871E756672003E8B55 /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B6F831E7565AD003E8B55 /* lwip.framework */; };
+		762B6F881E756677003E8B55 /* tun2socks.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762B6F7F1E7565AD003E8B55 /* tun2socks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		762B6F891E756677003E8B55 /* lwip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762B6F831E7565AD003E8B55 /* lwip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */; };
 		76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312ABA1E6BEE7C000B66C9 /* ViewController.swift */; };
 		76312ABE1E6BEE7C000B66C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76312ABC1E6BEE7C000B66C9 /* Main.storyboard */; };
@@ -54,19 +60,15 @@
 		76A184E31E6C149100C35C83 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */; };
 		76A184E41E6C149100C35C83 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */; };
 		76A184E51E6C149100C35C83 /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D71E6C11FC00C35C83 /* CocoaLumberjackSwift.framework */; };
-		76A184E61E6C149100C35C83 /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54A1E6C11590097C95E /* lwip.framework */; };
 		76A184E71E6C149100C35C83 /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54B1E6C11590097C95E /* MMDB.framework */; };
 		76A184E81E6C149100C35C83 /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54C1E6C11590097C95E /* Resolver.framework */; };
 		76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; };
-		76A184EA1E6C149200C35C83 /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54E1E6C11590097C95E /* tun2socks.framework */; };
 		76A184EB1E6C149200C35C83 /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; };
 		76A184F41E6C14A600C35C83 /* CocoaLumberjack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A184F51E6C14A600C35C83 /* CocoaLumberjackSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76A184D71E6C11FC00C35C83 /* CocoaLumberjackSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		76A184F61E6C14A700C35C83 /* lwip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54A1E6C11590097C95E /* lwip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A184F71E6C14A700C35C83 /* MMDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54B1E6C11590097C95E /* MMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A184F81E6C14A700C35C83 /* Resolver.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54C1E6C11590097C95E /* Resolver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A184F91E6C14A700C35C83 /* Sodium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		76A184FA1E6C14A700C35C83 /* tun2socks.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54E1E6C11590097C95E /* tun2socks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A184FB1E6C14A700C35C83 /* Yaml.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A416121E4F4A7C003C2CE2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
 		76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */; };
@@ -81,11 +83,9 @@
 		76DF1D6C1E6C172F0041646A /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */; };
 		76DF1D6D1E6C172F0041646A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */; };
 		76DF1D6E1E6C172F0041646A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D71E6C11FC00C35C83 /* CocoaLumberjackSwift.framework */; };
-		76DF1D711E6C172F0041646A /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54A1E6C11590097C95E /* lwip.framework */; };
 		76DF1D721E6C172F0041646A /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54B1E6C11590097C95E /* MMDB.framework */; };
 		76DF1D751E6C172F0041646A /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54C1E6C11590097C95E /* Resolver.framework */; };
 		76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; };
-		76DF1D771E6C172F0041646A /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54E1E6C11590097C95E /* tun2socks.framework */; };
 		76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; };
 		76E112F21E4CB80D00966580 /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E112F11E4CB80D00966580 /* ProxyServerManager.swift */; };
 		76E112FF1E4CC40900966580 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E112FE1E4CC40900966580 /* ConfigurationManager.swift */; };
@@ -101,6 +101,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 76277F151E4CF5D3006C06A6;
 			remoteInfo = SystemProxyConfig;
+		};
+		762B6F7C1E7565AD003E8B55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3642C9FE1CEDCC60001E0AAF;
+			remoteInfo = "tun2socks-macOS";
+		};
+		762B6F7E1E7565AD003E8B55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 36C48CA21CF8701A0071804F;
+			remoteInfo = "tun2socks-iOS";
+		};
+		762B6F801E7565AD003E8B55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 36A718F11D5B0A1B00DC35F5;
+			remoteInfo = "lwip-macOS";
+		};
+		762B6F821E7565AD003E8B55 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 36A718FF1D5B0AC100DC35F5;
+			remoteInfo = "lwip-iOS";
 		};
 		76312ACA1E6BEE7C000B66C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -237,13 +265,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				762B6F881E756677003E8B55 /* tun2socks.framework in CopyFiles */,
+				762B6F891E756677003E8B55 /* lwip.framework in CopyFiles */,
 				76A184F41E6C14A600C35C83 /* CocoaLumberjack.framework in CopyFiles */,
 				76A184F51E6C14A600C35C83 /* CocoaLumberjackSwift.framework in CopyFiles */,
-				76A184F61E6C14A700C35C83 /* lwip.framework in CopyFiles */,
 				76A184F71E6C14A700C35C83 /* MMDB.framework in CopyFiles */,
 				76A184F81E6C14A700C35C83 /* Resolver.framework in CopyFiles */,
 				76A184F91E6C14A700C35C83 /* Sodium.framework in CopyFiles */,
-				76A184FA1E6C14A700C35C83 /* tun2socks.framework in CopyFiles */,
 				76A184FB1E6C14A700C35C83 /* Yaml.framework in CopyFiles */,
 				76A184E21E6C142700C35C83 /* CocoaAsyncSocket.framework in CopyFiles */,
 				76A184E11E6C13D600C35C83 /* NEKit.framework in CopyFiles */,
@@ -258,6 +286,7 @@
 		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76277F201E4CF758006C06A6 /* SystemProxyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemProxyController.swift; sourceTree = "<group>"; };
+		762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tun2socks.xcodeproj; path = NEKit/Carthage/Checkouts/tun2socks/tun2socks.xcodeproj; sourceTree = "<group>"; };
 		76312AB61E6BEE7C000B66C9 /* Escalade-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Escalade-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76312ABA1E6BEE7C000B66C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -338,14 +367,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				762B6F861E756672003E8B55 /* tun2socks.framework in Frameworks */,
+				762B6F871E756672003E8B55 /* lwip.framework in Frameworks */,
 				76A184E31E6C149100C35C83 /* CocoaAsyncSocket.framework in Frameworks */,
 				76A184E41E6C149100C35C83 /* CocoaLumberjack.framework in Frameworks */,
 				76A184E51E6C149100C35C83 /* CocoaLumberjackSwift.framework in Frameworks */,
-				76A184E61E6C149100C35C83 /* lwip.framework in Frameworks */,
 				76A184E71E6C149100C35C83 /* MMDB.framework in Frameworks */,
 				76A184E81E6C149100C35C83 /* Resolver.framework in Frameworks */,
 				76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */,
-				76A184EA1E6C149200C35C83 /* tun2socks.framework in Frameworks */,
 				76A184EB1E6C149200C35C83 /* Yaml.framework in Frameworks */,
 				76A184DF1E6C13B600C35C83 /* NEKit.framework in Frameworks */,
 			);
@@ -394,14 +423,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				762B6F841E756654003E8B55 /* tun2socks.framework in Frameworks */,
+				762B6F851E756654003E8B55 /* lwip.framework in Frameworks */,
 				76DF1D6C1E6C172F0041646A /* CocoaAsyncSocket.framework in Frameworks */,
 				76DF1D6D1E6C172F0041646A /* CocoaLumberjack.framework in Frameworks */,
 				76DF1D6E1E6C172F0041646A /* CocoaLumberjackSwift.framework in Frameworks */,
-				76DF1D711E6C172F0041646A /* lwip.framework in Frameworks */,
 				76DF1D721E6C172F0041646A /* MMDB.framework in Frameworks */,
 				76DF1D751E6C172F0041646A /* Resolver.framework in Frameworks */,
 				76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */,
-				76DF1D771E6C172F0041646A /* tun2socks.framework in Frameworks */,
 				76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */,
 				76A184DE1E6C12F400C35C83 /* NEKit.framework in Frameworks */,
 			);
@@ -425,6 +454,17 @@
 				76277F181E4CF5D3006C06A6 /* main.m */,
 			);
 			path = SystemProxyConfig;
+			sourceTree = "<group>";
+		};
+		762B6F731E7565AD003E8B55 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				762B6F7D1E7565AD003E8B55 /* tun2socks.framework */,
+				762B6F7F1E7565AD003E8B55 /* tun2socks.framework */,
+				762B6F811E7565AD003E8B55 /* lwip.framework */,
+				762B6F831E7565AD003E8B55 /* lwip.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		76312AB71E6BEE7C000B66C9 /* Escalade-iOS */ = {
@@ -514,6 +554,7 @@
 		76C493501E4A0A8C00A0D066 = {
 			isa = PBXGroup;
 			children = (
+				762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */,
 				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
 				76C4935D1E4A0AA100A0D066 /* Escalade-macOS */,
 				76C4936D1E4A0AA200A0D066 /* Escalade-macOSTests */,
@@ -797,6 +838,10 @@
 					ProductGroup = 768D4A061E4B4AB900B73E10 /* Products */;
 					ProjectRef = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
 				},
+				{
+					ProductGroup = 762B6F731E7565AD003E8B55 /* Products */;
+					ProjectRef = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -812,6 +857,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		762B6F7D1E7565AD003E8B55 /* tun2socks.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = tun2socks.framework;
+			remoteRef = 762B6F7C1E7565AD003E8B55 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		762B6F7F1E7565AD003E8B55 /* tun2socks.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = tun2socks.framework;
+			remoteRef = 762B6F7E1E7565AD003E8B55 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		762B6F811E7565AD003E8B55 /* lwip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = lwip.framework;
+			remoteRef = 762B6F801E7565AD003E8B55 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		762B6F831E7565AD003E8B55 /* lwip.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = lwip.framework;
+			remoteRef = 762B6F821E7565AD003E8B55 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		768D4A0E1E4B4AB900B73E10 /* NEKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
