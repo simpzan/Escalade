@@ -15,7 +15,8 @@ open class TUNInterface {
     public init(packetFlow: NEPacketTunnelFlow) {
         self.packetFlow = packetFlow
     }
-    
+
+    private var running = false
     /**
      Start processing packets, this should be called after registering all IP stacks.
      
@@ -23,6 +24,7 @@ open class TUNInterface {
      */
     open func start() {
         QueueFactory.executeOnQueueSynchronizedly {
+            self.running = true
             for stack in self.stacks {
                 stack.start()
             }
@@ -36,7 +38,7 @@ open class TUNInterface {
      */
     open func stop() {
         QueueFactory.executeOnQueueSynchronizedly {
-            self.packetFlow = nil
+            self.running = false
             
             for stack in self.stacks {
                 stack.stop()
@@ -44,7 +46,7 @@ open class TUNInterface {
             self.stacks = []
         }
     }
-    
+
     /**
      Register a new IP stack.
      
@@ -69,13 +71,15 @@ open class TUNInterface {
                 }
             }
             
-            self.readPackets()
+            if self.running { self.readPackets() }
         }
     }
     
     fileprivate func generateOutputBlock() -> ([Data], [NSNumber]) -> Void {
         return { [weak self] packets, versions in
-            self?.packetFlow?.writePackets(packets, withProtocols: versions)
+            if let this = self, this.running {
+                this.packetFlow?.writePackets(packets, withProtocols: versions)
+            }
         }
     }
 }
