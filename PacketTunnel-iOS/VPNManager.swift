@@ -35,28 +35,8 @@ class VPNManager {
         let manager = RuleManager(fromRules: [chinaRule, allRule], appendDirect: true)
         RuleManager.currentManager = manager
     }
-    func startProxyServer() {
-        NSLog("startProxyServer")
 
-        setupRuleManager()
-
-        httpProxyServer = GCDHTTPProxyServer(address: IPAddress(fromString: httpProxyAddress), port: Port(port: httpProxyPort))
-        try! httpProxyServer!.start()
-
-        NSLog("proxy started!")
-    }
-    var httpProxyServer: GCDProxyServer?
-
-
-    public let httpProxyAddress = "127.0.0.1"
-    public let httpProxyPort: UInt16 = 9090
-    public let socksProxyPort: UInt16 = 9091
-
-
-    func startPacketProcessor(packetFlow: NEPacketTunnelFlow) {
-        Opt.MAXNWTCPSocketReadDataSize = 60 * 1024
-        interface = TUNInterface(packetFlow: packetFlow)
-
+    private func setupPacketProcessor() {
         let ipRange = try! IPRange(startIP: IPAddress(fromString: "198.18.1.1")!, endIP: IPAddress(fromString: "198.18.255.255")!)
         let fakeIPPool = IPPool(range: ipRange)
         let dnsServer = DNSServer(address: IPAddress(fromString: "114.114.114.114")!, port: Port(port: 53), fakeIPPool: fakeIPPool)
@@ -71,56 +51,56 @@ class VPNManager {
         let tcpStack = TCPStack.stack
         tcpStack.proxyServer = httpProxyServer
         interface.register(stack: tcpStack)
-
-        interface.start()
     }
+
+    public let httpProxyAddress = "127.0.0.1"
+    public let httpProxyPort: UInt16 = 9090
+    public let socksProxyPort: UInt16 = 9091
+
     private var interface: TUNInterface!
+    private var httpProxyServer: GCDProxyServer?
 
-
-    let packetFlow: NEPacketTunnelFlow
     init(provider: NEPacketTunnelProvider) {
-        RawSocketFactory.TunnelProvider = provider
-        packetFlow = provider.packetFlow
         ObserverFactory.currentFactory = DebugObserverFactory()
+        RawSocketFactory.TunnelProvider = provider
+        Opt.MAXNWTCPSocketReadDataSize = 60 * 1024
+
+        setupRuleManager()
+        httpProxyServer = GCDHTTPProxyServer(address: IPAddress(fromString: httpProxyAddress), port: Port(port: httpProxyPort))
+
+        interface = TUNInterface(packetFlow: provider.packetFlow)
         listenReachabilityChange()
     }
 
     public func start() {
-        queue.async {
-            self.setupRuleManager()
-            self.startProxyServer()
-            self.startPacketProcessor(packetFlow: self.packetFlow)
+        queue.sync {
+            try! self.httpProxyServer?.start()
+            self.setupPacketProcessor()
+            self.interface?.start()
             DDLogInfo("vpn started")
         }
     }
 
     public func stop() {
-        queue.async {
+        queue.sync {
             self.interface?.stop()
             self.httpProxyServer?.stop()
             DDLogInfo("vpn stopped")
         }
     }
 
-    public func restart() {
-        queue.async {
-            self.interface?.stop()
-            self.httpProxyServer?.stop()
-            try! self.httpProxyServer?.start()
-            self.startPacketProcessor(packetFlow: self.packetFlow)
-            NSLog("restarted")
-        }
-    }
-
     let queue = DispatchQueue(label: "com.simpzan.Escalade.iOS")
 
     func listenReachabilityChange() {
-        func onReachabilityChange(_: Any) {
-            NSLog("reachable \(reachability.currentReachabilityString)")
-            self.restart()
+        func reachabilityChanged(state: Reachability.NetworkStatus) {
+            DDLogInfo("reachability changed to \(state)")
+            self.stop()
+            if state != .notReachable {
+                self.start()
+            }
         }
-        reachability.whenReachable = onReachabilityChange
-        reachability.whenUnreachable = onReachabilityChange
+        reachability.whenReachable = { reachabilityChanged(state: $0.currentReachabilityStatus) }
+        reachability.whenUnreachable = { reachabilityChanged(state: $0.currentReachabilityStatus) }
         try? reachability.startNotifier()
     }
     let reachability = Reachability()!
