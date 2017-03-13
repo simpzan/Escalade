@@ -15,6 +15,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     override class func initialize() {
         DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
         DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
+        let logger = DDFileLogger()!
+        logger.rollingFrequency = TimeInterval(60*60*12)
+        logger.logFileManager.maximumNumberOfLogFiles = 3
+//        let files = logger.logFileManager?.sortedLogFilePaths
+//        NSLog("log files \(files)")
+        DDLog.add(logger, with: .info)
+
     }
 
     lazy var manager: VPNManager = {
