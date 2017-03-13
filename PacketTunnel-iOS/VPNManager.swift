@@ -87,12 +87,12 @@ class VPNManager: NSObject {
         connectivityState = state
 
         stop()
-        if state != .none { start() }
-
+        start()
     }
-    private var connectivityState = ConnectivityState.none
+    private var connectivityState: ConnectivityState = .none
 
     public func start() {
+        if connectivityState == .none { return DDLogInfo("no connectvity, do not start vpn.") }
         queue.sync {
             try! self.httpProxyServer?.start()
             self.setupPacketProcessor()

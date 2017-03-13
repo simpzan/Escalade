@@ -72,10 +72,14 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 	}
 
     override func sleep(completionHandler: @escaping () -> Void) {
+        DDLogInfo("about to sleep...")
+        manager.stop()
         completionHandler()
-	}
+    }
 
-	override func wake() {
-	}
+    override func wake() {
+        DDLogInfo("about to wake...")
+        manager.start()
+    }
 
 }
