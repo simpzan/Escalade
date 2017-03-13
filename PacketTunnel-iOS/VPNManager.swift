@@ -11,7 +11,7 @@ import CocoaLumberjackSwift
 import NetworkExtension
 import NEKit
 
-class VPNManager {
+class VPNManager: NSObject {
     private func getFactory(host: String, port: Int, encryption: String, password: String) -> AdapterFactory {
         let protocolObfuscaterFactory = ShadowsocksAdapter.ProtocolObfuscater.OriginProtocolObfuscater.Factory()
         let streamObfuscaterFactory = ShadowsocksAdapter.StreamObfuscater.OriginStreamObfuscater.Factory()
@@ -61,6 +61,8 @@ class VPNManager {
     private var httpProxyServer: GCDProxyServer?
 
     init(provider: NEPacketTunnelProvider) {
+        super.init()
+
         ObserverFactory.currentFactory = DebugObserverFactory()
         RawSocketFactory.TunnelProvider = provider
         Opt.MAXNWTCPSocketReadDataSize = 60 * 1024
@@ -69,8 +71,23 @@ class VPNManager {
         httpProxyServer = GCDHTTPProxyServer(address: IPAddress(fromString: httpProxyAddress), port: Port(port: httpProxyPort))
 
         interface = TUNInterface(packetFlow: provider.packetFlow)
-        listenReachabilityChange()
+
+        connectivityState = getConnectivityState()
+        provider.addObserver(self, forKeyPath: "defaultPath", options: [.new], context: nil)
     }
+
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        let state = getConnectivityState()
+        if connectivityState == state { return }
+
+        DDLogInfo("connectivity changed: \(connectivityState) -> \(state)")
+        connectivityState = state
+
+        stop()
+        if state != .none { start() }
+
+    }
+    private var connectivityState = ConnectivityState.none
 
     public func start() {
         queue.sync {
@@ -90,19 +107,19 @@ class VPNManager {
     }
 
     let queue = DispatchQueue(label: "com.simpzan.Escalade.iOS")
+}
 
-    func listenReachabilityChange() {
-        func reachabilityChanged(state: Reachability.NetworkStatus) {
-            DDLogInfo("reachability changed to \(state)")
-            self.stop()
-            if state != .notReachable {
-                self.start()
-            }
-        }
-        reachability.whenReachable = { reachabilityChanged(state: $0.currentReachabilityStatus) }
-        reachability.whenUnreachable = { reachabilityChanged(state: $0.currentReachabilityStatus) }
-        try? reachability.startNotifier()
-    }
-    let reachability = Reachability()!
 
+func getConnectivityState() -> ConnectivityState {
+    let addrs = getNetworkAddresses()
+
+    var result = ConnectivityState.none
+    if addrs?["en0"] != nil { result = .wifi }
+    else if addrs?["pdp_ip0"] != nil { result = .celluar }
+
+    DDLogDebug("connectivity state \(result), addrs \(addrs)")
+    return result
+}
+enum ConnectivityState {
+    case wifi, celluar, none
 }

@@ -25,7 +25,6 @@
 		76312ACE1E6BEE7C000B66C9 /* Escalade_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312ACD1E6BEE7C000B66C9 /* Escalade_iOSTests.swift */; };
 		76361AC71E73E95E00F2F028 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76361AC61E73E95E00F2F028 /* config.plist */; };
 		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
-		764FA0531E71CAD400FB537D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
 		7665BBEB1E729710004588C5 /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7665BBEA1E729710004588C5 /* VPNManager.swift */; };
 		76841E861E505EA300685B0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E851E505EA300685B0F /* AppDelegate.m */; };
 		76841E891E505EA300685B0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E881E505EA300685B0F /* main.m */; };
@@ -91,6 +90,7 @@
 		76E112FF1E4CC40900966580 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E112FE1E4CC40900966580 /* ConfigurationManager.swift */; };
 		76E113071E4CC49200966580 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E113061E4CC49200966580 /* Utils.swift */; };
 		76E1130E1E4CC79600966580 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E1130D1E4CC79600966580 /* ServerController.swift */; };
+		76E881011E76B22B003CC239 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E881001E76B22B003CC239 /* main.m */; };
 		7E560DD6A38EE8B7A83C6A9D /* Pods_Escalade_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1E8385670F7E654A184646 /* Pods_Escalade_macOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -351,6 +351,8 @@
 		76E112FE1E4CC40900966580 /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
 		76E113061E4CC49200966580 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		76E1130D1E4CC79600966580 /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
+		76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PacketTunnel-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		76E881001E76B22B003CC239 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C4029B342D6BE0E9F66E7868 /* Pods-Escalade-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Escalade-macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS.debug.xcconfig"; sourceTree = "<group>"; };
 		CC1E8385670F7E654A184646 /* Pods_Escalade_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Escalade_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -624,6 +626,8 @@
 				76DB4CBE1E6BF0B80019FA42 /* Info.plist */,
 				76DB4CBA1E6BF0B80019FA42 /* Supporting Files */,
 				76361AC61E73E95E00F2F028 /* config.plist */,
+				76E881001E76B22B003CC239 /* main.m */,
+				76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */,
 			);
 			path = "PacketTunnel-iOS";
 			sourceTree = "<group>";
@@ -818,6 +822,7 @@
 					76DB4CB71E6BF0B70019FA42 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = UGK9FAJ697;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1105,8 +1110,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				764FA0531E71CAD400FB537D /* Reachability.swift in Sources */,
 				7665BBEB1E729710004588C5 /* VPNManager.swift in Sources */,
+				76E881011E76B22B003CC239 /* main.m in Sources */,
 				76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1907,6 +1912,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel-iOS/PacketTunnel-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1960,6 +1966,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel-iOS/PacketTunnel-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
