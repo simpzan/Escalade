@@ -36,14 +36,17 @@ class VPNManager: NSObject {
         RuleManager.currentManager = manager
     }
 
-    private func setupPacketProcessor() {
+    lazy var dnsServer: DNSServer = {
         let ipRange = try! IPRange(startIP: IPAddress(fromString: "198.18.1.1")!, endIP: IPAddress(fromString: "198.18.255.255")!)
         let fakeIPPool = IPPool(range: ipRange)
         let dnsServer = DNSServer(address: IPAddress(fromString: "114.114.114.114")!, port: Port(port: 53), fakeIPPool: fakeIPPool)
+        DNSServer.currentServer = dnsServer
+        return dnsServer
+    }();
+    private func setupPacketProcessor() {
         let resolver = UDPDNSResolver(address: IPAddress(fromString: "114.114.114.114")!, port: Port(port: 53))
         dnsServer.registerResolver(resolver)
         interface.register(stack: dnsServer)
-        DNSServer.currentServer = dnsServer
 
         let udpStack = UDPDirectStack()
         interface.register(stack: udpStack)
