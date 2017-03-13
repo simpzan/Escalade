@@ -23,7 +23,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     func getTunnelSettings() -> NEPacketTunnelNetworkSettings {
         let settings = NEPacketTunnelNetworkSettings(tunnelRemoteAddress: "192.0.2.2")
-        settings.mtu = 1600
+        settings.mtu = 1500
         settings.dnsSettings = NEDNSSettings(servers: ["114.114.114.114"])
         let v4Settings = NEIPv4Settings(addresses:["192.0.2.1"], subnetMasks:["255.255.255.0"])
         v4Settings.includedRoutes = [NEIPv4Route.default()]
