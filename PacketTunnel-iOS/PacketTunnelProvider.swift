@@ -36,20 +36,20 @@ class LogFormatter: NSObject, DDLogFormatter {
     }
 }
 
+private let logFile: String? = {
+    DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
+    DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
+
+    let logger = DDFileLogger()!
+    logger.rollingFrequency = TimeInterval(60*60*12)
+    logger.logFileManager.maximumNumberOfLogFiles = 3
+    logger.logFormatter = LogFormatter()
+    DDLog.add(logger, with: .debug)
+
+    return logger.logFileManager?.sortedLogFilePaths.first
+}()
+
 class PacketTunnelProvider: NEPacketTunnelProvider {
-
-    private let logFile: String? = {
-        DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
-        DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
-
-        let logger = DDFileLogger()!
-        logger.rollingFrequency = TimeInterval(60*60*12)
-        logger.logFileManager.maximumNumberOfLogFiles = 3
-        logger.logFormatter = LogFormatter()
-        DDLog.add(logger, with: .debug)
-
-        return logger.logFileManager?.sortedLogFilePaths.first
-    }()
 
     lazy var manager: VPNManager = {
         VPNManager(provider: self)
@@ -83,6 +83,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         DDLogInfo("startTunnel \(self) \(options)")
         NSLog("log file \(logFile)")
 
+        self.addObserver(self, forKeyPath: "defaultPath", options: [.new], context: nil)
         manager.start()
 
         setTunnelNetworkSettings(getTunnelSettings()) { (error) in
@@ -95,15 +96,22 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
+        DDLogInfo("stopTunnel \(self) \(reason)")
+        self.removeObserver(self, forKeyPath: "defaultPath")
         manager.stop()
         completionHandler()
     }
 
     override func handleAppMessage(_ messageData: Data, completionHandler: ((Data?) -> Void)? = nil) {
         if let handler = completionHandler {
-			handler(messageData)
-		}
-	}
+            handler(messageData)
+        }
+    }
+
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        DDLogDebug("defaultPath changed")
+        manager.reset()
+    }
 
     override func sleep(completionHandler: @escaping () -> Void) {
         DDLogInfo("about to sleep...")
@@ -116,4 +124,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         manager.start()
     }
 
+    deinit {
+        DDLogDebug("deinit \(self)")
+    }
 }

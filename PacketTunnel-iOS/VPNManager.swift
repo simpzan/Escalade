@@ -11,7 +11,7 @@ import CocoaLumberjackSwift
 import NetworkExtension
 import NEKit
 
-class VPNManager: NSObject {
+class VPNManager {
     private func getFactory(host: String, port: Int, encryption: String, password: String) -> AdapterFactory {
         let protocolObfuscaterFactory = ShadowsocksAdapter.ProtocolObfuscater.OriginProtocolObfuscater.Factory()
         let streamObfuscaterFactory = ShadowsocksAdapter.StreamObfuscater.OriginStreamObfuscater.Factory()
@@ -63,9 +63,7 @@ class VPNManager: NSObject {
     private var interface: TUNInterface!
     private var httpProxyServer: GCDProxyServer?
 
-    init(provider: NEPacketTunnelProvider) {
-        super.init()
-
+    public init(provider: NEPacketTunnelProvider) {
         ObserverFactory.currentFactory = DebugObserverFactory()
         RawSocketFactory.TunnelProvider = provider
         Opt.MAXNWTCPSocketReadDataSize = 60 * 1024
@@ -76,10 +74,9 @@ class VPNManager: NSObject {
         interface = TUNInterface(packetFlow: provider.packetFlow)
 
         connectivityState = getConnectivityState()
-        provider.addObserver(self, forKeyPath: "defaultPath", options: [.new], context: nil)
     }
 
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    public func reset() {
         let state = getConnectivityState()
         if connectivityState == state { return }
 
