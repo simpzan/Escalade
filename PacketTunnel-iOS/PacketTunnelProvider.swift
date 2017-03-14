@@ -61,9 +61,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         settings.dnsSettings = NEDNSSettings(servers: ["114.114.114.114"])
         let v4Settings = NEIPv4Settings(addresses:["192.0.2.1"], subnetMasks:["255.255.255.0"])
         v4Settings.includedRoutes = [NEIPv4Route.default()]
-        v4Settings.excludedRoutes = [NEIPv4Route(destinationAddress:"114.114.114.114", subnetMask:"255.255.255.255")]
+//        v4Settings.excludedRoutes = [NEIPv4Route(destinationAddress:"114.114.114.114", subnetMask:"255.255.255.255")]
         settings.iPv4Settings = v4Settings
-        settings.proxySettings = getProxySettings()
+//        settings.proxySettings = getProxySettings()
         return settings
     }
     func getProxySettings() -> NEProxySettings {
