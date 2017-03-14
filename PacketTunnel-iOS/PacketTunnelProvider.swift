@@ -12,17 +12,17 @@ import CocoaLumberjackSwift
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
 
-    override class func initialize() {
+    private var logFile: String? = {
         DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
         DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
+
         let logger = DDFileLogger()!
         logger.rollingFrequency = TimeInterval(60*60*12)
         logger.logFileManager.maximumNumberOfLogFiles = 3
-//        let files = logger.logFileManager?.sortedLogFilePaths
-//        NSLog("log files \(files)")
-        DDLog.add(logger, with: .info)
+        DDLog.add(logger, with: .debug)
 
-    }
+        return logger.logFileManager?.sortedLogFilePaths.first
+    }()
 
     lazy var manager: VPNManager = {
         VPNManager(provider: self)
@@ -53,16 +53,16 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
-        NSLog("startTunnel \(options)")
+        DDLogInfo("startTunnel \(self) \(options)")
+        NSLog("log file \(logFile)")
 
         manager.start()
 
         setTunnelNetworkSettings(getTunnelSettings()) { (error) in
             if error != nil {
-                NSLog("\(#function) error:\(error)")
+                DDLogError("setTunnelNetworkSettings error:\(error)")
                 return
             }
-            NSLog("connected")
             completionHandler(nil)
         }
     }
