@@ -89,6 +89,9 @@ public class NWUDPSocket: NSObject {
      - parameter data: The data to send.
      */
     public func write(data: Data) {
+        guard session.state != .cancelled else {
+            return DDLogError("the session has been cancelled")
+        }
         pendingWriteData.append(data)
         checkWrite()
     }
