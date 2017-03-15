@@ -16,7 +16,7 @@ public class UDPDNSResolver: NSObject, DNSResolverProtocol, NWUDPSocketDelegate 
     public weak var delegate: DNSResolverDelegate?
 
     public init(address: IPAddress, port: Port) {
-        socket = NWUDPSocket(host: address.presentation, port: Int(port.value))!
+        socket = NWUDPSocket(host: address.presentation, port: Int(port.value), timeout: 0)!
         super.init()
         socket.delegate = self
     }
