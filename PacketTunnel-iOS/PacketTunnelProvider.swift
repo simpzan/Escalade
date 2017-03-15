@@ -36,7 +36,7 @@ class LogFormatter: NSObject, DDLogFormatter {
     }
 }
 
-private let logFile: String? = {
+private let fileLogger: DDFileLogger = {
     DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
     DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
 
@@ -45,8 +45,7 @@ private let logFile: String? = {
     logger.logFileManager.maximumNumberOfLogFiles = 3
     logger.logFormatter = LogFormatter()
     DDLog.add(logger, with: .debug)
-
-    return logger.logFileManager?.sortedLogFilePaths.first
+    return logger
 }()
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
@@ -79,6 +78,10 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         return proxy
     }
 
+    private var logFile: String? {
+        return fileLogger.logFileManager?.sortedLogFilePaths.first
+    }
+
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         DDLogInfo("startTunnel \(self) \(options)")
         NSLog("log file \(logFile)")
@@ -97,6 +100,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
         DDLogInfo("stopTunnel \(self) \(reason)")
+        NSLog("log file \(logFile)")
         self.removeObserver(self, forKeyPath: "defaultPath")
         manager.stop()
         completionHandler()
