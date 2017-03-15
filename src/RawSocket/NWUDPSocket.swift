@@ -41,11 +41,11 @@ public class NWUDPSocket: NSObject {
      - parameter port: The port.
      */
     public init?(host: String, port: Int, timeout: Int = Opt.UDPSocketActiveTimeout) {
-        guard let udpsession = RawSocketFactory.TunnelProvider?.createUDPSession(to: NWHostEndpoint(hostname: host, port: "\(port)"), from: nil) else {
-            return nil
-        }
+        let provider = RawSocketFactory.TunnelProvider
+        let to = NWHostEndpoint(hostname: host, port: "\(port)")
+        guard let session = provider?.createUDPSession(to: to, from: nil) else { return nil }
         
-        session = udpsession
+        self.session = session
         self.timeout = timeout
         
         timer = DispatchSource.makeTimerSource(queue: queue)
@@ -64,9 +64,7 @@ public class NWUDPSocket: NSObject {
         
         session.setReadHandler({ [ weak self ] dataArray, error in
             self?.queueCall {
-                guard let sSelf = self else {
-                    return
-                }
+                guard let sSelf = self else { return }
                 
                 sSelf.updateActivityTimer()
                 
@@ -97,14 +95,13 @@ public class NWUDPSocket: NSObject {
     }
     
     public func disconnect() {
+        DDLogDebug("disconnecting...")
         session.cancel()
         timer.cancel()
     }
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard keyPath == "state" else {
-            return
-        }
+        guard keyPath == "state" else { return }
         
         switch session.state {
         case .cancelled:
@@ -121,17 +118,11 @@ public class NWUDPSocket: NSObject {
     private func checkWrite() {
         updateActivityTimer()
         
-        guard session.state == .ready else {
-            return
-        }
+        guard session.state == .ready else { return }
         
-        guard !writing else {
-            return
-        }
+        guard !writing else { return }
         
-        guard pendingWriteData.count > 0 else {
-            return
-        }
+        guard pendingWriteData.count > 0 else { return }
         
         writing = true
         session.writeMultipleDatagrams(self.pendingWriteData) {_ in
@@ -149,6 +140,7 @@ public class NWUDPSocket: NSObject {
     
     private func checkStatus() {
         if timeout > 0 && Date().timeIntervalSince(lastActive) > TimeInterval(timeout) {
+            DDLogError("\(self) timeout, disconnect now.")
             disconnect()
         }
     }
