@@ -55,7 +55,7 @@ public class NWUDPSocket: NSObject {
                 sSelf.updateActivityTimer()
                 
                 guard error == nil, let dataArray = dataArray else {
-                    DDLogError("Error when reading from remote server. \(error?.localizedDescription ?? "Connection reset")")
+                    DDLogError("\(self) \(session.state), Error when reading from remote server. \(error) ")
 //                    sSelf.disconnect()
                     return
                 }
@@ -74,14 +74,14 @@ public class NWUDPSocket: NSObject {
      */
     public func write(data: Data) {
         guard session.state != .cancelled else {
-            return DDLogError("the session has been cancelled")
+            return DDLogError("\(self) the session has been cancelled")
         }
         pendingWriteData.append(data)
         checkWrite()
     }
     
     public func disconnect() {
-        DDLogDebug("disconnecting...")
+        DDLogDebug("\(self) disconnecting...")
         session.cancel()
         destroyTimer()
     }
@@ -164,5 +164,24 @@ public class NWUDPSocket: NSObject {
     
     deinit {
         session.removeObserver(self, forKeyPath: #keyPath(NWUDPSession.state))
+    }
+}
+
+extension NWUDPSessionState: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .cancelled:
+            return "canceled"
+        case .failed:
+            return "failed"
+        case .invalid:
+            return "invalid"
+        case .preparing:
+            return "preparing"
+        case .ready:
+            return "ready"
+        case .waiting:
+            return "waiting"
+        }
     }
 }

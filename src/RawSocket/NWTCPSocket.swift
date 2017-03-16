@@ -142,7 +142,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
 
         connection!.readMinimumLength(1, maximumLength: Opt.MAXNWTCPSocketReadDataSize) { data, error in
             guard error == nil else {
-                DDLogError("NWTCPSocket got an error when reading data: \(error)")
+                DDLogError("NWTCPSocket got an error when reading data: \(error) \(self.state)")
                 self.queueCall {
                     self.disconnect()
                 }
@@ -166,7 +166,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
 
         connection!.readLength(length) { data, error in
             guard error == nil else {
-                DDLogError("NWTCPSocket got an error when reading data: \(error)")
+                DDLogError("NWTCPSocket got an error when reading data: \(error) \(self.state)")
                 self.queueCall {
                     self.disconnect()
                 }
@@ -281,7 +281,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
                 self.writePending = false
 
                 guard error == nil else {
-                    DDLogError("NWTCPSocket got an error when writing data: \(error)")
+                    DDLogError("NWTCPSocket got an error when writing data: \(error) \(self.state)")
                     self.disconnect()
                     return
                 }
@@ -290,6 +290,10 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
                 self.checkStatus()
             }
         }
+    }
+
+    private var state: NWTCPConnectionState? {
+        return connection?.state
     }
 
     private func consumeReadData(_ data: Data?) -> Data? {
@@ -326,5 +330,24 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
         }
 
         connection.removeObserver(self, forKeyPath: "state")
+    }
+}
+
+extension NWTCPConnectionState: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .cancelled:
+            return "canceled"
+        case .connected:
+            return "connected"
+        case .connecting:
+            return "connecting"
+        case .disconnected:
+            return "disconnected"
+        case .invalid:
+            return "invalid"
+        case .waiting:
+            return "waiting"
+        }
     }
 }
