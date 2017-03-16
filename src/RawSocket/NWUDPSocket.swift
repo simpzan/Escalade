@@ -56,7 +56,7 @@ public class NWUDPSocket: NSObject {
                 
                 guard error == nil, let dataArray = dataArray else {
                     DDLogError("Error when reading from remote server. \(error?.localizedDescription ?? "Connection reset")")
-                    sSelf.disconnect()
+//                    sSelf.disconnect()
                     return
                 }
                 
