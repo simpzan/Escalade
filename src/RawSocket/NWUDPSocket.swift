@@ -23,17 +23,11 @@ public class NWUDPSocket: NSObject {
     private var pendingWriteData: [Data] = []
     private var writing = false
     private let queue: DispatchQueue = QueueFactory.getQueue()
-    private let timer: DispatchSourceTimer
     private let timeout: Int
     
     /// The delegate instance.
     public weak var delegate: NWUDPSocketDelegate?
-    
-    /// The time when the last activity happens.
-    ///
-    /// Since UDP do not have a "close" semantic, this can be an indicator of timeout.
-    public var lastActive: Date = Date()
-    
+
     /**
      Create a new UDP socket connecting to remote.
      
@@ -47,19 +41,11 @@ public class NWUDPSocket: NSObject {
         
         self.session = session
         self.timeout = timeout
-        
-        timer = DispatchSource.makeTimerSource(queue: queue)
-        
+
         super.init()
-        
-        timer.scheduleRepeating(deadline: DispatchTime.now(), interval: DispatchTimeInterval.seconds(Opt.UDPSocketActiveCheckInterval), leeway: DispatchTimeInterval.seconds(Opt.UDPSocketActiveCheckInterval))
-        timer.setEventHandler { [weak self] in
-            self?.queueCall {
-                self?.checkStatus()
-            }
-        }
-        timer.resume()
-        
+
+        if (timeout > 0) { createTimer() }
+
         session.addObserver(self, forKeyPath: #keyPath(NWUDPSession.state), options: [.new], context: nil)
         
         session.setReadHandler({ [ weak self ] dataArray, error in
@@ -97,7 +83,7 @@ public class NWUDPSocket: NSObject {
     public func disconnect() {
         DDLogDebug("disconnecting...")
         session.cancel()
-        timer.cancel()
+        destroyTimer()
     }
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -133,7 +119,30 @@ public class NWUDPSocket: NSObject {
         }
         self.pendingWriteData.removeAll(keepingCapacity: true)
     }
-    
+
+    // MARK: - timer
+    private var timer: DispatchSourceTimer! = nil
+
+    private func createTimer() {
+        timer = DispatchSource.makeTimerSource(queue: queue)
+        timer.scheduleRepeating(deadline: DispatchTime.now(), interval: DispatchTimeInterval.seconds(Opt.UDPSocketActiveCheckInterval), leeway: DispatchTimeInterval.seconds(Opt.UDPSocketActiveCheckInterval))
+        timer.setEventHandler { [weak self] in
+            self?.queueCall {
+                self?.checkStatus()
+            }
+        }
+        timer.resume()
+    }
+    private func destroyTimer() {
+        timer?.cancel()
+        timer = nil
+    }
+
+    /// The time when the last activity happens.
+    ///
+    /// Since UDP do not have a "close" semantic, this can be an indicator of timeout.
+    private var lastActive: Date = Date()
+
     private func updateActivityTimer() {
         lastActive = Date()
     }
@@ -144,7 +153,9 @@ public class NWUDPSocket: NSObject {
             disconnect()
         }
     }
-    
+
+    // MARK: -
+
     private func queueCall(block: @escaping () -> Void) {
         queue.async {
             block()
