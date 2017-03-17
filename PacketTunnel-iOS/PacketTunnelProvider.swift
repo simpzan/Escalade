@@ -10,7 +10,8 @@ import NetworkExtension
 import NEKit
 import CocoaLumberjackSwift
 
-private let fileLogger: DDFileLogger = {
+private let fileLogger: DDFileLogger? = {
+    defaultDebugLevel = .info
     DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
     DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
 
@@ -52,7 +53,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 
     private var logFile: String? {
-        return fileLogger.logFileManager?.sortedLogFilePaths.first
+        return fileLogger?.logFileManager?.sortedLogFilePaths?.first
     }
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
