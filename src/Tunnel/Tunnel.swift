@@ -231,7 +231,7 @@ public class Tunnel: NSObject, SocketDelegate {
             guard !isCancelled else {
                 return
             }
-            QueueFactory.getQueue().asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.microseconds(Opt.forwardReadInterval)) { [weak self] in
+            QueueFactory.getQueue().asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(Opt.forwardReadInterval)) { [weak self] in
                 self?.adapterSocket?.readData()
             }
         } else if let socket = socket as? AdapterSocket {
