@@ -74,16 +74,7 @@ class ConfigurationManager: NSObject {
         guard let result = loadConfiguration(content: content) else { return nil }
         return (content, result)
     }
-    private func loadConfiguration(content: String) -> Configuration? {
-        let configuration = Configuration()
-        do {
-            try configuration.load(fromConfigString: content)
-        } catch let error {
-            DDLogError("Error when parsing profile file: \(error)")
-            return nil
-        }
-        return configuration
-    }
+
     private func loadAllConfigurations() -> [String:String] {
         let fm = FileManager.default
         let yamlFiles = try! fm.contentsOfDirectory(atPath: configuraionFolder).filter {
@@ -114,4 +105,15 @@ class ConfigurationManager: NSObject {
         current = config
         return true
     }
+}
+
+func loadConfiguration(content: String) -> Configuration? {
+    let configuration = Configuration()
+    do {
+        try configuration.load(fromConfigString: content)
+    } catch let error {
+        DDLogError("Error when parsing profile file: \(error)")
+        return nil
+    }
+    return configuration
 }
