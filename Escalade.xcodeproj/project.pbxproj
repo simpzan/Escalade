@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7620DCFC1E7D6F9200EC1EDA /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7620DCFB1E7D6F9200EC1EDA /* MMWormhole.framework */; };
+		7620DD051E7D6F9B00EC1EDA /* MMWormhole.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7620DD061E7D6FA400EC1EDA /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */; };
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
 		76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
@@ -284,6 +287,7 @@
 				76A184FB1E6C14A700C35C83 /* Yaml.framework in CopyFiles */,
 				76A184E21E6C142700C35C83 /* CocoaAsyncSocket.framework in CopyFiles */,
 				76A184E11E6C13D600C35C83 /* NEKit.framework in CopyFiles */,
+				7620DD051E7D6F9B00EC1EDA /* MMWormhole.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +295,8 @@
 
 /* Begin PBXFileReference section */
 		47448188CDC5329F975263B8 /* Pods-Escalade-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Escalade-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS.release.xcconfig"; sourceTree = "<group>"; };
+		7620DCFB1E7D6F9200EC1EDA /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
+		7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
 		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76277F201E4CF758006C06A6 /* SystemProxyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemProxyController.swift; sourceTree = "<group>"; };
@@ -391,6 +397,7 @@
 				76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */,
 				76A184EB1E6C149200C35C83 /* Yaml.framework in Frameworks */,
 				76A184DF1E6C13B600C35C83 /* NEKit.framework in Frameworks */,
+				7620DCFC1E7D6F9200EC1EDA /* MMWormhole.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +454,7 @@
 				76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */,
 				76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */,
 				76A184DE1E6C12F400C35C83 /* NEKit.framework in Frameworks */,
+				7620DD061E7D6FA400EC1EDA /* MMWormhole.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +548,7 @@
 		768D4A1E1E4B4E8B00B73E10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7620DCFB1E7D6F9200EC1EDA /* MMWormhole.framework */,
 				76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */,
 				76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */,
 				76A184D71E6C11FC00C35C83 /* CocoaLumberjackSwift.framework */,
@@ -582,6 +591,7 @@
 		76C493501E4A0A8C00A0D066 = {
 			isa = PBXGroup;
 			children = (
+				7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */,
 				762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */,
 				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
 				76B08C2D1E7CF84D00E6146E /* Escalade */,
@@ -1350,6 +1360,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1413,6 +1424,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1919,6 +1931,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1981,6 +1994,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;

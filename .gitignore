@@ -70,3 +70,4 @@ dsa_priv.pem
 out/
 .idea/
 config.plist
+Carthage/
