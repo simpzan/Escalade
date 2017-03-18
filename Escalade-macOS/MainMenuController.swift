@@ -27,7 +27,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         serversItem.action = #selector(autoSelectClicked(_:))
         serversItem.target = self
 
-        setUpLogger()
+        NSLog("log file \(logFile)")
 
         let _ = launchHelper.validate()
         updateStartAtLoginItem()
@@ -265,20 +265,11 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     // MARK: -
 
     @IBAction func showLogClicked(_ sender: Any) {
-        if let logfile = logger.logFileManager?.sortedLogFilePaths?.first {
+        if let logfile = logFile {
             _ = runCommand(path: "/usr/bin/env", args: ["open", "-a", "Console", logfile])
         }
     }
-    func setUpLogger() {
-        DDLog.add(DDTTYLogger.sharedInstance(), with: .info)
 
-        let logger = DDFileLogger()
-        logger?.rollingFrequency = TimeInterval(60*60*3)
-        logger?.logFileManager.maximumNumberOfLogFiles = 1
-        DDLog.add(logger, with: .info)
-        self.logger = logger
-    }
-    var logger: DDFileLogger!
 
     @IBAction func copyExportCommandClicked(_ sender: Any) {
         let proxy = "http://127.0.0.1:\(port + 1)"

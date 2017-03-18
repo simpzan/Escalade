@@ -10,18 +10,6 @@ import NetworkExtension
 import NEKit
 import CocoaLumberjackSwift
 
-private let fileLogger: DDFileLogger? = {
-    defaultDebugLevel = .info
-    DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
-    DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
-
-    let logger = DDFileLogger()!
-    logger.rollingFrequency = TimeInterval(60*60*12)
-    logger.logFileManager.maximumNumberOfLogFiles = 3
-    DDLog.add(logger, with: .debug)
-    return logger
-}()
-
 class PacketTunnelProvider: NEPacketTunnelProvider {
     private lazy var proxyService: ProxyService? = {
         guard let configString = load(key: configKey) else {
@@ -35,10 +23,6 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
     var serverController: ServerController {
         return proxyService!.serverController
-    }
-
-    private var logFile: String? {
-        return fileLogger?.logFileManager?.sortedLogFilePaths?.first
     }
 
     var getServersHandler: APIHandler? = nil
