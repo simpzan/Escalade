@@ -24,7 +24,6 @@
 		76312ACE1E6BEE7C000B66C9 /* Escalade_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312ACD1E6BEE7C000B66C9 /* Escalade_iOSTests.swift */; };
 		76361AC71E73E95E00F2F028 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76361AC61E73E95E00F2F028 /* config.plist */; };
 		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
-		7665BBEB1E729710004588C5 /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7665BBEA1E729710004588C5 /* VPNManager.swift */; };
 		76841E861E505EA300685B0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E851E505EA300685B0F /* AppDelegate.m */; };
 		76841E891E505EA300685B0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E881E505EA300685B0F /* main.m */; };
 		76841E8B1E505EA300685B0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76841E8A1E505EA300685B0F /* Assets.xcassets */; };
@@ -1140,7 +1139,6 @@
 				76B08C341E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
 				76B08C3A1E7CF84D00E6146E /* TrafficMonitor.swift in Sources */,
 				76B08C3F1E7D3B7800E6146E /* TUNController.swift in Sources */,
-				7665BBEB1E729710004588C5 /* VPNManager.swift in Sources */,
 				76B08C631E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				76B08C381E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76E881011E76B22B003CC239 /* main.m in Sources */,
