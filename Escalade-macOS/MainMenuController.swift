@@ -78,8 +78,14 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
     // MARK: - configurations
     func showSetupGuide() {
-        serverController = configManager.importConfig()
-        if serverController == nil { return }
+        guard let file = selectFile() else { return }
+
+        let serverController = configManager.importConfig(file: file)
+        if serverController == nil {
+            _ = alert("invalid config file: \(file)")
+            return
+        }
+        self.serverController = serverController
 
         var message = "Enable system proxy?"
         let hint = "Setting system proxy requires administrator privileges." +

@@ -6,7 +6,7 @@
 //
 //
 
-import Cocoa
+import Foundation
 import NEKit
 import CocoaLumberjackSwift
 
@@ -53,13 +53,8 @@ class ConfigurationManager: NSObject {
         return path
     }()
 
-    public func importConfig() -> ServerController? {
-        guard let file = selectFile() else { return nil }
-
-        guard loadConfigurationFile(file: file) != nil else {
-            _ = alert("invalid config file: \(file)")
-            return importConfig()
-        }
+    public func importConfig(file: String) -> ServerController? {
+        guard loadConfigurationFile(file: file) != nil else { return nil }
 
         let filename = (file as NSString).lastPathComponent
         let destPath = "\(configuraionFolder)/\(filename)"
