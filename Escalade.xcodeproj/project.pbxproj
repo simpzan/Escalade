@@ -70,6 +70,7 @@
 		76A184F91E6C14A700C35C83 /* Sodium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A184FB1E6C14A700C35C83 /* Yaml.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A416121E4F4A7C003C2CE2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
+		76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */; };
 		76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */; };
 		76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76C493601E4A0AA200A0D066 /* Assets.xcassets */; };
 		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
@@ -324,6 +325,7 @@
 		76A184EE1E6C149200C35C83 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = NEKit/Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		76A184EF1E6C149200C35C83 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = NEKit/Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		76A416111E4F4A7B003C2CE2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsCocoa.swift; sourceTree = "<group>"; };
 		76C4935B1E4A0AA100A0D066 /* Escalade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Escalade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76C493601E4A0AA200A0D066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 			children = (
 				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
 				76E113061E4CC49200966580 /* Utils.swift */,
+				76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */,
 				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
 				76E112FE1E4CC40900966580 /* ConfigurationManager.swift */,
 				76E112F11E4CB80D00966580 /* ProxyServerManager.swift */,
@@ -1085,6 +1088,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E112FF1E4CC40900966580 /* ConfigurationManager.swift in Sources */,
+				76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */,
 				76E1130E1E4CC79600966580 /* ServerController.swift in Sources */,
 				76E112F21E4CB80D00966580 /* ProxyServerManager.swift in Sources */,
 				76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */,
