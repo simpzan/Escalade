@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		76107EBC1E7D846200BC5E6F /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EBB1E7D846100BC5E6F /* RPC.swift */; };
 		76107EBD1E7D846200BC5E6F /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EBB1E7D846100BC5E6F /* RPC.swift */; };
+		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		7620DCFC1E7D6F9200EC1EDA /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7620DCFB1E7D6F9200EC1EDA /* MMWormhole.framework */; };
 		7620DD051E7D6F9B00EC1EDA /* MMWormhole.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7620DD061E7D6FA400EC1EDA /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */; };
@@ -1098,6 +1099,7 @@
 				76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */,
 				76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */,
 				76107EBC1E7D846200BC5E6F /* RPC.swift in Sources */,
+				76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,3 +37,13 @@ func readableSize(_ byteCount: Int) -> String {
     return ""
 }
 
+extension Bundle {
+    func fileContent(_ file: String) -> String? {
+        let filename = file as NSString
+        let ext = filename.pathExtension
+        let name = filename.deletingPathExtension
+        guard let url = self.url(forResource: name, withExtension: ext) else { return nil }
+
+        return try? String(contentsOf: url)
+    }
+}
