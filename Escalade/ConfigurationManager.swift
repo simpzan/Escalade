@@ -15,12 +15,11 @@ class ConfigurationManager: NSObject {
         return profiles.keys.sorted()
     }
 
-    public func setConfiguration(name: String) -> ServerController? {
-        let controller = applyConfiguration(name: name)
-        if controller != nil {
+    public func setConfiguration(name: String) -> Bool {
+        if applyConfiguration(name: name) {
             defaults.set(name, forKey: currentConfigKey)
         }
-        return controller
+        return true
     }
     public var currentConfiguration: String? {
         let config = defaults.string(forKey: currentConfigKey)
@@ -30,7 +29,7 @@ class ConfigurationManager: NSObject {
     private let defaults = UserDefaults.standard
     private let currentConfigKey = "currentConfig"
 
-    public func reloadConfigurations() -> ServerController? {
+    public func reloadConfigurations() -> Bool {
         print("\(#function)")
         profiles = loadAllConfigurations()
         return applyConfiguration()
@@ -53,8 +52,8 @@ class ConfigurationManager: NSObject {
         return path
     }()
 
-    public func importConfig(file: String) -> ServerController? {
-        guard loadConfigurationFile(file: file) != nil else { return nil }
+    public func importConfig(file: String) -> Bool {
+        guard loadConfigurationFile(file: file) != nil else { return false }
 
         let filename = (file as NSString).lastPathComponent
         let destPath = "\(configuraionFolder)/\(filename)"
@@ -102,19 +101,19 @@ class ConfigurationManager: NSObject {
     }
 
     // MARK: -
-    private func applyConfiguration(name: String? = nil) -> ServerController? {
+    private func applyConfiguration(name: String? = nil) -> Bool {
         let key = name ?? currentConfiguration
         guard key != nil, let content = profiles[key!] else {
             DDLogError("config \(name) not found")
-            return nil
+            return false
         }
 
-        guard let config = loadConfiguration(content: content) else { return nil }
+        guard let config = loadConfiguration(content: content) else { return false }
+
         proxyServerManager.initWithConfig(config: config)
-        proxyServerManager.startProxyServers()
-        return proxyServerManager.serverController
+        return true
     }
-    private let proxyServerManager = ProxyServerManager()
+    public let proxyServerManager = ProxyServerManager()
     public var port: UInt16? {
         return proxyServerManager.port
     }

@@ -80,12 +80,11 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     func showSetupGuide() {
         guard let file = selectFile() else { return }
 
-        let serverController = configManager.importConfig(file: file)
-        if serverController == nil {
+        if !configManager.importConfig(file: file) {
             _ = alert("invalid config file: \(file)")
             return
         }
-        self.serverController = serverController
+        startProxy()
 
         var message = "Enable system proxy?"
         let hint = "Setting system proxy requires administrator privileges." +
@@ -102,20 +101,19 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         autoSelectClicked(nil)
     }
     func reloadConfigurations() -> Bool {
-        serverController = configManager.reloadConfigurations()
-        if serverController == nil { return false }
+        if !configManager.reloadConfigurations() { return false }
 
+        startProxy()
         systemProxyController.port = configManager.port!
         systemProxyController.load()
         return true
     }
     func configClicked(sender: NSMenuItem) {
         let name = sender.title
-        let controller = configManager.setConfiguration(name: name)
-        if controller == nil {
+        if !configManager.setConfiguration(name: name) {
             print("setConfiguration \(name) failed")
         } else {
-            serverController = controller
+            startProxy()
         }
     }
     func updateConfigList() {
@@ -201,8 +199,12 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         }
     }
     @IBOutlet weak var serversItem: NSMenuItem!
-    var serverController: ServerController!
-
+    var serverController: ServerController! {
+        return configManager.proxyServerManager.serverController
+    }
+    private func startProxy() {
+        configManager.proxyServerManager.startProxyServers()
+    }
 
     func listenReachabilityChange() {
         func onReachabilityChange(_: Any) {
