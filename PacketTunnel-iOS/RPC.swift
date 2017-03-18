@@ -9,6 +9,17 @@
 import Foundation
 import MMWormhole
 
+let configKey = "config"
+
+let defaults = UserDefaults(suiteName: "group.com.simpzan.Escalade-iOS")!
+func save(key: String, value: String) {
+    defaults.set(value, forKey: key)
+}
+func load(key: String) -> String? {
+    return defaults.string(forKey: key)
+}
+
+
 let switchProxyId = "switchProxy"
 let getServersId = "getServers"
 
