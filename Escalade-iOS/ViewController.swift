@@ -37,6 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func pingClicked(_ sender: Any) {
         callAPIAsync(id: autoSelectId) { result in
             DDLogInfo("auto selelct result \(result)")
+            self.pingResults = result as! [String : TimeInterval]
             self.tableView.reloadData()
         }
     }
@@ -65,6 +66,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.reloadData()
     }
 
+    var pingResults: [String: TimeInterval] = [:]
     var servers: [String] = []
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -79,9 +81,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let server = servers[indexPath.row]
+        let pingResult = pingResults[server] ?? 0
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConfigCell")!
         cell.textLabel?.text = server
-        cell.detailTextLabel?.text = ""
+        cell.detailTextLabel?.text = miliseconds(pingResult)
         return cell
     }
 

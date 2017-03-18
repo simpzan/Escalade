@@ -24,6 +24,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     var serverController: ServerController {
         return proxyService!.serverController
     }
+    var servers: [String: TimeInterval] {
+        var servers: [String: TimeInterval] = [:]
+        self.serverController.servers.forEach({ (server) in
+            servers[server.0] = server.1
+        })
+        return servers
+    }
 
     var getServersHandler: APIHandler? = nil
     var switchServerHandler: APIHandler? = nil
@@ -35,11 +42,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
     func addApis() {
         getServersHandler = addAPI(id: getServersId) { (_) -> NSCoding? in
-            var servers: [String: TimeInterval] = [:]
-            self.serverController.servers.forEach({ (server) in
-                servers[server.0] = server.1
-            })
-            return servers as NSCoding?
+            return self.servers as NSCoding?
         }
         switchServerHandler = addAPI(id: switchProxyId, callback: { (server) -> NSCoding? in
             let server = server as! String
@@ -52,7 +55,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 DDLogInfo("autoSelect callback \(err) \(server)")
                 if server != nil { return }
 
-                let output = err != nil
+                let output = self.servers
                 done(output as NSCoding?)
             })
         }
