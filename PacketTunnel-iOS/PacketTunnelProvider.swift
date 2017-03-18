@@ -31,9 +31,28 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     var tunController: TUNController {
         return (proxyService?.tunController)!
     }
+    var serverController: ServerController {
+        return proxyService!.serverController
+    }
 
     private var logFile: String? {
         return fileLogger?.logFileManager?.sortedLogFilePaths?.first
+    }
+
+    var cancelGetServers: APIHandler? = nil
+
+    func removeApis() {
+        cancelGetServers?()
+        cancelGetServers = nil
+    }
+    func addApis() {
+        cancelGetServers = addAPI(id: getServersId) { (_) -> NSCoding? in
+            var servers: [String: TimeInterval] = [:]
+            self.serverController.servers.forEach({ (server) in
+                servers[server.0] = server.1
+            })
+            return servers as NSCoding?
+        }
     }
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
@@ -48,6 +67,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 DDLogError("setTunnelNetworkSettings error:\(error)")
                 return
             }
+            self.addApis()
             completionHandler(nil)
         }
     }
@@ -57,6 +77,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         NSLog("log file \(logFile)")
         self.removeObserver(self, forKeyPath: "defaultPath")
         proxyService?.stop()
+        removeApis()
         completionHandler()
     }
 

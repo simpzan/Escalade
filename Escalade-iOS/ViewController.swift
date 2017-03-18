@@ -10,6 +10,12 @@ import UIKit
 import NetworkExtension
 
 class ViewController: UIViewController {
+
+    @IBAction func test(_ sender: Any) {
+        let result = callAPI(id: getServersId)
+        NSLog("getServers \(result)")
+    }
+
     func createManager(callback: @escaping (NETunnelProviderManager?) -> Void) {
         let config = NETunnelProviderProtocol()
         config.providerBundleIdentifier = "com.simpzan.Escalade-iOS.PacketTunnel-iOS"
