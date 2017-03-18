@@ -41,20 +41,26 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         return fileLogger?.logFileManager?.sortedLogFilePaths?.first
     }
 
-    var cancelGetServers: APIHandler? = nil
-
+    var getServersHandler: APIHandler? = nil
+    var switchServerHandler: APIHandler? = nil
     func removeApis() {
-        cancelGetServers?()
-        cancelGetServers = nil
+        getServersHandler?(); getServersHandler = nil
+        switchServerHandler?(); switchServerHandler = nil
     }
     func addApis() {
-        cancelGetServers = addAPI(id: getServersId) { (_) -> NSCoding? in
+        getServersHandler = addAPI(id: getServersId) { (_) -> NSCoding? in
             var servers: [String: TimeInterval] = [:]
             self.serverController.servers.forEach({ (server) in
                 servers[server.0] = server.1
             })
             return servers as NSCoding?
         }
+        switchServerHandler = addAPI(id: switchProxyId, callback: { (server) -> NSCoding? in
+            let server = server as! String
+            DDLogInfo("switch to server \(server)")
+            self.serverController.currentServer = server
+            return true as NSCoding?
+        })
     }
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {

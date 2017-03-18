@@ -60,7 +60,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var servers: [String] = []
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        let server = servers[indexPath.row]
+        let result = callAPI(id: switchProxyId, obj: server as NSCoding?);
+        DDLogInfo("switch server result: \(result)")
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
