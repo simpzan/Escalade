@@ -53,8 +53,13 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
+    func saveConfig() {
+        let config = Bundle.main.fileContent("fyzhuji.yaml")!
+        save(key: configKey, value: config)
+    }
     @IBAction func tunnel(_ sender: Any) {
+
         getManager { manager in
             if manager == nil { return NSLog("get manager failed") }
             self.startVPN(manager: manager!)

@@ -24,9 +24,11 @@ private let fileLogger: DDFileLogger? = {
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
     private lazy var proxyService: ProxyService? = {
-        let configManager = ConfigurationManager()
-        if !configManager.reloadConfigurations() { return nil }
-        return ProxyService(config: configManager.current!, provider: self)
+        guard let configString = load(key: configKey) else {
+            return nil
+        }
+        guard let config = loadConfiguration(content: configString) else { return nil }
+        return ProxyService(config: config, provider: self)
     }()
     var tunController: TUNController {
         return (proxyService?.tunController)!
