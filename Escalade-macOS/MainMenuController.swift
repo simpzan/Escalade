@@ -93,7 +93,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         if systemProxyController.needInstall() {
             message += "\n\(hint)"
         }
-        systemProxyController.port = configManager.port!
+        systemProxyController.port = port
         if confirm(message) {
             systemProxyController.enabled = true
         }
@@ -104,7 +104,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         if !configManager.reloadConfigurations() { return false }
 
         startProxy()
-        systemProxyController.port = configManager.port!
+        systemProxyController.port = port
         systemProxyController.load()
         return true
     }
@@ -205,6 +205,9 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     private func startProxy() {
         configManager.proxyServerManager.startProxyServers()
     }
+    private var port: UInt16 {
+        return configManager.proxyServerManager.port
+    }
 
     func listenReachabilityChange() {
         func onReachabilityChange(_: Any) {
@@ -271,10 +274,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     var logger: DDFileLogger!
 
     @IBAction func copyExportCommandClicked(_ sender: Any) {
-        var proxy = ""
-        if let port = configManager.port {
-            proxy = "http://127.0.0.1:\(port + 1)"
-        }
+        let proxy = "http://127.0.0.1:\(port + 1)"
         let content = "export https_proxy=\(proxy); export http_proxy=\(proxy)"
         copyString(string: content)
     }

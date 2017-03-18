@@ -114,9 +114,6 @@ class ConfigurationManager: NSObject {
         return true
     }
     public let proxyServerManager = ProxyServerManager()
-    public var port: UInt16? {
-        return proxyServerManager.port
-    }
 
     func injected() {
         print("I've been injected-: \(self)")
