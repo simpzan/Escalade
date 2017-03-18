@@ -63,16 +63,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let configString = manager.configString
         guard let config = loadConfiguration(content: configString) else { return }
         servers = config.adapterFactoryManager.selectFactory.servers
+        current = load(key: currentServerKey)
         tableView.reloadData()
     }
 
+    let currentServerKey = "currentServer"
+    var current: String? = nil
     var pingResults: [String: TimeInterval] = [:]
     var servers: [String] = []
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let server = servers[indexPath.row]
+        save(key: currentServerKey, value: server)
+        current = server
         let result = callAPI(id: switchProxyId, obj: server as NSCoding?);
         DDLogInfo("switch server result: \(result)")
+        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,10 +87,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let server = servers[indexPath.row]
+        let isCurrent = current != nil && server == current!
         let pingResult = pingResults[server] ?? 0
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConfigCell")!
         cell.textLabel?.text = server
         cell.detailTextLabel?.text = miliseconds(pingResult)
+        cell.accessoryType = isCurrent ? .checkmark : .none
         return cell
     }
 
