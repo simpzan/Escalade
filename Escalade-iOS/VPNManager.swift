@@ -78,10 +78,10 @@ class VPNManager: NSObject {
             }
         }
     }
-    
+
+    let configString = Bundle.main.fileContent("fyzhuji.yaml")!
     private func saveConfig() {
-        let config = Bundle.main.fileContent("fyzhuji.yaml")!
-        save(key: configKey, value: config)
+        save(key: configKey, value: configString)
     }
     public func startVPN() {
         guard let manager = manager else { return }

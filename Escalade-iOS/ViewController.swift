@@ -8,8 +8,9 @@
 
 import UIKit
 import NetworkExtension
+import CocoaLumberjackSwift
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let manager = VPNManager()
 
     @IBOutlet weak var connectSwitch: UISwitch!
@@ -40,11 +41,38 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadConfig()
+        
         manager.monitorStatus { (_) in
             self.connectionChanged()
         }
         // Do any additional setup after loading the view, typically from a nib.
+    }
+
+    @IBOutlet weak var tableView: UITableView!
+    func loadConfig() {
+        let configString = manager.configString
+        guard let config = loadConfiguration(content: configString) else { return }
+        servers = config.adapterFactoryManager.selectFactory.servers
+        tableView.reloadData()
+    }
+
+    var servers: [String] = []
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return servers.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let server = servers[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ConfigCell")!
+        cell.textLabel?.text = server
+        cell.detailTextLabel?.text = ""
+        return cell
     }
 
     override func didReceiveMemoryWarning() {

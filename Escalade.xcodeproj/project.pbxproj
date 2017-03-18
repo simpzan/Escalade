@@ -97,6 +97,7 @@
 		76C4936F1E4A0AA200A0D066 /* Escalade_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4936E1E4A0AA200A0D066 /* Escalade_macOSTests.swift */; };
 		76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C493771E4A0B5E00A0D066 /* MainMenuController.swift */; };
 		76C4937B1E4A0C8A00A0D066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C4937A1E4A0C8A00A0D066 /* main.m */; };
+		76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
 		76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */; };
 		76DB4CC11E6BF0B80019FA42 /* PacketTunnel-iOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */ = {isa = PBXBuildFile; fileRef = 76DCB6ED1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh */; };
@@ -1105,6 +1106,7 @@
 			files = (
 				76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */,
 				76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */,
+				76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */,
 				76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */,
 				76107EBC1E7D846200BC5E6F /* RPC.swift in Sources */,
 				76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */,
