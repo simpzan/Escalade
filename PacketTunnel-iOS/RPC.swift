@@ -22,17 +22,30 @@ func load(key: String) -> String? {
 
 let switchProxyId = "switchProxy"
 let getServersId = "getServers"
+let autoSelectId = "autoSelect"
 
 typealias APIHandler = (Void) -> Void
+typealias DoneCallback = (NSCoding?) -> Void
+typealias APICallback = (NSCoding?) -> NSCoding?
+typealias APIAsyncCallback = (NSCoding?, @escaping DoneCallback) -> Void
 
 let wormhole = MMWormhole(applicationGroupIdentifier: "group.com.simpzan.Escalade-iOS", optionalDirectory: "wormhole")
 
-func addAPI(id: String, callback: @escaping (NSCoding?) -> NSCoding?) -> APIHandler {
+func addAPIAsync(id: String, callback: @escaping APIAsyncCallback) -> APIHandler {
+    wormhole.listenForMessage(withIdentifier: id) { (obj) in
+        callback(obj as! NSCoding?) { output in
+            wormhole.passMessageObject(output, identifier: id + ".reply")
+        }
+    }
+    return {
+        wormhole.stopListeningForMessage(withIdentifier: id)
+    }
+}
+func addAPI(id: String, callback: @escaping APICallback) -> APIHandler {
     wormhole.listenForMessage(withIdentifier: id) { (obj) in
         let output = callback(obj as! NSCoding?)
         wormhole.passMessageObject(output, identifier: id + ".reply")
     }
-
     return {
         wormhole.stopListeningForMessage(withIdentifier: id)
     }
