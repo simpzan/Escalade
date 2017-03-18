@@ -6,7 +6,7 @@
 //
 //
 
-import Cocoa
+import Foundation
 import NEKit
 import CocoaLumberjackSwift
 

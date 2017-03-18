@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76277F0D1E4CEA7E006C06A6 /* TrafficMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */; };
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
 		76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
@@ -71,6 +70,16 @@
 		76A184FB1E6C14A700C35C83 /* Yaml.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A416121E4F4A7C003C2CE2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
 		76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */; };
+		76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
+		76B08C341E7CF84D00E6146E /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
+		76B08C351E7CF84D00E6146E /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */; };
+		76B08C361E7CF84D00E6146E /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */; };
+		76B08C371E7CF84D00E6146E /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
+		76B08C381E7CF84D00E6146E /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
+		76B08C391E7CF84D00E6146E /* TrafficMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */; };
+		76B08C3A1E7CF84D00E6146E /* TrafficMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */; };
+		76B08C3B1E7CF84D00E6146E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
+		76B08C3C1E7CF84D00E6146E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */; };
 		76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76C493601E4A0AA200A0D066 /* Assets.xcassets */; };
 		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
@@ -87,10 +96,6 @@
 		76DF1D751E6C172F0041646A /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54C1E6C11590097C95E /* Resolver.framework */; };
 		76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; };
 		76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; };
-		76E112F21E4CB80D00966580 /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E112F11E4CB80D00966580 /* ProxyServerManager.swift */; };
-		76E112FF1E4CC40900966580 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E112FE1E4CC40900966580 /* ConfigurationManager.swift */; };
-		76E113071E4CC49200966580 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E113061E4CC49200966580 /* Utils.swift */; };
-		76E1130E1E4CC79600966580 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E1130D1E4CC79600966580 /* ServerController.swift */; };
 		76E881011E76B22B003CC239 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E881001E76B22B003CC239 /* main.m */; };
 		7E560DD6A38EE8B7A83C6A9D /* Pods_Escalade_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1E8385670F7E654A184646 /* Pods_Escalade_macOS.framework */; };
 /* End PBXBuildFile section */
@@ -283,7 +288,6 @@
 
 /* Begin PBXFileReference section */
 		47448188CDC5329F975263B8 /* Pods-Escalade-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Escalade-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS.release.xcconfig"; sourceTree = "<group>"; };
-		76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMonitor.swift; sourceTree = "<group>"; };
 		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76277F201E4CF758006C06A6 /* SystemProxyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemProxyController.swift; sourceTree = "<group>"; };
@@ -326,6 +330,11 @@
 		76A184EF1E6C149200C35C83 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = NEKit/Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		76A416111E4F4A7B003C2CE2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsCocoa.swift; sourceTree = "<group>"; };
+		76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
+		76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyServerManager.swift; sourceTree = "<group>"; };
+		76B08C301E7CF84D00E6146E /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
+		76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMonitor.swift; sourceTree = "<group>"; };
+		76B08C321E7CF84D00E6146E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		76C4935B1E4A0AA100A0D066 /* Escalade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Escalade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76C493601E4A0AA200A0D066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -349,10 +358,6 @@
 		76DCC54D1E6C11590097C95E /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = NEKit/Carthage/Build/iOS/Sodium.framework; sourceTree = "<group>"; };
 		76DCC54E1E6C11590097C95E /* tun2socks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = tun2socks.framework; path = NEKit/Carthage/Build/iOS/tun2socks.framework; sourceTree = "<group>"; };
 		76DCC54F1E6C11590097C95E /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/iOS/Yaml.framework; sourceTree = "<group>"; };
-		76E112F11E4CB80D00966580 /* ProxyServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyServerManager.swift; sourceTree = "<group>"; };
-		76E112FE1E4CC40900966580 /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
-		76E113061E4CC49200966580 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		76E1130D1E4CC79600966580 /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
 		76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PacketTunnel-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		76E881001E76B22B003CC239 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C4029B342D6BE0E9F66E7868 /* Pods-Escalade-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Escalade-macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -555,11 +560,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		76B08C2D1E7CF84D00E6146E /* Escalade */ = {
+			isa = PBXGroup;
+			children = (
+				76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */,
+				76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */,
+				76B08C301E7CF84D00E6146E /* ServerController.swift */,
+				76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */,
+				76B08C321E7CF84D00E6146E /* Utils.swift */,
+			);
+			path = Escalade;
+			sourceTree = "<group>";
+		};
 		76C493501E4A0A8C00A0D066 = {
 			isa = PBXGroup;
 			children = (
 				762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */,
 				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
+				76B08C2D1E7CF84D00E6146E /* Escalade */,
 				76C4935D1E4A0AA100A0D066 /* Escalade-macOS */,
 				76C4936D1E4A0AA200A0D066 /* Escalade-macOSTests */,
 				76277F171E4CF5D3006C06A6 /* SystemProxyConfig */,
@@ -591,13 +609,8 @@
 			isa = PBXGroup;
 			children = (
 				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
-				76E113061E4CC49200966580 /* Utils.swift */,
 				76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */,
 				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
-				76E112FE1E4CC40900966580 /* ConfigurationManager.swift */,
-				76E112F11E4CB80D00966580 /* ProxyServerManager.swift */,
-				76E1130D1E4CC79600966580 /* ServerController.swift */,
-				76277F0C1E4CEA7E006C06A6 /* TrafficMonitor.swift */,
 				76277F201E4CF758006C06A6 /* SystemProxyController.swift */,
 				76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */,
 				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
@@ -1087,18 +1100,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76E112FF1E4CC40900966580 /* ConfigurationManager.swift in Sources */,
+				76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
+				76B08C351E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
+				76B08C371E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */,
-				76E1130E1E4CC79600966580 /* ServerController.swift in Sources */,
-				76E112F21E4CB80D00966580 /* ProxyServerManager.swift in Sources */,
 				76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */,
 				76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */,
 				76841E9C1E5060DE00685B0F /* AutoLaunchHelper.swift in Sources */,
 				76C4937B1E4A0C8A00A0D066 /* main.m in Sources */,
 				76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */,
-				76277F0D1E4CEA7E006C06A6 /* TrafficMonitor.swift in Sources */,
 				76A416121E4F4A7C003C2CE2 /* Reachability.swift in Sources */,
-				76E113071E4CC49200966580 /* Utils.swift in Sources */,
+				76B08C391E7CF84D00E6146E /* TrafficMonitor.swift in Sources */,
+				76B08C3B1E7CF84D00E6146E /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1114,9 +1127,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B08C341E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
+				76B08C3A1E7CF84D00E6146E /* TrafficMonitor.swift in Sources */,
 				7665BBEB1E729710004588C5 /* VPNManager.swift in Sources */,
+				76B08C381E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76E881011E76B22B003CC239 /* main.m in Sources */,
+				76B08C361E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
 				76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */,
+				76B08C3C1E7CF84D00E6146E /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
