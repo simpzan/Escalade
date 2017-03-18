@@ -11,17 +11,27 @@ import NEKit
 
 class ProxyServerManager: NSObject {
 
-    private var socks5Server: GCDSOCKS5ProxyServer?
-    private var httpServer: GCDHTTPProxyServer?
+    public func initWithConfig(config: Configuration) {
+        RuleManager.currentManager = config.ruleManager
+        serverController = ServerController(selectFactory: config.adapterFactoryManager.selectFactory)
+        if let port = config.proxyPort { self.port = UInt16(port) }
+    }
 
-    private func stopProxyServers() {
+    public var serverController: ServerController?
+    public var port: UInt16 = 9990
+    public var address: String = "127.0.0.1"
+
+    private var socks5Server: GCDSOCKS5ProxyServer?
+    public var httpServer: GCDHTTPProxyServer?
+
+    public func stopProxyServers() {
         socks5Server?.stop()
         socks5Server = nil
         httpServer?.stop()
         httpServer = nil
     }
 
-    func startProxyServers(port: UInt16, address: String) {
+    public func startProxyServers() {
         stopProxyServers()
 
         let addr = IPAddress(fromString: address)
