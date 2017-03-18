@@ -71,7 +71,11 @@
                         <barButtonItem systemItem="refresh" id="EO4-RD-qPR"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Escalade" id="cSC-JS-25Z">
-                        <barButtonItem key="leftBarButtonItem" title="ping" id="UkD-Jh-IdE"/>
+                        <barButtonItem key="leftBarButtonItem" title="ping" id="UkD-Jh-IdE">
+                            <connections>
+                                <action selector="pingClicked:" destination="BYZ-38-t0r" id="M0M-Yz-5Nw"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="xaB-dE-FDO">
                             <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="ini-He-VJQ">
                                 <rect key="frame" x="255" y="6" width="51" height="31"/>
@@ -86,6 +90,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="connectSwitch" destination="ini-He-VJQ" id="adL-j6-mf4"/>
+                        <outlet property="pingButton" destination="UkD-Jh-IdE" id="Ljl-ke-uk5"/>
                         <outlet property="tableView" destination="TRf-95-A8K" id="loO-LU-XA7"/>
                     </connections>
                 </viewController>

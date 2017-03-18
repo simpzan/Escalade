@@ -27,9 +27,11 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     var getServersHandler: APIHandler? = nil
     var switchServerHandler: APIHandler? = nil
+    var autoSelectHandler: APIHandler? = nil
     func removeApis() {
         getServersHandler?(); getServersHandler = nil
         switchServerHandler?(); switchServerHandler = nil
+        autoSelectHandler?(); autoSelectHandler = nil
     }
     func addApis() {
         getServersHandler = addAPI(id: getServersId) { (_) -> NSCoding? in
@@ -45,6 +47,15 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
             self.serverController.currentServer = server
             return true as NSCoding?
         })
+        autoSelectHandler = addAPIAsync(id: autoSelectId) { (input, done) in
+            self.serverController.autoSelect(callback: { (err, server) in
+                DDLogInfo("autoSelect callback \(err) \(server)")
+                if server != nil { return }
+
+                let output = err != nil
+                done(output as NSCoding?)
+            })
+        }
     }
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {

@@ -33,6 +33,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
 
+    @IBOutlet weak var pingButton: UIBarButtonItem!
+    @IBAction func pingClicked(_ sender: Any) {
+        callAPIAsync(id: autoSelectId) { result in
+            DDLogInfo("auto selelct result \(result)")
+            self.tableView.reloadData()
+        }
+    }
+
     @IBAction func test(_ sender: Any) {
         let result = callAPI(id: getServersId)
         NSLog("getServers \(result)")
