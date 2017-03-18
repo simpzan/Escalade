@@ -10,6 +10,34 @@ import UIKit
 import NetworkExtension
 
 class ViewController: UIViewController {
+    @IBOutlet weak var connectSwitch: UISwitch!
+    @IBAction func connectClicked(_ sender: Any) {
+        NSLog("connectClicked")
+        if status == .connected {
+            stopVPN()
+        } else {
+            startVPN()
+        }
+        NSLog("connection \(connection)")
+    }
+    func updateConnectSwitch() {
+        NotificationCenter.default.addObserver(self, selector: #selector(connectionChanged), name: NSNotification.Name.NEVPNStatusDidChange, object: nil)
+    }
+    func connectionChanged() {
+        let state = status
+        NSLog("status changed to \(state.rawValue)")
+        let disabledStates: [NEVPNStatus] = [.disconnecting, .connecting, .reasserting]
+        connectSwitch.isEnabled = !disabledStates.contains(state)
+        let onStates: [NEVPNStatus] = [.connected, .connecting, .reasserting]
+        connectSwitch.setOn(onStates.contains(state), animated: true)
+    }
+    var status: NEVPNStatus {
+        guard let connection = connection else { return .invalid }
+        return connection.status
+    }
+    var connection: NEVPNConnection? {
+        return manager?.connection
+    }
 
     @IBAction func test(_ sender: Any) {
         let result = callAPI(id: getServersId)
@@ -34,10 +62,14 @@ class ViewController: UIViewController {
         }
     }
 
+    var manager: NETunnelProviderManager? = nil
+
     func loadManager(callback: @escaping (NETunnelProviderManager?) -> Void) {
         NETunnelProviderManager.loadAllFromPreferences { managers, error in
             if error == nil {
-                callback(managers?.first)
+                let manager = managers?.first
+                self.manager = manager
+                callback(manager)
             } else {
                 NSLog("load managers failed \(error)")
                 callback(nil)
@@ -53,7 +85,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+
     func saveConfig() {
         let config = Bundle.main.fileContent("fyzhuji.yaml")!
         save(key: configKey, value: config)
@@ -62,10 +94,12 @@ class ViewController: UIViewController {
 
         getManager { manager in
             if manager == nil { return NSLog("get manager failed") }
-            self.startVPN(manager: manager!)
+            self.startVPN()
         }
     }
-    func startVPN(manager: NETunnelProviderManager) {
+    func startVPN() {
+        guard let manager = manager else { return }
+
         manager.isEnabled = true
         manager.saveToPreferences { error in
             if error != nil { return NSLog("failed to enable manager") }
@@ -78,9 +112,18 @@ class ViewController: UIViewController {
             }
         }
     }
+    func stopVPN() {
+        guard let manager = manager else { return }
+
+        manager.connection.stopVPNTunnel()
+        NSLog("stopped")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.updateConnectSwitch()
+        loadManager { (_) in
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
