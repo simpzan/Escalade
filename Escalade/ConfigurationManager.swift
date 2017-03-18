@@ -26,6 +26,7 @@ class ConfigurationManager: NSObject {
         if isValidConfig(name: config) { return config }
         return configurations.first
     }
+    public var current: Configuration? = nil
     private let defaults = UserDefaults.standard
     private let currentConfigKey = "currentConfig"
 
@@ -110,12 +111,7 @@ class ConfigurationManager: NSObject {
 
         guard let config = loadConfiguration(content: content) else { return false }
 
-        proxyServerManager.initWithConfig(config: config)
+        current = config
         return true
-    }
-    public let proxyServerManager = ProxyServerManager()
-
-    func injected() {
-        print("I've been injected-: \(self)")
     }
 }

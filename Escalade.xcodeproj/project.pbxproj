@@ -82,6 +82,8 @@
 		76B08C3C1E7CF84D00E6146E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76B08C3E1E7D3B7800E6146E /* TUNController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C3D1E7D3B7800E6146E /* TUNController.swift */; };
 		76B08C3F1E7D3B7800E6146E /* TUNController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C3D1E7D3B7800E6146E /* TUNController.swift */; };
+		76B08C621E7D4A7800E6146E /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
+		76B08C631E7D4A7800E6146E /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
 		76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */; };
 		76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76C493601E4A0AA200A0D066 /* Assets.xcassets */; };
 		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
@@ -338,6 +340,7 @@
 		76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMonitor.swift; sourceTree = "<group>"; };
 		76B08C321E7CF84D00E6146E /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		76B08C3D1E7D3B7800E6146E /* TUNController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUNController.swift; sourceTree = "<group>"; };
+		76B08C611E7D4A7800E6146E /* ProxyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyService.swift; sourceTree = "<group>"; };
 		76C4935B1E4A0AA100A0D066 /* Escalade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Escalade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76C493601E4A0AA200A0D066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -566,6 +569,7 @@
 		76B08C2D1E7CF84D00E6146E /* Escalade */ = {
 			isa = PBXGroup;
 			children = (
+				76B08C611E7D4A7800E6146E /* ProxyService.swift */,
 				76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */,
 				76B08C3D1E7D3B7800E6146E /* TUNController.swift */,
 				76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */,
@@ -612,12 +616,12 @@
 		76C4935D1E4A0AA100A0D066 /* Escalade-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
 				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
 				76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */,
 				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
 				76277F201E4CF758006C06A6 /* SystemProxyController.swift */,
 				76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */,
-				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
 				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C4937A1E4A0C8A00A0D066 /* main.m */,
 				76C493651E4A0AA200A0D066 /* Info.plist */,
@@ -1104,6 +1108,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B08C621E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
 				76B08C3E1E7D3B7800E6146E /* TUNController.swift in Sources */,
 				76B08C351E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
@@ -1136,6 +1141,7 @@
 				76B08C3A1E7CF84D00E6146E /* TrafficMonitor.swift in Sources */,
 				76B08C3F1E7D3B7800E6146E /* TUNController.swift in Sources */,
 				7665BBEB1E729710004588C5 /* VPNManager.swift in Sources */,
+				76B08C631E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				76B08C381E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76E881011E76B22B003CC239 /* main.m in Sources */,
 				76B08C361E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,

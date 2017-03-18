@@ -104,8 +104,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         if !configManager.reloadConfigurations() { return false }
 
         startProxy()
-        systemProxyController.port = port
-        systemProxyController.load()
         return true
     }
     func configClicked(sender: NSMenuItem) {
@@ -200,14 +198,23 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     }
     @IBOutlet weak var serversItem: NSMenuItem!
     var serverController: ServerController! {
-        return configManager.proxyServerManager.serverController
+        return proxyService?.serverController
+    }
+    private var proxyServerManager: ProxyServerManager {
+        return proxyService.proxyManager
     }
     private func startProxy() {
-        configManager.proxyServerManager.startProxyServers()
+        proxyService?.stop()
+        proxyService = ProxyService(config: configManager.current!)
+        proxyService.start()
+        
+        systemProxyController.port = port
+        systemProxyController.load()
     }
     private var port: UInt16 {
-        return configManager.proxyServerManager.port
+        return proxyServerManager.port
     }
+    private var proxyService: ProxyService! = nil
 
     func listenReachabilityChange() {
         func onReachabilityChange(_: Any) {
