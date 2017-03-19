@@ -41,7 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             SVProgressHUD.dismiss(withDelay: 1)
             return
         }
-        SVProgressHUD.show()
+        SVProgressHUD.showInfo(withStatus: "auto selecting...\nwill finish in 4 seconds")
         api.autoSelect { (result) in
             DDLogInfo("auto selelct result \(result)")
             self.servers = result
