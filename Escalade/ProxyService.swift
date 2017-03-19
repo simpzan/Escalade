@@ -16,11 +16,11 @@ class ProxyService {
     let serverController: ServerController
     var tunController: TUNController? = nil
 
-    init(config: Configuration, provider: NEPacketTunnelProvider? = nil) {
+    init(config: Configuration, provider: NEPacketTunnelProvider? = nil, defaults: UserDefaults = .standard) {
         proxyManager = ProxyServerManager(config: config)
 
         let factory = config.adapterFactoryManager.selectFactory
-        serverController = ServerController(selectFactory: factory)
+        serverController = ServerController(selectFactory: factory, defaults: defaults)
 
         if let provider = provider {
             tunController = TUNController(provider: provider, httpServer: proxyManager.httpServer!)

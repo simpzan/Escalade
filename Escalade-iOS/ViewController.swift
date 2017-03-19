@@ -40,6 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         api.autoSelect { (result) in
             DDLogInfo("auto selelct result \(result)")
             self.servers = result
+            self.current = load(key: self.currentServerKey)
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
         }

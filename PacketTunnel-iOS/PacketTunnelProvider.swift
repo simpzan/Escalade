@@ -16,7 +16,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
             return nil
         }
         guard let config = loadConfiguration(content: configString) else { return nil }
-        return ProxyService(config: config, provider: self)
+        return ProxyService(config: config, provider: self, defaults: defaults)
     }()
     var tunController: TUNController {
         return (proxyService?.tunController)!

@@ -41,7 +41,7 @@ class ServerController: NSObject {
     private func loadCurrentServer() -> String? {
         return defaults.string(forKey: currentServerKey)
     }
-    private let defaults = UserDefaults.standard
+    private let defaults: UserDefaults
     private let currentServerKey = "currentServer"
 
     public var domesticPing: TimeInterval {
@@ -102,8 +102,9 @@ class ServerController: NSObject {
         }
     }
 
-    public init(selectFactory: SelectAdapterFactory) {
+    public init(selectFactory: SelectAdapterFactory, defaults: UserDefaults) {
         factory = selectFactory
+        self.defaults = defaults
         super.init()
         if let name = loadCurrentServer() {
             factory.current = name
