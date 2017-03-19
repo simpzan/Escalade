@@ -8,6 +8,7 @@
 
 import Foundation
 import MMWormhole
+import CocoaLumberjackSwift
 
 let configKey = "config"
 
@@ -47,11 +48,20 @@ func addAPI(_ id: String, callback: @escaping APICallback) {
     }
 }
 
-func callAsyncAPI(_ id: String, obj: NSCoding? = nil, callback: @escaping (NSCoding?) -> Void) {
+func callAsyncAPI(_ id: String, obj: NSCoding? = nil, timeout: TimeInterval = 5,
+                  callback: @escaping (NSCoding?) -> Void) {
     let id2 = replyId(id)
+    var done = false
     wormhole.listenForMessage(withIdentifier: id2) { (obj) in
+        done = true
         wormhole.stopListeningForMessage(withIdentifier: id2)
         callback(obj as! NSCoding?)
+    }
+    delay(timeout) {
+        if done { return }
+        DDLogWarn("callAsyncAPI timeout \(id) \(obj)")
+        wormhole.stopListeningForMessage(withIdentifier: id2)
+        callback(nil)
     }
     wormhole.passMessageObject(obj, identifier: id)
 }
@@ -65,6 +75,9 @@ func callAPI(_ id: String, obj: NSCoding? = nil) -> NSCoding? {
     let now = Date()
     while !done && -now.timeIntervalSinceNow < 0.5 {
         RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.1))
+    }
+    if !done {
+        DDLogWarn("callAPI timeout \(id) \(obj)")
     }
     return result
 }
