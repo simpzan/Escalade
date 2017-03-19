@@ -80,3 +80,19 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         DDLogDebug("deinit \(self)")
     }
 }
+
+
+func getConnectivityState() -> ConnectivityState {
+    let addrs = getNetworkAddresses()
+
+    var result = ConnectivityState.none
+    if addrs?["en0"] != nil { result = .wifi }
+    else if addrs?["pdp_ip0"] != nil { result = .celluar }
+
+    DDLogDebug("connectivity state \(result), addrs \(addrs)")
+    return result
+}
+enum ConnectivityState {
+    case wifi, celluar, none
+}
+
