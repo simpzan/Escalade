@@ -35,15 +35,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var pingButton: UIBarButtonItem!
     @IBAction func pingClicked(_ sender: Any) {
-        callAPIAsync(id: autoSelectId) { result in
+        api.autoSelect { (result) in
             DDLogInfo("auto selelct result \(result)")
-            self.pingResults = result as! [String : TimeInterval]
+            self.pingResults = result
             self.tableView.reloadData()
         }
     }
 
+    let api = APIClient()
+
     @IBAction func test(_ sender: Any) {
-        let result = callAPI(id: getServersId)
+        let result = api.getServers()
         NSLog("getServers \(result)")
     }
 
@@ -76,7 +78,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let server = servers[indexPath.row]
         save(key: currentServerKey, value: server)
         current = server
-        let result = callAPI(id: switchProxyId, obj: server as NSCoding?);
+        let result = api.switchServer(server: server)
         DDLogInfo("switch server result: \(result)")
         tableView.reloadData()
     }

@@ -24,42 +24,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     var serverController: ServerController {
         return proxyService!.serverController
     }
-    var servers: [String: TimeInterval] {
-        var servers: [String: TimeInterval] = [:]
-        self.serverController.servers.forEach({ (server) in
-            servers[server.0] = server.1
-        })
-        return servers
-    }
-
-    var getServersHandler: APIHandler? = nil
-    var switchServerHandler: APIHandler? = nil
-    var autoSelectHandler: APIHandler? = nil
-    func removeApis() {
-        getServersHandler?(); getServersHandler = nil
-        switchServerHandler?(); switchServerHandler = nil
-        autoSelectHandler?(); autoSelectHandler = nil
-    }
-    func addApis() {
-        getServersHandler = addAPI(id: getServersId) { (_) -> NSCoding? in
-            return self.servers as NSCoding?
-        }
-        switchServerHandler = addAPI(id: switchProxyId, callback: { (server) -> NSCoding? in
-            let server = server as! String
-            DDLogInfo("switch to server \(server)")
-            self.serverController.currentServer = server
-            return true as NSCoding?
-        })
-        autoSelectHandler = addAPIAsync(id: autoSelectId) { (input, done) in
-            self.serverController.autoSelect(callback: { (err, server) in
-                DDLogInfo("autoSelect callback \(err) \(server)")
-                if server != nil { return }
-
-                let output = self.servers
-                done(output as NSCoding?)
-            })
-        }
-    }
+    lazy var api: APIServer? = {
+        return APIServer(self.serverController)
+    }()
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         DDLogInfo("startTunnel \(self) \(options)")
@@ -73,7 +40,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 DDLogError("setTunnelNetworkSettings error:\(error)")
                 return
             }
-            self.addApis()
+            self.api?.start()
             completionHandler(nil)
         }
     }
@@ -83,7 +50,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         NSLog("log file \(logFile)")
         self.removeObserver(self, forKeyPath: "defaultPath")
         proxyService?.stop()
-        removeApis()
+        api?.stop()
         completionHandler()
     }
 
