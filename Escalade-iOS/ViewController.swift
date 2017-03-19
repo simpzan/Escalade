@@ -36,6 +36,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var pingButton: UIBarButtonItem!
     @IBAction func pingClicked(_ sender: Any) {
+        if !manager.connected {
+            SVProgressHUD.showInfo(withStatus: "VPN not enabled")
+            SVProgressHUD.dismiss(withDelay: 1)
+            return
+        }
         SVProgressHUD.show()
         api.autoSelect { (result) in
             DDLogInfo("auto selelct result \(result)")
@@ -97,8 +102,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let (server, _) = servers[indexPath.row]
         save(key: currentServerKey, value: server)
         current = server
-        let result = api.switchServer(server: server)
-        DDLogInfo("switch server result: \(result)")
+        if manager.connected {
+            let result = api.switchServer(server: server)
+            DDLogInfo("switch server result: \(result)")
+        }
         tableView.reloadData()
     }
 
