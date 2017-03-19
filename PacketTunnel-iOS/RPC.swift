@@ -11,7 +11,8 @@ import MMWormhole
 
 let configKey = "config"
 
-let defaults = UserDefaults(suiteName: "group.com.simpzan.Escalade-iOS")!
+let groupId = "group.com.simpzan.Escalade-iOS"
+let defaults = UserDefaults(suiteName: groupId)!
 func save(key: String, value: String) {
     defaults.set(value, forKey: key)
 }
@@ -19,50 +20,45 @@ func load(key: String) -> String? {
     return defaults.string(forKey: key)
 }
 
-
-let switchProxyId = "switchProxy"
-let getServersId = "getServers"
-let autoSelectId = "autoSelect"
-
-typealias APIHandler = (Void) -> Void
-typealias DoneCallback = (NSCoding?) -> Void
 typealias APICallback = (NSCoding?) -> NSCoding?
-typealias APIAsyncCallback = (NSCoding?, @escaping DoneCallback) -> Void
+typealias DoneCallback = (NSCoding?) -> Void
+typealias AsyncAPICallback = (NSCoding?, @escaping DoneCallback) -> Void
 
-let wormhole = MMWormhole(applicationGroupIdentifier: "group.com.simpzan.Escalade-iOS", optionalDirectory: "wormhole")
+private let wormhole = MMWormhole(applicationGroupIdentifier: groupId, optionalDirectory: "wormhole")
+private func replyId(_ id: String) -> String {
+    return id + ".reply"
+}
 
-func addAPIAsync(id: String, callback: @escaping APIAsyncCallback) -> APIHandler {
+func removeAPI(_ id: String) {
+    wormhole.stopListeningForMessage(withIdentifier: id)
+}
+
+func addAsyncAPI(_ id: String, callback: @escaping AsyncAPICallback) {
     wormhole.listenForMessage(withIdentifier: id) { (obj) in
         callback(obj as! NSCoding?) { output in
-            wormhole.passMessageObject(output, identifier: id + ".reply")
+            wormhole.passMessageObject(output, identifier: replyId(id))
         }
     }
-    return {
-        wormhole.stopListeningForMessage(withIdentifier: id)
-    }
 }
-func addAPI(id: String, callback: @escaping APICallback) -> APIHandler {
+func addAPI(_ id: String, callback: @escaping APICallback) {
     wormhole.listenForMessage(withIdentifier: id) { (obj) in
         let output = callback(obj as! NSCoding?)
-        wormhole.passMessageObject(output, identifier: id + ".reply")
-    }
-    return {
-        wormhole.stopListeningForMessage(withIdentifier: id)
+        wormhole.passMessageObject(output, identifier: replyId(id))
     }
 }
 
-func callAPIAsync(id: String, obj: NSCoding? = nil, callback: @escaping (NSCoding?) -> Void) {
-    let replyId = id + ".reply"
-    wormhole.listenForMessage(withIdentifier: replyId) { (obj) in
-        wormhole.stopListeningForMessage(withIdentifier: replyId)
+func callAsyncAPI(_ id: String, obj: NSCoding? = nil, callback: @escaping (NSCoding?) -> Void) {
+    let id2 = replyId(id)
+    wormhole.listenForMessage(withIdentifier: id2) { (obj) in
+        wormhole.stopListeningForMessage(withIdentifier: id2)
         callback(obj as! NSCoding?)
     }
     wormhole.passMessageObject(obj, identifier: id)
 }
-func callAPI(id: String, obj: NSCoding? = nil) -> NSCoding? {
+func callAPI(_ id: String, obj: NSCoding? = nil) -> NSCoding? {
     var result: NSCoding? = nil
     var done = false
-    callAPIAsync(id: id, obj: obj) { (obj) in
+    callAsyncAPI(id, obj: obj) { (obj) in
         result = obj
         done = true
     }

@@ -9,6 +9,10 @@
 import Foundation
 import CocoaLumberjackSwift
 
+let switchProxyId = "switchProxy"
+let getServersId = "getServers"
+let autoSelectId = "autoSelect"
+
 class APIServer {
     let serverController: ServerController
     init(_ serverController: ServerController) {
@@ -22,25 +26,22 @@ class APIServer {
         return servers
     }
 
-    var getServersHandler: APIHandler? = nil
-    var switchServerHandler: APIHandler? = nil
-    var autoSelectHandler: APIHandler? = nil
     func stop() {
-        getServersHandler?(); getServersHandler = nil
-        switchServerHandler?(); switchServerHandler = nil
-        autoSelectHandler?(); autoSelectHandler = nil
+        removeAPI(getServersId)
+        removeAPI(switchProxyId)
+        removeAPI(autoSelectId)
     }
     func start() {
-        getServersHandler = addAPI(id: getServersId) { (_) -> NSCoding? in
+        addAPI(getServersId) { (_) -> NSCoding? in
             return self.servers as NSCoding?
         }
-        switchServerHandler = addAPI(id: switchProxyId, callback: { (server) -> NSCoding? in
+        addAPI(switchProxyId, callback: { (server) -> NSCoding? in
             let server = server as! String
             DDLogInfo("switch to server \(server)")
             self.serverController.currentServer = server
             return true as NSCoding?
         })
-        autoSelectHandler = addAPIAsync(id: autoSelectId) { (input, done) in
+        addAsyncAPI(autoSelectId) { (input, done) in
             self.serverController.autoSelect(callback: { (err, server) in
                 DDLogInfo("autoSelect callback \(err) \(server)")
                 if server != nil { return }
@@ -54,17 +55,17 @@ class APIServer {
 
 class APIClient {
     func autoSelect(callback: @escaping ([String : TimeInterval]) -> Void) {
-        callAPIAsync(id: autoSelectId) { result in
+        callAsyncAPI(autoSelectId) { result in
             let pingResults = result as! [String : TimeInterval]
             callback(pingResults)
         }
     }
     func getServers() -> [String : TimeInterval] {
-        let result = callAPI(id: getServersId)
+        let result = callAPI(getServersId)
         return result as! [String : TimeInterval]
     }
     func switchServer(server: String) -> Bool {
-        let result = callAPI(id: switchProxyId)
+        let result = callAPI(switchProxyId)
         return result as! Bool
     }
 }
