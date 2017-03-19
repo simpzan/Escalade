@@ -4,4 +4,4 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Utils.h"
+NSDictionary *getNetworkAddresses();
