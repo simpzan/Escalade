@@ -9,6 +9,7 @@
 import UIKit
 import NetworkExtension
 import CocoaLumberjackSwift
+import SVProgressHUD
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let manager = VPNManager()
@@ -35,10 +36,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var pingButton: UIBarButtonItem!
     @IBAction func pingClicked(_ sender: Any) {
+        SVProgressHUD.show()
         api.autoSelect { (result) in
             DDLogInfo("auto selelct result \(result)")
             self.servers = result
             self.tableView.reloadData()
+            SVProgressHUD.dismiss()
         }
     }
 
@@ -49,7 +52,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         NSLog("getServers \(result)")
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         loadConfig()
@@ -57,7 +59,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         manager.monitorStatus { (_) in
             self.connectionChanged()
         }
-        // Do any additional setup after loading the view, typically from a nib.
+
+        SVProgressHUD.setDefaultMaskType(.clear)
     }
 
     @IBOutlet weak var tableView: UITableView!

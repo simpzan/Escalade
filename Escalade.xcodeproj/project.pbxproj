@@ -39,6 +39,8 @@
 		7679B6921E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B6931E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B69B1E7E614700477755 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
+		7679B69D1E7E6C7500477755 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7679B69C1E7E6C7500477755 /* SVProgressHUD.framework */; };
+		7679B69F1E7E6C8800477755 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7679B69E1E7E6C8800477755 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76841E861E505EA300685B0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E851E505EA300685B0F /* AppDelegate.m */; };
 		76841E891E505EA300685B0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E881E505EA300685B0F /* main.m */; };
 		76841E8B1E505EA300685B0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76841E8A1E505EA300685B0F /* Assets.xcassets */; };
@@ -290,6 +292,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7679B69F1E7E6C8800477755 /* SVProgressHUD.framework in CopyFiles */,
 				762B6F881E756677003E8B55 /* tun2socks.framework in CopyFiles */,
 				762B6F891E756677003E8B55 /* lwip.framework in CopyFiles */,
 				76A184F41E6C14A600C35C83 /* CocoaLumberjack.framework in CopyFiles */,
@@ -332,6 +335,8 @@
 		7665BBEA1E729710004588C5 /* VPNManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
 		7679B67E1E7DA8A100477755 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7679B6901E7E601500477755 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		7679B69C1E7E6C7500477755 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		7679B69E1E7E6C8800477755 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EscaladeLaunchHelper-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76841E841E505EA300685B0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76841E851E505EA300685B0F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -405,6 +410,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7679B69D1E7E6C7500477755 /* SVProgressHUD.framework in Frameworks */,
 				762B6F861E756672003E8B55 /* tun2socks.framework in Frameworks */,
 				762B6F871E756672003E8B55 /* lwip.framework in Frameworks */,
 				76A184E31E6C149100C35C83 /* CocoaAsyncSocket.framework in Frameworks */,
@@ -568,6 +574,7 @@
 		768D4A1E1E4B4E8B00B73E10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7679B69C1E7E6C7500477755 /* SVProgressHUD.framework */,
 				7620DCFB1E7D6F9200EC1EDA /* MMWormhole.framework */,
 				76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */,
 				76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */,
@@ -613,6 +620,7 @@
 		76C493501E4A0A8C00A0D066 = {
 			isa = PBXGroup;
 			children = (
+				7679B69E1E7E6C8800477755 /* SVProgressHUD.framework */,
 				7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */,
 				762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */,
 				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
