@@ -67,6 +67,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
 
         SVProgressHUD.setDefaultMaskType(.clear)
+        api.getServersAsync { (servers) in
+            if let servers = servers {
+                self.servers = servers
+                self.tableView.reloadData()
+            }
+        }
     }
 
     @IBOutlet weak var tableView: UITableView!

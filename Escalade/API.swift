@@ -32,7 +32,9 @@ class APIServer {
     }
     func start() {
         addAPI(getServersId) { (_) -> NSCoding? in
-            return self.servers as NSCoding?
+            let result = self.servers
+            DDLogInfo("get servers \(result.count)")
+            return result as NSCoding?
         }
         addAPI(switchProxyId, callback: { (server) -> NSCoding? in
             let server = server as! String
@@ -53,18 +55,26 @@ class APIServer {
 }
 
 class APIClient {
+    func convert(result: NSCoding?) -> [(String, String)]? {
+        let servers = result as? [[String : String]]
+        return servers?.map({ (server) -> (String, String) in
+            return (server["name"]!, server["ping"]!)
+        })
+    }
     func autoSelect(callback: @escaping ([(String, String)]) -> Void) {
         callAsyncAPI(autoSelectId) { result in
-            let pingResults = result as! [[String : String]]
-            let result = pingResults.map({ (server) -> (String, String) in
-                return (server["name"]!, server["ping"]!)
-            })
-            callback(result)
+            let result = self.convert(result: result)
+            callback(result!)
         }
     }
-    func getServers() -> [String : TimeInterval] {
+    func getServers() -> [(String, String)]? {
         let result = callAPI(getServersId)
-        return result as! [String : TimeInterval]
+        return convert(result: result)
+    }
+    func getServersAsync(callback: @escaping ([(String, String)]?) -> Void) {
+        callAsyncAPI(getServersId) { (result) in
+            callback(self.convert(result: result))
+        }
     }
     func switchServer(server: String) -> Bool {
         let result = callAPI(switchProxyId)
