@@ -18,12 +18,11 @@ class APIServer {
     init(_ serverController: ServerController) {
         self.serverController = serverController
     }
-    var servers: [String: TimeInterval] {
-        var servers: [String: TimeInterval] = [:]
-        serverController.servers.forEach({ (server) in
-            servers[server.0] = server.1
-        })
-        return servers
+    var servers: [[String: String]] {
+        let result = serverController.servers.map { (name, ping) -> [String: String] in
+            return ["name": name, "ping": miliseconds(ping)]
+        }
+        return result
     }
 
     func stop() {
@@ -54,10 +53,13 @@ class APIServer {
 }
 
 class APIClient {
-    func autoSelect(callback: @escaping ([String : TimeInterval]) -> Void) {
+    func autoSelect(callback: @escaping ([(String, String)]) -> Void) {
         callAsyncAPI(autoSelectId) { result in
-            let pingResults = result as! [String : TimeInterval]
-            callback(pingResults)
+            let pingResults = result as! [[String : String]]
+            let result = pingResults.map({ (server) -> (String, String) in
+                return (server["name"]!, server["ping"]!)
+            })
+            callback(result)
         }
     }
     func getServers() -> [String : TimeInterval] {
