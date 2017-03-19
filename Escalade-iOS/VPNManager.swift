@@ -8,11 +8,14 @@
 
 import Foundation
 import NetworkExtension
+import CocoaLumberjackSwift
 
 class VPNManager: NSObject {
     public override init() {
         super.init()
         loadManager { (manager) in
+            DDLogInfo("load manager result \(manager)")
+            self.connectionChanged()
         }
     }
 
