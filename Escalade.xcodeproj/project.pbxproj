@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76107EBC1E7D846200BC5E6F /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EBB1E7D846100BC5E6F /* RPC.swift */; };
-		76107EBD1E7D846200BC5E6F /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EBB1E7D846100BC5E6F /* RPC.swift */; };
 		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76107EC41E7D8DCD00BC5E6F /* fyzhuji.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */; };
 		76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
@@ -41,6 +39,9 @@
 		7679B69B1E7E614700477755 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
 		7679B69D1E7E6C7500477755 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7679B69C1E7E6C7500477755 /* SVProgressHUD.framework */; };
 		7679B69F1E7E6C8800477755 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7679B69E1E7E6C8800477755 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7679B6A51E7E715400477755 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A41E7E715400477755 /* RPC.swift */; };
+		7679B6A61E7E715400477755 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A41E7E715400477755 /* RPC.swift */; };
+		7679B6A71E7E715400477755 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A41E7E715400477755 /* RPC.swift */; };
 		76841E861E505EA300685B0F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E851E505EA300685B0F /* AppDelegate.m */; };
 		76841E891E505EA300685B0F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76841E881E505EA300685B0F /* main.m */; };
 		76841E8B1E505EA300685B0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76841E8A1E505EA300685B0F /* Assets.xcassets */; };
@@ -311,7 +312,6 @@
 
 /* Begin PBXFileReference section */
 		47448188CDC5329F975263B8 /* Pods-Escalade-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Escalade-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS.release.xcconfig"; sourceTree = "<group>"; };
-		76107EBB1E7D846100BC5E6F /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fyzhuji.yaml; sourceTree = "<group>"; };
 		76107EC51E7D9BD800BC5E6F /* VPNManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
 		7620DCFB1E7D6F9200EC1EDA /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
@@ -337,6 +337,7 @@
 		7679B6901E7E601500477755 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7679B69C1E7E6C7500477755 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		7679B69E1E7E6C8800477755 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		7679B6A41E7E715400477755 /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EscaladeLaunchHelper-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76841E841E505EA300685B0F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		76841E851E505EA300685B0F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -613,6 +614,7 @@
 				76B08C321E7CF84D00E6146E /* Utils.swift */,
 				7679B67E1E7DA8A100477755 /* Log.swift */,
 				7679B6901E7E601500477755 /* API.swift */,
+				7679B6A41E7E715400477755 /* RPC.swift */,
 			);
 			path = Escalade;
 			sourceTree = "<group>";
@@ -684,7 +686,6 @@
 		76DB4CB91E6BF0B80019FA42 /* PacketTunnel-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				76107EBB1E7D846100BC5E6F /* RPC.swift */,
 				7665BBEA1E729710004588C5 /* VPNManager.swift */,
 				76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */,
 				76DB4CBE1E6BF0B80019FA42 /* Info.plist */,
@@ -1128,10 +1129,10 @@
 				76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */,
 				76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */,
 				76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */,
-				76107EBC1E7D846200BC5E6F /* RPC.swift in Sources */,
 				7679B6921E7E601500477755 /* API.swift in Sources */,
 				76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */,
 				7679B69B1E7E614700477755 /* ServerController.swift in Sources */,
+				7679B6A61E7E715400477755 /* RPC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,6 +1159,7 @@
 			files = (
 				76B08C621E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
+				7679B6A51E7E715400477755 /* RPC.swift in Sources */,
 				7679B67F1E7DA8A100477755 /* Log.swift in Sources */,
 				76B08C3E1E7D3B7800E6146E /* TUNController.swift in Sources */,
 				76B08C351E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
@@ -1192,13 +1194,13 @@
 				7679B6811E7DA8A100477755 /* Log.swift in Sources */,
 				76B08C3F1E7D3B7800E6146E /* TUNController.swift in Sources */,
 				76B08C631E7D4A7800E6146E /* ProxyService.swift in Sources */,
+				7679B6A71E7E715400477755 /* RPC.swift in Sources */,
 				76B08C381E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76E881011E76B22B003CC239 /* main.m in Sources */,
 				76B08C361E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
 				76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */,
 				76B08C3C1E7CF84D00E6146E /* Utils.swift in Sources */,
 				7679B6931E7E601500477755 /* API.swift in Sources */,
-				76107EBD1E7D846200BC5E6F /* RPC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
