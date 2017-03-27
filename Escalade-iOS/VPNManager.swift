@@ -87,19 +87,21 @@ class VPNManager: NSObject {
         save(key: configKey, value: configString)
     }
     public func startVPN() {
-        guard let manager = manager else { return }
+        getManager { (manager) in
+            guard let manager = manager else { return }
 
-        saveConfig()
-        
-        manager.isEnabled = true
-        manager.saveToPreferences { error in
-            if error != nil { return NSLog("failed to enable manager") }
+            self.saveConfig()
 
-            do {
-                try manager.connection.startVPNTunnel(options: nil)
-                NSLog("started")
-            } catch {
-                NSLog("start error \(error)")
+            manager.isEnabled = true
+            manager.saveToPreferences { error in
+                if error != nil { return NSLog("failed to enable manager") }
+
+                do {
+                    try manager.connection.startVPNTunnel(options: nil)
+                    NSLog("started")
+                } catch {
+                    NSLog("start error \(error)")
+                }
             }
         }
     }
