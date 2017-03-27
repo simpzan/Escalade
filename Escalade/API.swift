@@ -77,7 +77,7 @@ class APIClient {
         }
     }
     func switchServer(server: String) -> Bool {
-        let result = callAPI(switchProxyId)
+        let result = callAPI(switchProxyId, obj: server as NSCoding?)
         return result as! Bool
     }
 }
