@@ -9,7 +9,7 @@
     <language>en</language>
     <item>
         <title>Escalade 0.1.1</title>
-        <pubDate>Wed, 29 Mar 2017 11:26:33 GMT</pubDate>
+        <pubDate>Wed, 29 Mar 2017 11:33:05 GMT</pubDate>
         <description>
             <![CDATA[
                 <h2 id="0-1-1">0.1.1</h2>
@@ -29,7 +29,7 @@
             url="https://github.com/simpzan/Escalade/releases/download/0.1.1.137/Escalade.zip"
             sparkle:version="137"
             sparkle:shortVersionString="0.1.1"
-            sparkle:dsaSignature="MC4CFQChVVjC1nqR+VGlTk/09j4SsoXy5wIVAIWCPVUntVk12V9dDqFbS//ImnXi"
+            sparkle:dsaSignature="MC0CFGEMc6xoKSpIj0uPosgkDzVYPxfXAhUAmUMBNZFYmObyhwZSBb2fxacUUok="
             length="6182231"
             type="application/octet-stream" />
     </item>
