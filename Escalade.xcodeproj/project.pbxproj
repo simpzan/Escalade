@@ -10,9 +10,6 @@
 		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76107EC41E7D8DCD00BC5E6F /* fyzhuji.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */; };
 		76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
-		7620DCFC1E7D6F9200EC1EDA /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7620DCFB1E7D6F9200EC1EDA /* MMWormhole.framework */; };
-		7620DD051E7D6F9B00EC1EDA /* MMWormhole.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7620DD061E7D6FA400EC1EDA /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */; };
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
 		76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
@@ -28,16 +25,14 @@
 		76312AC01E6BEE7C000B66C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76312ABF1E6BEE7C000B66C9 /* Assets.xcassets */; };
 		76312AC31E6BEE7C000B66C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76312AC11E6BEE7C000B66C9 /* LaunchScreen.storyboard */; };
 		76312ACE1E6BEE7C000B66C9 /* Escalade_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312ACD1E6BEE7C000B66C9 /* Escalade_iOSTests.swift */; };
-		76361AC71E73E95E00F2F028 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 76361AC61E73E95E00F2F028 /* config.plist */; };
 		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
+		76535A5420138B1B00DD8523 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76535A5320138B1B00DD8523 /* Sparkle.framework */; };
 		7679B67F1E7DA8A100477755 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B67E1E7DA8A100477755 /* Log.swift */; };
 		7679B6801E7DA8A100477755 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B67E1E7DA8A100477755 /* Log.swift */; };
 		7679B6811E7DA8A100477755 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B67E1E7DA8A100477755 /* Log.swift */; };
 		7679B6921E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B6931E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B69B1E7E614700477755 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
-		7679B69D1E7E6C7500477755 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7679B69C1E7E6C7500477755 /* SVProgressHUD.framework */; };
-		7679B69F1E7E6C8800477755 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7679B69E1E7E6C8800477755 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7679B6A61E7E715400477755 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A41E7E715400477755 /* RPC.swift */; };
 		7679B6A71E7E715400477755 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A41E7E715400477755 /* RPC.swift */; };
 		7679B6AA1E7E724A00477755 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A91E7E724A00477755 /* Utils.m */; };
@@ -119,7 +114,6 @@
 		76DF1D751E6C172F0041646A /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54C1E6C11590097C95E /* Resolver.framework */; };
 		76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; };
 		76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; };
-		7E560DD6A38EE8B7A83C6A9D /* Pods_Escalade_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC1E8385670F7E654A184646 /* Pods_Escalade_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -293,7 +287,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7679B69F1E7E6C8800477755 /* SVProgressHUD.framework in CopyFiles */,
 				762B6F881E756677003E8B55 /* tun2socks.framework in CopyFiles */,
 				762B6F891E756677003E8B55 /* lwip.framework in CopyFiles */,
 				76A184F41E6C14A600C35C83 /* CocoaLumberjack.framework in CopyFiles */,
@@ -304,18 +297,14 @@
 				76A184FB1E6C14A700C35C83 /* Yaml.framework in CopyFiles */,
 				76A184E21E6C142700C35C83 /* CocoaAsyncSocket.framework in CopyFiles */,
 				76A184E11E6C13D600C35C83 /* NEKit.framework in CopyFiles */,
-				7620DD051E7D6F9B00EC1EDA /* MMWormhole.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		47448188CDC5329F975263B8 /* Pods-Escalade-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Escalade-macOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fyzhuji.yaml; sourceTree = "<group>"; };
 		76107EC51E7D9BD800BC5E6F /* VPNManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
-		7620DCFB1E7D6F9200EC1EDA /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
-		7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
 		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76277F201E4CF758006C06A6 /* SystemProxyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemProxyController.swift; sourceTree = "<group>"; };
@@ -330,12 +319,10 @@
 		76312AC91E6BEE7C000B66C9 /* Escalade-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Escalade-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76312ACD1E6BEE7C000B66C9 /* Escalade_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Escalade_iOSTests.swift; sourceTree = "<group>"; };
 		76312ACF1E6BEE7C000B66C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		76361AC61E73E95E00F2F028 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		7641854F1E506C13003C7FFC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		76535A5320138B1B00DD8523 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		7679B67E1E7DA8A100477755 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7679B6901E7E601500477755 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		7679B69C1E7E6C7500477755 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
-		7679B69E1E7E6C8800477755 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		7679B6A41E7E715400477755 /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		7679B6A81E7E724A00477755 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		7679B6A91E7E724A00477755 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
@@ -395,8 +382,6 @@
 		76DCC54E1E6C11590097C95E /* tun2socks.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = tun2socks.framework; path = NEKit/Carthage/Build/iOS/tun2socks.framework; sourceTree = "<group>"; };
 		76DCC54F1E6C11590097C95E /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/iOS/Yaml.framework; sourceTree = "<group>"; };
 		76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PacketTunnel-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
-		C4029B342D6BE0E9F66E7868 /* Pods-Escalade-macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Escalade-macOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS.debug.xcconfig"; sourceTree = "<group>"; };
-		CC1E8385670F7E654A184646 /* Pods_Escalade_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Escalade_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,7 +396,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7679B69D1E7E6C7500477755 /* SVProgressHUD.framework in Frameworks */,
 				762B6F861E756672003E8B55 /* tun2socks.framework in Frameworks */,
 				762B6F871E756672003E8B55 /* lwip.framework in Frameworks */,
 				76A184E31E6C149100C35C83 /* CocoaAsyncSocket.framework in Frameworks */,
@@ -422,7 +406,6 @@
 				76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */,
 				76A184EB1E6C149200C35C83 /* Yaml.framework in Frameworks */,
 				76A184DF1E6C13B600C35C83 /* NEKit.framework in Frameworks */,
-				7620DCFC1E7D6F9200EC1EDA /* MMWormhole.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +427,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76535A5420138B1B00DD8523 /* Sparkle.framework in Frameworks */,
 				768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */,
 				768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */,
 				768D4A2A1E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework in Frameworks */,
@@ -454,7 +438,6 @@
 				768D4A2F1E4B4E8B00B73E10 /* tun2socks.framework in Frameworks */,
 				768D4A301E4B4E8B00B73E10 /* Yaml.framework in Frameworks */,
 				768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */,
-				7E560DD6A38EE8B7A83C6A9D /* Pods_Escalade_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,22 +462,12 @@
 				76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */,
 				76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */,
 				76A184DE1E6C12F400C35C83 /* NEKit.framework in Frameworks */,
-				7620DD061E7D6FA400EC1EDA /* MMWormhole.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		48525F7B31ACD3B2546D6AD8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C4029B342D6BE0E9F66E7868 /* Pods-Escalade-macOS.debug.xcconfig */,
-				47448188CDC5329F975263B8 /* Pods-Escalade-macOS.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		76277F171E4CF5D3006C06A6 /* SystemProxyConfig */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,8 +548,7 @@
 		768D4A1E1E4B4E8B00B73E10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7679B69C1E7E6C7500477755 /* SVProgressHUD.framework */,
-				7620DCFB1E7D6F9200EC1EDA /* MMWormhole.framework */,
+				76535A5320138B1B00DD8523 /* Sparkle.framework */,
 				76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */,
 				76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */,
 				76A184D71E6C11FC00C35C83 /* CocoaLumberjackSwift.framework */,
@@ -597,7 +569,6 @@
 				768D4A251E4B4E8B00B73E10 /* Sodium.framework */,
 				768D4A261E4B4E8B00B73E10 /* tun2socks.framework */,
 				768D4A271E4B4E8B00B73E10 /* Yaml.framework */,
-				CC1E8385670F7E654A184646 /* Pods_Escalade_macOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -624,8 +595,6 @@
 		76C493501E4A0A8C00A0D066 = {
 			isa = PBXGroup;
 			children = (
-				7679B69E1E7E6C8800477755 /* SVProgressHUD.framework */,
-				7620DD041E7D6F9B00EC1EDA /* MMWormhole.framework */,
 				762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */,
 				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
 				76B08C2D1E7CF84D00E6146E /* Escalade */,
@@ -638,7 +607,6 @@
 				76DB4CB91E6BF0B80019FA42 /* PacketTunnel-iOS */,
 				76C4935C1E4A0AA100A0D066 /* Products */,
 				768D4A1E1E4B4E8B00B73E10 /* Frameworks */,
-				48525F7B31ACD3B2546D6AD8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -691,7 +659,6 @@
 				76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */,
 				76DB4CBE1E6BF0B80019FA42 /* Info.plist */,
 				76DB4CBA1E6BF0B80019FA42 /* Supporting Files */,
-				76361AC61E73E95E00F2F028 /* config.plist */,
 				76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */,
 			);
 			path = "PacketTunnel-iOS";
@@ -784,13 +751,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76C493711E4A0AA200A0D066 /* Build configuration list for PBXNativeTarget "Escalade-macOS" */;
 			buildPhases = (
-				393ADD9E85569889F82B272F /* [CP] Check Pods Manifest.lock */,
 				76C493571E4A0AA100A0D066 /* Sources */,
 				76C493581E4A0AA100A0D066 /* Frameworks */,
 				76C493591E4A0AA100A0D066 /* Resources */,
 				768D4A311E4B4E9E00B73E10 /* CopyFiles */,
-				9D9B5C15C5C3BFD436A26E53 /* [CP] Embed Pods Frameworks */,
-				6F4104ABFF16156CACCEF6FF /* [CP] Copy Pods Resources */,
 				76841E991E50602900685B0F /* CopyFiles */,
 				761745BD1E50840D008BDA7D /* Increment Build Version */,
 			);
@@ -1044,43 +1008,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76361AC71E73E95E00F2F028 /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		393ADD9E85569889F82B272F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6F4104ABFF16156CACCEF6FF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		761745BD1E50840D008BDA7D /* Increment Build Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1094,21 +1027,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "sh $SRCROOT/Scripts/IncrementBuild.sh";
-		};
-		9D9B5C15C5C3BFD436A26E53 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Escalade-macOS/Pods-Escalade-macOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1721,7 +1639,6 @@
 		};
 		76C493721E4A0AA200A0D066 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4029B342D6BE0E9F66E7868 /* Pods-Escalade-macOS.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1752,6 +1669,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1784,7 +1702,6 @@
 		};
 		76C493731E4A0AA200A0D066 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47448188CDC5329F975263B8 /* Pods-Escalade-macOS.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1815,6 +1732,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;

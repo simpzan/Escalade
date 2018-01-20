@@ -1,2 +1,3 @@
 github "mutualmobile/MMWormhole" ~> 2.0
 github "SVProgressHUD/SVProgressHUD"
+github "sparkle-project/Sparkle"
