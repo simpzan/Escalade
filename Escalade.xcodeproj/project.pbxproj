@@ -10,6 +10,11 @@
 		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76107EC41E7D8DCD00BC5E6F /* fyzhuji.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */; };
 		76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
+		761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884502016128B00156F92 /* SVProgressHUD.framework */; };
+		7618845A2016128B00156F92 /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884582016128B00156F92 /* MMWormhole.framework */; };
+		7618845B201612AB00156F92 /* MMWormhole.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 761884582016128B00156F92 /* MMWormhole.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7618845C201612AB00156F92 /* SVProgressHUD.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 761884502016128B00156F92 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7618845E201612BE00156F92 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7618845D201612BE00156F92 /* NetworkExtension.framework */; };
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
 		76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
@@ -289,6 +294,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				7618845B201612AB00156F92 /* MMWormhole.framework in CopyFiles */,
+				7618845C201612AB00156F92 /* SVProgressHUD.framework in CopyFiles */,
 				762B6F881E756677003E8B55 /* tun2socks.framework in CopyFiles */,
 				762B6F891E756677003E8B55 /* lwip.framework in CopyFiles */,
 				76A184F41E6C14A600C35C83 /* CocoaLumberjack.framework in CopyFiles */,
@@ -307,6 +314,9 @@
 /* Begin PBXFileReference section */
 		76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fyzhuji.yaml; sourceTree = "<group>"; };
 		76107EC51E7D9BD800BC5E6F /* VPNManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
+		761884502016128B00156F92 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		761884582016128B00156F92 /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
+		7618845D201612BE00156F92 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/System/Library/Frameworks/NetworkExtension.framework; sourceTree = DEVELOPER_DIR; };
 		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76277F201E4CF758006C06A6 /* SystemProxyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemProxyController.swift; sourceTree = "<group>"; };
@@ -398,12 +408,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7618845E201612BE00156F92 /* NetworkExtension.framework in Frameworks */,
+				761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */,
 				762B6F861E756672003E8B55 /* tun2socks.framework in Frameworks */,
 				762B6F871E756672003E8B55 /* lwip.framework in Frameworks */,
 				76A184E31E6C149100C35C83 /* CocoaAsyncSocket.framework in Frameworks */,
 				76A184E41E6C149100C35C83 /* CocoaLumberjack.framework in Frameworks */,
 				76A184E51E6C149100C35C83 /* CocoaLumberjackSwift.framework in Frameworks */,
 				76A184E71E6C149100C35C83 /* MMDB.framework in Frameworks */,
+				7618845A2016128B00156F92 /* MMWormhole.framework in Frameworks */,
 				76A184E81E6C149100C35C83 /* Resolver.framework in Frameworks */,
 				76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */,
 				76A184EB1E6C149200C35C83 /* Yaml.framework in Frameworks */,
@@ -550,6 +563,9 @@
 		768D4A1E1E4B4E8B00B73E10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7618845D201612BE00156F92 /* NetworkExtension.framework */,
+				761884582016128B00156F92 /* MMWormhole.framework */,
+				761884502016128B00156F92 /* SVProgressHUD.framework */,
 				76535A5320138B1B00DD8523 /* Sparkle.framework */,
 				76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */,
 				76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */,
