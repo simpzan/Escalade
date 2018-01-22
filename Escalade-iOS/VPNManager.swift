@@ -42,7 +42,7 @@ class VPNManager: NSObject {
     
     private func createManager(callback: @escaping (NETunnelProviderManager?) -> Void) {
         let config = NETunnelProviderProtocol()
-        config.providerBundleIdentifier = "com.simpzan.Escalade-iOS.PacketTunnel-iOS"
+        config.providerBundleIdentifier = "simpzan.Escalade-iOS.PacketTunnel-iOS"
         config.serverAddress = "10.0.0.2"
 
         let manager = NETunnelProviderManager()
