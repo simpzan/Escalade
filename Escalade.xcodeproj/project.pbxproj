@@ -114,6 +114,7 @@
 		76DF1D751E6C172F0041646A /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54C1E6C11590097C95E /* Resolver.framework */; };
 		76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; };
 		76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; };
+		76E9990D2015B38B00A07852 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76535A5320138B1B00DD8523 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,6 +258,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				76E9990D2015B38B00A07852 /* Sparkle.framework in CopyFiles */,
 				768D4A321E4B4ED000B73E10 /* NEKit.framework in CopyFiles */,
 				768D4A331E4B4ED000B73E10 /* CocoaAsyncSocket.framework in CopyFiles */,
 				768D4A341E4B4ED000B73E10 /* CocoaLumberjack.framework in CopyFiles */,
