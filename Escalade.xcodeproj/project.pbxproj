@@ -87,6 +87,8 @@
 		76A184F91E6C14A700C35C83 /* Sodium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A184FB1E6C14A700C35C83 /* Yaml.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76A416121E4F4A7C003C2CE2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
+		76A85A44202715B400F532BE /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A85A43202715B400F532BE /* NetworkExtension.framework */; };
+		76A85A45202715CB00F532BE /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A85A43202715B400F532BE /* NetworkExtension.framework */; };
 		76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */; };
 		76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
 		76B08C341E7CF84D00E6146E /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
@@ -102,8 +104,34 @@
 		76B08C3F1E7D3B7800E6146E /* TUNController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C3D1E7D3B7800E6146E /* TUNController.swift */; };
 		76B08C621E7D4A7800E6146E /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
 		76B08C631E7D4A7800E6146E /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
-		76B711CD2027059F0020895A /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B711CC2027059F0020895A /* PacketTunnelProvider.swift */; };
 		76B711D32027059F0020895A /* PacketTunnel-macOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76B711CA2027059F0020895A /* PacketTunnel-macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		76B711DE202707C70020895A /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
+		76B711DF202708730020895A /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A41E7E715400477755 /* RPC.swift */; };
+		76B711E1202708E60020895A /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B711E0202708E60020895A /* MMWormhole.framework */; };
+		76B711E2202708F10020895A /* MMWormhole.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76B711E0202708E60020895A /* MMWormhole.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		76B711E32027091D0020895A /* fyzhuji.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */; };
+		76B711E720270D8B0020895A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; };
+		76B711E820270D8B0020895A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A211E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework */; };
+		76B711E920270DB80020895A /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B67E1E7DA8A100477755 /* Log.swift */; };
+		76B711EB20270E280020895A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A91E7E724A00477755 /* Utils.m */; };
+		76B711EC20270E3E0020895A /* TUNController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C3D1E7D3B7800E6146E /* TUNController.swift */; };
+		76B711ED20270E480020895A /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
+		76B711EE20270E950020895A /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B711CC2027059F0020895A /* PacketTunnelProvider.swift */; };
+		76B711EF20270F080020895A /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */; };
+		76B711F020270F0F0020895A /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
+		76B711F120270F2F0020895A /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A41E7E715400477755 /* RPC.swift */; };
+		76B711F220270F520020895A /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B711E0202708E60020895A /* MMWormhole.framework */; };
+		76B711F320270F670020895A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
+		76B711F4202710460020895A /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; };
+		76B711F5202710460020895A /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A221E4B4E8B00B73E10 /* lwip.framework */; };
+		76B711F6202710460020895A /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A231E4B4E8B00B73E10 /* MMDB.framework */; };
+		76B711F7202710460020895A /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A241E4B4E8B00B73E10 /* Resolver.framework */; };
+		76B711F8202710460020895A /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A251E4B4E8B00B73E10 /* Sodium.framework */; };
+		76B711F9202710460020895A /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A261E4B4E8B00B73E10 /* tun2socks.framework */; };
+		76B711FA202710460020895A /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A271E4B4E8B00B73E10 /* Yaml.framework */; };
+		76B711FB2027104C0020895A /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
+		76B711FC2027106D0020895A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
+		76B711FD202710CC0020895A /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
 		76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */; };
 		76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76C493601E4A0AA200A0D066 /* Assets.xcassets */; };
 		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
@@ -272,6 +300,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				76B711E2202708F10020895A /* MMWormhole.framework in CopyFiles */,
 				76E9990D2015B38B00A07852 /* Sparkle.framework in CopyFiles */,
 				768D4A321E4B4ED000B73E10 /* NEKit.framework in CopyFiles */,
 				768D4A331E4B4ED000B73E10 /* CocoaAsyncSocket.framework in CopyFiles */,
@@ -382,6 +411,7 @@
 		76A184EE1E6C149200C35C83 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = NEKit/Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		76A184EF1E6C149200C35C83 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = NEKit/Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		76A416111E4F4A7B003C2CE2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		76A85A43202715B400F532BE /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsCocoa.swift; sourceTree = "<group>"; };
 		76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
 		76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyServerManager.swift; sourceTree = "<group>"; };
@@ -394,6 +424,8 @@
 		76B711CC2027059F0020895A /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		76B711CE2027059F0020895A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76B711CF2027059F0020895A /* PacketTunnel_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel_macOS.entitlements; sourceTree = "<group>"; };
+		76B711E0202708E60020895A /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/Mac/MMWormhole.framework; sourceTree = "<group>"; };
+		76B711E62027098A0020895A /* Escalade.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Escalade.entitlements; sourceTree = "<group>"; };
 		76C4935B1E4A0AA100A0D066 /* Escalade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Escalade.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76C493601E4A0AA200A0D066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -466,6 +498,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76B711FB2027104C0020895A /* NEKit.framework in Frameworks */,
+				76A85A44202715B400F532BE /* NetworkExtension.framework in Frameworks */,
+				76B711F4202710460020895A /* CocoaAsyncSocket.framework in Frameworks */,
+				76B711F5202710460020895A /* lwip.framework in Frameworks */,
+				76B711F6202710460020895A /* MMDB.framework in Frameworks */,
+				76B711F7202710460020895A /* Resolver.framework in Frameworks */,
+				76B711F8202710460020895A /* Sodium.framework in Frameworks */,
+				76B711F9202710460020895A /* tun2socks.framework in Frameworks */,
+				76B711FA202710460020895A /* Yaml.framework in Frameworks */,
+				76B711F220270F520020895A /* MMWormhole.framework in Frameworks */,
+				76B711E720270D8B0020895A /* CocoaLumberjack.framework in Frameworks */,
+				76B711E820270D8B0020895A /* CocoaLumberjackSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,12 +518,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				76535A5420138B1B00DD8523 /* Sparkle.framework in Frameworks */,
+				76A85A45202715CB00F532BE /* NetworkExtension.framework in Frameworks */,
 				768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */,
 				768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */,
 				768D4A2A1E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework in Frameworks */,
 				768D4A2B1E4B4E8B00B73E10 /* lwip.framework in Frameworks */,
 				768D4A2C1E4B4E8B00B73E10 /* MMDB.framework in Frameworks */,
 				768D4A2D1E4B4E8B00B73E10 /* Resolver.framework in Frameworks */,
+				76B711E1202708E60020895A /* MMWormhole.framework in Frameworks */,
 				768D4A2E1E4B4E8B00B73E10 /* Sodium.framework in Frameworks */,
 				768D4A2F1E4B4E8B00B73E10 /* tun2socks.framework in Frameworks */,
 				768D4A301E4B4E8B00B73E10 /* Yaml.framework in Frameworks */,
@@ -594,6 +640,8 @@
 		768D4A1E1E4B4E8B00B73E10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76A85A43202715B400F532BE /* NetworkExtension.framework */,
+				76B711E0202708E60020895A /* MMWormhole.framework */,
 				7618845D201612BE00156F92 /* NetworkExtension.framework */,
 				761884582016128B00156F92 /* MMWormhole.framework */,
 				761884502016128B00156F92 /* SVProgressHUD.framework */,
@@ -688,6 +736,7 @@
 		76C4935D1E4A0AA100A0D066 /* Escalade-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				76B711E62027098A0020895A /* Escalade.entitlements */,
 				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
 				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
 				76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */,
@@ -921,12 +970,37 @@
 						CreatedOnToolsVersion = 9.1;
 						DevelopmentTeam = LL5MM59PQ7;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.NetworkExtensions = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					76C4935A1E4A0AA100A0D066 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = LL5MM59PQ7;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
+							};
+							com.apple.NetworkExtensions = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					76C493691E4A0AA200A0D066 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -966,13 +1040,13 @@
 			projectRoot = "";
 			targets = (
 				76C4935A1E4A0AA100A0D066 /* Escalade-macOS */,
+				76B711C92027059F0020895A /* PacketTunnel-macOS */,
 				76C493691E4A0AA200A0D066 /* Escalade-macOSTests */,
 				76277F151E4CF5D3006C06A6 /* SystemProxyConfig */,
 				76841E811E505EA300685B0F /* EscaladeLaunchHelper-macOS */,
-				76312AB51E6BEE7C000B66C9 /* Escalade-iOS */,
 				76312AC81E6BEE7C000B66C9 /* Escalade-iOSTests */,
+				76312AB51E6BEE7C000B66C9 /* Escalade-iOS */,
 				76DB4CB71E6BF0B70019FA42 /* PacketTunnel-iOS */,
-				76B711C92027059F0020895A /* PacketTunnel-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1084,6 +1158,7 @@
 			files = (
 				764185501E506C13003C7FFC /* dsa_pub.pem in Resources */,
 				76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */,
+				76B711E32027091D0020895A /* fyzhuji.yaml in Resources */,
 				76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */,
 				76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */,
 				76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */,
@@ -1170,7 +1245,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76B711CD2027059F0020895A /* PacketTunnelProvider.swift in Sources */,
+				76B711EE20270E950020895A /* PacketTunnelProvider.swift in Sources */,
+				76B711F120270F2F0020895A /* RPC.swift in Sources */,
+				76B711F020270F0F0020895A /* ServerController.swift in Sources */,
+				76B711FD202710CC0020895A /* ConfigurationManager.swift in Sources */,
+				76B711EF20270F080020895A /* ProxyServerManager.swift in Sources */,
+				76B711EB20270E280020895A /* Utils.m in Sources */,
+				76B711FC2027106D0020895A /* Utils.swift in Sources */,
+				76B711EC20270E3E0020895A /* TUNController.swift in Sources */,
+				76B711E920270DB80020895A /* Log.swift in Sources */,
+				76B711F320270F670020895A /* API.swift in Sources */,
+				76B711ED20270E480020895A /* ProxyService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1186,6 +1271,7 @@
 				76B08C371E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */,
 				76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */,
+				76B711DE202707C70020895A /* VPNManager.swift in Sources */,
 				7679B6AA1E7E724A00477755 /* Utils.m in Sources */,
 				76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */,
 				76841E9C1E5060DE00685B0F /* AutoLaunchHelper.swift in Sources */,
@@ -1194,6 +1280,7 @@
 				76A416121E4F4A7C003C2CE2 /* Reachability.swift in Sources */,
 				76B08C391E7CF84D00E6146E /* TrafficMonitor.swift in Sources */,
 				76B08C3B1E7CF84D00E6146E /* Utils.swift in Sources */,
+				76B711DF202708730020895A /* RPC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1677,7 +1764,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.EscaladeLaunchHelper-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "simpzan.EscaladeLaunchHelper-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -1727,7 +1814,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.EscaladeLaunchHelper-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "simpzan.EscaladeLaunchHelper-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -1772,6 +1859,11 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1791,14 +1883,15 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOS.PacketTunnel-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "simpzan.Escalade-macOS.PacketTunnel-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel-iOS/PacketTunnel-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1839,6 +1932,11 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1851,13 +1949,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOS.PacketTunnel-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "simpzan.Escalade-macOS.PacketTunnel-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel-iOS/PacketTunnel-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1896,6 +1995,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Escalade-macOS/Escalade.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1928,7 +2028,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "simpzan.Escalade-macOS";
 				PRODUCT_NAME = Escalade;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -1962,6 +2062,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Escalade-macOS/Escalade.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1987,7 +2088,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.Escalade-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "simpzan.Escalade-macOS";
 				PRODUCT_NAME = Escalade;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;

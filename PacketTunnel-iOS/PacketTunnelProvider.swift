@@ -10,6 +10,8 @@ import NetworkExtension
 import NEKit
 import CocoaLumberjackSwift
 
+public let groupId = "group.simpzan.Escalade-iOS"
+
 class PacketTunnelProvider: NEPacketTunnelProvider {
     private lazy var proxyService: ProxyService? = {
         guard let configString = load(key: configKey) else {

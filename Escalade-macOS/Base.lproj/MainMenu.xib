@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -12,7 +12,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Escalade_macOS" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Escalade" customModuleProvider="target">
             <connections>
                 <outlet property="mainMenuController" destination="Fot-qt-aSu" id="dHL-LI-Uqg"/>
             </connections>
@@ -100,10 +100,15 @@
                         <action selector="quitClicked:" target="Fot-qt-aSu" id="0NX-7G-JhB"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Test" keyEquivalent="q" id="5mg-gS-8eQ">
+                    <connections>
+                        <action selector="test:" target="Fot-qt-aSu" id="EB0-6X-flN"/>
+                    </connections>
+                </menuItem>
             </items>
             <point key="canvasLocation" x="43.5" y="38.5"/>
         </menu>
-        <customObject id="Fot-qt-aSu" customClass="MainMenuController" customModule="Escalade_macOS" customModuleProvider="target">
+        <customObject id="Fot-qt-aSu" customClass="MainMenuController" customModule="Escalade" customModuleProvider="target">
             <connections>
                 <outlet property="autoSelectItem" destination="BSC-Yd-CeE" id="i94-p4-v47"/>
                 <outlet property="configurationsItem" destination="daz-V7-ed3" id="lwc-Y1-IK8"/>
@@ -113,6 +118,7 @@
                 <outlet property="serversItem" destination="mT5-4y-6tc" id="uaB-W6-4w5"/>
                 <outlet property="startAtLoginItem" destination="0DH-Er-RLY" id="VML-MK-mEu"/>
                 <outlet property="systemProxyItem" destination="Sdp-cf-5a9" id="ukC-ii-jwM"/>
+                <outlet property="testButton" destination="5mg-gS-8eQ" id="shB-9F-1kE"/>
             </connections>
         </customObject>
     </objects>

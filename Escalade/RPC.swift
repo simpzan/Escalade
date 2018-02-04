@@ -12,7 +12,6 @@ import CocoaLumberjackSwift
 
 let configKey = "config"
 
-let groupId = "group.simpzan.Escalade-iOS"
 let defaults = UserDefaults(suiteName: groupId)!
 func save(key: String, value: String) {
     defaults.set(value, forKey: key)

@@ -51,7 +51,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
         if !reachability.isReachable { return }
 
-        pingTest()
+//        pingTest()
         trafficMonitor.startUpdate { rx, tx in
             self.networkTrafficItem.title = "⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s"
         }
@@ -78,6 +78,8 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
     // MARK: - configurations
     func showSetupGuide() {
+        return
+        
         guard let file = selectFile() else { return }
 
         if !configManager.importConfig(file: file) {
@@ -303,6 +305,23 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         NSApp.terminate(nil)
     }
 
+    let manager = VPNManager()
+    func vpnInit() {
+        manager.monitorStatus { (_) in
+            let state = self.manager.status
+            NSLog("status changed to \(state.rawValue)")
+        }
+    }
+    
+    @IBOutlet weak var testButton: NSMenuItem!
+    @IBAction func test(_ sender: Any) {
+        NSLog("connectClicked")
+        if manager.connected {
+            manager.stopVPN()
+        } else {
+            manager.startVPN()
+        }
+    }
     func injected() {
         print("I've been injected-: \(self)")
         updateServerList()

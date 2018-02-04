@@ -8,6 +8,9 @@
 
 import Cocoa
 
+public let groupId = "group.simpzan.Escalade-macOS"
+public let providerBundleIdentifier = groupId + ".PacketTunnel-macOS"
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
