@@ -8,8 +8,9 @@
 
 import UIKit
 
-public let groupId = "group.simpzan.Escalade-iOS"
-public let providerBundleIdentifier = groupId + ".PacketTunnel-iOS"
+public let appId = "simpzan.Escalade-iOS"
+public let groupId = "group." + appId
+public let providerBundleIdentifier = appId + ".PacketTunnel-iOS"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

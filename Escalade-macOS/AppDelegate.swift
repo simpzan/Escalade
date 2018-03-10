@@ -8,8 +8,9 @@
 
 import Cocoa
 
-public let groupId = "group.simpzan.Escalade-macOS"
-public let providerBundleIdentifier = groupId + ".PacketTunnel-macOS"
+public let appId = "simpzan.Escalade-macOS"
+public let groupId = "group." + appId
+public let providerBundleIdentifier = appId + ".PacketTunnel-macOS"
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
