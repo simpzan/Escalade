@@ -23,8 +23,11 @@ class VPNManager: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(connectionChanged), name: NSNotification.Name.NEVPNStatusDidChange, object: nil)
         self.callback = callback
     }
+    var lastState: NEVPNStatus = .invalid
     func connectionChanged() {
-        callback?(status)
+        if lastState == status { return }
+        lastState = status
+        callback?(lastState)
     }
     private var callback: StatusCallback?
     public typealias StatusCallback = (NEVPNStatus) -> Void
@@ -63,7 +66,12 @@ class VPNManager: NSObject {
     private func loadManager(callback: @escaping (NETunnelProviderManager?) -> Void) {
         NETunnelProviderManager.loadAllFromPreferences { managers, error in
             if error == nil {
-                let manager = managers?.first
+                let manager = managers?.first { (manager) -> Bool in
+                    guard let config = manager.protocolConfiguration! as? NETunnelProviderProtocol else {
+                        return false
+                    }
+                    return config.providerBundleIdentifier == providerBundleIdentifier
+                }
                 self.manager = manager
                 callback(manager)
             } else {
