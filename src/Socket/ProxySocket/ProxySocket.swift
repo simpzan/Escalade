@@ -8,7 +8,7 @@ open class ProxySocket: NSObject, SocketProtocol, RawTCPSocketDelegate {
     public var observer: Observer<ProxySocketEvent>?
 
     private var _cancelled = false
-    var isCancelled: Bool {
+    open var isCancelled: Bool {
         return _cancelled
     }
 

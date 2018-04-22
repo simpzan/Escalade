@@ -6,7 +6,7 @@ import CocoaLumberjackSwift
 ///
 /// - warning: This class is not thread-safe.
 open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol {
-    fileprivate let socket: GCDAsyncSocket
+    public let socket: GCDAsyncSocket
     fileprivate var enableTLS: Bool = false
 
     /**

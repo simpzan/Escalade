@@ -80,7 +80,7 @@ open class ProxyServer: NSObject, TunnelDelegate {
      
      - parameter socket: The accepted proxy socket.
      */
-    func didAcceptNewSocket(_ socket: ProxySocket) {
+    open func didAcceptNewSocket(_ socket: ProxySocket) {
         observer?.signal(.newSocketAccepted(socket, onServer: self))
         let tunnel = Tunnel(proxySocket: socket)
         tunnel.delegate = self
