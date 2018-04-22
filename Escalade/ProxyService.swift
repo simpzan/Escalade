@@ -23,7 +23,7 @@ class ProxyService {
         serverController = ServerController(selectFactory: factory, defaults: defaults)
 
         if let provider = provider {
-            tunController = TUNController(provider: provider, httpServer: proxyManager.httpServer!)
+            tunController = TUNController(provider: provider, httpServer: proxyManager.socks5Server!)
         }
     }
 

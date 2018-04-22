@@ -17,14 +17,14 @@ class ProxyServerManager: NSObject {
         if let port = config.proxyPort { self.port = UInt16(port) }
 
         let addr = IPAddress(fromString: address)
-        socks5Server = GCDSOCKS5ProxyServer(address: addr, port: NEKit.Port(port: port))
+        socks5Server = NATProxyServer(address: addr, port: NEKit.Port(port: port))
         httpServer = GCDHTTPProxyServer(address: addr, port: NEKit.Port(port: port + 1))
     }
 
     public var port: UInt16 = 9990
-    public let address: String = "127.0.0.1"
+    public let address: String = interfaceIp
 
-    private let socks5Server: GCDSOCKS5ProxyServer?
+    public let socks5Server: GCDProxyServer?
     public let httpServer: GCDHTTPProxyServer?
 
     public func stopProxyServers() {

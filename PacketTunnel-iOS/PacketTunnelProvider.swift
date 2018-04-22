@@ -35,13 +35,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         NSLog("log file \(logFile)")
 
         self.addObserver(self, forKeyPath: "defaultPath", options: [.new], context: nil)
-        proxyService?.start()
 
         setTunnelNetworkSettings(tunController.getTunnelSettings()) { (error) in
             if error != nil {
                 DDLogError("setTunnelNetworkSettings error:\(error)")
                 return
             }
+            self.proxyService?.start()
             self.api?.start()
             completionHandler(nil)
         }
@@ -63,8 +63,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 
     override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        DDLogDebug("defaultPath changed")
-        proxyService?.restart()
+        DDLogInfo("defaultPath changed")
+//        proxyService?.restart()
     }
 
     override func sleep(completionHandler: @escaping () -> Void) {

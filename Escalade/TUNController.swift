@@ -11,6 +11,8 @@ import CocoaLumberjackSwift
 import NetworkExtension
 import NEKit
 
+public let interfaceIp = "192.0.2.1"
+
 class TUNController {
 
     private lazy var dnsServer: DNSServer = {
@@ -28,9 +30,12 @@ class TUNController {
         let udpStack = UDPDirectStack()
         interface.register(stack: udpStack)
 
-        let tcpStack = TCPStack.stack
-        tcpStack.proxyServer = httpProxyServer
-        interface.register(stack: tcpStack)
+        let nat = PacketTranslator(interfaceIp: interfaceIp, fakeSourceIp: "192.0.2.3", proxyServerIp: httpProxyServer.address?.presentation, port: httpProxyServer.port.value)
+        PacketTranslator.setInstance(nat)
+        interface.register(stack: nat!)
+//        let tcpStack = TCPStack.stack
+//        tcpStack.proxyServer = httpProxyServer
+//        interface.register(stack: tcpStack)
     }
 
     public func start() {
@@ -45,9 +50,9 @@ class TUNController {
     let dns = "114.114.114.114"
 
     private var interface: TUNInterface!
-    private let httpProxyServer: GCDHTTPProxyServer
+    private let httpProxyServer: GCDProxyServer
 
-    public init(provider: NEPacketTunnelProvider, httpServer: GCDHTTPProxyServer) {
+    public init(provider: NEPacketTunnelProvider, httpServer: GCDProxyServer) {
         RawSocketFactory.TunnelProvider = provider
         interface = TUNInterface(packetFlow: provider.packetFlow)
         httpProxyServer = httpServer
@@ -60,7 +65,7 @@ class TUNController {
         let settings = NEPacketTunnelNetworkSettings(tunnelRemoteAddress: "192.0.2.2")
         settings.mtu = 1500
         settings.dnsSettings = NEDNSSettings(servers: [dns])
-        let v4Settings = NEIPv4Settings(addresses:["192.0.2.1"], subnetMasks:["255.255.255.0"])
+        let v4Settings = NEIPv4Settings(addresses:[interfaceIp], subnetMasks:["255.255.255.0"])
         v4Settings.includedRoutes = [NEIPv4Route.default()]
 //        v4Settings.excludedRoutes = [NEIPv4Route(destinationAddress:"114.114.114.114", subnetMask:"255.255.255.255")]
         settings.iPv4Settings = v4Settings
