@@ -18,7 +18,9 @@ class ProxyServerManager: NSObject {
 
         let addr = IPAddress(fromString: address)
         socks5Server = NATProxyServer(address: addr, port: NEKit.Port(port: port))
-        httpServer = GCDHTTPProxyServer(address: addr, port: NEKit.Port(port: port + 1))
+        let httpAddr = IPAddress(fromString: "127.0.0.1")
+        httpServer = GCDHTTPProxyServer(address: httpAddr, port: NEKit.Port(port: port + 1))
+        NSLog("proxy servers, nat %d, http %d", port, port + 1)
     }
 
     public var port: UInt16 = 9990

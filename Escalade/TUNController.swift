@@ -69,19 +69,20 @@ class TUNController {
         v4Settings.includedRoutes = [NEIPv4Route.default()]
 //        v4Settings.excludedRoutes = [NEIPv4Route(destinationAddress:"114.114.114.114", subnetMask:"255.255.255.255")]
         settings.iPv4Settings = v4Settings
-//        settings.proxySettings = getProxySettings()
+        settings.proxySettings = getProxySettings()
         return settings
     }
     private func getProxySettings() -> NEProxySettings {
         let proxy = NEProxySettings()
         proxy.httpEnabled = true
-        proxy.httpServer = NEProxyServer(address: (httpProxyServer.address?.presentation)!, port: Int(httpProxyServer.port.value))
+        let httpPort = Int(httpProxyServer.port.value) + 1
+        proxy.httpServer = NEProxyServer(address: "127.0.0.1", port: httpPort)
         proxy.httpsEnabled = true
         proxy.httpsServer = proxy.httpServer
 //        proxy.autoProxyConfigurationEnabled = true
 //        proxy.proxyAutoConfigurationURL
         proxy.excludeSimpleHostnames = true
-        proxy.matchDomains = []
+        proxy.matchDomains = [""]
         return proxy
     }
 
