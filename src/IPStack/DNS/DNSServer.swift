@@ -245,6 +245,7 @@ open class DNSServer: DNSResolverDelegate, IPStackProtocol {
                 return
             }
 
+            DDLogInfo("remote dns: \(message)")
             session.realResponseMessage = message
 
             session.realIP = message.resolvedIPv4Address

@@ -1,7 +1,7 @@
 import Foundation
 import CocoaLumberjackSwift
 
-open class DNSMessage {
+open class DNSMessage : NSObject {
     //    var sourceAddress: IPv4Address?
     //    var sourcePort: Port?
     //    var destinationAddress: IPv4Address?
@@ -17,6 +17,17 @@ open class DNSMessage {
     open var answers: [DNSResource] = []
     open var nameservers: [DNSResource] = []
     open var addtionals: [DNSResource] = []
+    
+    open override var description: String {
+        let q = queries.reduce("") { (result: String, query: DNSQuery) -> String in
+            result + query.name + " "
+        }
+        let a = answers.reduce("") { (result: String, resource: DNSResource) -> String in
+            guard let address = resource.ipv4Address else { return result }
+            return result + address.description + " "
+        }
+        return "Q: \(q) A: \(a)"
+    }
 
     var payload: Data!
 
@@ -49,7 +60,7 @@ open class DNSMessage {
         return queries.first?.type
     }
 
-    init() {}
+    override init() {}
 
     init?(payload: Data) {
         self.payload = payload
