@@ -33,6 +33,11 @@ class ProxyServerManager: NSObject {
         socks5Server?.stop()
         httpServer?.stop()
     }
+    
+    public func dump() {
+        socks5Server?.dump()
+        httpServer?.dump()
+    }
 
     public func startProxyServers() {
         do {

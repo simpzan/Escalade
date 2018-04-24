@@ -54,8 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let api = APIClient()
 
     @IBAction func test(_ sender: Any) {
-        let result = api.getServers()
-        NSLog("getServers \(result)")
+        manager.sendMessage(msg: "dumpTunnel")
     }
 
     override func viewDidLoad() {

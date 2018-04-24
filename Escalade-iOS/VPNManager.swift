@@ -119,5 +119,13 @@ class VPNManager: NSObject {
         manager.connection.stopVPNTunnel()
         NSLog("stopped")
     }
-
+    
+    public func sendMessage(msg: String) {
+        DDLogInfo("sending msg \(msg)")
+        guard let session = manager?.connection as? NETunnelProviderSession else { return }
+        guard let data = msg.data(using: .utf8) else { return }
+        try? session.sendProviderMessage(data) { (reply) in
+            NSLog("received response \(reply)")
+        }
+    }
 }
