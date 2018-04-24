@@ -23,7 +23,7 @@ open class ProxyServer: NSObject, TunnelDelegate {
 
     /// The description of proxy server.
     open override var description: String {
-        return "<\(type) address:\(address) port:\(port)>"
+        return "<\(type) at \(address!.description):\(port.value)>"
     }
 
     open var observer: Observer<ProxyServerEvent>?
@@ -103,5 +103,15 @@ open class ProxyServer: NSObject, TunnelDelegate {
         }
 
         tunnels.remove(at: index)
+    }
+
+    public func dump() {
+        var i = 1;
+        let name = String(describing: self)
+        let total = tunnels.count
+        for tunnel in tunnels {
+            NSLog("\(name) \(i)/\(total). \(tunnel)")
+            i += 1
+        }
     }
 }

@@ -46,7 +46,7 @@ public class ShadowsocksAdapter: AdapterSocket {
     }
 
     open override var description: String {
-        return "<\(typeName) proxy:\(self.host)>"
+        return "<\(typeName) \(self.host)>"
     }
 
     override public func openSocketWith(session: ConnectSession) {

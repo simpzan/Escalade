@@ -67,9 +67,9 @@ public class Tunnel: NSObject, SocketDelegate {
     
     override public var description: String {
         if let adapterSocket = adapterSocket {
-            return "<Tunnel proxySocket:\(proxySocket) adapterSocket:\(adapterSocket)>"
+            return "<Tunnel \(proxySocket) \(adapterSocket)>"
         } else {
-            return "<Tunnel proxySocket:\(proxySocket)>"
+            return "<Tunnel \(proxySocket)>"
         }
     }
     
