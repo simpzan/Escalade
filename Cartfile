@@ -1,5 +1,5 @@
 github "simpzan/CocoaAsyncSocket" "master"
-github "CocoaLumberjack/CocoaLumberjack" ~> 3.0.0
+github "simpzan/CocoaLumberjack" "master"
 github "lexrus/MMDB-Swift" ~> 0.2.1
 github "zhuhaow/Sodium-framework" "v1.0.10.1"
 github "behrang/YamlSwift" ~> 3.0.0
