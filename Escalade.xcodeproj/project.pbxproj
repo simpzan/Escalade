@@ -44,9 +44,6 @@
 		76312AC31E6BEE7C000B66C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76312AC11E6BEE7C000B66C9 /* LaunchScreen.storyboard */; };
 		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
 		76535A5420138B1B00DD8523 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76535A5320138B1B00DD8523 /* Sparkle.framework */; };
-		7679B67F1E7DA8A100477755 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B67E1E7DA8A100477755 /* Log.swift */; };
-		7679B6801E7DA8A100477755 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B67E1E7DA8A100477755 /* Log.swift */; };
-		7679B6811E7DA8A100477755 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B67E1E7DA8A100477755 /* Log.swift */; };
 		7679B6921E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B6931E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B69B1E7E614700477755 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
@@ -120,7 +117,6 @@
 		76B711E32027091D0020895A /* fyzhuji.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */; };
 		76B711E720270D8B0020895A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; };
 		76B711E820270D8B0020895A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A211E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework */; };
-		76B711E920270DB80020895A /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B67E1E7DA8A100477755 /* Log.swift */; };
 		76B711EC20270E3E0020895A /* TUNController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C3D1E7D3B7800E6146E /* TUNController.swift */; };
 		76B711ED20270E480020895A /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
 		76B711EE20270E950020895A /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B711CC2027059F0020895A /* PacketTunnelProvider.swift */; };
@@ -144,6 +140,10 @@
 		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
 		76C493781E4A0B5E00A0D066 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C493771E4A0B5E00A0D066 /* MainMenuController.swift */; };
 		76C4937B1E4A0C8A00A0D066 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76C4937A1E4A0C8A00A0D066 /* main.m */; };
+		76CA418D2090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
+		76CA418E2090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
+		76CA418F2090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
+		76CA41902090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
 		76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
 		76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */; };
 		76DB4CC11E6BF0B80019FA42 /* PacketTunnel-iOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -404,7 +404,6 @@
 		76312AC41E6BEE7C000B66C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7641854F1E506C13003C7FFC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		76535A5320138B1B00DD8523 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
-		7679B67E1E7DA8A100477755 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7679B6901E7E601500477755 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7679B6A41E7E715400477755 /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EscaladeLaunchHelper-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -454,6 +453,9 @@
 		76C493771E4A0B5E00A0D066 /* MainMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		76C493791E4A0C8900A0D066 /* Escalade-macOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Escalade-macOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		76C4937A1E4A0C8A00A0D066 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		76CA418A2090B5DC008D2556 /* Escalade-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Escalade-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		76CA418B2090B5DD008D2556 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
+		76CA418C2090B5DD008D2556 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
 		76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PacketTunnel-iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DB4CBB1E6BF0B80019FA42 /* PacketTunnel_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel_iOS.entitlements; sourceTree = "<group>"; };
 		76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
@@ -703,9 +705,11 @@
 				76B08C301E7CF84D00E6146E /* ServerController.swift */,
 				76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */,
 				76B08C321E7CF84D00E6146E /* Utils.swift */,
-				7679B67E1E7DA8A100477755 /* Log.swift */,
 				7679B6901E7E601500477755 /* API.swift */,
 				7679B6A41E7E715400477755 /* RPC.swift */,
+				76CA418B2090B5DD008D2556 /* Log.h */,
+				76CA418C2090B5DD008D2556 /* Log.m */,
+				76CA418A2090B5DC008D2556 /* Escalade-iOS-Bridging-Header.h */,
 			);
 			path = Escalade;
 			sourceTree = "<group>";
@@ -925,7 +929,7 @@
 					76312AB51E6BEE7C000B66C9 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = LL5MM59PQ7;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					76841E811E505EA300685B0F = {
@@ -1182,9 +1186,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */,
-				7679B6801E7DA8A100477755 /* Log.swift in Sources */,
 				76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */,
 				76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */,
+				76CA418F2090B5DE008D2556 /* Log.m in Sources */,
 				76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */,
 				7679B6921E7E601500477755 /* API.swift in Sources */,
 				76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */,
@@ -1208,6 +1212,7 @@
 			files = (
 				76B711EE20270E950020895A /* PacketTunnelProvider.swift in Sources */,
 				760C97FC208C683200EBDB8A /* TCPPacket.m in Sources */,
+				76CA418E2090B5DE008D2556 /* Log.m in Sources */,
 				76B711F120270F2F0020895A /* RPC.swift in Sources */,
 				760C9804208C689000EBDB8A /* Utils.m in Sources */,
 				76B711F020270F0F0020895A /* ServerController.swift in Sources */,
@@ -1218,7 +1223,6 @@
 				760C9800208C684800EBDB8A /* Checksum.m in Sources */,
 				76B711EC20270E3E0020895A /* TUNController.swift in Sources */,
 				760C981C208C774D00EBDB8A /* NATProxyServer.swift in Sources */,
-				76B711E920270DB80020895A /* Log.swift in Sources */,
 				76B711F320270F670020895A /* API.swift in Sources */,
 				76B711ED20270E480020895A /* ProxyService.swift in Sources */,
 				760C97F0208C5CFA00EBDB8A /* PacketTranslator.m in Sources */,
@@ -1231,11 +1235,11 @@
 			files = (
 				76B08C621E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
-				7679B67F1E7DA8A100477755 /* Log.swift in Sources */,
 				76B08C3E1E7D3B7800E6146E /* TUNController.swift in Sources */,
 				76B08C351E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
 				76B08C371E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */,
+				76CA418D2090B5DE008D2556 /* Log.m in Sources */,
 				76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */,
 				76B711DE202707C70020895A /* VPNManager.swift in Sources */,
 				76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */,
@@ -1256,10 +1260,10 @@
 				76B08C341E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
 				76B08C3A1E7CF84D00E6146E /* TrafficMonitor.swift in Sources */,
 				760C9821208C901F00EBDB8A /* HostEndpoint.m in Sources */,
-				7679B6811E7DA8A100477755 /* Log.swift in Sources */,
 				760C9805208C689000EBDB8A /* Utils.m in Sources */,
 				76B08C3F1E7D3B7800E6146E /* TUNController.swift in Sources */,
 				76B08C631E7D4A7800E6146E /* ProxyService.swift in Sources */,
+				76CA41902090B5DE008D2556 /* Log.m in Sources */,
 				760C97F1208C5CFA00EBDB8A /* PacketTranslator.m in Sources */,
 				760C97FD208C683200EBDB8A /* TCPPacket.m in Sources */,
 				7679B6A71E7E715400477755 /* RPC.swift in Sources */,
@@ -1495,6 +1499,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Escalade/Escalade-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1551,6 +1556,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "simpzan.Escalade-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Escalade/Escalade-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
