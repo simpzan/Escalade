@@ -52,7 +52,7 @@ static char getLevel(DDLogFlag flag) {
 
 DDLogLevel ddLogLevel;
 
-int setupLog(DDLogLevel level) {
+int _setupLog(DDLogLevel level) {
     ddLogLevel = level;
     DDTTYLogger *tty = [DDTTYLogger sharedInstance];
     tty.logFormatter = [[ESLogFormatter alloc] init];
@@ -70,5 +70,13 @@ int setupLog(DDLogLevel level) {
     
     NSString *logFile = fileLogger.logFileManager.sortedLogFilePaths.firstObject;
     NSLog(@"logFile %@", logFile);
+    return 0;
+}
+
+int setupLog(DDLogLevel level) {
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        _setupLog(level);
+    });
     return 0;
 }
