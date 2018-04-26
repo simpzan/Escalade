@@ -5,6 +5,7 @@
 //  Created by simpzan on 22/04/2018.
 //
 
+#import "Log.h"
 #import "PacketTranslator.h"
 #import "TCPPacket.h"
 #import "HostEndpoint.h"
@@ -39,16 +40,16 @@ static PacketTranslator *gInstance = nil;
     NSString *originalPacket = packet.description;
     
     if (![packet.sourceAddress isEqualToString:_interfaceIp]) {
-        NSLog(@"Does not know how to handle packet: %@", originalPacket);
+        DDLogError(@"Does not know how to handle packet: %@", originalPacket);
         return nil;
     }
     if (packet.protocol == 17) {
         NSString *str = [[NSString alloc]initWithData:packet.udpData encoding:NSUTF8StringEncoding];
-        NSLog(@"udp data %@", str);
+        DDLogInfo(@"udp data %@", str);
         return nil;
     }
     if (packet.protocol != 6) {
-        NSLog(@"unknown protocol %d, %@", (int)packet.protocol, originalPacket);
+        DDLogError(@"unknown protocol %d, %@", (int)packet.protocol, originalPacket);
         return nil;
     }
     
@@ -70,7 +71,7 @@ static PacketTranslator *gInstance = nil;
         packet.destinationPort = _proxyServerPort;
         direction = @"request";
     }
-    NSLog(@"%@ %@ translated to %@", direction, originalPacket, packet.description);
+    DDLogVerbose(@"%@ %@ translated to %@", direction, originalPacket, packet.description);
     return packet.raw;
 }
 
@@ -91,11 +92,10 @@ static PacketTranslator *gInstance = nil;
 }
 
 + (void)setInstance:(PacketTranslator *)instance {
-    NSLog(@"translator %p -> %p", gInstance, instance);
+    DDLogInfo(@"translator %p -> %p", gInstance, instance);
     gInstance = instance;
 }
 + (PacketTranslator *)getInstance {
-    NSLog(@"return instance %p", gInstance);
     return gInstance;
 }
 

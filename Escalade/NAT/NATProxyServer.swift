@@ -77,7 +77,6 @@ public class TranslatedProxySocket: ProxySocket {
         guard let point = PacketTranslator.getInstance()?.getOriginalEndpoint(actualDestinationPort) else {
             return forceDisconnect()
         }
-        NSLog("opening socket to \(point)")
         
         guard let session = ConnectSession(host: point.hostname, port: Int(point.port)) else {
             return forceDisconnect()

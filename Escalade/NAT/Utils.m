@@ -10,6 +10,8 @@
 #import <net/if.h>
 #import <arpa/inet.h>
 #import "Utils.h"
+#import "Log.h"
+#define NSLog(...) DDLogInfo(__VA_ARGS__);
 
 static NSString *getIfName(NSString *ip) {
     struct ifaddrs *interfaces = NULL;
