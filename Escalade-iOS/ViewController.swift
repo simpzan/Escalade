@@ -54,7 +54,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let api = APIClient()
 
     @IBAction func test(_ sender: Any) {
-        manager.sendMessage(msg: "dumpTunnel")
+//        manager.sendMessage(msg: "dumpTunnel")
+//        GCDAsyncSocket.httpRequest("www.taobao.com", 80)
+        httpTest("http://www.taobao.com")
     }
 
     override func viewDidLoad() {
