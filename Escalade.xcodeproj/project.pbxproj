@@ -46,6 +46,7 @@
 		76535A5420138B1B00DD8523 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76535A5320138B1B00DD8523 /* Sparkle.framework */; };
 		7656510D2091FB8D00D59160 /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656510B2091FB8C00D59160 /* NetworkTests.m */; };
 		7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656510B2091FB8C00D59160 /* NetworkTests.m */; };
+		7656511E209360EF00D59160 /* UIViewController+ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 76565112209360EE00D59160 /* UIViewController+ActionSheet.m */; };
 		7679B6921E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B6931E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B69B1E7E614700477755 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
@@ -408,6 +409,8 @@
 		76535A5320138B1B00DD8523 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		7656510B2091FB8C00D59160 /* NetworkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkTests.m; sourceTree = "<group>"; };
 		7656510C2091FB8C00D59160 /* NetworkTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkTests.h; sourceTree = "<group>"; };
+		76565112209360EE00D59160 /* UIViewController+ActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ActionSheet.m"; sourceTree = "<group>"; };
+		7656511D209360EE00D59160 /* UIViewController+ActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ActionSheet.h"; sourceTree = "<group>"; };
 		7679B6901E7E601500477755 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7679B6A41E7E715400477755 /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EscaladeLaunchHelper-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -622,6 +625,8 @@
 				76CA418A2090B5DC008D2556 /* Escalade-iOS-Bridging-Header.h */,
 				76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */,
 				76107EC51E7D9BD800BC5E6F /* VPNManager.swift */,
+				7656511D209360EE00D59160 /* UIViewController+ActionSheet.h */,
+				76565112209360EE00D59160 /* UIViewController+ActionSheet.m */,
 				76312ABA1E6BEE7C000B66C9 /* ViewController.swift */,
 				76312ABC1E6BEE7C000B66C9 /* Main.storyboard */,
 				76312ABF1E6BEE7C000B66C9 /* Assets.xcassets */,
@@ -1196,6 +1201,7 @@
 				7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */,
 				76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */,
 				76CA418F2090B5DE008D2556 /* Log.m in Sources */,
+				7656511E209360EF00D59160 /* UIViewController+ActionSheet.m in Sources */,
 				76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */,
 				7679B6921E7E601500477755 /* API.swift in Sources */,
 				76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */,

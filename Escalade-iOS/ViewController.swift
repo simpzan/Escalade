@@ -54,9 +54,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let api = APIClient()
 
     @IBAction func test(_ sender: Any) {
-//        manager.sendMessage(msg: "dumpTunnel")
-//        GCDAsyncSocket.httpRequest("www.taobao.com", 80)
-        httpTest("http://www.taobao.com")
+        let actions = ["DumpTunnel", "GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP"]
+        [self .select(actions, title: "choose action", { (index) in
+            switch index {
+            case 0:
+                self.manager.sendMessage(msg: "dumpTunnel")
+            case 1:
+                GCDAsyncSocket.httpRequest("simpzan.com", 8000)
+            case 2:
+                NSURLSessionHttpTest("http://simpzan.com:8000")
+            case 3:
+                dnsTest("simpzan.com")
+            default:
+                udpSend("159.89.119.178", 8877, "hello from iphone")
+            }
+        })]
     }
 
     override func viewDidLoad() {

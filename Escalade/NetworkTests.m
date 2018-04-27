@@ -11,8 +11,85 @@
 
 @end
 
+#include <netdb.h>
+#include <stdio.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
-void httpTest(NSString *dataUrl) {
+void udpSend(NSString *addr, uint16_t port, NSString *message) {
+    const char *address = [addr cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *msg = [message cStringUsingEncoding:NSUTF8StringEncoding];
+    int s;
+    struct sockaddr_in server;
+    
+    /* Create a datagram socket in the internet domain and use the
+     * default protocol (UDP).
+     */
+    if ((s = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
+        NSLog(@"socket()");
+        return;
+    }
+    
+    /* Set up the server name */
+    server.sin_family      = AF_INET;            /* Internet Domain    */
+    server.sin_port        = htons(port);               /* Server Port        */
+    server.sin_addr.s_addr = inet_addr(address); /* Server's Address   */
+    
+    /* Send the message in buf to the server */
+    if (sendto(s, msg, (strlen(msg)+1), 0,
+               (struct sockaddr *)&server, sizeof(server)) < 0) {
+        NSLog(@"sendto()");
+        return;
+    }
+    
+    /* Deallocate the socket */
+    close(s);
+    NSLog(@"udpSend %s:%d, %s", address, port, msg);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+
+#ifndef   NI_MAXHOST
+#define   NI_MAXHOST 1025
+#endif
+
+void dnsTest(NSString *aDomain) {
+    const char *domain = [aDomain cStringUsingEncoding:NSUTF8StringEncoding];
+    struct addrinfo *result;
+    struct addrinfo *res;
+    int error;
+    
+    /* resolve the domain name into a list of addresses */
+    error = getaddrinfo(domain, NULL, NULL, &result);
+    if (error != 0) {
+        NSLog(@"error in getaddrinfo: %s\n", gai_strerror(error));
+        return;
+    }
+    
+    /* loop over all returned results and do inverse lookup */
+    for (res = result; res != NULL; res = res->ai_next) {
+        char hostname[NI_MAXHOST] = "";
+        
+        error = getnameinfo(res->ai_addr, res->ai_addrlen, hostname, NI_MAXHOST, NULL, 0, 0);
+        if (error != 0) {
+            NSLog(@"error in getnameinfo: %s\n", gai_strerror(error));
+            continue;
+        }
+        if (*hostname != '\0')
+            NSLog(@"hostname: %s\n", hostname);
+    }
+    
+    freeaddrinfo(result);
+    return;
+}
+
+
+void NSURLSessionHttpTest(NSString *dataUrl) {
     NSURL *url = [NSURL URLWithString:dataUrl];
     NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
                                           dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
