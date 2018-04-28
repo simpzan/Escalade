@@ -7,3 +7,4 @@
 #import "Utils.h"
 #import "PacketTranslator.h"
 #import "Log.h"
+#import "ConnectivityManager.h"

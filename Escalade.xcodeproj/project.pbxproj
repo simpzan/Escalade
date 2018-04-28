@@ -43,6 +43,8 @@
 		76312AC01E6BEE7C000B66C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76312ABF1E6BEE7C000B66C9 /* Assets.xcassets */; };
 		76312AC31E6BEE7C000B66C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76312AC11E6BEE7C000B66C9 /* LaunchScreen.storyboard */; };
 		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
+		7642ED582094ADB7002DBA3C /* ConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7642ED572094ADB7002DBA3C /* ConnectivityManager.m */; };
+		7642ED592094ADB7002DBA3C /* ConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7642ED572094ADB7002DBA3C /* ConnectivityManager.m */; };
 		76535A5420138B1B00DD8523 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76535A5320138B1B00DD8523 /* Sparkle.framework */; };
 		7656510D2091FB8D00D59160 /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656510B2091FB8C00D59160 /* NetworkTests.m */; };
 		7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656510B2091FB8C00D59160 /* NetworkTests.m */; };
@@ -406,6 +408,8 @@
 		76312AC21E6BEE7C000B66C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76312AC41E6BEE7C000B66C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7641854F1E506C13003C7FFC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		7642ED562094ADB7002DBA3C /* ConnectivityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectivityManager.h; sourceTree = "<group>"; };
+		7642ED572094ADB7002DBA3C /* ConnectivityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectivityManager.m; sourceTree = "<group>"; };
 		76535A5320138B1B00DD8523 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		7656510B2091FB8C00D59160 /* NetworkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkTests.m; sourceTree = "<group>"; };
 		7656510C2091FB8C00D59160 /* NetworkTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkTests.h; sourceTree = "<group>"; };
@@ -721,6 +725,8 @@
 				76CA418C2090B5DD008D2556 /* Log.m */,
 				7656510C2091FB8C00D59160 /* NetworkTests.h */,
 				7656510B2091FB8C00D59160 /* NetworkTests.m */,
+				7642ED562094ADB7002DBA3C /* ConnectivityManager.h */,
+				7642ED572094ADB7002DBA3C /* ConnectivityManager.m */,
 			);
 			path = Escalade;
 			sourceTree = "<group>";
@@ -1226,6 +1232,7 @@
 				76B711EE20270E950020895A /* PacketTunnelProvider.swift in Sources */,
 				760C97FC208C683200EBDB8A /* TCPPacket.m in Sources */,
 				76CA418E2090B5DE008D2556 /* Log.m in Sources */,
+				7642ED582094ADB7002DBA3C /* ConnectivityManager.m in Sources */,
 				76B711F120270F2F0020895A /* RPC.swift in Sources */,
 				760C9804208C689000EBDB8A /* Utils.m in Sources */,
 				76B711F020270F0F0020895A /* ServerController.swift in Sources */,
@@ -1279,6 +1286,7 @@
 				76B08C631E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				76CA41902090B5DE008D2556 /* Log.m in Sources */,
 				760C97F1208C5CFA00EBDB8A /* PacketTranslator.m in Sources */,
+				7642ED592094ADB7002DBA3C /* ConnectivityManager.m in Sources */,
 				760C97FD208C683200EBDB8A /* TCPPacket.m in Sources */,
 				7679B6A71E7E715400477755 /* RPC.swift in Sources */,
 				760C981D208C774D00EBDB8A /* NATProxyServer.swift in Sources */,

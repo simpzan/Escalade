@@ -33,9 +33,10 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         setupLog(.debug)
         DDLogInfo("startTunnel \(self) \(options)")
-
-        self.addObserver(self, forKeyPath: "defaultPath", options: [.new], context: nil)
-
+        connectivity.listenNetworkChange { (type) in
+            DDLogInfo("network changed to \(type.description), restarting proxy service")
+            self.proxyService?.restart()
+        }
         setTunnelNetworkSettings(tunController.getTunnelSettings()) { (error) in
             if error != nil {
                 DDLogError("setTunnelNetworkSettings error:\(error)")
@@ -49,11 +50,15 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
         DDLogInfo("stopTunnel \(self) \(reason)")
-        self.removeObserver(self, forKeyPath: "defaultPath")
+        connectivity.stopListening()
         proxyService?.stop()
         api?.stop()
         completionHandler()
     }
+    
+    private lazy var connectivity: ConnectivityManager! = {
+        return ConnectivityManager(provider: self)
+    }()
 
     override func handleAppMessage(_ messageData: Data, completionHandler: ((Data?) -> Void)? = nil) {
         guard let msg = String(data: messageData, encoding: .utf8) else { return }
@@ -67,11 +72,6 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         default:
             DDLogWarn("unknown msg \(msg)")
         }
-    }
-
-    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        DDLogInfo("defaultPath changed")
-//        proxyService?.restart()
     }
 
     override func sleep(completionHandler: @escaping () -> Void) {
@@ -90,18 +90,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 }
 
-
-func getConnectivityState() -> ConnectivityState {
-    let addrs = getNetworkAddresses()
-
-    var result = ConnectivityState.none
-    if addrs?["en0"] != nil { result = .wifi }
-    else if addrs?["pdp_ip0"] != nil { result = .celluar }
-
-    DDLogDebug("connectivity state \(result), addrs \(addrs)")
-    return result
+extension NetworkType {
+    var description: String {
+        let descriptions = ["None", "Wifi", "Cellular"]
+        return descriptions[self.rawValue]
+    }
 }
-enum ConnectivityState {
-    case wifi, celluar, none
-}
-
