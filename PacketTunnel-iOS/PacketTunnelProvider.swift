@@ -56,15 +56,16 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 
     override func handleAppMessage(_ messageData: Data, completionHandler: ((Data?) -> Void)? = nil) {
-        let msg = String(data: messageData, encoding: .utf8)
+        guard let msg = String(data: messageData, encoding: .utf8) else { return }
         DDLogInfo("received request \(msg)")
-        if (msg == "dumpTunnel") {
+        switch msg {
+        case "dumpTunnel":
             proxyService?.proxyManager.dump()
             completionHandler?(nil)
-            return
-        }
-        if let handler = completionHandler {
-            handler(messageData)
+        case "reportIssue":
+            DDLogError("############ReportIssue############")
+        default:
+            DDLogWarn("unknown msg \(msg)")
         }
     }
 
