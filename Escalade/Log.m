@@ -56,17 +56,17 @@ int _setupLog(DDLogLevel level) {
     ddLogLevel = level;
     DDTTYLogger *tty = [DDTTYLogger sharedInstance];
     tty.logFormatter = [[ESLogFormatter alloc] init];
-    [DDLog addLogger:tty];
+    [DDLog addLogger:tty withLevel:level];
     
     DDASLLogger *asl = [DDASLLogger sharedInstance];
 //    asl.logFormatter = [[ESLogFormatter alloc]init];
-    [DDLog addLogger:asl];
+    [DDLog addLogger:asl withLevel:level];
 
     DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
     fileLogger.logFormatter = [[ESLogFormatter alloc] init];
     fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
     fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
-    [DDLog addLogger:fileLogger];
+    [DDLog addLogger:fileLogger withLevel:level];
     
     NSString *logFile = fileLogger.logFileManager.sortedLogFilePaths.firstObject;
     NSLog(@"logFile %@", logFile);
