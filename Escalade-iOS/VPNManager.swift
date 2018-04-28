@@ -10,6 +10,13 @@ import Foundation
 import NetworkExtension
 import CocoaLumberjackSwift
 
+extension NEVPNStatus {
+    var description: String {
+        let descriptions = ["invalid", "disconnected", "connecting", "connected", "reasserting", "disconnecting"]
+        return descriptions[self.rawValue]
+    }
+}
+
 class VPNManager: NSObject {
     public override init() {
         super.init()

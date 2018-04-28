@@ -26,11 +26,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func connectionChanged() {
         let state = manager.status
-        NSLog("status changed to \(state.rawValue)")
-        let disabledStates: [NEVPNStatus] = [.disconnecting, .connecting, .reasserting]
-        connectSwitch.isEnabled = !disabledStates.contains(state)
-        let onStates: [NEVPNStatus] = [.connected, .connecting, .reasserting]
-        connectSwitch.setOn(onStates.contains(state), animated: true)
+        let enabled = [.connected, .disconnected, .invalid].contains(state)
+        connectSwitch.isEnabled = enabled
+        let on = [.connected, .connecting, .reasserting].contains(state)
+        connectSwitch.setOn(on, animated: true)
+        NSLog("status changed to \(state.description), enabled: \(enabled), on: \(on)")
     }
 
 
