@@ -58,6 +58,10 @@ static PacketTranslator *gInstance = nil;
         // load
         NSNumber *destinationPort = @(packet.destinationPort);
         HostEndpoint *endpoint = _map[destinationPort];
+        if (!endpoint) {
+            DDLogWarn(@"endpoint not found for packet %@", originalPacket);
+            return nil;
+        }
         packet.sourcePort = endpoint.port;
         packet.sourceAddress = endpoint.hostname;
         packet.destinationAddress = _interfaceIp;
@@ -84,11 +88,12 @@ static PacketTranslator *gInstance = nil;
 }
 
 - (void)start {
-    
+    DDLogInfo(@"%s", __FUNCTION__);
 }
 
 - (void)stop {
-    
+    DDLogInfo(@"%s", __FUNCTION__);
+    [_map removeAllObjects];
 }
 
 + (void)setInstance:(PacketTranslator *)instance {
