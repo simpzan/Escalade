@@ -64,8 +64,10 @@ int _setupLog(DDLogLevel level) {
 
     DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
     fileLogger.logFormatter = [[ESLogFormatter alloc] init];
-    fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
-    fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+    fileLogger.rollingFrequency = 0;
+    fileLogger.maximumFileSize = 0;
+    fileLogger.doNotReuseLogFiles = YES;
+    fileLogger.logFileManager.maximumNumberOfLogFiles = 100;
     [DDLog addLogger:fileLogger withLevel:level];
     
     NSString *logFile = fileLogger.logFileManager.sortedLogFilePaths.firstObject;
