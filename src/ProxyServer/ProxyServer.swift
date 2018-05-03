@@ -87,6 +87,7 @@ open class ProxyServer: NSObject, TunnelDelegate {
         tunnel.delegate = self
         tunnels.append(tunnel)
         tunnel.openTunnel()
+        DDLogInfo("\(tunnel) created, total count \(tunnels.count)")
     }
 
     // MARK: TunnelDelegate implementation
@@ -104,6 +105,7 @@ open class ProxyServer: NSObject, TunnelDelegate {
         }
 
         tunnels.remove(at: index)
+        DDLogInfo("\(tunnel) closed, total count \(tunnels.count)")
     }
 
     public func dump() {
