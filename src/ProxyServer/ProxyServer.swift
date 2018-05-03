@@ -1,6 +1,7 @@
 import Foundation
 import CocoaAsyncSocket
 import Resolver
+import CocoaLumberjackSwift
 
 /**
  The base proxy server class.
@@ -110,7 +111,7 @@ open class ProxyServer: NSObject, TunnelDelegate {
         let name = String(describing: self)
         let total = tunnels.count
         for tunnel in tunnels {
-            NSLog("\(name) \(i)/\(total). \(tunnel)")
+            DDLogInfo("\(name) \(i)/\(total). \(tunnel)")
             i += 1
         }
     }

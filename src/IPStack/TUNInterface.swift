@@ -66,7 +66,7 @@ open class TUNInterface {
             QueueFactory.getQueue().async {
                 for (i, packet) in packets.enumerated() {
                     let stack = self.stacks.first { $0.input(packet: packet, version: versions[i]) }
-                    if let s = stack { DDLogDebug("packet \(packet) found processor \(s)") }
+                    if let s = stack { DDLogVerbose("packet \(packet) found processor \(s)") }
                     else { DDLogError("packet \(packet) not processed!") }
                 }
             }
