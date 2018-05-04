@@ -1,4 +1,5 @@
 import Foundation
+import CocoaLumberjackSwift
 
 struct ConnectInfo: Hashable {
     let sourceAddress: IPAddress
@@ -75,6 +76,7 @@ public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
 
         // swiftlint:disable:next force_cast
         let payload = (packet.protocolParser as! UDPProtocolParser).payload
+        DDLogInfo("udp relay \(packet.description)")
         socket.write(data: payload!)
     }
 

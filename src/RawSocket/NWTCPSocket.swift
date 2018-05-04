@@ -142,7 +142,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
 
         connection!.readMinimumLength(1, maximumLength: Opt.MAXNWTCPSocketReadDataSize) { data, error in
             guard error == nil else {
-                DDLogError("NWTCPSocket got an error when reading data: \(error) \(self.state)")
+                DDLogError("\(self) got an error when reading data: \(error) \(self.state)")
                 self.queueCall {
                     self.disconnect()
                 }

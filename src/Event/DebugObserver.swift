@@ -60,10 +60,11 @@ open class DebugProxySocketObserver: Observer<ProxySocketEvent> {
              .readyForForward:
             DDLogVerbose("\(event)")
         case .disconnectCalled,
-             .forceDisconnectCalled,
-             .readData,
-             .wroteData:
+             .forceDisconnectCalled:
             DDLogDebug("\(event)")
+        case .readData,
+             .wroteData:
+            DDLogVerbose("\(event)")
         }
     }
 }
@@ -80,10 +81,11 @@ open class DebugAdapterSocketObserver: Observer<AdapterSocketEvent> {
              .readyForForward:
             DDLogVerbose("\(event)")
         case .disconnectCalled,
-             .forceDisconnectCalled,
-             .readData,
-             .wroteData:
+             .forceDisconnectCalled:
             DDLogDebug("\(event)")
+        case .readData,
+            .wroteData:
+            DDLogVerbose("\(event)")
         }
     }
 }
