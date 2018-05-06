@@ -10,7 +10,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.simpzan.Escalade-macOS</string>
+		<string>group.com.simpzan.Escalade.macOS</string>
 	</array>
 	<key>com.apple.security.network.client</key>
 	<true/>

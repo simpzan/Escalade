@@ -295,7 +295,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     func updateStartAtLoginItem() {
         startAtLoginItem.state = launchHelper.enabled ? NSOnState : NSOffState
     }
-    let launchHelper = AutoLaunchHelper(identifier: "com.simpzan.EscaladeLaunchHelper-macOS")
+    let launchHelper = AutoLaunchHelper(identifier: "com.simpzan.Escalade.macOS.LaunchHelper")
 
 
     @IBAction func helpClicked(_ sender: Any) {

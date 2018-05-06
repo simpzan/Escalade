@@ -8,7 +8,7 @@
 
 import Cocoa
 
-public let appId = "simpzan.Escalade-macOS"
+public let appId = "com.simpzan.Escalade.macOS"
 public let groupId = "group." + appId
 public let providerBundleIdentifier = appId + ".PacketTunnel"
 
