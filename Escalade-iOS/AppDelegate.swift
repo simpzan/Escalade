@@ -47,14 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func getConfigListViewController() -> ViewController? {
+        guard let navVC = window?.rootViewController as? UINavigationController else { return nil }
+        return navVC.viewControllers.first as? ViewController
+    }
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         DDLogInfo("imported url \(url)")
         guard let yaml = try? String(contentsOf: url, encoding:.utf8) else {
             DDLogError("failed to load the url using utf8, \(url)")
             return false
         }
-        guard loadConfiguration(content: yaml) != nil else {
-            DDLogError("the yaml file is malformed: \(yaml)")
+        guard let vc = getConfigListViewController(), vc.loadConfig(yaml: yaml) else {
+            DDLogError("failed to load the yaml file: \(yaml)")
             return false
         }
         save(key: configKey, value: yaml)

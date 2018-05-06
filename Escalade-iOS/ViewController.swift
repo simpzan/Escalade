@@ -10,6 +10,7 @@ import UIKit
 import NetworkExtension
 import CocoaLumberjackSwift
 import SVProgressHUD
+import NEKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let manager = VPNManager()
@@ -27,7 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func connectionChanged() {
         let state = manager.status
         let enabled = [.connected, .disconnected, .invalid].contains(state)
-        connectSwitch.isEnabled = enabled
+        connectSwitch.isEnabled = enabled && configuration != nil
         let on = [.connected, .connecting, .reasserting].contains(state)
         connectSwitch.setOn(on, animated: true)
         NSLog("status changed to \(state.description), enabled: \(enabled), on: \(on)")
@@ -75,8 +76,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadConfig()
+        loadConfig(yaml: load(key: configKey))
         
+        connectionChanged()
         manager.monitorStatus { (_) in
             self.connectionChanged()
         }
@@ -91,16 +93,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBOutlet weak var tableView: UITableView!
-    func loadConfig() {
-        let configString = manager.configString
-        guard let config = loadConfiguration(content: configString) else { return }
+    public func loadConfig(yaml: String?) -> Bool {
+        guard let yaml = yaml, let config = loadConfiguration(content: yaml) else { return false }
         let serverNames = config.adapterFactoryManager.selectFactory.servers
         servers = serverNames.map({ (server) -> (String, String) in
             return (server, "")
         })
         current = load(key: currentServerKey)
         tableView.reloadData()
+        self.configuration = config
+        connectionChanged()
+        return true
     }
+    var configuration: Configuration?
 
     let currentServerKey = "currentServer"
     var current: String? = nil
