@@ -21,7 +21,6 @@
 		760C9820208C901F00EBDB8A /* HostEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C981F208C901F00EBDB8A /* HostEndpoint.m */; };
 		760C9821208C901F00EBDB8A /* HostEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C981F208C901F00EBDB8A /* HostEndpoint.m */; };
 		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
-		76107EC41E7D8DCD00BC5E6F /* fyzhuji.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */; };
 		76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
 		761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884502016128B00156F92 /* SVProgressHUD.framework */; };
 		7618845A2016128B00156F92 /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884582016128B00156F92 /* MMWormhole.framework */; };
@@ -31,12 +30,6 @@
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
 		76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
-		762B6F841E756654003E8B55 /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B6F7F1E7565AD003E8B55 /* tun2socks.framework */; };
-		762B6F851E756654003E8B55 /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B6F831E7565AD003E8B55 /* lwip.framework */; };
-		762B6F861E756672003E8B55 /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B6F7F1E7565AD003E8B55 /* tun2socks.framework */; };
-		762B6F871E756672003E8B55 /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762B6F831E7565AD003E8B55 /* lwip.framework */; };
-		762B6F881E756677003E8B55 /* tun2socks.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762B6F7F1E7565AD003E8B55 /* tun2socks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		762B6F891E756677003E8B55 /* lwip.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762B6F831E7565AD003E8B55 /* lwip.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */; };
 		76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312ABA1E6BEE7C000B66C9 /* ViewController.swift */; };
 		76312ABE1E6BEE7C000B66C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76312ABC1E6BEE7C000B66C9 /* Main.storyboard */; };
@@ -119,7 +112,6 @@
 		76B711DF202708730020895A /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A41E7E715400477755 /* RPC.swift */; };
 		76B711E1202708E60020895A /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76B711E0202708E60020895A /* MMWormhole.framework */; };
 		76B711E2202708F10020895A /* MMWormhole.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76B711E0202708E60020895A /* MMWormhole.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		76B711E32027091D0020895A /* fyzhuji.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */; };
 		76B711E720270D8B0020895A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; };
 		76B711E820270D8B0020895A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A211E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework */; };
 		76B711EC20270E3E0020895A /* TUNController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C3D1E7D3B7800E6146E /* TUNController.swift */; };
@@ -191,34 +183,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 76277F151E4CF5D3006C06A6;
 			remoteInfo = SystemProxyConfig;
-		};
-		762B6F7C1E7565AD003E8B55 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3642C9FE1CEDCC60001E0AAF;
-			remoteInfo = "tun2socks-macOS";
-		};
-		762B6F7E1E7565AD003E8B55 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 36C48CA21CF8701A0071804F;
-			remoteInfo = "tun2socks-iOS";
-		};
-		762B6F801E7565AD003E8B55 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 36A718F11D5B0A1B00DC35F5;
-			remoteInfo = "lwip-macOS";
-		};
-		762B6F821E7565AD003E8B55 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 36A718FF1D5B0AC100DC35F5;
-			remoteInfo = "lwip-iOS";
 		};
 		76841E971E50602000685B0F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -364,8 +328,6 @@
 				760C9816208C743E00EBDB8A /* CocoaAsyncSocket.framework in CopyFiles */,
 				7618845B201612AB00156F92 /* MMWormhole.framework in CopyFiles */,
 				7618845C201612AB00156F92 /* SVProgressHUD.framework in CopyFiles */,
-				762B6F881E756677003E8B55 /* tun2socks.framework in CopyFiles */,
-				762B6F891E756677003E8B55 /* lwip.framework in CopyFiles */,
 				76A184F41E6C14A600C35C83 /* CocoaLumberjack.framework in CopyFiles */,
 				76A184F51E6C14A600C35C83 /* CocoaLumberjackSwift.framework in CopyFiles */,
 				76A184F71E6C14A700C35C83 /* MMDB.framework in CopyFiles */,
@@ -391,7 +353,6 @@
 		760C981B208C774D00EBDB8A /* NATProxyServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NATProxyServer.swift; sourceTree = "<group>"; };
 		760C981E208C901F00EBDB8A /* HostEndpoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostEndpoint.h; sourceTree = "<group>"; };
 		760C981F208C901F00EBDB8A /* HostEndpoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HostEndpoint.m; sourceTree = "<group>"; };
-		76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fyzhuji.yaml; sourceTree = "<group>"; };
 		76107EC51E7D9BD800BC5E6F /* VPNManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
 		761884502016128B00156F92 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		761884582016128B00156F92 /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
@@ -399,7 +360,6 @@
 		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76277F201E4CF758006C06A6 /* SystemProxyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemProxyController.swift; sourceTree = "<group>"; };
-		762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = tun2socks.xcodeproj; path = NEKit/Carthage/Checkouts/tun2socks/tun2socks.xcodeproj; sourceTree = "<group>"; };
 		76312AB61E6BEE7C000B66C9 /* Escalade-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Escalade-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76312ABA1E6BEE7C000B66C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -496,8 +456,6 @@
 			files = (
 				7618845E201612BE00156F92 /* NetworkExtension.framework in Frameworks */,
 				761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */,
-				762B6F861E756672003E8B55 /* tun2socks.framework in Frameworks */,
-				762B6F871E756672003E8B55 /* lwip.framework in Frameworks */,
 				76A184E31E6C149100C35C83 /* CocoaAsyncSocket.framework in Frameworks */,
 				76A184E41E6C149100C35C83 /* CocoaLumberjack.framework in Frameworks */,
 				76A184E51E6C149100C35C83 /* CocoaLumberjackSwift.framework in Frameworks */,
@@ -560,8 +518,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				762B6F841E756654003E8B55 /* tun2socks.framework in Frameworks */,
-				762B6F851E756654003E8B55 /* lwip.framework in Frameworks */,
 				76DF1D6C1E6C172F0041646A /* CocoaAsyncSocket.framework in Frameworks */,
 				76DF1D6D1E6C172F0041646A /* CocoaLumberjack.framework in Frameworks */,
 				76DF1D6E1E6C172F0041646A /* CocoaLumberjackSwift.framework in Frameworks */,
@@ -612,17 +568,6 @@
 			path = SystemProxyConfig;
 			sourceTree = "<group>";
 		};
-		762B6F731E7565AD003E8B55 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				762B6F7D1E7565AD003E8B55 /* tun2socks.framework */,
-				762B6F7F1E7565AD003E8B55 /* tun2socks.framework */,
-				762B6F811E7565AD003E8B55 /* lwip.framework */,
-				762B6F831E7565AD003E8B55 /* lwip.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		76312AB71E6BEE7C000B66C9 /* Escalade-iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,7 +582,6 @@
 				76312AC11E6BEE7C000B66C9 /* LaunchScreen.storyboard */,
 				76312AC41E6BEE7C000B66C9 /* Info.plist */,
 				76DB4CCC1E6BF8870019FA42 /* asu_pid.entitlements */,
-				76107EC31E7D8DCD00BC5E6F /* fyzhuji.yaml */,
 			);
 			path = "Escalade-iOS";
 			sourceTree = "<group>";
@@ -745,7 +689,6 @@
 			isa = PBXGroup;
 			children = (
 				760C980A208C70B200EBDB8A /* CocoaAsyncSocket.xcodeproj */,
-				762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */,
 				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
 				76B08C2D1E7CF84D00E6146E /* Escalade */,
 				76C4935D1E4A0AA100A0D066 /* Escalade-macOS */,
@@ -1018,10 +961,6 @@
 					ProductGroup = 768D4A061E4B4AB900B73E10 /* Products */;
 					ProjectRef = 768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */;
 				},
-				{
-					ProductGroup = 762B6F731E7565AD003E8B55 /* Products */;
-					ProjectRef = 762B6F721E7565AD003E8B55 /* tun2socks.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1055,34 +994,6 @@
 			fileType = wrapper.framework;
 			path = CocoaAsyncSocket.framework;
 			remoteRef = 760C9814208C70B200EBDB8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		762B6F7D1E7565AD003E8B55 /* tun2socks.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = tun2socks.framework;
-			remoteRef = 762B6F7C1E7565AD003E8B55 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		762B6F7F1E7565AD003E8B55 /* tun2socks.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = tun2socks.framework;
-			remoteRef = 762B6F7E1E7565AD003E8B55 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		762B6F811E7565AD003E8B55 /* lwip.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = lwip.framework;
-			remoteRef = 762B6F801E7565AD003E8B55 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		762B6F831E7565AD003E8B55 /* lwip.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = lwip.framework;
-			remoteRef = 762B6F821E7565AD003E8B55 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		768D4A0E1E4B4AB900B73E10 /* NEKit.framework */ = {
@@ -1129,7 +1040,6 @@
 			files = (
 				76312AC31E6BEE7C000B66C9 /* LaunchScreen.storyboard in Resources */,
 				76312AC01E6BEE7C000B66C9 /* Assets.xcassets in Resources */,
-				76107EC41E7D8DCD00BC5E6F /* fyzhuji.yaml in Resources */,
 				76312ABE1E6BEE7C000B66C9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1156,7 +1066,6 @@
 			files = (
 				764185501E506C13003C7FFC /* dsa_pub.pem in Resources */,
 				76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */,
-				76B711E32027091D0020895A /* fyzhuji.yaml in Resources */,
 				76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */,
 				76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */,
 				76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */,
