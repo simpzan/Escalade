@@ -13,10 +13,10 @@ import CocoaLumberjackSwift
 let configKey = "config"
 
 let defaults = UserDefaults(suiteName: groupId)!
-func save(key: String, value: String) {
+func saveDefaults(key: String, value: String) {
     defaults.set(value, forKey: key)
 }
-func load(key: String) -> String? {
+func loadDefaults(key: String) -> String? {
     return defaults.string(forKey: key)
 }
 

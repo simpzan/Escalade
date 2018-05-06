@@ -31,7 +31,7 @@ class VPNManager: NSObject {
         self.callback = callback
     }
     var lastState: NEVPNStatus = .invalid
-    func connectionChanged() {
+    @objc func connectionChanged() {
         if lastState == status { return }
         lastState = status
         callback?(lastState)

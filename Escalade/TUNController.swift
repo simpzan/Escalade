@@ -68,7 +68,7 @@ class TUNController {
         let v4Settings = NEIPv4Settings(addresses:[interfaceIp], subnetMasks:["255.255.255.0"])
         v4Settings.includedRoutes = [NEIPv4Route.default()]
 //        v4Settings.excludedRoutes = [NEIPv4Route(destinationAddress:"114.114.114.114", subnetMask:"255.255.255.255")]
-        settings.iPv4Settings = v4Settings
+        settings.ipv4Settings = v4Settings
         settings.proxySettings = getProxySettings()
         return settings
     }

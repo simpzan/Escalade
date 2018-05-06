@@ -14,7 +14,7 @@ public let groupId = "group.com.simpzan.Escalade.macOS"
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
     private lazy var proxyService: ProxyService? = {
-        guard let configString = load(key: configKey) else {
+        guard let configString = loadDefaults(key: configKey) else {
             DDLogError("load config string failed")
             return nil
         }

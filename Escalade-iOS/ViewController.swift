@@ -45,7 +45,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         api.autoSelect { (result) in
             DDLogInfo("auto selelct result \(result)")
             self.servers = result
-            self.current = load(key: self.currentServerKey)
+            self.current = loadDefaults(key: self.currentServerKey)
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
         }
@@ -75,7 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = loadConfig(yaml: load(key: configKey))
+        _ = loadConfig(yaml: loadDefaults(key: configKey))
         
         connectionChanged()
         manager.monitorStatus { (_) in
@@ -97,7 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         servers = serverNames.map({ (server) -> (String, String) in
             return (server, "")
         })
-        current = load(key: currentServerKey)
+        current = loadDefaults(key: currentServerKey)
         tableView.reloadData()
         self.configuration = config
         connectionChanged()
@@ -124,7 +124,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let (server, _) = servers[indexPath.row]
-        save(key: currentServerKey, value: server)
+        saveDefaults(key: currentServerKey, value: server)
         current = server
         if manager.connected {
             let result = api.switchServer(server: server)

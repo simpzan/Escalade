@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DDLogError("failed to load the yaml file: \(yaml)")
             return false
         }
-        save(key: configKey, value: yaml)
+        saveDefaults(key: configKey, value: yaml)
         SVProgressHUD.showSuccess(withStatus: "config file imported")
         return true
     }

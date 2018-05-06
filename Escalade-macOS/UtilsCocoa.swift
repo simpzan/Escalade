@@ -22,10 +22,10 @@ public func runCommand(path: String, args: [String]) -> (output: String, error: 
     task.launch()
 
     let outdata = outpipe.fileHandleForReading.readDataToEndOfFile()
-    let output = String(data: outdata, encoding: String.Encoding.utf8)
+    let output = String(data: outdata, encoding: .utf8)
 
     let errdata = errpipe.fileHandleForReading.readDataToEndOfFile()
-    let error_output = String(data: errdata, encoding: String.Encoding.utf8)
+    let error_output = String(data: errdata, encoding: .utf8)
 
     task.waitUntilExit()
     let status = task.terminationStatus
@@ -42,7 +42,7 @@ func sendNotification(title: String, text: String) {
 
 public func selectFile() -> String? {
     let dialog = NSOpenPanel()
-    if dialog.runModal() == NSFileHandlingPanelOKButton {
+    if dialog.runModal() == .OK {
         return dialog.url?.path
     }
     return nil
@@ -52,7 +52,8 @@ public func alert(_ title: String, buttons: [String] = ["OK"]) -> Int {
     let alert = NSAlert()
     buttons.forEach { alert.addButton(withTitle: $0) }
     alert.messageText = title
-    return alert.runModal() - NSAlertFirstButtonReturn
+    let result = alert.runModal()
+    return result.rawValue - NSApplication.ModalResponse.alertFirstButtonReturn.rawValue
 }
 
 public func confirm(_ title: String) -> Bool {
@@ -60,9 +61,9 @@ public func confirm(_ title: String) -> Bool {
 }
 
 func copyString(string: String) {
-    let pasteboard = NSPasteboard.general()
+    let pasteboard = NSPasteboard.general
     pasteboard.clearContents()
-    pasteboard.setString(string, forType: NSStringPboardType)
+    pasteboard.setString(string, forType: .string)
 }
 
 extension NSObject {
@@ -70,7 +71,7 @@ extension NSObject {
         let item = NSMenuItem()
         item.title = title
         item.tag = tag
-        item.state = state ? NSOnState : NSOffState
+        item.state = state ? .on : .off
         item.toolTip = title
         item.target = self
         item.action = action

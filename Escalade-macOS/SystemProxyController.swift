@@ -44,7 +44,7 @@ class SystemProxyController {
 
     public func load() {
         restoreSystemProxyState()
-        NotificationCenter.default.addObserver(self, selector: #selector(clearSystemProxyState), name: NSNotification.Name.NSApplicationWillTerminate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearSystemProxyState), name: NSApplication.willTerminateNotification, object: nil)
     }
     private func restoreSystemProxyState() {
         if persistedEnableState {

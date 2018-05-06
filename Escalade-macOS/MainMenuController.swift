@@ -18,7 +18,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
     override func awakeFromNib() {
         statusItem.toolTip = "Escalade"
-        statusItem.image = NSImage(named: "MenuBarIcon")
+        statusItem.image = NSImage(named: NSImage.Name(rawValue: "MenuBarIcon"))
         statusItem.menu = mainMenu
 
         mainMenu.delegate = self
@@ -40,7 +40,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         listenReachabilityChange()
     }
     @IBOutlet weak var mainMenu: NSMenu!
-    let statusItem = NSStatusBar.system().statusItem(withLength: -1)
+    let statusItem = NSStatusBar.system.statusItem(withLength: -1)
 
 
     func menuWillOpen(_ menu: NSMenu) {
@@ -68,7 +68,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     func updateSystemProxyItem(enabled: Bool) {
         NSLog("update system proxy state to \(enabled)")
         statusItem.button?.appearsDisabled = !enabled
-        systemProxyItem.state = enabled ? NSOnState : NSOffState
+        systemProxyItem.state = enabled ? .on : .off
     }
     @IBOutlet weak var systemProxyItem: NSMenuItem!
     @IBAction func systemProxyClicked(_ sender: Any) {
@@ -107,7 +107,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         startProxy()
         return true
     }
-    func configClicked(sender: NSMenuItem) {
+    @objc func configClicked(sender: NSMenuItem) {
         let name = sender.title
         if !configManager.setConfiguration(name: name) {
             print("setConfiguration \(name) failed")
@@ -131,7 +131,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         }
     }
     @IBAction func openConfigFolderClicked(_ sender: Any) {
-        NSWorkspace.shared().openFile(configManager.configuraionFolder)
+        NSWorkspace.shared.openFile(configManager.configuraionFolder)
     }
     @IBAction func reloadConfigClicked(_ sender: Any) {
         _ = reloadConfigurations()
@@ -168,7 +168,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
             }
         }
     }
-    func serverClicked(sender: NSMenuItem) {
+    @objc func serverClicked(sender: NSMenuItem) {
         let name = sender.representedObject as! String
         serverController.currentServer = name
         updateServerList()
@@ -191,7 +191,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
             let nameRightPadded = name.padding(toLength: maxNameLength, withPad: " ", startingAt: 0)
             let title = "\(nameRightPadded) \t\(miliseconds(pingValue))"
-            let attr = [NSFontAttributeName: NSFont.userFixedPitchFont(ofSize: 14.0)!]
+            let attr = [NSAttributedStringKey.font: NSFont.userFixedPitchFont(ofSize: 14.0)!]
             item.attributedTitle = NSAttributedString(string: title, attributes: attr)
             item.representedObject = name
             menu.addItem(item)
@@ -292,13 +292,13 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     }
     @IBOutlet weak var startAtLoginItem: NSMenuItem!
     func updateStartAtLoginItem() {
-        startAtLoginItem.state = launchHelper.enabled ? NSOnState : NSOffState
+        startAtLoginItem.state = launchHelper.enabled ? .on : .off
     }
     let launchHelper = AutoLaunchHelper(identifier: "com.simpzan.Escalade.macOS.LaunchHelper")
 
 
     @IBAction func helpClicked(_ sender: Any) {
-        NSWorkspace.shared().open(URL(string: "https://github.com/simpzan/Escalade")!)
+        NSWorkspace.shared.open(URL(string: "https://github.com/simpzan/Escalade")!)
     }
     @IBAction func quitClicked(_ sender: Any) {
         NSApp.terminate(nil)

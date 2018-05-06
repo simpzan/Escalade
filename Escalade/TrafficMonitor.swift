@@ -88,12 +88,12 @@ class TrafficMonitor: NSObject {
         }
     }
 
-    func updateTraffic() {
+    @objc func updateTraffic() {
         let (rx, tx) = getRate()
         callback?(rx, tx)
     }
     var timer: Timer!
-    var callback: (((Int, Int)) -> Void)?
+    var callback: ((Int, Int) -> Void)?
     public func startUpdate(callback: @escaping (Int, Int) -> Void) {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTraffic), userInfo: nil, repeats: true)
         RunLoop.current.add(timer, forMode: RunLoopMode.commonModes)
