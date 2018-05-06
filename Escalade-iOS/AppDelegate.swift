@@ -10,9 +10,9 @@ import UIKit
 import CocoaLumberjackSwift
 import SVProgressHUD
 
-public let appId = "simpzan.Escalade-iOS"
+public let appId = "com.simpzan.Escalade.iOS"
 public let groupId = "group." + appId
-public let providerBundleIdentifier = appId + ".PacketTunnel-iOS"
+public let providerBundleIdentifier = appId + ".PacketTunnel"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
