@@ -34,7 +34,6 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         DDLogInfo("startTunnel \(self) \(options)")
-        NSLog("log file \(logFile)")
         
         self.addObserver(self, forKeyPath: "defaultPath", options: [.new], context: nil)
 //        proxyService?.start()
@@ -51,7 +50,6 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
         DDLogInfo("stopTunnel \(self) \(reason)")
-        NSLog("log file \(logFile)")
         self.removeObserver(self, forKeyPath: "defaultPath")
         proxyService?.stop()
         api?.stop()

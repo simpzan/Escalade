@@ -27,7 +27,8 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         serversItem.action = #selector(autoSelectClicked(_:))
         serversItem.target = self
 
-        NSLog("log file \(logFile)")
+        setupLog(.info)
+        NSLog("log file \(getLogFilePath())")
 
         let _ = launchHelper.validate()
         updateStartAtLoginItem()
@@ -78,8 +79,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
     // MARK: - configurations
     func showSetupGuide() {
-        return
-        
         guard let file = selectFile() else { return }
 
         if !configManager.importConfig(file: file) {
@@ -267,7 +266,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     // MARK: -
 
     @IBAction func showLogClicked(_ sender: Any) {
-        if let logfile = logFile {
+        if let logfile = getLogFilePath() {
             _ = runCommand(path: "/usr/bin/env", args: ["open", "-a", "Console", logfile])
         }
     }
