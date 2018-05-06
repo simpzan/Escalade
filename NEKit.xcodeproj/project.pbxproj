@@ -170,7 +170,6 @@
 		36B8936F1E17F97600881890 /* ResponseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8936D1E17F97600881890 /* ResponseGenerator.swift */; };
 		36B893711E17FB0B00881890 /* ResponseGeneratorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B893701E17FB0B00881890 /* ResponseGeneratorFactory.swift */; };
 		36B893721E17FB0B00881890 /* ResponseGeneratorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B893701E17FB0B00881890 /* ResponseGeneratorFactory.swift */; };
-		36BC589B1CF2A3D400E0E367 /* TUNTCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC589A1CF2A3D400E0E367 /* TUNTCPSocket.swift */; };
 		36C48D501CF88DED0071804F /* NEKit-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 36C48D4F1CF88DED0071804F /* NEKit-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		36C48D561CF88EB60071804F /* AdapterFactoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B162351CDDA0F300F24C97 /* AdapterFactoryManager.swift */; };
 		36C48D571CF88EB60071804F /* AdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B162341CDDA0F300F24C97 /* AdapterFactory.swift */; };
@@ -198,7 +197,6 @@
 		36C48D741CF88ED40071804F /* NWTCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1621A1CDDA0EA00F24C97 /* NWTCPSocket.swift */; };
 		36C48D751CF88ED40071804F /* RawSocketFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366EB5CC1CE06B5E00E0E942 /* RawSocketFactory.swift */; };
 		36C48D761CF88ED40071804F /* RawTCPSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1621E1CDDA0EA00F24C97 /* RawTCPSocketProtocol.swift */; };
-		36C48D781CF88ED40071804F /* TUNTCPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BC589A1CF2A3D400E0E367 /* TUNTCPSocket.swift */; };
 		36C48D791CF88EDA0071804F /* CountryRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1620C1CDDA0E000F24C97 /* CountryRule.swift */; };
 		36C48D7A1CF88EDA0071804F /* DomainListRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366EB5C61CE033FB00E0E942 /* DomainListRule.swift */; };
 		36C48D7B1CF88EDA0071804F /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1620D1CDDA0E000F24C97 /* Rule.swift */; };
@@ -220,18 +218,14 @@
 		36C4B7D21D6C508100F2BDCD /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7C91D6C508100F2BDCD /* CocoaAsyncSocket.framework */; };
 		36C4B7D31D6C508100F2BDCD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7CA1D6C508100F2BDCD /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B7D41D6C508100F2BDCD /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7CB1D6C508100F2BDCD /* CocoaLumberjackSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		36C4B7D61D6C508100F2BDCD /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7CD1D6C508100F2BDCD /* lwip.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B7D71D6C508100F2BDCD /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7CE1D6C508100F2BDCD /* MMDB.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B7D81D6C508100F2BDCD /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7CF1D6C508100F2BDCD /* Sodium.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		36C4B7D91D6C508100F2BDCD /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7D01D6C508100F2BDCD /* tun2socks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B7DA1D6C508100F2BDCD /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7D11D6C508100F2BDCD /* Yaml.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B7E41D6C517600F2BDCD /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7DB1D6C517600F2BDCD /* CocoaAsyncSocket.framework */; };
 		36C4B7E51D6C517600F2BDCD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7DC1D6C517600F2BDCD /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B7E61D6C517600F2BDCD /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7DD1D6C517600F2BDCD /* CocoaLumberjackSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		36C4B7E81D6C517600F2BDCD /* lwip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7DF1D6C517600F2BDCD /* lwip.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B7E91D6C517600F2BDCD /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7E01D6C517600F2BDCD /* MMDB.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B7EA1D6C517600F2BDCD /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7E11D6C517600F2BDCD /* Sodium.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		36C4B7EB1D6C517600F2BDCD /* tun2socks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7E21D6C517600F2BDCD /* tun2socks.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B7EC1D6C517600F2BDCD /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7E31D6C517600F2BDCD /* Yaml.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		36C4B8111D6C51A400F2BDCD /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7DB1D6C517600F2BDCD /* CocoaAsyncSocket.framework */; };
 		36C4B8121D6C51A400F2BDCD /* CocoaAsyncSocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 36C4B7DB1D6C517600F2BDCD /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -263,8 +257,6 @@
 		36C63DFD1D00797D00A00CA2 /* Checksum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C63DFB1D00797D00A00CA2 /* Checksum.swift */; };
 		36C63E011D02BDEC00A00CA2 /* IPStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C63E001D02BDEC00A00CA2 /* IPStackProtocol.swift */; };
 		36C63E021D02BDEC00A00CA2 /* IPStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C63E001D02BDEC00A00CA2 /* IPStackProtocol.swift */; };
-		36C63E041D02C0B700A00CA2 /* TCPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C63E031D02C0B700A00CA2 /* TCPStack.swift */; };
-		36C63E051D02C0B700A00CA2 /* TCPStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C63E031D02C0B700A00CA2 /* TCPStack.swift */; };
 		36CB0D331D51C68700DB7AF5 /* HTTPProxySocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB0D321D51C68700DB7AF5 /* HTTPProxySocket.swift */; };
 		36CB0D341D51C68700DB7AF5 /* HTTPProxySocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB0D321D51C68700DB7AF5 /* HTTPProxySocket.swift */; };
 		36CB0D381D51E06700DB7AF5 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB0D371D51E06700DB7AF5 /* HTTPHeader.swift */; };
@@ -601,10 +593,8 @@
 				36C4B7E41D6C517600F2BDCD /* CocoaAsyncSocket.framework in Frameworks */,
 				36C4B7E51D6C517600F2BDCD /* CocoaLumberjack.framework in Frameworks */,
 				36C4B7E61D6C517600F2BDCD /* CocoaLumberjackSwift.framework in Frameworks */,
-				36C4B7E81D6C517600F2BDCD /* lwip.framework in Frameworks */,
 				36C4B7E91D6C517600F2BDCD /* MMDB.framework in Frameworks */,
 				36C4B7EA1D6C517600F2BDCD /* Sodium.framework in Frameworks */,
-				36C4B7EB1D6C517600F2BDCD /* tun2socks.framework in Frameworks */,
 				36C4B7EC1D6C517600F2BDCD /* Yaml.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -634,10 +624,8 @@
 				36C4B7D21D6C508100F2BDCD /* CocoaAsyncSocket.framework in Frameworks */,
 				36C4B7D31D6C508100F2BDCD /* CocoaLumberjack.framework in Frameworks */,
 				36C4B7D41D6C508100F2BDCD /* CocoaLumberjackSwift.framework in Frameworks */,
-				36C4B7D61D6C508100F2BDCD /* lwip.framework in Frameworks */,
 				36C4B7D71D6C508100F2BDCD /* MMDB.framework in Frameworks */,
 				36C4B7D81D6C508100F2BDCD /* Sodium.framework in Frameworks */,
-				36C4B7D91D6C508100F2BDCD /* tun2socks.framework in Frameworks */,
 				36C4B7DA1D6C508100F2BDCD /* Yaml.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1442,7 +1430,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				36B2ACD91DDF407F00BD2C3D /* HMAC.swift in Sources */,
-				36BC589B1CF2A3D400E0E367 /* TUNTCPSocket.swift in Sources */,
 				36B3667B1D586CA1003343AA /* DNSFailRule.swift in Sources */,
 				36CB0D381D51E06700DB7AF5 /* HTTPHeader.swift in Sources */,
 				3621B9491DFA92480003ABB3 /* GlobalIntializer.swift in Sources */,
@@ -1457,7 +1444,6 @@
 				36D4007D1E07E48B00583102 /* HTTPURL.swift in Sources */,
 				36C63DCE1CFD70C100A00CA2 /* DNSServer.swift in Sources */,
 				3636DA621CE892EF007F9787 /* Port.swift in Sources */,
-				36C63E041D02C0B700A00CA2 /* TCPStack.swift in Sources */,
 				36411A731D1FBFB0005F4108 /* IPPool.swift in Sources */,
 				362950541D6AE3B6001A30F6 /* RuleMatchEvent.swift in Sources */,
 				36B162251CDDA0EA00F24C97 /* AdapterSocket.swift in Sources */,
@@ -1577,7 +1563,6 @@
 				36D4007E1E07E48B00583102 /* HTTPURL.swift in Sources */,
 				36C63DCF1CFD70C100A00CA2 /* DNSServer.swift in Sources */,
 				36C48D7B1CF88EDA0071804F /* Rule.swift in Sources */,
-				36C63E051D02C0B700A00CA2 /* TCPStack.swift in Sources */,
 				36411A741D1FBFB0005F4108 /* IPPool.swift in Sources */,
 				362950551D6AE3B6001A30F6 /* RuleMatchEvent.swift in Sources */,
 				36C48D741CF88ED40071804F /* NWTCPSocket.swift in Sources */,
@@ -1603,7 +1588,6 @@
 				368CBDA71D7911FA003CEA62 /* RejectAdapter.swift in Sources */,
 				36C48D5F1CF88EB60071804F /* DirectAdapter.swift in Sources */,
 				362347A41D82525200A047DE /* SOCKS5AdapterFactory.swift in Sources */,
-				36C48D781CF88ED40071804F /* TUNTCPSocket.swift in Sources */,
 				36C63E021D02BDEC00A00CA2 /* IPStackProtocol.swift in Sources */,
 				36C48D731CF88ED40071804F /* GCDTCPSocket.swift in Sources */,
 				36411A7D1D1FE696005F4108 /* ConnectSession.swift in Sources */,

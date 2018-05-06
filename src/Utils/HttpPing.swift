@@ -51,7 +51,7 @@ class HttpPing : SocketDelegate {
 
     func didBecomeReadyToForwardWith(socket: SocketProtocol) {
         var path = url.path
-        if path.characters.count == 0 { path = "/" }
+        if path.count == 0 { path = "/" }
         let requestContent = "HEAD \(path) HTTP/1.1\r\nHOST: \(url.host!)\r\n\r\n"
         adapter.write(data: requestContent.data(using: String.Encoding.utf8)!)
         adapter.readData()
@@ -77,7 +77,6 @@ class HttpPing : SocketDelegate {
     private func finish(_ now: Date) {
         if self.callback == nil { return }
         let diff = now.timeIntervalSince(startTimestamp)
-        print("\(url) cost \(diff) \(error)")
         let result = error == nil ? diff : -diff
         self.callback?(self.error, result)
         self.callback = nil

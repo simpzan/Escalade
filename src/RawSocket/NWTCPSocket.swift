@@ -142,7 +142,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
 
         connection!.readMinimumLength(1, maximumLength: Opt.MAXNWTCPSocketReadDataSize) { data, error in
             guard error == nil else {
-                DDLogError("\(self) got an error when reading data: \(error) \(self.state)")
+                DDLogError("\(self) got an error when reading data: \(error!) \(self.state)")
                 self.queueCall {
                     self.disconnect()
                 }
@@ -166,7 +166,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
 
         connection!.readLength(length) { data, error in
             guard error == nil else {
-                DDLogError("NWTCPSocket got an error when reading data: \(error) \(self.state)")
+                DDLogError("NWTCPSocket got an error when reading data: \(error!) \(self.state)")
                 self.queueCall {
                     self.disconnect()
                 }
@@ -281,7 +281,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
                 self.writePending = false
 
                 guard error == nil else {
-                    DDLogError("NWTCPSocket got an error when writing data: \(error) \(self.state)")
+                    DDLogError("NWTCPSocket got an error when writing data: \(error!) \(self.state)")
                     self.disconnect()
                     return
                 }
@@ -292,8 +292,8 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
         }
     }
 
-    private var state: NWTCPConnectionState? {
-        return connection?.state
+    private var state: NWTCPConnectionState {
+        return connection?.state ?? .invalid
     }
 
     private func consumeReadData(_ data: Data?) -> Data? {

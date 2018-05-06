@@ -111,3 +111,11 @@ public struct Utils {
         }
     }
 }
+
+
+extension Optional {
+    var d: String {
+        if self == nil { return "nil" }
+        return "\(self!)"
+    }
+}

@@ -22,9 +22,9 @@ public class UDPDNSResolver: NSObject, DNSResolverProtocol, NWUDPSocketDelegate 
     }
 
     public func resolve(session: DNSSession) {
-        let data = session.requestMessage.payload
+        let data: Data = session.requestMessage.payload
         DDLogVerbose("\(self) write \(data)")
-        socket.write(data: data!)
+        socket.write(data: data)
     }
 
     public func stop() {

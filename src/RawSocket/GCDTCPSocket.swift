@@ -206,7 +206,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
     /**
      Secures the connection using SSL/TLS.
 
-     - parameter tlsSettings: TLS settings, refer to documents of `GCDAsyncSocket` for detail.
+     - parameter settings: TLS settings, refer to documents of `GCDAsyncSocket` for detail.
      */
     func startTLSWith(settings: [AnyHashable: Any]!) {
         if let settings = settings as? [String: NSObject] {

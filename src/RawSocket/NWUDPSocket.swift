@@ -55,7 +55,7 @@ public class NWUDPSocket: NSObject {
                 sSelf.updateActivityTimer()
                 
                 guard error == nil, let dataArray = dataArray else {
-                    DDLogError("\(self) \(session.state), Error when reading from remote server. \(error) ")
+                    DDLogError("\(sSelf) \(session.state), Error when reading from remote server. \(error!) ")
 //                    sSelf.disconnect()
                     return
                 }
