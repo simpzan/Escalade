@@ -17,11 +17,6 @@ uint16_t getPort(const void *data);
 void setPort(void *data, uint16_t port);
 
 void delay(double delayInSeconds, void(^callback)(void));
-void test(NSString *ip);
-int httpRequestSocket(const char *host, uint16_t port);
-void httpRequestGCDAsyncSocket(NSString *host, uint16_t port);
-void dnsTest(const char *domain);
-void udpSend(const char *address, uint16_t port, const char *msg);
 
 NSString *getContainingAppId(void);
 NSString *getSharedAppGroupId(void);
