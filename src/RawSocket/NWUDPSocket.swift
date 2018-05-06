@@ -125,7 +125,8 @@ public class NWUDPSocket: NSObject {
 
     private func createTimer() {
         timer = DispatchSource.makeTimerSource(queue: queue)
-        timer.scheduleRepeating(deadline: DispatchTime.now(), interval: DispatchTimeInterval.seconds(Opt.UDPSocketActiveCheckInterval), leeway: DispatchTimeInterval.seconds(Opt.UDPSocketActiveCheckInterval))
+        let interval = DispatchTimeInterval.seconds(Opt.UDPSocketActiveCheckInterval)
+        timer.schedule(deadline: DispatchTime.now(), repeating:interval , leeway: interval)
         timer.setEventHandler { [weak self] in
             self?.queueCall {
                 self?.checkStatus()
