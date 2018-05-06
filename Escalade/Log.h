@@ -10,4 +10,4 @@
 
 extern DDLogLevel ddLogLevel;
 int setupLog(DDLogLevel level);
-NSString *getLogFilePath();
+NSString *getLogFilePath(void);

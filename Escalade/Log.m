@@ -83,7 +83,7 @@ int setupLog(DDLogLevel level) {
     });
     return 0;
 }
-NSString *getLogFilePath() {
+NSString *getLogFilePath(void) {
     NSString *logFile = fileLogger.logFileManager.sortedLogFilePaths.firstObject;
     return logFile;
 }

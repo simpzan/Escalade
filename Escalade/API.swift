@@ -44,7 +44,7 @@ class APIServer {
         })
         addAsyncAPI(autoSelectId) { (input, done) in
             self.serverController.autoSelect(callback: { (err, server) in
-                DDLogInfo("autoSelect callback \(err) \(server)")
+                DDLogInfo("autoSelect callback \(err.d) \(server.d)")
                 if server != nil { return }
 
                 let output = self.servers

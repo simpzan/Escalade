@@ -31,4 +31,4 @@ NSString *getSharedAppGroupId(void);
 - (NSString*)hexRepresentation;
 @end
 
-NSDictionary *getNetworkAddresses();
+NSDictionary *getNetworkAddresses(void);

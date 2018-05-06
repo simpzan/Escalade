@@ -179,7 +179,7 @@ NSDictionary *_networkAddresses(struct ifaddrs *interfaces) {
     }
     return result;
 }
-NSDictionary *getNetworkAddresses() {
+NSDictionary *getNetworkAddresses(void) {
     struct ifaddrs *interfaces = NULL;
     NSInteger success = getifaddrs(&interfaces);
     

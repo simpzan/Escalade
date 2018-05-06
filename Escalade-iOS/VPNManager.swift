@@ -21,7 +21,7 @@ class VPNManager: NSObject {
     public override init() {
         super.init()
         loadManager { (manager) in
-            DDLogInfo("load manager result \(manager)")
+            DDLogInfo("load manager result \(manager.d)")
             self.connectionChanged()
         }
     }
@@ -62,7 +62,7 @@ class VPNManager: NSObject {
             if error == nil {
                 callback(manager)
             } else {
-                NSLog("create manager error \(error)")
+                NSLog("create manager error \(error!)")
                 callback(nil)
             }
         }
@@ -82,7 +82,7 @@ class VPNManager: NSObject {
                 self.manager = manager
                 callback(manager)
             } else {
-                NSLog("load managers failed \(error)")
+                NSLog("load managers failed \(error!)")
                 callback(nil)
             }
         }
@@ -126,7 +126,7 @@ class VPNManager: NSObject {
         guard let session = manager?.connection as? NETunnelProviderSession else { return }
         guard let data = msg.data(using: .utf8) else { return }
         try? session.sendProviderMessage(data) { (reply) in
-            NSLog("received response \(reply)")
+            NSLog("received response \(reply.d)")
         }
     }
 }

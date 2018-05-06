@@ -33,14 +33,14 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }()
     
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
-        DDLogInfo("startTunnel \(self) \(options)")
+        DDLogInfo("startTunnel \(self) \(options.d)")
         
         self.addObserver(self, forKeyPath: "defaultPath", options: [.new], context: nil)
 //        proxyService?.start()
         
         setTunnelNetworkSettings(tunController.getTunnelSettings()) { (error) in
             if error != nil {
-                DDLogError("setTunnelNetworkSettings error:\(error)")
+                DDLogError("setTunnelNetworkSettings error:\(error!)")
                 return
             }
             self.api?.start()
@@ -82,20 +82,3 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         DDLogDebug("deinit \(self)")
     }
 }
-
-
-func getConnectivityState() -> ConnectivityState {
-    let addrs = getNetworkAddresses()
-    
-    var result = ConnectivityState.none
-    if addrs?["en0"] != nil { result = .wifi }
-    else if addrs?["pdp_ip0"] != nil { result = .celluar }
-    
-    DDLogDebug("connectivity state \(result), addrs \(addrs)")
-    return result
-}
-enum ConnectivityState {
-    case wifi, celluar, none
-}
-
-

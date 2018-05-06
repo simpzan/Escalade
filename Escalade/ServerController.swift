@@ -66,7 +66,7 @@ class ServerController: NSObject {
                     self.saveCurrentServer(name: server!)
                     callback(nil, server)
                 } else if selected != nil {
-                    DDLogInfo("auto select: \(selected) \(self.servers)")
+                    DDLogInfo("auto select: \(selected!) \(self.servers)")
                     callback(nil, nil)
                 } else {
                     DDLogInfo("auto select failed: \(self.servers)")
@@ -85,18 +85,18 @@ class ServerController: NSObject {
         }
         testDirect { _, _ in done() }
         factory.testCurrent { err, result in
-            DDLogInfo("ping proxy: \(err) \(result)")
+            DDLogInfo("ping proxy: \(err.d) \(result)")
             done()
         }
     }
     private func testDirect(done: @escaping (Error?, TimeInterval) -> Void) {
         factory.testDirect(timeout: 1) { err, result in
-            DDLogInfo("ping direct 1: \(err) \(result)")
+            DDLogInfo("ping direct 1: \(err.d) \(result)")
             if err == nil {
                 return done(nil, result)
             }
             self.factory.testDirect(timeout: 1) { err, result in
-                DDLogInfo("ping direct 2: \(err) \(result)")
+                DDLogInfo("ping direct 2: \(err.d) \(result)")
                 done(err, result)
             }
         }

@@ -47,3 +47,10 @@ extension Bundle {
         return try? String(contentsOf: url)
     }
 }
+
+extension Optional {
+    var d: String {
+        if self == nil { return "nil" }
+        return "\(self!)"
+    }
+}

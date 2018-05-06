@@ -55,7 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBAction func test(_ sender: Any) {
         let actions = ["DumpTunnel", "GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP", "ReportIssue"]
-        [self .select(actions, title: "choose action", { (index) in
+        self.select(actions, title: "choose action", { (index) in
             switch index {
             case 0:
                 self.manager.sendMessage(msg: "dumpTunnel")
@@ -70,12 +70,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             default:
                 self.manager.sendMessage(msg: "reportIssue")
             }
-        })]
+        })
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadConfig(yaml: load(key: configKey))
+        _ = loadConfig(yaml: load(key: configKey))
         
         connectionChanged()
         manager.monitorStatus { (_) in
