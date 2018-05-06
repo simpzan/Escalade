@@ -8,6 +8,7 @@
 
 import UIKit
 import CocoaLumberjackSwift
+import SVProgressHUD
 
 public let appId = "simpzan.Escalade-iOS"
 public let groupId = "group." + appId
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupLog(.debug)
+        SVProgressHUD.setMinimumDismissTimeInterval(0.5)
+        SVProgressHUD.setDefaultMaskType(.clear)
+
         // Override point for customization after application launch.
         return true
     }
@@ -54,14 +58,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         DDLogInfo("imported url \(url)")
         guard let yaml = try? String(contentsOf: url, encoding:.utf8) else {
+            SVProgressHUD.showError(withStatus: "invalid UTF8 text file");
             DDLogError("failed to load the url using utf8, \(url)")
             return false
         }
         guard let vc = getConfigListViewController(), vc.loadConfig(yaml: yaml) else {
+            SVProgressHUD.showError(withStatus: "invalid yaml file")
             DDLogError("failed to load the yaml file: \(yaml)")
             return false
         }
         save(key: configKey, value: yaml)
+        SVProgressHUD.showSuccess(withStatus: "config file imported")
         return true
     }
 }

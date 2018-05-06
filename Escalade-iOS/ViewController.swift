@@ -38,8 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var pingButton: UIBarButtonItem!
     @IBAction func pingClicked(_ sender: Any) {
         if !manager.connected {
-            SVProgressHUD.showInfo(withStatus: "VPN not enabled")
-            SVProgressHUD.dismiss(withDelay: 1)
+            SVProgressHUD.showError(withStatus: "VPN not enabled")
             return
         }
         SVProgressHUD.showInfo(withStatus: "auto selecting...\nwill finish in 4 seconds")
@@ -83,7 +82,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.connectionChanged()
         }
 
-        SVProgressHUD.setDefaultMaskType(.clear)
         api.getServersAsync { (servers) in
             if let servers = servers {
                 self.servers = servers
