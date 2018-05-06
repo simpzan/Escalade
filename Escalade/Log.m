@@ -51,6 +51,7 @@ static char getLevel(DDLogFlag flag) {
 @end
 
 DDLogLevel ddLogLevel;
+DDFileLogger *fileLogger;
 
 int _setupLog(DDLogLevel level) {
     ddLogLevel = level;
@@ -62,7 +63,7 @@ int _setupLog(DDLogLevel level) {
 //    asl.logFormatter = [[ESLogFormatter alloc]init];
     [DDLog addLogger:asl withLevel:level];
 
-    DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
+    fileLogger = [[DDFileLogger alloc] init];
     fileLogger.logFormatter = [[ESLogFormatter alloc] init];
     fileLogger.rollingFrequency = 0;
     fileLogger.maximumFileSize = 0;
@@ -82,3 +83,8 @@ int setupLog(DDLogLevel level) {
     });
     return 0;
 }
+NSString *getLogFilePath() {
+    NSString *logFile = fileLogger.logFileManager.sortedLogFilePaths.firstObject;
+    return logFile;
+}
+
