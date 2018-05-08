@@ -21,7 +21,7 @@ class VPNManager: NSObject {
     public override init() {
         super.init()
         loadManager { (manager) in
-            DDLogInfo("load manager result \(manager.d)")
+            DDLogInfo("load manager result \(manager*)")
             self.connectionChanged()
         }
     }
@@ -126,7 +126,7 @@ class VPNManager: NSObject {
         guard let session = manager?.connection as? NETunnelProviderSession else { return }
         guard let data = msg.data(using: .utf8) else { return }
         try? session.sendProviderMessage(data) { (reply) in
-            NSLog("received response \(reply.d)")
+            NSLog("received response \(reply*)")
         }
     }
 }

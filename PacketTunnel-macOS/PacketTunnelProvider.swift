@@ -33,7 +33,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }()
     
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
-        DDLogInfo("startTunnel \(self) \(options.d)")
+        DDLogInfo("startTunnel \(self) \(options*)")
         
         self.addObserver(self, forKeyPath: "defaultPath", options: [.new], context: nil)
 //        proxyService?.start()

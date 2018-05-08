@@ -32,7 +32,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         setupLog(.debug)
-        DDLogInfo("startTunnel \(self) \(options.d)")
+        DDLogInfo("startTunnel \(self) \(options*)")
         connectivity.listenNetworkChange { (type) in
             DDLogInfo("network changed to \(type.description), restarting proxy service")
             self.proxyService?.restart()

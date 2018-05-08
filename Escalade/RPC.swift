@@ -58,7 +58,7 @@ func callAsyncAPI(_ id: String, obj: NSCoding? = nil, timeout: TimeInterval = 5,
     }
     delay(timeout) {
         if done { return }
-        DDLogWarn("callAsyncAPI timeout \(id) \(obj.d)")
+        DDLogWarn("callAsyncAPI timeout \(id) \(obj*)")
         wormhole.stopListeningForMessage(withIdentifier: id2)
         callback(nil)
     }
@@ -76,7 +76,7 @@ func callAPI(_ id: String, obj: NSCoding? = nil) -> NSCoding? {
         RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.1))
     }
     if !done {
-        DDLogWarn("callAPI timeout \(id) \(obj.d)")
+        DDLogWarn("callAPI timeout \(id) \(obj*)")
     }
     return result
 }

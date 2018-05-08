@@ -85,18 +85,18 @@ class ServerController: NSObject {
         }
         testDirect { _, _ in done() }
         factory.testCurrent { err, result in
-            DDLogInfo("ping proxy: \(err.d) \(result)")
+            DDLogInfo("ping proxy: \(err*) \(result)")
             done()
         }
     }
     private func testDirect(done: @escaping (Error?, TimeInterval) -> Void) {
         factory.testDirect(timeout: 1) { err, result in
-            DDLogInfo("ping direct 1: \(err.d) \(result)")
+            DDLogInfo("ping direct 1: \(err*) \(result)")
             if err == nil {
                 return done(nil, result)
             }
             self.factory.testDirect(timeout: 1) { err, result in
-                DDLogInfo("ping direct 2: \(err.d) \(result)")
+                DDLogInfo("ping direct 2: \(err*) \(result)")
                 done(err, result)
             }
         }

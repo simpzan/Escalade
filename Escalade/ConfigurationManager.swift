@@ -96,7 +96,7 @@ class ConfigurationManager: NSObject {
     private func applyConfiguration(name: String? = nil) -> Bool {
         let key = name ?? currentConfiguration
         guard key != nil, let content = profiles[key!] else {
-            DDLogError("config \(name.d) not found")
+            DDLogError("config \(name*) not found")
             return false
         }
 

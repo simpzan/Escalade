@@ -48,8 +48,12 @@ extension Bundle {
     }
 }
 
+postfix operator *
 extension Optional {
-    var d: String {
+    static postfix func *(o: Optional) -> String {
+        return o.description
+    }
+    var description: String {
         if self == nil { return "nil" }
         return "\(self!)"
     }
