@@ -11,6 +11,7 @@ import NetworkExtension
 import CocoaLumberjackSwift
 import SVProgressHUD
 import NEKit
+import FileBrowser
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let manager = VPNManager()
@@ -54,7 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let api = APIClient()
 
     @IBAction func test(_ sender: Any) {
-        let actions = ["DumpTunnel", "GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP", "ReportIssue"]
+        let actions = ["DumpTunnel", "GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP", "ReportIssue", "View log files"]
         self.select(actions, title: "choose action", { (index) in
             switch index {
             case 0:
@@ -67,10 +68,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 dnsTest("simpzan.com")
             case 4:
                 udpSend("159.89.119.178", 8877, "hello from iphone")
-            default:
+            case 5:
                 self.manager.sendMessage(msg: "reportIssue")
+            case 6:
+                self.showLogFiles()
+            default:
+                DDLogWarn("unknown action for index \(index)")
             }
         })
+    }
+    
+    func showLogFiles() {
+        let initialPath = getContainerDir(groupId: groupId, subdir: "/Logs/")
+        let fileBrowser = FileBrowser(initialPath: URL(fileURLWithPath: initialPath))
+        present(fileBrowser, animated: true)
     }
 
     override func viewDidLoad() {

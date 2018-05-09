@@ -146,6 +146,7 @@
 		76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; };
 		76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; };
 		76E9990D2015B38B00A07852 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76535A5320138B1B00DD8523 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		76F288AD20A7D56900CA9A0D /* FileBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F288A920A7D56900CA9A0D /* FileBrowser.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -398,6 +399,7 @@
 		76DCC54D1E6C11590097C95E /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = NEKit/Carthage/Build/iOS/Sodium.framework; sourceTree = "<group>"; };
 		76DCC54F1E6C11590097C95E /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/iOS/Yaml.framework; sourceTree = "<group>"; };
 		76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PacketTunnel-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		76F288A920A7D56900CA9A0D /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = Carthage/Build/iOS/FileBrowser.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,6 +426,7 @@
 				76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */,
 				76A184EB1E6C149200C35C83 /* Yaml.framework in Frameworks */,
 				76A184DF1E6C13B600C35C83 /* NEKit.framework in Frameworks */,
+				76F288AD20A7D56900CA9A0D /* FileBrowser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +571,7 @@
 		768D4A1E1E4B4E8B00B73E10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76F288A920A7D56900CA9A0D /* FileBrowser.framework */,
 				765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */,
 				76A85A43202715B400F532BE /* NetworkExtension.framework */,
 				76B711E0202708E60020895A /* MMWormhole.framework */,
@@ -1032,6 +1036,7 @@
 				"$(SRCROOT)/NEKit/Carthage/Build/iOS/Sodium.framework",
 				"$(SRCROOT)/NEKit/Carthage/Build/iOS/Yaml.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NEKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/FileBrowser.framework",
 			);
 			name = "carthage copy-frameworks";
 			outputPaths = (
