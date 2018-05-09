@@ -37,7 +37,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }()
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
-        setupLog(.debug)
+        let path = getContainerDir(groupId: groupId, subdir: "/Logs/PacketTunnel/")
+        setupLog(.debug, path)
         DDLogInfo("startTunnel \(self) \(options*)")
         connectivity.listenNetworkChange { (type) in
             DDLogInfo("network changed to \(type.description), restarting proxy service")

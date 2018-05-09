@@ -27,7 +27,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         serversItem.action = #selector(autoSelectClicked(_:))
         serversItem.target = self
 
-        setupLog(.info)
+        setupLog(.info, nil)
         NSLog("log file \(getLogFilePath())")
 
         let _ = launchHelper.validate()

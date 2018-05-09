@@ -9,5 +9,5 @@
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
 extern DDLogLevel ddLogLevel;
-int setupLog(DDLogLevel level);
+int setupLog(DDLogLevel level, NSString *logDir);
 NSString *getLogFilePath(void);

@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        setupLog(.debug)
+        let path = getContainerDir(groupId: groupId, subdir: "/Logs/Escalade/")
+        setupLog(.debug, path)
         SVProgressHUD.setMinimumDismissTimeInterval(0.5)
         SVProgressHUD.setDefaultMaskType(.clear)
 

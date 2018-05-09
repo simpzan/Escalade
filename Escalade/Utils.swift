@@ -8,6 +8,11 @@
 
 import Foundation
 
+public func getContainerDir(groupId: String, subdir: String) -> String {
+    let path = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: groupId)!.path
+    return path + subdir
+}
+
 public func filesize(_ file: String) -> UInt64? {
     guard let attr = try? FileManager.default.attributesOfItem(atPath: file) else { return nil }
     return attr[FileAttributeKey.size] as? UInt64
