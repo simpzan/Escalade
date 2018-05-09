@@ -727,6 +727,7 @@
 				76DB4CC91E6BF0B80019FA42 /* Embed App Extensions */,
 				765C83CA209F331400A13EC9 /* Embed NEKit */,
 				765C83C9209F22F700A13EC9 /* carthage copy-frameworks */,
+				76A8E5C120A32D75006C7414 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -804,6 +805,7 @@
 				76DB4CB41E6BF0B70019FA42 /* Sources */,
 				76DB4CB51E6BF0B70019FA42 /* Frameworks */,
 				76DB4CB61E6BF0B70019FA42 /* Resources */,
+				76A8E5C220A32DD4006C7414 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1037,6 +1039,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		76A8E5C120A32D75006C7414 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh $SRCROOT/Scripts/IncrementBuild.sh";
+		};
+		76A8E5C220A32DD4006C7414 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sh $SRCROOT/Scripts/IncrementBuild.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
