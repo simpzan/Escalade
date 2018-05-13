@@ -6,7 +6,8 @@ open class AdapterSocket: NSObject, SocketProtocol, RawTCPSocketDelegate {
     open var observer: Observer<AdapterSocketEvent>?
 
     open override var description: String {
-        return "<\(typeName)>"
+        let address = Unmanaged.passUnretained(self).toOpaque()
+        return "<\(typeName) \(address)>"
     }
 
     internal var _cancelled = false
