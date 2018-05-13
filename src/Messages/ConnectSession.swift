@@ -121,7 +121,7 @@ public final class ConnectSession {
         
         // Look up fake IP reversely should never fail.
         guard let session = dnsServer.lookupFakeIP(address) else {
-            DDLogError("failed to lookup fake IP")
+            DDLogError("failed to lookup fake IP, \(address)")
             return false
         }
         

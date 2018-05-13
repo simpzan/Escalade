@@ -149,6 +149,10 @@ public class HTTPProxySocket: ProxySocket {
             }
             
             session = ConnectSession(host: destinationHost!, port: destinationPort!)
+            if session == nil {
+                disconnect()
+                return
+            }
             observer?.signal(.receivedRequest(session!, on: self))
             delegate?.didReceive(session: session!, from: self)
         case (.readingHeader, .header(let header)):
