@@ -9,6 +9,10 @@
 import NetworkExtension
 import NEKit
 import CocoaLumberjackSwift
+import Fabric
+import Crashlytics
+
+var crashlyticsInitialized = false
 
 public let groupId = "group.com.simpzan.Escalade.iOS"
 
@@ -37,6 +41,11 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }()
 
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
+        if !crashlyticsInitialized {
+            Fabric.with([Crashlytics.self])
+            crashlyticsInitialized = true
+        }
+
         let path = getContainerDir(groupId: groupId, subdir: "/Logs/PacketTunnel/")
         setupLog(.debug, path)
         DDLogInfo("startTunnel \(self) \(options*)")

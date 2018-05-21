@@ -9,6 +9,8 @@
 import UIKit
 import CocoaLumberjackSwift
 import SVProgressHUD
+import Fabric
+import Crashlytics
 
 public let appId = "com.simpzan.Escalade.iOS"
 public let groupId = "group." + appId
@@ -21,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Fabric.with([Crashlytics.self])
         let path = getContainerDir(groupId: groupId, subdir: "/Logs/Escalade/")
         setupLog(.debug, path)
         SVProgressHUD.setMinimumDismissTimeInterval(0.5)

@@ -138,6 +138,10 @@
 		76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */; };
 		76DB4CC11E6BF0B80019FA42 /* PacketTunnel-iOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */ = {isa = PBXBuildFile; fileRef = 76DCB6ED1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh */; };
+		76DDBBE920B2EB58003AE2EF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE720B2EB57003AE2EF /* Fabric.framework */; };
+		76DDBBEA20B2EB58003AE2EF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE720B2EB57003AE2EF /* Fabric.framework */; };
+		76DDBBEB20B2EB58003AE2EF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */; };
+		76DDBBEC20B2EB58003AE2EF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */; };
 		76DF1D6C1E6C172F0041646A /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */; };
 		76DF1D6D1E6C172F0041646A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */; };
 		76DF1D6E1E6C172F0041646A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D71E6C11FC00C35C83 /* CocoaLumberjackSwift.framework */; };
@@ -398,6 +402,8 @@
 		76DCC54C1E6C11590097C95E /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = NEKit/Carthage/Build/iOS/Resolver.framework; sourceTree = "<group>"; };
 		76DCC54D1E6C11590097C95E /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = NEKit/Carthage/Build/iOS/Sodium.framework; sourceTree = "<group>"; };
 		76DCC54F1E6C11590097C95E /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/iOS/Yaml.framework; sourceTree = "<group>"; };
+		76DDBBE720B2EB57003AE2EF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PacketTunnel-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		76F288A920A7D56900CA9A0D /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = Carthage/Build/iOS/FileBrowser.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -415,12 +421,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7618845E201612BE00156F92 /* NetworkExtension.framework in Frameworks */,
+				76DDBBEB20B2EB58003AE2EF /* Crashlytics.framework in Frameworks */,
 				761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */,
 				76A184E31E6C149100C35C83 /* CocoaAsyncSocket.framework in Frameworks */,
 				76A184E41E6C149100C35C83 /* CocoaLumberjack.framework in Frameworks */,
 				76A184E51E6C149100C35C83 /* CocoaLumberjackSwift.framework in Frameworks */,
 				76A184E71E6C149100C35C83 /* MMDB.framework in Frameworks */,
 				765C83C6209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */,
+				76DDBBE920B2EB58003AE2EF /* Fabric.framework in Frameworks */,
 				7618845A2016128B00156F92 /* MMWormhole.framework in Frameworks */,
 				76A184E81E6C149100C35C83 /* Resolver.framework in Frameworks */,
 				76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */,
@@ -477,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				765C83C7209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */,
+				76DDBBEA20B2EB58003AE2EF /* Fabric.framework in Frameworks */,
 				76DF1D6C1E6C172F0041646A /* CocoaAsyncSocket.framework in Frameworks */,
 				76DF1D6D1E6C172F0041646A /* CocoaLumberjack.framework in Frameworks */,
 				76DF1D6E1E6C172F0041646A /* CocoaLumberjackSwift.framework in Frameworks */,
@@ -485,6 +494,7 @@
 				76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */,
 				76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */,
 				76A184DE1E6C12F400C35C83 /* NEKit.framework in Frameworks */,
+				76DDBBEC20B2EB58003AE2EF /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +581,8 @@
 		768D4A1E1E4B4E8B00B73E10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */,
+				76DDBBE720B2EB57003AE2EF /* Fabric.framework */,
 				76F288A920A7D56900CA9A0D /* FileBrowser.framework */,
 				765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */,
 				76A85A43202715B400F532BE /* NetworkExtension.framework */,
@@ -732,6 +744,7 @@
 				765C83CA209F331400A13EC9 /* Embed NEKit */,
 				765C83C9209F22F700A13EC9 /* carthage copy-frameworks */,
 				76A8E5C120A32D75006C7414 /* Update Build Version */,
+				76DDBBED20B2EBBE003AE2EF /* Upload dSYM to Fabric */,
 			);
 			buildRules = (
 			);
@@ -810,6 +823,7 @@
 				76DB4CB51E6BF0B70019FA42 /* Frameworks */,
 				76DB4CB61E6BF0B70019FA42 /* Resources */,
 				76A8E5C220A32DD4006C7414 /* Update Build Version */,
+				76DDBBEF20B2F89B003AE2EF /* Upload dSYM to Fabric */,
 			);
 			buildRules = (
 			);
@@ -1072,6 +1086,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "buildNumber=$(date +%Y%m%d%H%M)\necho ${buildNumber} > /tmp/escalade.build\n\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\n\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\n  if [ -f \"$plist\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$plist\"\n  fi\ndone\n";
+		};
+		76DDBBED20B2EBBE003AE2EF /* Upload dSYM to Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload dSYM to Fabric";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Fabric.framework/run\" bd7b3862615dec5dfe2c5493910bfde79e848c11 58e2255aac4d67452b1e88c732ff7de6fc3b25b6ad4c7fe000023da21de13adb";
+		};
+		76DDBBEF20B2F89B003AE2EF /* Upload dSYM to Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload dSYM to Fabric";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Fabric.framework/run\" bd7b3862615dec5dfe2c5493910bfde79e848c11 58e2255aac4d67452b1e88c732ff7de6fc3b25b6ad4c7fe000023da21de13adb";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1389,6 +1431,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1456,6 +1499,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1950,6 +1994,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2015,6 +2060,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
