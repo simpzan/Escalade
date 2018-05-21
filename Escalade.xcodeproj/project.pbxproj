@@ -731,7 +731,7 @@
 				76DB4CC91E6BF0B80019FA42 /* Embed App Extensions */,
 				765C83CA209F331400A13EC9 /* Embed NEKit */,
 				765C83C9209F22F700A13EC9 /* carthage copy-frameworks */,
-				76A8E5C120A32D75006C7414 /* ShellScript */,
+				76A8E5C120A32D75006C7414 /* Update Build Version */,
 			);
 			buildRules = (
 			);
@@ -809,7 +809,7 @@
 				76DB4CB41E6BF0B70019FA42 /* Sources */,
 				76DB4CB51E6BF0B70019FA42 /* Frameworks */,
 				76DB4CB61E6BF0B70019FA42 /* Resources */,
-				76A8E5C220A32DD4006C7414 /* ShellScript */,
+				76A8E5C220A32DD4006C7414 /* Update Build Version */,
 			);
 			buildRules = (
 			);
@@ -1045,31 +1045,33 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
-		76A8E5C120A32D75006C7414 /* ShellScript */ = {
+		76A8E5C120A32D75006C7414 /* Update Build Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Update Build Version";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/Scripts/IncrementBuild.sh";
+			shellPath = /bin/bash;
+			shellScript = "buildNumber=`cat /tmp/escalade.build`\n\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\n\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\n  if [ -f \"$plist\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$plist\"\n  fi\ndone\n";
 		};
-		76A8E5C220A32DD4006C7414 /* ShellScript */ = {
+		76A8E5C220A32DD4006C7414 /* Update Build Version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Update Build Version";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh $SRCROOT/Scripts/IncrementBuild.sh";
+			shellPath = /bin/bash;
+			shellScript = "buildNumber=$(date +%Y%m%d%H%M)\necho ${buildNumber} > /tmp/escalade.build\n\ntarget_plist=\"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\ndsym_plist=\"$DWARF_DSYM_FOLDER_PATH/$DWARF_DSYM_FILE_NAME/Contents/Info.plist\"\n\nfor plist in \"$target_plist\" \"$dsym_plist\"; do\n  if [ -f \"$plist\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$plist\"\n  fi\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
