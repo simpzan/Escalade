@@ -134,6 +134,10 @@
 		76CA418E2090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
 		76CA418F2090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
 		76CA41902090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
+		76D5C68020B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
+		76D5C68120B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
+		76D5C68220B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
+		76D5C68320B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
 		76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
 		76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */; };
 		76DB4CC11E6BF0B80019FA42 /* PacketTunnel-iOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -392,6 +396,7 @@
 		76CA418A2090B5DC008D2556 /* Escalade-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Escalade-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		76CA418B2090B5DD008D2556 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		76CA418C2090B5DD008D2556 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		76D5C67C20B71B5900D9C1BD /* Repeater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repeater.swift; sourceTree = "<group>"; };
 		76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PacketTunnel-iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DB4CBB1E6BF0B80019FA42 /* PacketTunnel_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel_iOS.entitlements; sourceTree = "<group>"; };
 		76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
@@ -630,6 +635,7 @@
 				7656510B2091FB8C00D59160 /* NetworkTests.m */,
 				7642ED562094ADB7002DBA3C /* ConnectivityManager.h */,
 				7642ED572094ADB7002DBA3C /* ConnectivityManager.m */,
+				76D5C67C20B71B5900D9C1BD /* Repeater.swift */,
 			);
 			path = Escalade;
 			sourceTree = "<group>";
@@ -1131,6 +1137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */,
+				76D5C68220B71B5900D9C1BD /* Repeater.swift in Sources */,
 				76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */,
 				7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */,
 				76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */,
@@ -1170,6 +1177,7 @@
 				760C9820208C901F00EBDB8A /* HostEndpoint.m in Sources */,
 				760C9800208C684800EBDB8A /* Checksum.m in Sources */,
 				76B711EC20270E3E0020895A /* TUNController.swift in Sources */,
+				76D5C68120B71B5900D9C1BD /* Repeater.swift in Sources */,
 				760C981C208C774D00EBDB8A /* NATProxyServer.swift in Sources */,
 				76B711F320270F670020895A /* API.swift in Sources */,
 				76B711ED20270E480020895A /* ProxyService.swift in Sources */,
@@ -1184,6 +1192,7 @@
 				76B08C621E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
 				76B08C3E1E7D3B7800E6146E /* TUNController.swift in Sources */,
+				76D5C68020B71B5900D9C1BD /* Repeater.swift in Sources */,
 				76B08C351E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
 				76B08C371E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */,
@@ -1214,6 +1223,7 @@
 			files = (
 				76B08C341E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
 				76B08C3A1E7CF84D00E6146E /* TrafficMonitor.swift in Sources */,
+				76D5C68320B71B5900D9C1BD /* Repeater.swift in Sources */,
 				760C9821208C901F00EBDB8A /* HostEndpoint.m in Sources */,
 				760C9805208C689000EBDB8A /* Utils.m in Sources */,
 				76B08C3F1E7D3B7800E6146E /* TUNController.swift in Sources */,

@@ -190,3 +190,16 @@ NSDictionary *getNetworkAddresses(void) {
     freeifaddrs(interfaces);
     return result;
 }
+
+#import <mach/mach.h>
+
+int64_t memoryUsage(void) {
+    task_vm_info_data_t vmInfo;
+    mach_msg_type_number_t count = TASK_VM_INFO_COUNT;
+    kern_return_t result = task_info(mach_task_self(), TASK_VM_INFO, (task_info_t) &vmInfo, &count);
+    if (result != KERN_SUCCESS) {
+        DDLogError(@"Error with task_info(): %s", mach_error_string(result));
+        return 0;
+    }
+    return vmInfo.phys_footprint;
+}

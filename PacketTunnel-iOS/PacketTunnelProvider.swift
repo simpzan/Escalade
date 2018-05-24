@@ -40,6 +40,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         return APIServer(self.serverController)
     }()
 
+    
+    var timer: Repeater? = nil
+    
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         if !crashlyticsInitialized {
             Fabric.with([Crashlytics.self])
@@ -48,6 +51,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
         let path = getContainerDir(groupId: groupId, subdir: "/Logs/PacketTunnel/")
         setupLog(.debug, path)
+        
+        timer = Repeater.every(.minutes(1)) { (repeater) in
+            let memory = memoryUsage()
+            DDLogInfo("current memory usage \(memory) bytes")
+        }
+        timer?.fire()
+
         DDLogInfo("startTunnel \(self) \(options*)")
         connectivity.listenNetworkChange { (type) in
             DDLogInfo("network changed to \(type.description), restarting proxy service")
@@ -66,6 +76,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
         DDLogInfo("stopTunnel \(self) \(reason)")
+        timer?.pause()
         connectivity.stopListening()
         proxyService?.stop()
         api?.stop()
@@ -92,17 +103,20 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     override func sleep(completionHandler: @escaping () -> Void) {
         DDLogInfo("about to sleep...")
+        timer?.pause()
         proxyService?.stop()
         completionHandler()
     }
 
     override func wake() {
         DDLogInfo("about to wake...")
+        timer?.start()
         proxyService?.start()
     }
 
     deinit {
         DDLogDebug("deinit \(self)")
+        timer = nil
     }
 }
 

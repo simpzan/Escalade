@@ -32,3 +32,5 @@ NSString *getSharedAppGroupId(void);
 @end
 
 NSDictionary *getNetworkAddresses(void);
+
+int64_t memoryUsage(void);
