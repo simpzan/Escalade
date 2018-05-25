@@ -203,3 +203,32 @@ int64_t memoryUsage(void) {
     }
     return vmInfo.phys_footprint;
 }
+
+// http://stackoverflow.com/questions/8223348/ios-get-cpu-usage-from-application
+double cpuUsage(void) {
+    thread_array_t threads;
+    mach_msg_type_number_t threadCount;
+    kern_return_t result = task_threads(mach_task_self(), &threads, &threadCount);
+    if (result != KERN_SUCCESS) {
+        DDLogError(@"Error with task_threads(): %s", mach_error_string(result));
+        return -1;
+    }
+    double usage = 0;
+    for (int i = 0; i < threadCount; i++) {
+        thread_info_data_t info;
+        mach_msg_type_number_t infoCount = THREAD_INFO_MAX;
+        result = thread_info(threads[i], THREAD_BASIC_INFO, (thread_info_t) info, &infoCount);
+        if (result != KERN_SUCCESS) {
+            DDLogError(@"Error with thread_info(): %s", mach_error_string(result));
+            usage = -1;
+            break;
+        }
+        thread_basic_info_t threadBasicInfo = (thread_basic_info_t) info;
+        if ((threadBasicInfo->flags & TH_FLAGS_IDLE) == 0) {
+            double threadUsage = threadBasicInfo->cpu_usage;
+            usage += threadUsage / TH_USAGE_SCALE;
+        }
+    }
+    vm_deallocate(mach_task_self(), (vm_offset_t) threads, threadCount * sizeof(thread_t));
+    return usage;
+}
