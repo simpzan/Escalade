@@ -75,7 +75,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     }
 
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
-        DDLogInfo("stopTunnel \(self) \(reason)")
+        DDLogInfo("stopTunnel \(self) \(reason.description)")
         timer?.pause()
         connectivity.stopListening()
         proxyService?.stop()
@@ -123,6 +123,28 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 extension NetworkType {
     var description: String {
         let descriptions = ["None", "Wifi", "Cellular"]
+        return descriptions[self.rawValue]
+    }
+}
+
+extension NEProviderStopReason {
+    var description: String {
+        let descriptions = [
+            "None",
+            "UserInitiated",
+            "ProviderFailed",
+            "NoNetworkAvailable",
+            "UnrecoverableNetworkChange",
+            "ProviderDisabled",
+            "AuthenticationCanceled",
+            "ConfigurationFailed",
+            "IdleTimeout",
+            "ConfigurationDisabled",
+            "ConfigurationRemoved",
+            "Superceded",
+            "UserLogout",
+            "UserSwitch"
+        ]
         return descriptions[self.rawValue]
     }
 }
