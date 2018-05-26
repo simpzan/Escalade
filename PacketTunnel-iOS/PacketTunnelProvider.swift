@@ -49,7 +49,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
             crashlyticsInitialized = true
         }
 
-        let path = getContainerDir(groupId: groupId, subdir: "/Logs/PacketTunnel/")
+        let path = getContainerDir(groupId: groupId, subdir: "/Logs/")
         setupLog(.debug, path)
         
         timer = Repeater.every(.minutes(1)) { (repeater) in
