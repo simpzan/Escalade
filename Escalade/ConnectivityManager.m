@@ -48,8 +48,9 @@ static NetworkType getCurrentNetworkType() {
     DDLogDebug(@"defaultPath updated to %s", networkTypeStrings[newType]);
     if (newType == _type) return;
     
+    NetworkType oldType = _type;
     _type = newType;
-    _callback(newType);
+    _callback(oldType, newType);
 }
 
 @end

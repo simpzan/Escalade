@@ -60,9 +60,15 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         timer?.fire()
 
         DDLogInfo("startTunnel \(self) \(options*)")
-        connectivity.listenNetworkChange { (type) in
-            DDLogInfo("network changed to \(type.description), restarting proxy service")
-            self.proxyService?.restart()
+        connectivity.listenNetworkChange { (from: NetworkType, to: NetworkType) in
+            DDLogInfo("network changed from \(from.description) to \(to.description)")
+            if from == .None && to != .None {
+                self.proxyService?.start()
+            } else if from != .None && to == .None {
+                self.proxyService?.stop()
+            } else {
+                self.proxyService?.restart()
+            }
         }
         setTunnelNetworkSettings(tunController.getTunnelSettings()) { (error) in
             if error != nil {

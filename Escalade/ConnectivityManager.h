@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, NetworkType) {
 
 - (instancetype)initWithProvider:(NEProvider *)provider;
 
-typedef void (^NetworkChangedCallback)(NetworkType type);
+typedef void (^NetworkChangedCallback)(NetworkType from, NetworkType to);
 - (void)listenNetworkChange:(NetworkChangedCallback)callback;
 - (void)stopListening;
 
