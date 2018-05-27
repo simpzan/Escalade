@@ -91,8 +91,10 @@ public class NWUDPSocket: NSObject {
         
         switch session.state {
         case .cancelled:
-            queueCall {
-                self.delegate?.didCancel(socket: self)
+            queueCall { [ weak self ] in
+                if let sSelf = self {
+                    sSelf.delegate?.didCancel(socket: sSelf)
+                }
             }
         case .ready:
             checkWrite()
