@@ -111,10 +111,10 @@ public class NWUDPSocket: NSObject {
         guard pendingWriteData.count > 0 else { return }
         
         writing = true
-        session.writeMultipleDatagrams(self.pendingWriteData) {_ in
-            self.queueCall {
-                self.writing = false
-                self.checkWrite()
+        session.writeMultipleDatagrams(self.pendingWriteData) { [ weak self ] _ in
+            self?.queueCall {
+                self?.writing = false
+                self?.checkWrite()
             }
         }
         self.pendingWriteData.removeAll(keepingCapacity: true)
