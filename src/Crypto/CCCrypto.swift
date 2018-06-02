@@ -44,6 +44,7 @@ open class CCCrypto: StreamCryptoProtocol {
             }
         }
         self.cryptor = cryptor.pointee!
+        cryptor.deallocate(capacity: 1)
     }
 
     open func update( _ data: inout Data) {
