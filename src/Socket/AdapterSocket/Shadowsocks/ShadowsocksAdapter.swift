@@ -46,8 +46,8 @@ public class ShadowsocksAdapter: AdapterSocket {
     }
 
     open override var description: String {
-        let address = Unmanaged.passUnretained(self).toOpaque()
-        return "<\(typeName) \(address) \(self.host)>"
+        let address = Utils.address(of: self)
+        return String(format: "<%@ %p %@>", typeName, address, self.host)
     }
 
     override public func openSocketWith(session: ConnectSession) {

@@ -13,12 +13,9 @@ open class ProxySocket: NSObject, SocketProtocol, RawTCPSocketDelegate {
     }
 
     open override var description: String {
-        let address = Unmanaged.passUnretained(self).toOpaque()
-        if let session = session {
-            return "<\(typeName) \(address) \(session.host):\(session.port))>"
-        } else {
-            return "<\(typeName) \(address)>"
-        }
+        let address = Utils.address(of: self)
+        let sessionDescription = session == nil ? "" : " \(session!.host):\(session!.port)"
+        return String(format: "<%@ %p%@>", typeName, address, sessionDescription)
     }
 
     /**
