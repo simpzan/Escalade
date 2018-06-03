@@ -53,29 +53,41 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     let api = APIClient()
-
+    
+    func networkRequestTests() {
+        let actions = ["GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP"]
+        self.select(actions, title: "Network Tests") { (index) in
+            switch index {
+            case 0:
+                GCDAsyncSocket.httpRequest("simpzan.com", 8000)
+            case 1:
+                NSURLSessionHttpTest("http://simpzan.com:8000")
+            case 2:
+                dnsTest("simpzan.com")
+            case 3:
+                udpSend("159.89.119.178", 8877, "hello from iphone")
+            default:
+                DDLogDebug("nothing to do")
+            }
+        }
+    }
+    
     @IBAction func test(_ sender: Any) {
-        let actions = ["DumpTunnel", "GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP", "ReportIssue", "View log files", "Toggle proxy service"]
+        let actions = ["DumpTunnel", "ReportIssue", "View log files", "Toggle proxy service", "Network Tests"]
         self.select(actions, title: "choose action", { (index) in
             switch index {
             case 0:
                 self.manager.sendMessage(msg: "dumpTunnel")
             case 1:
-                GCDAsyncSocket.httpRequest("simpzan.com", 8000)
-            case 2:
-                NSURLSessionHttpTest("http://simpzan.com:8000")
-            case 3:
-                dnsTest("simpzan.com")
-            case 4:
-                udpSend("159.89.119.178", 8877, "hello from iphone")
-            case 5:
                 self.manager.sendMessage(msg: "reportIssue")
-            case 6:
+            case 2:
                 self.showLogFiles()
-            case 7:
+            case 3:
                 self.manager.sendMessage(msg: "toggleProxyService")
+            case 4:
+                self.networkRequestTests()
             default:
-                DDLogWarn("unknown action for index \(index)")
+                DDLogDebug("nothing")
             }
         })
     }
