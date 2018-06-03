@@ -15,6 +15,7 @@ class ProxyService {
     let proxyManager: ProxyServerManager
     let serverController: ServerController
     var tunController: TUNController? = nil
+    var running = false;
 
     init(config: Configuration, provider: NEPacketTunnelProvider? = nil, defaults: UserDefaults = .standard) {
         proxyManager = ProxyServerManager(config: config)
@@ -28,18 +29,27 @@ class ProxyService {
     }
 
     func start() {
+        DDLogInfo("starting")
         proxyManager.startProxyServers()
         tunController?.start()
+        running = true
+        DDLogInfo("started")
     }
 
     func stop() {
+        DDLogInfo("stopping")
         tunController?.stop()
         proxyManager.stopProxyServers()
+        running = false
+        DDLogInfo("stopped")
     }
 
     func restart() {
         stop()
         start()
     }
-
+    func toggle() {
+        if running { stop() }
+        else { start() }
+    }
 }

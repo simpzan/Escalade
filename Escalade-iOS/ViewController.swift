@@ -55,7 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let api = APIClient()
 
     @IBAction func test(_ sender: Any) {
-        let actions = ["DumpTunnel", "GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP", "ReportIssue", "View log files"]
+        let actions = ["DumpTunnel", "GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP", "ReportIssue", "View log files", "Toggle proxy service"]
         self.select(actions, title: "choose action", { (index) in
             switch index {
             case 0:
@@ -72,6 +72,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.manager.sendMessage(msg: "reportIssue")
             case 6:
                 self.showLogFiles()
+            case 7:
+                self.manager.sendMessage(msg: "toggleProxyService")
             default:
                 DDLogWarn("unknown action for index \(index)")
             }

@@ -103,6 +103,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
             completionHandler?(nil)
         case "reportIssue":
             DDLogError("############ReportIssue############")
+        case "toggleProxyService":
+            proxyService?.toggle()
         default:
             DDLogWarn("unknown msg \(msg)")
         }
