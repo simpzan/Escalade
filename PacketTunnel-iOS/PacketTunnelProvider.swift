@@ -44,10 +44,12 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     var timer: Repeater? = nil
     
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
+#if !DEBUG
         if !crashlyticsInitialized {
             Fabric.with([Crashlytics.self])
             crashlyticsInitialized = true
         }
+#endif
 
         let path = getContainerDir(groupId: groupId, subdir: "/Logs/")
         setupLog(.debug, path)

@@ -1105,7 +1105,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Fabric.framework/run\" bd7b3862615dec5dfe2c5493910bfde79e848c11 58e2255aac4d67452b1e88c732ff7de6fc3b25b6ad4c7fe000023da21de13adb";
+			shellScript = "if [ $CONFIGURATION = \"Release\" ]; then\n    \"${PROJECT_DIR}/Fabric.framework/run\" bd7b3862615dec5dfe2c5493910bfde79e848c11 58e2255aac4d67452b1e88c732ff7de6fc3b25b6ad4c7fe000023da21de13adb\nfi";
 		};
 		76DDBBEF20B2F89B003AE2EF /* Upload dSYM to Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
