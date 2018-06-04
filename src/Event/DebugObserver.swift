@@ -74,11 +74,11 @@ open class DebugAdapterSocketObserver: Observer<AdapterSocketEvent> {
         switch event {
         case .errorOccured:
             DDLogError("\(event)")
-        case .disconnected,
+        case .socketOpened,
+             .disconnected,
              .connected:
             DDLogInfo("\(event)")
-        case .socketOpened,
-             .readyForForward:
+        case .readyForForward:
             DDLogVerbose("\(event)")
         case .disconnectCalled,
              .forceDisconnectCalled:

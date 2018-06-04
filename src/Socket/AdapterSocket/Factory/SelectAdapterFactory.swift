@@ -59,7 +59,7 @@ public class SelectAdapterFactory: AdapterFactory {
     }
 
     public func testDirect(timeout: TimeInterval = 2, callback: @escaping (Error?, TimeInterval) -> Void) {
-        httpPing(url: "http://bdstatic.com/", factory: directFactory, timeout: timeout) { (err, result) in
+        httpPing(url: "http://google.cn/generate_204", factory: directFactory, timeout: timeout) { (err, result) in
             self.domesticPing = result
             callback(err, result)
         }
