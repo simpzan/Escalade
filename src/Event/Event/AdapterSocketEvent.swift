@@ -4,27 +4,27 @@ public enum AdapterSocketEvent: EventType {
     public var description: String {
         switch self {
         case let .socketOpened(socket, withSession: session):
-            return "Adatper socket \(socket) starts to connect to remote with session \(session)."
+            return "\(socket) starts to connect to remote with session \(session)."
         case .disconnectCalled(let socket):
-            return "Disconnect is just called on adapter socket \(socket)."
+            return "\(socket), Disconnect is just called."
         case .forceDisconnectCalled(let socket):
-            return "Force disconnect is just called on adapter socket \(socket)."
+            return "\(socket), Force disconnect is just called."
         case .disconnected(let socket):
-            return "Adapter socket \(socket) disconnected."
+            return "\(socket) disconnected."
         case let .readData(data, on: socket):
-            return "Received \(data.count) bytes data on adatper socket \(socket)."
+            return "\(socket), Received \(data.count) bytes data."
         case let .wroteData(data, on: socket):
             if let data = data {
-                return "Sent \(data.count) bytes data on adapter socket \(socket)."
+                return "\(socket), Sent \(data.count) bytes data."
             } else {
-                return "Sent data on adapter socket \(socket)."
+                return "\(socket), Sent data."
             }
         case let .connected(socket):
-            return "Adapter socket \(socket) connected to remote."
+            return "\(socket) connected to remote."
         case .readyForForward(let socket):
-            return "Adatper socket \(socket) is ready to forward data."
+            return "\(socket) is ready to forward data."
         case let .errorOccured(error, on: socket):
-            return "Adapter socket \(socket) encountered an error \(error)."
+            return "\(socket) encountered an error \(error)."
         }
     }
 

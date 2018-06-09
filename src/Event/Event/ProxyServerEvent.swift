@@ -4,13 +4,13 @@ public enum ProxyServerEvent: EventType {
     public var description: String {
         switch self {
         case let .newSocketAccepted(socket, onServer: server):
-            return "Proxy server \(server) just accepted a new socket \(socket)."
+            return "\(server) just accepted a new socket \(socket)."
         case let .tunnelClosed(tunnel, onServer: server):
-            return "A tunnel \(tunnel) on proxy server \(server) just closed."
+            return "\(server), \(tunnel) just closed."
         case .started(let server):
-            return "Proxy server \(server) started."
+            return "\(server) started."
         case .stopped(let server):
-            return "Proxy server \(server) stopped."
+            return "\(server) stopped."
         }
     }
 

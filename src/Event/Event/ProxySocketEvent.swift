@@ -4,29 +4,29 @@ public enum ProxySocketEvent: EventType {
     public var description: String {
         switch self {
         case .socketOpened(let socket):
-            return "Start processing data from proxy socket \(socket)."
+            return "\(socket), Start processing data."
         case .disconnectCalled(let socket):
-            return "Disconnect is just called on proxy socket \(socket)."
+            return "\(socket), Disconnect is just called."
         case .forceDisconnectCalled(let socket):
-            return "Force disconnect is just called on proxy socket \(socket)."
+            return "\(socket), Force disconnect is just called."
         case .disconnected(let socket):
-            return "Proxy socket \(socket) disconnected."
+            return "\(socket) disconnected."
         case let .receivedRequest(session, on: socket):
-            return "Proxy socket \(socket) received request \(session)."
+            return "\(socket) received request \(session)."
         case let .readData(data, on: socket):
-            return "Received \(data.count) bytes data on proxy socket \(socket)."
+            return "\(socket), Received \(data.count) bytes data."
         case let .wroteData(data, on: socket):
             if let data = data {
-                return "Sent \(data.count) bytes data on proxy socket \(socket)."
+                return "\(socket), Sent \(data.count) bytes data."
             } else {
-                return "Sent data on proxy socket \(socket)."
+                return "\(socket), Sent data."
             }
         case let .askedToResponseTo(adapter, on: socket):
-            return "Proxy socket \(socket) is asked to respond to adapter \(adapter)."
+            return "\(socket) is asked to respond to adapter \(adapter)."
         case .readyForForward(let socket):
-            return "Proxy socket \(socket) is ready to forward data."
+            return "\(socket) is ready to forward data."
         case let .errorOccured(error, on: socket):
-            return "Proxy socket \(socket) encountered an error \(error)."
+            return "\(socket) encountered an error \(error)."
         }
     }
 
