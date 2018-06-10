@@ -57,7 +57,6 @@ class TUNController {
         interface = TUNInterface(packetFlow: provider.packetFlow)
         httpProxyServer = httpServer
 
-        ObserverFactory.currentFactory = DebugObserverFactory()
         Opt.MAXNWTCPSocketReadDataSize = 60 * 1024
     }
 

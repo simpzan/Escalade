@@ -18,6 +18,8 @@ class ProxyService {
     var running = false;
 
     init(config: Configuration, provider: NEPacketTunnelProvider? = nil, defaults: UserDefaults = .standard) {
+        ObserverFactory.currentFactory = DebugObserverFactory()
+
         proxyManager = ProxyServerManager(config: config)
 
         let factory = config.adapterFactoryManager.selectFactory
