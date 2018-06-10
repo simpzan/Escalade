@@ -87,7 +87,7 @@ open class ProxyServer: NSObject, TunnelDelegate {
         tunnel.delegate = self
         tunnels.append(tunnel)
         tunnel.openTunnel()
-        DDLogInfo("\(tunnel) created, total count \(tunnels.count)")
+        DDLogInfo("\(tunnel) created, \(tunnels.count) sessions totally.")
     }
 
     // MARK: TunnelDelegate implementation
@@ -105,7 +105,11 @@ open class ProxyServer: NSObject, TunnelDelegate {
         }
 
         tunnels.remove(at: index)
-        DDLogInfo("\(tunnel) closed, total count \(tunnels.count)")
+
+        DDLogInfo("\(tunnel) closed, \(tunnels.count) sessions remaining.")
+        if tunnel.rx == 0 && tunnel.tx == 0 {
+            DDLogWarn("\(tunnel) didn't transfer any data.")
+        }
     }
 
     public func dump() {

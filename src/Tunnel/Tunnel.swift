@@ -67,7 +67,7 @@ public class Tunnel: NSObject, SocketDelegate {
     
     override public var description: String {
         if let adapterSocket = adapterSocket {
-            return "<Tunnel \(proxySocket) \(adapterSocket)>"
+            return "<Tunnel \(proxySocket) \(adapterSocket) rx \(rx) tx \(tx)>"
         } else {
             return "<Tunnel \(proxySocket)>"
         }
@@ -206,6 +206,9 @@ public class Tunnel: NSObject, SocketDelegate {
         checkStatus()
     }
     
+    var tx = 0
+    var rx = 0
+
     public func didRead(data: Data, from socket: SocketProtocol) {
         if let socket = socket as? ProxySocket {
             observer?.signal(.proxySocketReadData(data, from: socket, on: self))
@@ -214,6 +217,7 @@ public class Tunnel: NSObject, SocketDelegate {
                 return
             }
             adapterSocket!.write(data: data)
+            tx += data.count
         } else if let socket = socket as? AdapterSocket {
             observer?.signal(.adapterSocketReadData(data, from: socket, on: self))
             
@@ -221,6 +225,7 @@ public class Tunnel: NSObject, SocketDelegate {
                 return
             }
             proxySocket.write(data: data)
+            rx += data.count
         }
     }
     
