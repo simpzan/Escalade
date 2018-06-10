@@ -110,6 +110,7 @@ public class ShadowsocksAdapter: AdapterSocket {
     }
 
     func becomeReadyToForward() {
+        write(data: Data())
         internalStatus = .forwarding
         observer?.signal(.readyForForward(self))
         delegate?.didBecomeReadyToForwardWith(socket: self)
