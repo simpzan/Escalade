@@ -44,7 +44,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     var timer: Repeater? = nil
     
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
+        var logLevel: DDLogLevel = .debug
 #if !DEBUG
+        logLevel = .info
         if !crashlyticsInitialized {
             Fabric.with([Crashlytics.self])
             crashlyticsInitialized = true
@@ -52,7 +54,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 #endif
 
         let path = getContainerDir(groupId: groupId, subdir: "/Logs/")
-        setupLog(.debug, path)
+        setupLog(logLevel, path)
         
         timer = Repeater.every(.minutes(1)) { (repeater) in
             let memory = memoryUsage()
