@@ -78,7 +78,7 @@ public class Tunnel: NSObject, SocketDelegate {
         super.init()
         self.proxySocket.delegate = self
         
-//        self.observer = ObserverFactory.currentFactory?.getObserverForTunnel(self)
+        self.observer = ObserverFactory.currentFactory?.getObserverForTunnel(self)
     }
     
     /**

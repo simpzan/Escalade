@@ -28,14 +28,14 @@ open class DebugObserverFactory: ObserverFactory {
 open class DebugTunnelObserver: Observer<TunnelEvent> {
     override open func signal(_ event: TunnelEvent) {
         switch event {
-        case .receivedRequest,
-             .closed:
+        case .receivedRequest:
             DDLogInfo("\(event)")
         case .opened,
              .connectedToRemote,
              .updatingAdapterSocket:
             DDLogVerbose("\(event)")
         case .closeCalled,
+             .closed,
              .forceCloseCalled,
              .receivedReadySignal,
              .proxySocketReadData,
@@ -54,7 +54,7 @@ open class DebugProxySocketObserver: Observer<ProxySocketEvent> {
             DDLogError("\(event)")
         case .disconnected,
              .receivedRequest:
-            DDLogInfo("\(event)")
+            DDLogDebug("\(event)")
         case .socketOpened,
              .askedToResponseTo,
              .readyForForward:
@@ -77,7 +77,7 @@ open class DebugAdapterSocketObserver: Observer<AdapterSocketEvent> {
         case .socketOpened,
              .disconnected,
              .connected:
-            DDLogInfo("\(event)")
+            DDLogDebug("\(event)")
         case .readyForForward:
             DDLogVerbose("\(event)")
         case .disconnectCalled,
@@ -96,9 +96,13 @@ open class DebugProxyServerObserver: Observer<ProxyServerEvent> {
         case .started,
              .stopped:
             DDLogInfo("\(event)")
-        case .newSocketAccepted,
-             .tunnelClosed:
-            DDLogVerbose("\(event)")
+        case let .tunnelClosed(tunnel, onServer: server):
+            DDLogInfo("\(tunnel) closed, \(server.tunnels.count) sessions remaining.")
+            if tunnel.rx == 0 && tunnel.tx == 0 {
+                DDLogWarn("\(tunnel) didn't transfer any data.")
+            }
+        case let .newSocketAccepted(socket, onServer: server):
+             DDLogInfo("\(server) accepted \(socket), \(server.tunnels.count + 1) sessions totally.")
         }
     }
 }

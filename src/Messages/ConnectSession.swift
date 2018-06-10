@@ -151,9 +151,9 @@ public final class ConnectSession {
 extension ConnectSession: CustomStringConvertible {
     public var description: String {
         if requestedHost != host {
-            return "<\(type(of: self)) host:\(host) port:\(port) requestedHost:\(requestedHost)>"
+            return "<\(type(of: self)) \(host):\(port) requestedHost:\(requestedHost)>"
         } else {
-            return "<\(type(of: self)) host:\(host) port:\(port)>"
+            return "<\(type(of: self)) \(host):\(port)>"
         }
     }
 }

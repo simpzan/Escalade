@@ -9,8 +9,8 @@ public enum TunnelEvent: EventType {
             return "\(tunnel), Close is called."
         case .forceCloseCalled(let tunnel):
             return "\(tunnel), Force close is called."
-        case let .receivedRequest(request, from: socket, on: tunnel):
-            return "\(tunnel) received request \(request) from \(socket)."
+        case let .receivedRequest(request, from: _, on: tunnel):
+            return "\(tunnel) received request \(request)."
         case let .receivedReadySignal(socket, currentReady: signal, on: tunnel):
             if signal == 1 {
                 return "\(tunnel) received ready-for-forward signal from \(socket)."
