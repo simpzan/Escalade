@@ -1,5 +1,5 @@
 github "simpzan/CocoaAsyncSocket" "9018a417692a7040acdd8d59c388ab32195c207b"
-github "simpzan/CocoaLumberjack" "06b583c29cd90eac8dddfd7da469726863d8804f"
+github "simpzan/CocoaLumberjack" "a0204fabe13f386f84bdc2734a9edfd7cea5051f"
 github "simpzan/MMDB-Swift" "fab29fcceca0847cfd3f96725420993ebe01e1d6"
 github "Quick/Nimble" "v7.0.3"
 github "Quick/Quick" "v1.0.0"
