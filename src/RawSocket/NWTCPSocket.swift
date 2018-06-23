@@ -15,6 +15,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
     private var scanner: StreamScanner!
     private var scanning: Bool = false
     private var readDataPrefix: Data?
+    private var remoteEndpoint: NWHostEndpoint?
 
     // MARK: RawTCPSocketProtocol implementation
 
@@ -66,6 +67,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
      */
     public func connectTo(host: String, port: Int, enableTLS: Bool, tlsSettings: [AnyHashable: Any]?) throws {
         let endpoint = NWHostEndpoint(hostname: host, port: "\(port)")
+        remoteEndpoint = endpoint
         let tlsParameters = NWTLSParameters()
         if let tlsSettings = tlsSettings as? [String: AnyObject] {
             tlsParameters.setValuesForKeys(tlsSettings)
@@ -142,7 +144,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
 
         connection!.readMinimumLength(1, maximumLength: Opt.MAXNWTCPSocketReadDataSize) { data, error in
             guard error == nil else {
-                DDLogError("\(self) got an error when reading data: \(error!) \(self.state)")
+                DDLogError("\(self) got an error when reading data: \(error!). \(self.state).")
                 self.queueCall {
                     self.disconnect()
                 }
@@ -166,7 +168,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
 
         connection!.readLength(length) { data, error in
             guard error == nil else {
-                DDLogError("NWTCPSocket got an error when reading data: \(error!) \(self.state)")
+                DDLogError("\(self) got an error when reading data: \(error!). \(self.state).")
                 self.queueCall {
                     self.disconnect()
                 }
@@ -281,7 +283,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
                 self.writePending = false
 
                 guard error == nil else {
-                    DDLogError("NWTCPSocket got an error when writing data: \(error!) \(self.state)")
+                    DDLogError("\(self) got an error when writing data: \(error!). \(self.state).")
                     self.disconnect()
                     return
                 }
@@ -330,6 +332,13 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
         }
 
         connection.removeObserver(self, forKeyPath: "state")
+    }
+
+    open override var description: String {
+        let address = Utils.address(of: self)
+        let typeName = String(describing: type(of: self))
+        let endpoint = remoteEndpoint != nil ? " \(remoteEndpoint!)" : ""
+        return String(format: "<%@ %p%@>", typeName, address, endpoint)
     }
 }
 

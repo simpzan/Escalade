@@ -131,6 +131,7 @@ public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
 
         queue.sync {
             self.activeSockets[connectInfo] = udpSocket
+            DDLogInfo("\(udpSocket) created, \(self.activeSockets.count) totally.")
         }
         return (connectInfo, udpSocket)
     }
@@ -160,5 +161,6 @@ public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
         }
         
         activeSockets.removeValue(forKey: info)
+        DDLogInfo("\(socket) closed, \(activeSockets.count) totally.")
     }
 }

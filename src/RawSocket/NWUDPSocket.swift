@@ -24,6 +24,7 @@ public class NWUDPSocket: NSObject {
     private var writing = false
     private let queue: DispatchQueue = QueueFactory.getQueue()
     private let timeout: Int
+    private let remoteEndpoint: NWHostEndpoint
     
     /// The delegate instance.
     public weak var delegate: NWUDPSocketDelegate?
@@ -37,6 +38,7 @@ public class NWUDPSocket: NSObject {
     public init?(host: String, port: Int, timeout: Int = Opt.UDPSocketActiveTimeout) {
         let provider = RawSocketFactory.TunnelProvider
         let to = NWHostEndpoint(hostname: host, port: "\(port)")
+        remoteEndpoint = to
         guard let session = provider?.createUDPSession(to: to, from: nil) else { return nil }
         
         self.session = session
@@ -56,10 +58,13 @@ public class NWUDPSocket: NSObject {
                 
                 guard error == nil, let dataArray = dataArray else {
                     DDLogError("\(sSelf) \(sSelf.session.state), Error when reading from remote server. \(error!) ")
-//                    sSelf.disconnect()
                     return
                 }
                 
+                let bytes = dataArray.reduce(0) { (acc: Int, data: Data) -> Int in
+                    return data.count + acc
+                }
+                DDLogInfo("\(sSelf) read \(bytes) bytes.")
                 for data in dataArray {
                     sSelf.delegate?.didReceive(data: data, from: sSelf)
                 }
@@ -88,7 +93,7 @@ public class NWUDPSocket: NSObject {
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard keyPath == "state" else { return }
-        
+        DDLogInfo("\(self) session state changed to \(session.state)")
         switch session.state {
         case .cancelled:
             queueCall { [ weak self ] in
@@ -119,6 +124,10 @@ public class NWUDPSocket: NSObject {
                 self?.checkWrite()
             }
         }
+        let bytes = pendingWriteData.reduce(0) { (acc: Int, data: Data) -> Int in
+            return data.count + acc
+        }
+        DDLogInfo("\(self) wrote \(bytes) bytes.")
         self.pendingWriteData.removeAll(keepingCapacity: true)
     }
 
@@ -167,6 +176,12 @@ public class NWUDPSocket: NSObject {
     
     deinit {
         session.removeObserver(self, forKeyPath: #keyPath(NWUDPSession.state))
+    }
+    
+    open override var description: String {
+        let address = Utils.address(of: self)
+        let typeName = String(describing: type(of: self))
+        return String(format: "<%@ %p %@>", typeName, address, remoteEndpoint)
     }
 }
 
