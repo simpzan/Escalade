@@ -222,6 +222,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
         guard keyPath == "state" else {
             return
         }
+        DDLogDebug("\(self) connection state changed to \(connection!.state).")
 
         switch connection!.state {
         case .connected:

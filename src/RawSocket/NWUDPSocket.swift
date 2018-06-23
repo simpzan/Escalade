@@ -86,14 +86,14 @@ public class NWUDPSocket: NSObject {
     }
     
     public func disconnect() {
-        DDLogDebug("\(self) disconnecting...")
+        DDLogInfo("\(self) disconnecting...")
         session.cancel()
         destroyTimer()
     }
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        DDLogInfo("< \(self) session state changed to \(session.state).")
         guard keyPath == "state" else { return }
-        DDLogInfo("\(self) session state changed to \(session.state)")
         switch session.state {
         case .cancelled:
             queueCall { [ weak self ] in
@@ -106,6 +106,7 @@ public class NWUDPSocket: NSObject {
         default:
             break
         }
+        DDLogInfo("> \(self) session state changed to \(session.state).")
     }
     
     private func checkWrite() {
@@ -176,6 +177,7 @@ public class NWUDPSocket: NSObject {
     
     deinit {
         session.removeObserver(self, forKeyPath: #keyPath(NWUDPSession.state))
+        DDLogInfo("\(self) deinited.")
     }
     
     open override var description: String {
