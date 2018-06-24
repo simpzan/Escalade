@@ -26,7 +26,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
             DDLogError("fail to parse config: \n\(configString)")
             return nil
         }
-        let service = ProxyService(config: config, provider: self, defaults: defaults)
+        let service = ProxyService(adapterFactoryManager: config.adapterFactoryManager, provider: self, defaults: defaults)
         DDLogInfo("loaded servers \(service.serverController.servers)")
         return service
     }()

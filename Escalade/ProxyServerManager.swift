@@ -12,10 +12,8 @@ import CocoaLumberjackSwift
 
 class ProxyServerManager: NSObject {
 
-    public init(config: Configuration) {
-        RuleManager.currentManager = config.ruleManager
-        if let port = config.proxyPort { self.port = UInt16(port) }
-
+    public init(thePort: UInt16 = 0) {
+        if thePort > 0 { port = thePort }
         let addr = IPAddress(fromString: address)
         socks5Server = NATProxyServer(address: addr, port: NEKit.Port(port: port))
         let httpAddr = IPAddress(fromString: "127.0.0.1")

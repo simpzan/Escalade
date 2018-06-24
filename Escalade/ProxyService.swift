@@ -17,17 +17,29 @@ class ProxyService {
     var tunController: TUNController? = nil
     var running = false;
 
-    init(config: Configuration, provider: NEPacketTunnelProvider? = nil, defaults: UserDefaults = .standard) {
+    init(adapterFactoryManager: AdapterFactoryManager, provider: NEPacketTunnelProvider? = nil, defaults: UserDefaults = .standard) {
         ObserverFactory.currentFactory = DebugObserverFactory()
 
-        proxyManager = ProxyServerManager(config: config)
+        proxyManager = ProxyServerManager()
 
-        let factory = config.adapterFactoryManager.selectFactory
+        let factory = adapterFactoryManager.selectFactory
         serverController = ServerController(selectFactory: factory, defaults: defaults)
 
         if let provider = provider {
             tunController = TUNController(provider: provider, httpServer: proxyManager.socks5Server!)
         }
+        RuleManager.currentManager = createDefaultRules(adapterFactoryManager: adapterFactoryManager)
+    }
+    
+    private func createDefaultRules(adapterFactoryManager: AdapterFactoryManager) -> RuleManager {
+        var rules: [Rule] = []
+        let chinaRule = CountryRule(countryCode: "CN", match: true, adapterFactory: adapterFactoryManager["direct"]!)
+        rules.append(chinaRule)
+        let intranetRule = CountryRule(countryCode: "--", match: true, adapterFactory: adapterFactoryManager["direct"]!)
+        rules.append(intranetRule)
+        let allRule = AllRule(adapterFactory: adapterFactoryManager["proxy"]!)
+        rules.append(allRule)
+        return RuleManager(fromRules: rules)
     }
 
     func start() {
