@@ -31,7 +31,7 @@
 			<string>Default</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.simpzan.escalade.yaml</string>
+				<string>com.simpzan.escalade.json</string>
 			</array>
 		</dict>
 	</array>
@@ -83,11 +83,11 @@
 				<string>public.text</string>
 			</array>
 			<key>UTTypeIdentifier</key>
-			<string>com.simpzan.escalade.yaml</string>
+			<string>com.simpzan.escalade.json</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
-				<string>yaml</string>
+				<string>json</string>
 			</dict>
 		</dict>
 	</array>

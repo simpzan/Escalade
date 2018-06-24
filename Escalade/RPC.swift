@@ -11,6 +11,7 @@ import MMWormhole
 import CocoaLumberjackSwift
 
 let configKey = "config"
+let serversKey = "servers"
 
 let defaults = UserDefaults(suiteName: groupId)!
 func saveDefaults(key: String, value: String) {

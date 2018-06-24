@@ -18,15 +18,11 @@ public let groupId = "group.com.simpzan.Escalade.iOS"
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
     private lazy var proxyService: ProxyService? = {
-        guard let configString = loadDefaults(key: configKey) else {
-            DDLogError("no config yet.")
+        guard let adapterFactoryManager = createAdapterFactoryManager() else {
+            DDLogError("failed to load servers.")
             return nil
         }
-        guard let config = loadConfiguration(content: configString) else {
-            DDLogError("fail to parse config: \n\(configString)")
-            return nil
-        }
-        let service = ProxyService(adapterFactoryManager: config.adapterFactoryManager, provider: self, defaults: defaults)
+        let service = ProxyService(adapterFactoryManager: adapterFactoryManager, provider: self, defaults: defaults)
         DDLogInfo("loaded servers \(service.serverController.servers)")
         return service
     }()

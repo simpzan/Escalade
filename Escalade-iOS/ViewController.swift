@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func connectionChanged() {
         let state = manager.status
         let enabled = [.connected, .disconnected, .invalid].contains(state)
-        connectSwitch.isEnabled = enabled && configuration != nil
+        connectSwitch.isEnabled = enabled && servers.count > 0
         let on = [.connected, .connecting, .reasserting].contains(state)
         connectSwitch.setOn(on, animated: true)
         NSLog("status changed to \(state.description), enabled: \(enabled), on: \(on)")
@@ -100,7 +100,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = loadConfig(yaml: loadDefaults(key: configKey))
+        _ = loadConfig()
         
         connectionChanged()
         manager.monitorStatus { (_) in
@@ -116,19 +116,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBOutlet weak var tableView: UITableView!
-    public func loadConfig(yaml: String?) -> Bool {
-        guard let yaml = yaml, let config = loadConfiguration(content: yaml) else { return false }
-        let serverNames = config.adapterFactoryManager.selectFactory.servers
+    public func loadConfig() -> Bool {
+        guard let adapterFactoryManager = createAdapterFactoryManager() else {
+            DDLogError("failed to load servers")
+            return false
+        }
+        let serverNames = adapterFactoryManager.selectFactory.servers
         servers = serverNames.map({ (server) -> (String, String) in
             return (server, "")
         })
         current = loadDefaults(key: currentServerKey)
         tableView.reloadData()
-        self.configuration = config
         connectionChanged()
         return true
     }
-    var configuration: Configuration?
 
     let currentServerKey = "currentServer"
     var current: String? = nil

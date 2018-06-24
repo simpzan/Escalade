@@ -62,18 +62,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return navVC.viewControllers.first as? ViewController
     }
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        DDLogInfo("imported url \(url)")
-        guard let yaml = try? String(contentsOf: url, encoding:.utf8) else {
-            SVProgressHUD.showError(withStatus: "invalid UTF8 text file");
-            DDLogError("failed to load the url using utf8, \(url)")
+        guard importServers(url: url) else {
+            SVProgressHUD.showError(withStatus: "failed to import servers")
+            DDLogError("failed to import servers in \(url)")
             return false
         }
-        guard let vc = getConfigListViewController(), vc.loadConfig(yaml: yaml) else {
-            SVProgressHUD.showError(withStatus: "invalid yaml file")
-            DDLogError("failed to load the yaml file: \(yaml)")
+        guard let vc = getConfigListViewController(), vc.loadConfig() else {
+            SVProgressHUD.showError(withStatus: "falied to load servers")
+            DDLogError("failed to load servers")
             return false
         }
-        saveDefaults(key: configKey, value: yaml)
         SVProgressHUD.showSuccess(withStatus: "config file imported")
         return true
     }
