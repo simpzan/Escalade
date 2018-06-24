@@ -55,7 +55,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         timer = Repeater.every(.minutes(1)) { (repeater) in
             let memory = memoryUsage()
             let cpu = cpuUsage()
-            DDLogInfo("memory: \(memory) bytes, cpu: \(cpu)")
+            let systemCpu = systemCpuUsage()
+            DDLogInfo(String(format: "memory: %lld bytes, cpu: %.2f%% app, %.2f%% system.", memory, cpu, systemCpu))
         }
         timer?.fire()
 

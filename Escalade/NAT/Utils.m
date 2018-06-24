@@ -230,5 +230,24 @@ double cpuUsage(void) {
         }
     }
     vm_deallocate(mach_task_self(), (vm_offset_t) threads, threadCount * sizeof(thread_t));
-    return usage;
+    return usage * 100.0;
+}
+
+double systemCpuUsage(void) {
+    static host_cpu_load_info_data_t previousInfo = {0, 0, 0, 0};
+
+    host_cpu_load_info_data_t info;
+    mach_msg_type_number_t count = HOST_CPU_LOAD_INFO_COUNT;
+    kern_return_t kr = host_statistics(mach_host_self(), HOST_CPU_LOAD_INFO, (host_info_t)&info, &count);
+    if (kr != KERN_SUCCESS) {
+        return -1;
+    }
+    
+    natural_t user   = info.cpu_ticks[CPU_STATE_USER] - previousInfo.cpu_ticks[CPU_STATE_USER];
+    natural_t nice   = info.cpu_ticks[CPU_STATE_NICE] - previousInfo.cpu_ticks[CPU_STATE_NICE];
+    natural_t system = info.cpu_ticks[CPU_STATE_SYSTEM] - previousInfo.cpu_ticks[CPU_STATE_SYSTEM];
+    natural_t idle   = info.cpu_ticks[CPU_STATE_IDLE] - previousInfo.cpu_ticks[CPU_STATE_IDLE];
+    natural_t total  = user + nice + system + idle;
+    previousInfo    = info;
+    return (user + nice + system) * 100.0 / total;
 }
