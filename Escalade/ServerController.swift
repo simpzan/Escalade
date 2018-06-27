@@ -110,5 +110,5 @@ class ServerController: NSObject {
             factory.current = name
         }
     }
-    private let factory: SelectAdapterFactory
+    public let factory: SelectAdapterFactory
 }

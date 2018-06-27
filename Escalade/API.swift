@@ -12,6 +12,8 @@ import CocoaLumberjackSwift
 let switchProxyId = "switchProxy"
 let getServersId = "getServers"
 let autoSelectId = "autoSelect"
+let pingDirectId = "pingDirect"
+let pingProxyId = "pingProxy"
 
 class APIServer {
     let serverController: ServerController
@@ -51,6 +53,26 @@ class APIServer {
                 done(output as NSCoding?)
             })
         }
+        addAsyncAPI(pingDirectId) { (input, done) in
+            self.serverController.factory.testDirect(timeout: 1) { err, result in
+                if err != nil {
+                    DDLogError("testDirect error \(err!)")
+                    return done(nil)
+                }
+                DDLogInfo("testDirect \(result)")
+                done(NSNumber(floatLiteral: result))
+            }
+        }
+        addAsyncAPI(pingProxyId) { (input, done) in
+            self.serverController.factory.testCurrent(timeout:1) { (err, result) in
+                if (err != nil) {
+                    DDLogError("testCurrent error \(err!)")
+                    return done(nil)
+                }
+                DDLogInfo("testCurrent \(result)")
+                done(NSNumber(floatLiteral: result))
+            }
+        }
     }
 }
 
@@ -79,5 +101,17 @@ class APIClient {
     func switchServer(server: String) -> Bool {
         let result = callAPI(switchProxyId, obj: server as NSCoding?)
         return result as! Bool
+    }
+    public func pingDirect(callback: @escaping (Double?) -> Void) {
+        callAsyncAPI(pingDirectId) { (result) in
+            guard let number = result as? NSNumber else { return callback(nil) }
+            callback(number.doubleValue)
+        }
+    }
+    public func pingProxy(callback: @escaping (Double?) -> Void) {
+        callAsyncAPI(pingProxyId) { (result) in
+            guard let number = result as? NSNumber else { return callback(nil) }
+            callback(number.doubleValue)
+        }
     }
 }
