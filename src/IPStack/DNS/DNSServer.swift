@@ -151,7 +151,7 @@ open class DNSServer: DNSResolverDelegate, IPStackProtocol {
         resolvers = []
 
         pendingSessions = [:]
-        fakeSessions = [:]
+//        fakeSessions = [:]
         // The blocks scheduled with `dispatch_after` are ignored since they are hard to cancel. But there should be no consequence, everything will be released except for a few `IPAddress`es and the `queue` which will be released later.
     }
 
