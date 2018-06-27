@@ -43,7 +43,7 @@ open class TUNInterface {
             for stack in self.stacks {
                 stack.stop()
             }
-            self.stacks = []
+//            self.stacks = []
         }
     }
 
