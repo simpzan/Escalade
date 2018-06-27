@@ -73,6 +73,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func test(_ sender: Any) {
+        var direct: Double?
+        var proxy: Double?
+        api.pingDirect { (result) in
+            direct = result ?? -1
+            showResult()
+        }
+        api.pingProxy { (result) in
+            proxy = result ?? -1
+            showResult()
+        }
+        DDLogInfo("ping testing...")
+        SVProgressHUD.showInfo(withStatus: "ping testing...")
+        func showResult() {
+            let status = "China \(direct*), Google \(proxy*)"
+            DDLogInfo("ping test \(status)")
+            if direct == -1 && proxy == -1 {
+                SVProgressHUD.showError(withStatus: "ping test failed")
+            } else {
+                SVProgressHUD.showInfo(withStatus: status)
+            }
+        }
+    }
+    @IBAction func openMenu(_ sender: Any) {
         let actions = ["DumpTunnel", "ReportIssue", "View log files", "Toggle proxy service", "Network Tests"]
         self.select(actions, title: "choose action", { (index) in
             switch index {

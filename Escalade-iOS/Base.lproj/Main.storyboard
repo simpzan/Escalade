@@ -66,13 +66,17 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems>
-                        <barButtonItem systemItem="add" id="kq8-yj-Pah">
+                        <barButtonItem title="Test" id="kq8-yj-Pah">
                             <connections>
                                 <action selector="test:" destination="BYZ-38-t0r" id="YwY-hv-Cno"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem systemItem="flexibleSpace" id="jG7-9G-GGr"/>
-                        <barButtonItem systemItem="refresh" id="EO4-RD-qPR"/>
+                        <barButtonItem systemItem="action" id="EO4-RD-qPR">
+                            <connections>
+                                <action selector="openMenu:" destination="BYZ-38-t0r" id="q9R-XJ-U0n"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Escalade" id="cSC-JS-25Z">
                         <barButtonItem key="leftBarButtonItem" title="ping" id="UkD-Jh-IdE">
