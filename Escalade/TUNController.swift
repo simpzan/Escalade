@@ -39,7 +39,6 @@ class TUNController {
     }
 
     public func start() {
-        setupPacketProcessor()
         interface?.start()
     }
 
@@ -58,6 +57,7 @@ class TUNController {
         httpProxyServer = httpServer
 
         Opt.MAXNWTCPSocketReadDataSize = 60 * 1024
+        setupPacketProcessor()
     }
 
     public func getTunnelSettings() -> NEPacketTunnelNetworkSettings {
