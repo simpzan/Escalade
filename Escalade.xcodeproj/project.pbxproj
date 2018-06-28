@@ -34,6 +34,7 @@
 		76312AC31E6BEE7C000B66C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76312AC11E6BEE7C000B66C9 /* LaunchScreen.storyboard */; };
 		763D3EA620DF90C80073C1E9 /* ServersPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */; };
 		763D3EA720DF90C80073C1E9 /* ServersPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */; };
+		763F88C320E4F38500D781FB /* TrafficMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */; };
 		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
 		7642ED582094ADB7002DBA3C /* ConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7642ED572094ADB7002DBA3C /* ConnectivityManager.m */; };
 		7642ED592094ADB7002DBA3C /* ConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7642ED572094ADB7002DBA3C /* ConnectivityManager.m */; };
@@ -1148,6 +1149,7 @@
 				76CA418F2090B5DE008D2556 /* Log.m in Sources */,
 				763D3EA620DF90C80073C1E9 /* ServersPersistence.swift in Sources */,
 				7656511E209360EF00D59160 /* UIViewController+ActionSheet.m in Sources */,
+				763F88C320E4F38500D781FB /* TrafficMonitor.swift in Sources */,
 				76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */,
 				7679B6921E7E601500477755 /* API.swift in Sources */,
 				76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */,

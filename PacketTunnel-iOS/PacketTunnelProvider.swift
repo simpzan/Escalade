@@ -35,7 +35,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     lazy var api: APIServer? = {
         return APIServer(self.serverController)
     }()
-
+    let trafficMonitorServer = TrafficMonitorServer()
     
     var timer: Repeater? = nil
     

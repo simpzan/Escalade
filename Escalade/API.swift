@@ -115,3 +115,54 @@ class APIClient {
         }
     }
 }
+
+
+let startTrafficMonitorId = "startTrafficMonitor"
+let trafficUpdateId = "trafficUpdate"
+let stopTrafficMonitorId = "stopTrafficMointor"
+
+class TrafficMonitorServer {
+    init() {
+        wormhole.listenForMessage(withIdentifier: startTrafficMonitorId) { (_) in
+            TrafficMonitor.shared.startUpdate { (rx: Int, tx: Int) in
+                DDLogInfo("rx \(rx), tx \(tx)")
+                let traffic: [String: Int] = [ "rx": rx, "tx": tx ]
+                wormhole.passMessageObject(traffic as NSDictionary, identifier: trafficUpdateId)
+            }
+        }
+        wormhole.listenForMessage(withIdentifier: stopTrafficMonitorId) { (_) in
+            TrafficMonitor.shared.stopUpdate()
+        }
+    }
+    deinit {
+        wormhole.stopListeningForMessage(withIdentifier: startTrafficMonitorId)
+        wormhole.stopListeningForMessage(withIdentifier: stopTrafficMonitorId)
+    }
+}
+
+class TrafficMonitorClient {
+    public typealias UpdateCallback = (Int, Int) -> Void
+    var _callback: UpdateCallback?
+    
+    init() {
+        wormhole.listenForMessage(withIdentifier: trafficUpdateId) { (obj) in
+            guard let traffic = obj as? [String: Int] else { return }
+            if let rx = traffic["rx"], let tx = traffic["tx"]  { self._callback?(rx, tx) }
+        }
+    }
+    deinit {
+        wormhole.stopListeningForMessage(withIdentifier: trafficUpdateId)
+    }
+    
+    func startUpdate(callback: @escaping UpdateCallback) {
+        _callback = callback
+        wormhole.passMessageObject(nil, identifier: startTrafficMonitorId)
+        DDLogInfo("traffic monitor started.")
+    }
+    
+    func stopUpdate() {
+        wormhole.passMessageObject(nil, identifier: stopTrafficMonitorId)
+        _callback = nil
+        DDLogInfo("traffic monitor stopped.")
+    }
+}

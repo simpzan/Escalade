@@ -72,7 +72,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    let monitor = TrafficMonitorClient()
+    
     @IBAction func test(_ sender: Any) {
+        let actions = ["Start Traffic Monitor", "Stop Traffic Monitor", "Ping Test"]
+        self.select(actions, title: "choose action") { (index) in
+            switch index {
+            case 0:
+                self.monitor.startUpdate { (rx, tx) in
+                    DDLogInfo("⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s")
+                }
+            case 1:
+                self.monitor.stopUpdate()
+            case 2:
+                self.pingTest()
+            default:
+                DDLogDebug("nothing")
+            }
+        }
+    }
+    
+    func pingTest() {
         var direct: Double?
         var proxy: Double?
         api.pingDirect { (result) in

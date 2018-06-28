@@ -25,7 +25,7 @@ typealias APICallback = (NSCoding?) -> NSCoding?
 typealias DoneCallback = (NSCoding?) -> Void
 typealias AsyncAPICallback = (NSCoding?, @escaping DoneCallback) -> Void
 
-private let wormhole = MMWormhole(applicationGroupIdentifier: groupId, optionalDirectory: "wormhole")
+public let wormhole = MMWormhole(applicationGroupIdentifier: groupId, optionalDirectory: "wormhole")
 private func replyId(_ id: String) -> String {
     return id + ".reply"
 }
