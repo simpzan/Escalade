@@ -52,23 +52,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
     }
-    
-    let monitor = TrafficMonitorClient()
-    
+        
     @IBAction func test(_ sender: Any) {
-        let actions = ["Start Traffic Monitor", "Stop Traffic Monitor"]
-        self.select(actions, title: "choose action") { (index) in
-            switch index {
-            case 0:
-                self.monitor.startUpdate { (rx, tx) in
-                    DDLogInfo("⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s")
-                }
-            case 1:
-                self.monitor.stopUpdate()
-            default:
-                DDLogDebug("nothing")
-            }
-        }
     }
     
     @IBAction func openMenu(_ sender: Any) {

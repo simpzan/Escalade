@@ -15,8 +15,16 @@ class DashboardViewController: UITableViewController {
         manager.monitorStatus { (_) in
             self.connectionChanged()
         }
-
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startTrafficMonitor()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        stopTrafficMonitor()
+    }
+
     func connectionChanged() {
         let state = manager.status
         let enabled = [.connected, .disconnected, .invalid].contains(state)
@@ -24,6 +32,9 @@ class DashboardViewController: UITableViewController {
         let on = [.connected, .connecting, .reasserting].contains(state)
         connectSwitch.setOn(on, animated: true)
         NSLog("status changed to \(state.description), enabled: \(enabled), on: \(on)")
+
+        if state == .connected { startTrafficMonitor() }
+        else { stopTrafficMonitor() }
     }
     @IBAction func connectClicked(_ sender: Any) {
         if manager.connected {
@@ -35,7 +46,20 @@ class DashboardViewController: UITableViewController {
     let manager = VPNManager.shared
     @IBOutlet weak var connectSwitch: UISwitch!
     @IBOutlet weak var connectivityCell: UITableViewCell!
+    
+    func startTrafficMonitor() {
+        guard manager.connected else { return }
+        monitor.startUpdate { (rx, tx) in
+            self.trafficCell.detailTextLabel?.text = "⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s"
+        }
+    }
+    func stopTrafficMonitor() {
+        guard manager.connected else { return }
+        monitor.stopUpdate()
+    }
+    let monitor = TrafficMonitorClient()
     @IBOutlet weak var trafficCell: UITableViewCell!
+    
     @IBOutlet weak var currentServerCell: UITableViewCell!
     
     let api = APIClient.shared
