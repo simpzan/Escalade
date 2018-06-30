@@ -206,8 +206,8 @@ public class Tunnel: NSObject, SocketDelegate {
         checkStatus()
     }
     
-    var tx = 0
-    var rx = 0
+    public var tx = 0
+    public var rx = 0
 
     public func didRead(data: Data, from socket: SocketProtocol) {
         if let socket = socket as? ProxySocket {

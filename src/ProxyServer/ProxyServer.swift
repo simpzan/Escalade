@@ -9,7 +9,7 @@ import CocoaLumberjackSwift
  This proxy does not listen on any port.
  */
 open class ProxyServer: NSObject, TunnelDelegate {
-    typealias TunnelArray = [Tunnel]
+    public typealias TunnelArray = [Tunnel]
 
     /// The port of proxy server.
     open let port: Port
@@ -29,7 +29,7 @@ open class ProxyServer: NSObject, TunnelDelegate {
 
     open var observer: Observer<ProxyServerEvent>?
 
-    var tunnels: TunnelArray = []
+    public var tunnels: TunnelArray = []
 
     /**
      Create an instance of proxy server.
