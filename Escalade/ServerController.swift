@@ -42,7 +42,6 @@ class ServerController: NSObject {
         return defaults.string(forKey: currentServerKey)
     }
     private let defaults: UserDefaults
-    private let currentServerKey = "currentServer"
 
     public var domesticPing: TimeInterval {
         return factory.domesticPing

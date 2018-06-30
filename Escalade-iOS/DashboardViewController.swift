@@ -15,10 +15,12 @@ class DashboardViewController: UITableViewController {
         manager.monitorStatus { (_) in
             self.connectionChanged()
         }
+        updateCurrentServer()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTrafficMonitor()
+        updateCurrentServer()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -60,6 +62,10 @@ class DashboardViewController: UITableViewController {
     let monitor = TrafficMonitorClient()
     @IBOutlet weak var trafficCell: UITableViewCell!
     
+    func updateCurrentServer() {
+        let current = loadDefaults(key: currentServerKey)
+        currentServerCell.detailTextLabel?.text = current
+    }
     @IBOutlet weak var currentServerCell: UITableViewCell!
     
     let api = APIClient.shared
