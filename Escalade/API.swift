@@ -76,7 +76,9 @@ class APIServer {
     }
 }
 
-class APIClient {
+public class APIClient {
+    static let shared = APIClient()
+    
     func convert(result: NSCoding?) -> [(String, String)]? {
         let servers = result as? [[String : String]]
         return servers?.map({ (server) -> (String, String) in

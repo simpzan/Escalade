@@ -45,6 +45,7 @@
 		765C83C6209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */; };
 		765C83C7209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */; };
 		765C83CB209F334800A13EC9 /* NEKit.framework in Embed NEKit */ = {isa = PBXBuildFile; fileRef = 768D4A101E4B4AB900B73E10 /* NEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7673035520E787EE000087E3 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673034C20E749FF000087E3 /* DashboardViewController.swift */; };
 		7679B6921E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B6931E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B69B1E7E614700477755 /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
@@ -350,6 +351,7 @@
 		76565112209360EE00D59160 /* UIViewController+ActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ActionSheet.m"; sourceTree = "<group>"; };
 		7656511D209360EE00D59160 /* UIViewController+ActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ActionSheet.h"; sourceTree = "<group>"; };
 		765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		7673034C20E749FF000087E3 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		7679B6901E7E601500477755 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7679B6A41E7E715400477755 /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EscaladeLaunchHelper-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -545,6 +547,7 @@
 				7656511D209360EE00D59160 /* UIViewController+ActionSheet.h */,
 				76565112209360EE00D59160 /* UIViewController+ActionSheet.m */,
 				76312ABA1E6BEE7C000B66C9 /* ViewController.swift */,
+				7673034C20E749FF000087E3 /* DashboardViewController.swift */,
 				76312ABC1E6BEE7C000B66C9 /* Main.storyboard */,
 				76312ABF1E6BEE7C000B66C9 /* Assets.xcassets */,
 				76312AC11E6BEE7C000B66C9 /* LaunchScreen.storyboard */,
@@ -1148,6 +1151,7 @@
 				76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */,
 				76CA418F2090B5DE008D2556 /* Log.m in Sources */,
 				763D3EA620DF90C80073C1E9 /* ServersPersistence.swift in Sources */,
+				7673035520E787EE000087E3 /* DashboardViewController.swift in Sources */,
 				7656511E209360EF00D59160 /* UIViewController+ActionSheet.m in Sources */,
 				763F88C320E4F38500D781FB /* TrafficMonitor.swift in Sources */,
 				76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */,
