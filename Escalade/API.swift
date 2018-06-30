@@ -127,7 +127,7 @@ class TrafficMonitorServer {
     init() {
         wormhole.listenForMessage(withIdentifier: startTrafficMonitorId) { (_) in
             TrafficMonitor.shared.startUpdate { (rx: Int, tx: Int) in
-                DDLogInfo("rx \(rx), tx \(tx)")
+                DDLogDebug("rx \(rx), tx \(tx)")
                 let traffic: [String: Int] = [ "rx": rx, "tx": tx ]
                 wormhole.passMessageObject(traffic as NSDictionary, identifier: trafficUpdateId)
             }

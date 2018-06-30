@@ -17,14 +17,20 @@ class DashboardViewController: UITableViewController {
             self.connectionChanged()
         }
         updateCurrentServer()
-        NotificationCenter.default.addObserver(self,
-                selector: #selector(appWillEnterForeground),
-                name: Notification.Name.UIApplicationWillEnterForeground,
-                object: nil)
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(appWillEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+        nc.addObserver(self, selector: #selector(appDidEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
     }
     @objc func appWillEnterForeground() {
+        DDLogInfo("appWillEnterForeground")
+        startTrafficMonitor()
         testConnectivity()
     }
+    @objc func appDidEnterBackground() {
+        DDLogInfo("appDidEnterBackground")
+        stopTrafficMonitor()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTrafficMonitor()
