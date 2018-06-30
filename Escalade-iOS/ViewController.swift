@@ -52,7 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 
-    let api = APIClient()
+    let api = APIClient.shared
     
     func networkRequestTests() {
         let actions = ["GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP"]
@@ -75,7 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let monitor = TrafficMonitorClient()
     
     @IBAction func test(_ sender: Any) {
-        let actions = ["Start Traffic Monitor", "Stop Traffic Monitor", "Ping Test"]
+        let actions = ["Start Traffic Monitor", "Stop Traffic Monitor"]
         self.select(actions, title: "choose action") { (index) in
             switch index {
             case 0:
@@ -84,37 +84,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             case 1:
                 self.monitor.stopUpdate()
-            case 2:
-                self.pingTest()
             default:
                 DDLogDebug("nothing")
             }
         }
     }
     
-    func pingTest() {
-        var direct: Double?
-        var proxy: Double?
-        api.pingDirect { (result) in
-            direct = result ?? -1
-            showResult()
-        }
-        api.pingProxy { (result) in
-            proxy = result ?? -1
-            showResult()
-        }
-        DDLogInfo("ping testing...")
-        SVProgressHUD.showInfo(withStatus: "ping testing...")
-        func showResult() {
-            let status = "China \(direct*), Google \(proxy*)"
-            DDLogInfo("ping test \(status)")
-            if direct == -1 && proxy == -1 {
-                SVProgressHUD.showError(withStatus: "ping test failed")
-            } else {
-                SVProgressHUD.showInfo(withStatus: status)
-            }
-        }
-    }
     @IBAction func openMenu(_ sender: Any) {
         let actions = ["ReportIssue", "View log files", "Toggle proxy service", "Network Tests"]
         self.select(actions, title: "choose action", { (index) in
