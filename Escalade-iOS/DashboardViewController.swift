@@ -65,8 +65,13 @@ class DashboardViewController: UITableViewController {
     let api = APIClient.shared
 
     func pingTest() {
-        var direct: Double?
-        var proxy: Double?
+        guard manager.connected else {
+            connectivityCell.detailTextLabel?.text = "VPN disabled"
+            return
+        }
+
+        var direct: Double = 0
+        var proxy: Double = 0
         api.pingDirect { (result) in
             direct = result ?? -1
             showResult()
@@ -78,7 +83,7 @@ class DashboardViewController: UITableViewController {
         DDLogInfo("ping testing...")
         connectivityCell.detailTextLabel?.text = "ping testing..."
         func showResult() {
-            let status = "China \(direct*), Google \(proxy*)"
+            let status = "China \(miliseconds(direct)), World \(miliseconds(proxy))"
             DDLogInfo("ping test \(status)")
             if direct == -1 && proxy == -1 {
                 connectivityCell.detailTextLabel?.text = "ping test failed"
