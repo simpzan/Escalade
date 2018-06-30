@@ -18,7 +18,9 @@ extension NEVPNStatus {
 }
 
 class VPNManager: NSObject {
-    public override init() {
+    static let shared = VPNManager()
+    
+    private override init() {
         super.init()
         loadManager { (manager) in
             DDLogInfo("load manager result \(manager*)")

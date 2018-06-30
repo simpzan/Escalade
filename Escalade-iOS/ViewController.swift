@@ -14,26 +14,7 @@ import NEKit
 import FileBrowser
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let manager = VPNManager()
-
-    @IBOutlet weak var connectSwitch: UISwitch!
-    @IBAction func connectClicked(_ sender: Any) {
-        NSLog("connectClicked")
-        if manager.connected {
-            manager.stopVPN()
-        } else {
-            manager.startVPN()
-        }
-    }
-
-    func connectionChanged() {
-        let state = manager.status
-        let enabled = [.connected, .disconnected, .invalid].contains(state)
-        connectSwitch.isEnabled = enabled && servers.count > 0
-        let on = [.connected, .connecting, .reasserting].contains(state)
-        connectSwitch.setOn(on, animated: true)
-        NSLog("status changed to \(state.description), enabled: \(enabled), on: \(on)")
-    }
+    let manager = VPNManager.shared
 
 
     @IBOutlet weak var pingButton: UIBarButtonItem!
@@ -122,11 +103,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         _ = loadConfig()
         
-        connectionChanged()
-        manager.monitorStatus { (_) in
-            self.connectionChanged()
-        }
-
         api.getServersAsync { (servers) in
             if let servers = servers {
                 self.servers = servers
@@ -147,7 +123,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
         current = loadDefaults(key: currentServerKey)
         tableView.reloadData()
-        connectionChanged()
         return true
     }
 

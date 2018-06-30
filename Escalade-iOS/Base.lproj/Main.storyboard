@@ -6,14 +6,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Escalade-->
+        <!--Servers-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Escalade_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Servers" id="BYZ-38-t0r" customClass="ViewController" customModule="Escalade_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -80,27 +79,15 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Escalade" id="cSC-JS-25Z">
-                        <rightBarButtonItems>
-                            <barButtonItem id="xaB-dE-FDO">
-                                <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="ini-He-VJQ">
-                                    <rect key="frame" x="253" y="6.5" width="51" height="31"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <connections>
-                                        <action selector="connectClicked:" destination="BYZ-38-t0r" eventType="valueChanged" id="Bap-gm-IzR"/>
-                                    </connections>
-                                </switch>
-                            </barButtonItem>
-                            <barButtonItem title="ping" id="UkD-Jh-IdE">
-                                <connections>
-                                    <action selector="pingClicked:" destination="BYZ-38-t0r" id="M0M-Yz-5Nw"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="ping" id="UkD-Jh-IdE">
+                            <connections>
+                                <action selector="pingClicked:" destination="BYZ-38-t0r" id="M0M-Yz-5Nw"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
-                        <outlet property="connectSwitch" destination="ini-He-VJQ" id="adL-j6-mf4"/>
                         <outlet property="pingButton" destination="UkD-Jh-IdE" id="Ljl-ke-uk5"/>
                         <outlet property="tableView" destination="TRf-95-A8K" id="loO-LU-XA7"/>
                     </connections>
@@ -109,10 +96,10 @@
             </objects>
             <point key="canvasLocation" x="1830" y="-459"/>
         </scene>
-        <!--Escalade-->
+        <!--Dashboard-->
         <scene sceneID="sUf-Md-7gj">
             <objects>
-                <tableViewController title="Escalade" id="OTb-7P-LBO" customClass="DashboardViewController" customModule="Escalade_iOS" sceneMemberID="viewController">
+                <tableViewController title="Dashboard" id="OTb-7P-LBO" customClass="DashboardViewController" customModule="Escalade_iOS" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="odx-Vd-O1o">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,6 +192,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wz0-1w-uao">
                                                     <rect key="frame" x="255" y="6" width="49" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="connectClicked:" destination="OTb-7P-LBO" eventType="valueChanged" id="wJm-5V-jZF"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VPN state" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecd-h7-qt3">
                                                     <rect key="frame" x="16" y="12" width="77" height="21"/>
@@ -227,6 +217,7 @@
                     <navigationItem key="navigationItem" id="jUz-W5-2XS"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="connectSwitch" destination="Wz0-1w-uao" id="Tjb-zN-iZM"/>
                         <outlet property="connectivityCell" destination="v19-ta-KMs" id="HcJ-wa-QKD"/>
                         <outlet property="currentServerCell" destination="D0T-vz-dL3" id="IG7-9J-3CS"/>
                         <outlet property="trafficCell" destination="BbU-cp-Gry" id="GUl-EU-2Ml"/>

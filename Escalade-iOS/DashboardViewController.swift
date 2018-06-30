@@ -11,8 +11,29 @@ import CocoaLumberjackSwift
 
 class DashboardViewController: UITableViewController {
     override func viewDidLoad() {
+        connectionChanged()
+        manager.monitorStatus { (_) in
+            self.connectionChanged()
+        }
+
     }
-    
+    func connectionChanged() {
+        let state = manager.status
+        let enabled = [.connected, .disconnected, .invalid].contains(state)
+        connectSwitch.isEnabled = enabled // && servers.count > 0
+        let on = [.connected, .connecting, .reasserting].contains(state)
+        connectSwitch.setOn(on, animated: true)
+        NSLog("status changed to \(state.description), enabled: \(enabled), on: \(on)")
+    }
+    @IBAction func connectClicked(_ sender: Any) {
+        if manager.connected {
+            manager.stopVPN()
+        } else {
+            manager.startVPN()
+        }
+    }
+    let manager = VPNManager.shared
+    @IBOutlet weak var connectSwitch: UISwitch!
     @IBOutlet weak var connectivityCell: UITableViewCell!
     @IBOutlet weak var trafficCell: UITableViewCell!
     @IBOutlet weak var currentServerCell: UITableViewCell!
