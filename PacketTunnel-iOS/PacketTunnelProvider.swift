@@ -102,11 +102,14 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         case "dumpTunnel":
             proxyService?.proxyManager.dump()
             completionHandler?(nil)
-        case "reportIssue":
-            DDLogError("############ReportIssue############")
         case "toggleProxyService":
             proxyService?.toggle()
         default:
+            if msg.starts(with: "reportIssue") {
+                DDLogError("############ReportIssue############")
+                DDLogError("\(msg)")
+                return
+            }
             DDLogWarn("unknown msg \(msg)")
         }
     }

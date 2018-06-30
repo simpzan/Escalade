@@ -116,18 +116,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     @IBAction func openMenu(_ sender: Any) {
-        let actions = ["DumpTunnel", "ReportIssue", "View log files", "Toggle proxy service", "Network Tests"]
+        let actions = ["ReportIssue", "View log files", "Toggle proxy service", "Network Tests"]
         self.select(actions, title: "choose action", { (index) in
             switch index {
             case 0:
-                self.manager.sendMessage(msg: "dumpTunnel")
+                self.getTextInput(withTitle: "What is the issue?", { (issue) in
+                    guard let issue = issue else { return }
+                    self.manager.sendMessage(msg: "reportIssue.\(issue)")
+                    self.manager.sendMessage(msg: "dumpTunnel")
+                })
             case 1:
-                self.manager.sendMessage(msg: "reportIssue")
-            case 2:
                 self.showLogFiles()
-            case 3:
+            case 2:
                 self.manager.sendMessage(msg: "toggleProxyService")
-            case 4:
+            case 3:
                 self.networkRequestTests()
             default:
                 DDLogDebug("nothing")

@@ -29,4 +29,25 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)getTextInputWithTitle:(NSString *)title :(TextInputDialogCallback)callback {
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+    }];
+    UIAlertAction *button = [UIAlertAction actionWithTitle:@"OK"
+            style:UIAlertActionStyleDefault
+            handler:^(UIAlertAction * _Nonnull action) {
+        NSString *text = alert.textFields.firstObject.text;
+        text = text ? text : @"";
+        callback(text);
+    }];
+    [alert addAction:button];
+    UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        callback(NULL);
+    }];
+    [alert addAction:cancelButton];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 @end

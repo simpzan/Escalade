@@ -13,4 +13,7 @@
 typedef void (^ActionSheetCallback)(int index);
 - (void)select:(NSArray *)actions title:(NSString *)title :(ActionSheetCallback)callback;
 
+typedef void (^TextInputDialogCallback)(NSString *result);
+- (void)getTextInputWithTitle:(NSString *)title :(TextInputDialogCallback)callback;
+
 @end
