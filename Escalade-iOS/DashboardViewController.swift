@@ -65,7 +65,7 @@ class DashboardViewController: UITableViewController {
     func startTrafficMonitor() {
         guard manager.connected else { return }
         monitor.startUpdate { (rx, tx) in
-            self.trafficCell.detailTextLabel?.text = "⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s"
+            self.trafficCell.textLabel?.text = "⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s"
         }
     }
     func stopTrafficMonitor() {
@@ -77,7 +77,7 @@ class DashboardViewController: UITableViewController {
     
     func updateCurrentServer() {
         let current = loadDefaults(key: currentServerKey)
-        currentServerCell.detailTextLabel?.text = current
+        currentServerCell.textLabel?.text = current
     }
     @IBOutlet weak var currentServerCell: UITableViewCell!
     
@@ -85,7 +85,7 @@ class DashboardViewController: UITableViewController {
 
     func testConnectivity() {
         guard manager.connected else {
-            connectivityCell.detailTextLabel?.text = "VPN disabled"
+            connectivityCell.textLabel?.text = "VPN disabled"
             return
         }
 
@@ -100,14 +100,14 @@ class DashboardViewController: UITableViewController {
             showResult()
         }
         DDLogInfo("ping testing...")
-        connectivityCell.detailTextLabel?.text = "ping testing..."
+        connectivityCell.textLabel?.text = "ping testing..."
         func showResult() {
             let status = "China \(miliseconds(direct)), World \(miliseconds(proxy))"
             DDLogInfo("ping test \(status)")
             if direct == -1 && proxy == -1 {
-                connectivityCell.detailTextLabel?.text = "ping test failed"
+                connectivityCell.textLabel?.text = "ping test failed"
             } else {
-                connectivityCell.detailTextLabel?.text = status
+                connectivityCell.textLabel?.text = status
             }
         }
     }
