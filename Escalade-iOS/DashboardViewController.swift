@@ -17,11 +17,19 @@ class DashboardViewController: UITableViewController {
             self.connectionChanged()
         }
         updateCurrentServer()
+        NotificationCenter.default.addObserver(self,
+                selector: #selector(appWillEnterForeground),
+                name: Notification.Name.UIApplicationWillEnterForeground,
+                object: nil)
+    }
+    @objc func appWillEnterForeground() {
+        testConnectivity()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startTrafficMonitor()
         updateCurrentServer()
+        testConnectivity()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -36,8 +44,12 @@ class DashboardViewController: UITableViewController {
         connectSwitch.setOn(on, animated: true)
         NSLog("status changed to \(state.description), enabled: \(enabled), on: \(on)")
 
-        if state == .connected { startTrafficMonitor() }
-        else { stopTrafficMonitor() }
+        if state == .connected {
+            startTrafficMonitor()
+            testConnectivity()
+        } else {
+            stopTrafficMonitor()
+        }
     }
     @IBAction func connectClicked(_ sender: Any) {
         if manager.connected {
@@ -71,7 +83,7 @@ class DashboardViewController: UITableViewController {
     
     let api = APIClient.shared
 
-    func pingTest() {
+    func testConnectivity() {
         guard manager.connected else {
             connectivityCell.detailTextLabel?.text = "VPN disabled"
             return
@@ -148,10 +160,11 @@ class DashboardViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         DDLogInfo("selected \(indexPath.row)")
         switch indexPath.row {
         case 0:
-            pingTest()
+            testConnectivity()
         default:
             DDLogInfo("")
         }
