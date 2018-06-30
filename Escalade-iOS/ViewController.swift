@@ -11,7 +11,6 @@ import NetworkExtension
 import CocoaLumberjackSwift
 import SVProgressHUD
 import NEKit
-import FileBrowser
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let manager = VPNManager.shared
@@ -35,55 +34,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     let api = APIClient.shared
     
-    func networkRequestTests() {
-        let actions = ["GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP"]
-        self.select(actions, title: "Network Tests") { (index) in
-            switch index {
-            case 0:
-                GCDAsyncSocket.httpRequest("simpzan.com", 8000)
-            case 1:
-                NSURLSessionHttpTest("http://simpzan.com:8000")
-            case 2:
-                dnsTest("simpzan.com")
-            case 3:
-                udpSend("159.89.119.178", 8877, "hello from iphone")
-            default:
-                DDLogDebug("nothing to do")
-            }
-        }
-    }
-        
-    @IBAction func test(_ sender: Any) {
-    }
-    
-    @IBAction func openMenu(_ sender: Any) {
-        let actions = ["ReportIssue", "View log files", "Toggle proxy service", "Network Tests"]
-        self.select(actions, title: "choose action", { (index) in
-            switch index {
-            case 0:
-                self.getTextInput(withTitle: "What is the issue?", { (issue) in
-                    guard let issue = issue else { return }
-                    self.manager.sendMessage(msg: "reportIssue.\(issue)")
-                    self.manager.sendMessage(msg: "dumpTunnel")
-                })
-            case 1:
-                self.showLogFiles()
-            case 2:
-                self.manager.sendMessage(msg: "toggleProxyService")
-            case 3:
-                self.networkRequestTests()
-            default:
-                DDLogDebug("nothing")
-            }
-        })
-    }
-    
-    func showLogFiles() {
-        let initialPath = getContainerDir(groupId: groupId, subdir: "/Logs/")
-        let fileBrowser = FileBrowser(initialPath: URL(fileURLWithPath: initialPath))
-        present(fileBrowser, animated: true)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         _ = loadConfig()
