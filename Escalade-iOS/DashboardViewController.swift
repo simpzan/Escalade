@@ -145,7 +145,7 @@ class DashboardViewController: UITableViewController {
     }
     
     @IBAction func openMenu(_ sender: Any) {
-        let actions = ["ReportIssue", "View log files", "Toggle proxy service", "Network Tests", "Reset Data"]
+        let actions = ["ReportIssue", "View log files", "Toggle proxy service", "Network Tests", "Reset Data", "Connections"]
         self.select(actions, title: "choose action", { (index) in
             switch index {
             case 0:
@@ -162,6 +162,10 @@ class DashboardViewController: UITableViewController {
                 self.networkRequestTests()
             case 4:
                 resetData()
+            case 5:
+                self.api.getConnections { (connections) in
+                    DDLogInfo("connections \(connections*)")
+                }
             default:
                 DDLogDebug("nothing")
             }

@@ -19,6 +19,15 @@
 		760C981D208C774D00EBDB8A /* NATProxyServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760C981B208C774D00EBDB8A /* NATProxyServer.swift */; };
 		760C9820208C901F00EBDB8A /* HostEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C981F208C901F00EBDB8A /* HostEndpoint.m */; };
 		760C9821208C901F00EBDB8A /* HostEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C981F208C901F00EBDB8A /* HostEndpoint.m */; };
+		761068EF20E8932800DD6350 /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */; };
+		761068F320E8933B00DD6350 /* NATProxyServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760C981B208C774D00EBDB8A /* NATProxyServer.swift */; };
+		761068F420E8934F00DD6350 /* PacketTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C97EF208C5CFA00EBDB8A /* PacketTranslator.m */; };
+		761068F520E8935900DD6350 /* TUNController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C3D1E7D3B7800E6146E /* TUNController.swift */; };
+		761068F620E8939300DD6350 /* TCPPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C97FB208C683200EBDB8A /* TCPPacket.m */; };
+		761068F720E893A100DD6350 /* Checksum.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C97FE208C684800EBDB8A /* Checksum.m */; };
+		761068F820E893A400DD6350 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C9803208C689000EBDB8A /* Utils.m */; };
+		761068F920E8A1E300DD6350 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
+		761068FA20E8A26000DD6350 /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
 		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
 		761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884502016128B00156F92 /* SVProgressHUD.framework */; };
@@ -32,6 +41,7 @@
 		76312ABE1E6BEE7C000B66C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76312ABC1E6BEE7C000B66C9 /* Main.storyboard */; };
 		76312AC01E6BEE7C000B66C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76312ABF1E6BEE7C000B66C9 /* Assets.xcassets */; };
 		76312AC31E6BEE7C000B66C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76312AC11E6BEE7C000B66C9 /* LaunchScreen.storyboard */; };
+		7636464D20E874E000F303EF /* HostEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C981F208C901F00EBDB8A /* HostEndpoint.m */; };
 		763D3EA620DF90C80073C1E9 /* ServersPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */; };
 		763D3EA720DF90C80073C1E9 /* ServersPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */; };
 		763F88C320E4F38500D781FB /* TrafficMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */; };
@@ -557,6 +567,13 @@
 			path = "Escalade-iOS";
 			sourceTree = "<group>";
 		};
+		7636464E20E8792300F303EF /* RPC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RPC;
+			sourceTree = "<group>";
+		};
 		76841E831E505EA300685B0F /* EscaladeLaunchHelper-macOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +643,7 @@
 		76B08C2D1E7CF84D00E6146E /* Escalade */ = {
 			isa = PBXGroup;
 			children = (
+				7636464E20E8792300F303EF /* RPC */,
 				760C97F9208C675C00EBDB8A /* NAT */,
 				76B08C611E7D4A7800E6146E /* ProxyService.swift */,
 				763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */,
@@ -1145,20 +1163,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */,
+				761068EF20E8932800DD6350 /* ProxyServerManager.swift in Sources */,
 				76D5C68220B71B5900D9C1BD /* Repeater.swift in Sources */,
+				761068F820E893A400DD6350 /* Utils.m in Sources */,
+				7636464D20E874E000F303EF /* HostEndpoint.m in Sources */,
 				76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */,
 				7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */,
+				761068F320E8933B00DD6350 /* NATProxyServer.swift in Sources */,
 				76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */,
 				76CA418F2090B5DE008D2556 /* Log.m in Sources */,
 				763D3EA620DF90C80073C1E9 /* ServersPersistence.swift in Sources */,
+				761068F420E8934F00DD6350 /* PacketTranslator.m in Sources */,
 				7673035520E787EE000087E3 /* DashboardViewController.swift in Sources */,
+				761068FA20E8A26000DD6350 /* ProxyService.swift in Sources */,
+				761068F620E8939300DD6350 /* TCPPacket.m in Sources */,
 				7656511E209360EF00D59160 /* UIViewController+ActionSheet.m in Sources */,
+				761068F520E8935900DD6350 /* TUNController.swift in Sources */,
 				763F88C320E4F38500D781FB /* TrafficMonitor.swift in Sources */,
 				76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */,
 				7679B6921E7E601500477755 /* API.swift in Sources */,
 				76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */,
 				7679B69B1E7E614700477755 /* ServerController.swift in Sources */,
 				7679B6A61E7E715400477755 /* RPC.swift in Sources */,
+				761068F720E893A100DD6350 /* Checksum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1207,6 +1234,7 @@
 				76B08C351E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
 				76B08C371E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */,
+				761068F920E8A1E300DD6350 /* API.swift in Sources */,
 				7656510D2091FB8D00D59160 /* NetworkTests.m in Sources */,
 				76AA0E2E209ED2D400332E71 /* NATProxyServer.swift in Sources */,
 				76CA418D2090B5DE008D2556 /* Log.m in Sources */,

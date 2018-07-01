@@ -33,7 +33,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         return proxyService!.serverController
     }
     lazy var api: APIServer? = {
-        return APIServer(self.serverController)
+        return APIServer(self.proxyService!)
     }()
     let trafficMonitorServer = TrafficMonitorServer()
     

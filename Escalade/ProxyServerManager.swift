@@ -31,9 +31,11 @@ class ProxyServerManager: NSObject {
         httpServer?.stop()
     }
     
-    public func dump() {
-        socks5Server?.dump()
-        httpServer?.dump()
+    public func dump() -> [ConnectionRecord] {
+        guard let sock5 = socks5Server, let http = httpServer else { return [] }
+        let sock5Connections = sock5.dump()
+        let httpConnections = http.dump()
+        return sock5Connections + httpConnections
     }
 
     public func startProxyServers() {

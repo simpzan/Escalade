@@ -14,11 +14,15 @@ let getServersId = "getServers"
 let autoSelectId = "autoSelect"
 let pingDirectId = "pingDirect"
 let pingProxyId = "pingProxy"
+let getConnectionsId = "getConnections"
 
 class APIServer {
-    let serverController: ServerController
-    init(_ serverController: ServerController) {
-        self.serverController = serverController
+    let proxyService: ProxyService
+    var serverController: ServerController {
+        return proxyService.serverController
+    }
+    init(_ proxyService: ProxyService) {
+        self.proxyService = proxyService
     }
     var servers: [[String: String]] {
         let result = serverController.servers.map { (name, ping) -> [String: String] in
@@ -73,6 +77,12 @@ class APIServer {
                 done(NSNumber(floatLiteral: result))
             }
         }
+        addAsyncAPI(getConnectionsId) { (input, done) in
+            let connections = self.proxyService.proxyManager.dump()
+            let output = try? JSONEncoder().encode(connections)
+            let result = output as NSData?
+            done(result)
+        }
     }
 }
 
@@ -114,6 +124,13 @@ public class APIClient {
         callAsyncAPI(pingProxyId) { (result) in
             guard let number = result as? NSNumber else { return callback(nil) }
             callback(number.doubleValue)
+        }
+    }
+    func getConnections(callback:  @escaping ([ConnectionRecord]?) -> Void) {
+        callAsyncAPI(getConnectionsId) { (data) in
+            guard let result = data as? Data else { return callback(nil) }
+            let connections = try? JSONDecoder().decode([ConnectionRecord].self, from: result)
+            callback(connections)
         }
     }
 }
