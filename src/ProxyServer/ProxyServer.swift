@@ -103,16 +103,29 @@ open class ProxyServer: NSObject, TunnelDelegate {
             return
         }
 
+        Historian.shared.record(tunnel: tunnel)
         tunnels.remove(at: index)
     }
 
-    public func dump() {
+    public func dump() -> [ConnectionRecord] {
         var i = 1;
         let name = String(describing: self)
         let total = tunnels.count
+        var connections = [ConnectionRecord]()
         for tunnel in tunnels {
             DDLogInfo("\(name) \(i)/\(total). \(tunnel)")
             i += 1
+            
+            guard let session = tunnel.proxySocket.session else { continue }
+            
+            let remote = "\(session.host):\(session.port)"
+            let local = ""
+            let rule = session.matchedRule?.description ?? ""
+            
+            let record = ConnectionRecord(remoteEndpoint: remote, localEndpoint: local, matchedRule: rule, rx: tunnel.rx, tx: tunnel.tx, active: true)
+            connections.append(record)
         }
+        return connections
     }
 }
+

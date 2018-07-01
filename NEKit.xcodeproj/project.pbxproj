@@ -282,6 +282,8 @@
 		36E9CD001DD6EEF5003597CE /* QueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E9CCFE1DD6EEF5003597CE /* QueueFactory.swift */; };
 		36E9CD041DD6F0DE003597CE /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 360F392B1DD2068E002BED59 /* Resolver.framework */; };
 		36E9CD051DD6F0DE003597CE /* Resolver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 360F392B1DD2068E002BED59 /* Resolver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7610690820E8ADA300DD6350 /* Historian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610690720E8ADA200DD6350 /* Historian.swift */; };
+		7610690920E8ADA300DD6350 /* Historian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610690720E8ADA200DD6350 /* Historian.swift */; };
 		76AE7C021E23942E00DB0251 /* HttpPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C011E23942E00DB0251 /* HttpPing.swift */; };
 		76AE7C031E23942E00DB0251 /* HttpPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C011E23942E00DB0251 /* HttpPing.swift */; };
 		76AE7C071E23A94C00DB0251 /* HttpPingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C041E23A8C300DB0251 /* HttpPingSpec.swift */; };
@@ -558,6 +560,7 @@
 		36DB3CEE1E0D610500D907DB /* IPAddressSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPAddressSpec.swift; sourceTree = "<group>"; };
 		36E44A011CF2ED4800185DBF /* TUNInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUNInterface.swift; sourceTree = "<group>"; };
 		36E9CCFE1DD6EEF5003597CE /* QueueFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QueueFactory.swift; path = Tunnel/QueueFactory.swift; sourceTree = "<group>"; };
+		7610690720E8ADA200DD6350 /* Historian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Historian.swift; sourceTree = "<group>"; };
 		76AE7C011E23942E00DB0251 /* HttpPing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPing.swift; sourceTree = "<group>"; };
 		76AE7C041E23A8C300DB0251 /* HttpPingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPingSpec.swift; sourceTree = "<group>"; };
 		76AE7C0C1E24830200DB0251 /* SelectAdapterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAdapterFactory.swift; sourceTree = "<group>"; };
@@ -792,6 +795,7 @@
 				3664F0BD1CE3069F008BA6D8 /* Opt.swift */,
 				36B162241CDDA0EA00F24C97 /* Utils.swift */,
 				3621B9481DFA92480003ABB3 /* GlobalIntializer.swift */,
+				7610690720E8ADA200DD6350 /* Historian.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1456,6 +1460,7 @@
 				36C48DAC1CF9D6580071804F /* DNSEnums.swift in Sources */,
 				3664F0C01CE30957008BA6D8 /* StreamScanner.swift in Sources */,
 				36411A591D13988A005F4108 /* GCDHTTPProxyServer.swift in Sources */,
+				7610690820E8ADA300DD6350 /* Historian.swift in Sources */,
 				36B1620F1CDDA0E000F24C97 /* CountryRule.swift in Sources */,
 				36B1623D1CDDA0F300F24C97 /* AdapterFactoryManager.swift in Sources */,
 				36B162111CDDA0E000F24C97 /* RuleManager.swift in Sources */,
@@ -1574,6 +1579,7 @@
 				36C63DFA1D001FDA00A00CA2 /* IPPacket.swift in Sources */,
 				36C48DAD1CF9D6580071804F /* DNSEnums.swift in Sources */,
 				36C48D661CF88EBC0071804F /* Configuration.swift in Sources */,
+				7610690920E8ADA300DD6350 /* Historian.swift in Sources */,
 				36411A5A1D13988A005F4108 /* GCDHTTPProxyServer.swift in Sources */,
 				36C48D701CF88ECB0071804F /* TUNInterface.swift in Sources */,
 				36C48D6C1CF88ECB0071804F /* Port.swift in Sources */,
