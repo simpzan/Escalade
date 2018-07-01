@@ -100,7 +100,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         DDLogInfo("received request \(msg)")
         switch msg {
         case "dumpTunnel":
-            proxyService?.proxyManager.dump()
+            _ = proxyService?.proxyManager.dump()
             completionHandler?(nil)
         case "toggleProxyService":
             proxyService?.toggle()
