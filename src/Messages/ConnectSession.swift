@@ -146,6 +146,10 @@ public final class ConnectSession {
     public func isIP() -> Bool {
         return isIPv4() || isIPv6()
     }
+    
+    public var endpoint: String {
+        return "\(host):\(port)"
+    }
 }
 
 extension ConnectSession: CustomStringConvertible {

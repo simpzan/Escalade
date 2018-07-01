@@ -13,13 +13,7 @@ public class Historian {
     public var connections = [ConnectionRecord]()
     
     func record(tunnel: Tunnel) {
-        guard let session = tunnel.proxySocket.session else { return }
-        
-        let remote = "\(session.host):\(session.port)"
-        let local = ""
-        let rule = session.matchedRule?.description ?? ""
-    
-        let record = ConnectionRecord(remoteEndpoint: remote, localEndpoint: local, matchedRule: rule, rx: tunnel.rx, tx: tunnel.tx, active: false)
+        let record = ConnectionRecord(tunnel: tunnel)
         connections.append(record)
     }
     
@@ -32,5 +26,22 @@ public struct ConnectionRecord: Codable {
     public let matchedRule: String
     public let rx: Int
     public let tx: Int
-    public let active: Bool
+    public var active: Bool {
+        return closedTime == nil
+    }
+    public let createdTime: Date
+    public let closedTime: Date?
+    
+    
+    init(tunnel: Tunnel) {
+        let session = tunnel.proxySocket.session
+        remoteEndpoint = session != nil ? session!.endpoint : ""
+        localEndpoint = ""
+        matchedRule = session?.matchedRule?.description ?? ""
+        
+        rx = tunnel.rx
+        tx = tunnel.tx
+        createdTime = tunnel.createdTime
+        closedTime = tunnel.closedTime
+    }
 }

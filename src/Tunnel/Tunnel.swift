@@ -73,8 +73,12 @@ public class Tunnel: NSObject, SocketDelegate {
         }
     }
     
+    public let createdTime: Date
+    public var closedTime: Date?
+    
     init(proxySocket: ProxySocket) {
         self.proxySocket = proxySocket
+        createdTime = Date()
         super.init()
         self.proxySocket.delegate = self
         
@@ -272,6 +276,7 @@ public class Tunnel: NSObject, SocketDelegate {
     fileprivate func checkStatus() {
         if isClosed {
             _status = .closed
+            closedTime = Date()
             observer?.signal(.closed(self))
             delegate?.tunnelDidClose(self)
             delegate = nil
