@@ -30,6 +30,8 @@
 		761068FA20E8A26000DD6350 /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
 		761068FC20E8A48900DD6350 /* ConnectionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761068FB20E8A48900DD6350 /* ConnectionListViewController.swift */; };
 		7610690B20E8C26F00DD6350 /* ConnectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610690A20E8C26F00DD6350 /* ConnectionDetailViewController.swift */; };
+		7610692320E9297A00DD6350 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7610692220E9297A00DD6350 /* main.m */; };
+		7610692F20E92CE900DD6350 /* ListPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7610692E20E92CE800DD6350 /* ListPort.m */; };
 		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
 		761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884502016128B00156F92 /* SVProgressHUD.framework */; };
@@ -254,6 +256,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7610691E20E9297900DD6350 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		76277F141E4CF5D3006C06A6 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -341,6 +352,10 @@
 		760C981F208C901F00EBDB8A /* HostEndpoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HostEndpoint.m; sourceTree = "<group>"; };
 		761068FB20E8A48900DD6350 /* ConnectionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionListViewController.swift; sourceTree = "<group>"; };
 		7610690A20E8C26F00DD6350 /* ConnectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionDetailViewController.swift; sourceTree = "<group>"; };
+		7610692020E9297A00DD6350 /* ListPort */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ListPort; sourceTree = BUILT_PRODUCTS_DIR; };
+		7610692220E9297A00DD6350 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7610692D20E92CE800DD6350 /* ListPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPort.h; sourceTree = "<group>"; };
+		7610692E20E92CE800DD6350 /* ListPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPort.m; sourceTree = "<group>"; };
 		76107EC51E7D9BD800BC5E6F /* VPNManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
 		761884502016128B00156F92 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		761884582016128B00156F92 /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
@@ -434,6 +449,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7610691D20E9297900DD6350 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76277F131E4CF5D3006C06A6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -542,6 +564,16 @@
 				760C981B208C774D00EBDB8A /* NATProxyServer.swift */,
 			);
 			path = NAT;
+			sourceTree = "<group>";
+		};
+		7610692120E9297A00DD6350 /* ListPort */ = {
+			isa = PBXGroup;
+			children = (
+				7610692220E9297A00DD6350 /* main.m */,
+				7610692D20E92CE800DD6350 /* ListPort.h */,
+				7610692E20E92CE800DD6350 /* ListPort.m */,
+			);
+			path = ListPort;
 			sourceTree = "<group>";
 		};
 		76277F171E4CF5D3006C06A6 /* SystemProxyConfig */ = {
@@ -693,6 +725,7 @@
 				76312AB71E6BEE7C000B66C9 /* Escalade-iOS */,
 				76DB4CB91E6BF0B80019FA42 /* PacketTunnel-iOS */,
 				76B711CB2027059F0020895A /* PacketTunnel-macOS */,
+				7610692120E9297A00DD6350 /* ListPort */,
 				76C4935C1E4A0AA100A0D066 /* Products */,
 				768D4A1E1E4B4E8B00B73E10 /* Frameworks */,
 			);
@@ -707,6 +740,7 @@
 				76312AB61E6BEE7C000B66C9 /* Escalade-iOS.app */,
 				76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */,
 				76B711CA2027059F0020895A /* PacketTunnel-macOS.appex */,
+				7610692020E9297A00DD6350 /* ListPort */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -754,6 +788,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7610691F20E9297900DD6350 /* ListPort */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7610692420E9297A00DD6350 /* Build configuration list for PBXNativeTarget "ListPort" */;
+			buildPhases = (
+				7610691C20E9297900DD6350 /* Sources */,
+				7610691D20E9297900DD6350 /* Frameworks */,
+				7610691E20E9297900DD6350 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ListPort;
+			productName = ListPort;
+			productReference = 7610692020E9297A00DD6350 /* ListPort */;
+			productType = "com.apple.product-type.tool";
+		};
 		76277F151E4CF5D3006C06A6 /* SystemProxyConfig */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76277F1A1E4CF5D3006C06A6 /* Build configuration list for PBXNativeTarget "SystemProxyConfig" */;
@@ -882,6 +933,11 @@
 				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0920;
 				TargetAttributes = {
+					7610691F20E9297900DD6350 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = LL5MM59PQ7;
+						ProvisioningStyle = Automatic;
+					};
 					76277F151E4CF5D3006C06A6 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = UGK9FAJ697;
@@ -967,6 +1023,7 @@
 				76841E811E505EA300685B0F /* EscaladeLaunchHelper-macOS */,
 				76312AB51E6BEE7C000B66C9 /* Escalade-iOS */,
 				76DB4CB71E6BF0B70019FA42 /* PacketTunnel-iOS */,
+				7610691F20E9297900DD6350 /* ListPort */,
 			);
 		};
 /* End PBXProject section */
@@ -1156,6 +1213,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7610691C20E9297900DD6350 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7610692F20E92CE900DD6350 /* ListPort.m in Sources */,
+				7610692320E9297A00DD6350 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76277F121E4CF5D3006C06A6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1362,6 +1428,71 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7610692520E9297A00DD6350 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = LL5MM59PQ7;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7610692620E9297A00DD6350 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LL5MM59PQ7;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		76277F1B1E4CF5D3006C06A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2148,6 +2279,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7610692420E9297A00DD6350 /* Build configuration list for PBXNativeTarget "ListPort" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7610692520E9297A00DD6350 /* Debug */,
+				7610692620E9297A00DD6350 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		76277F1A1E4CF5D3006C06A6 /* Build configuration list for PBXNativeTarget "SystemProxyConfig" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
