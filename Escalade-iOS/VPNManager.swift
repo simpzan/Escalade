@@ -52,12 +52,24 @@ class VPNManager: NSObject {
         return status == .connected
     }
     
+    func getOnDemandRules() -> [NEOnDemandRule] {
+        let domains = ["google.com", "twitter.com", "youtube.com"]
+        let rule = NEEvaluateConnectionRule(matchDomains: domains, andAction: .connectIfNeeded)
+        rule.useDNSServers = domains
+        
+        let onDemandRule = NEOnDemandRuleEvaluateConnection()
+        onDemandRule.connectionRules = [rule]
+        onDemandRule.interfaceTypeMatch = .any
+        return [onDemandRule];
+    }
     private func createManager(callback: @escaping (NETunnelProviderManager?) -> Void) {
         let config = NETunnelProviderProtocol()
         config.providerBundleIdentifier = providerBundleIdentifier
         config.serverAddress = "10.0.0.2"
 
         let manager = NETunnelProviderManager()
+        manager.onDemandRules = getOnDemandRules()
+        manager.isOnDemandEnabled = false
         manager.protocolConfiguration = config
         manager.isEnabled = true
         manager.saveToPreferences { (error) in
