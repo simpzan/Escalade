@@ -78,7 +78,9 @@ class APIServer {
             }
         }
         addAsyncAPI(getConnectionsId) { (input, done) in
-            let connections = self.proxyService.proxyManager.dump()
+            let activeConnections = self.proxyService.proxyManager.dump()
+            let inactiveConnections = Historian.shared.connections
+            let connections = activeConnections + inactiveConnections
             let output = try? JSONEncoder().encode(connections)
             let result = output as NSData?
             done(result)
