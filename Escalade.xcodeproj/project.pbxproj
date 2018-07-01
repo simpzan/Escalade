@@ -29,6 +29,7 @@
 		761068F920E8A1E300DD6350 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		761068FA20E8A26000DD6350 /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
 		761068FC20E8A48900DD6350 /* ConnectionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761068FB20E8A48900DD6350 /* ConnectionListViewController.swift */; };
+		7610690B20E8C26F00DD6350 /* ConnectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610690A20E8C26F00DD6350 /* ConnectionDetailViewController.swift */; };
 		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
 		761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884502016128B00156F92 /* SVProgressHUD.framework */; };
@@ -339,6 +340,7 @@
 		760C981E208C901F00EBDB8A /* HostEndpoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostEndpoint.h; sourceTree = "<group>"; };
 		760C981F208C901F00EBDB8A /* HostEndpoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HostEndpoint.m; sourceTree = "<group>"; };
 		761068FB20E8A48900DD6350 /* ConnectionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionListViewController.swift; sourceTree = "<group>"; };
+		7610690A20E8C26F00DD6350 /* ConnectionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionDetailViewController.swift; sourceTree = "<group>"; };
 		76107EC51E7D9BD800BC5E6F /* VPNManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
 		761884502016128B00156F92 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		761884582016128B00156F92 /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				76312ABA1E6BEE7C000B66C9 /* ViewController.swift */,
 				7673034C20E749FF000087E3 /* DashboardViewController.swift */,
 				761068FB20E8A48900DD6350 /* ConnectionListViewController.swift */,
+				7610690A20E8C26F00DD6350 /* ConnectionDetailViewController.swift */,
 				76312ABC1E6BEE7C000B66C9 /* Main.storyboard */,
 				76312ABF1E6BEE7C000B66C9 /* Assets.xcassets */,
 				76312AC11E6BEE7C000B66C9 /* LaunchScreen.storyboard */,
@@ -1188,6 +1191,7 @@
 				7679B6921E7E601500477755 /* API.swift in Sources */,
 				76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */,
 				7679B69B1E7E614700477755 /* ServerController.swift in Sources */,
+				7610690B20E8C26F00DD6350 /* ConnectionDetailViewController.swift in Sources */,
 				7679B6A61E7E715400477755 /* RPC.swift in Sources */,
 				761068F720E893A100DD6350 /* Checksum.m in Sources */,
 			);

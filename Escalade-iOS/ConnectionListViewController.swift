@@ -35,6 +35,11 @@ class ConnectionListViewController: UITableViewController {
     var connections = [ConnectionRecord]()
     let api = APIClient.shared
 
+    private func getConnection(_ indexPath: IndexPath) -> ConnectionRecord {
+        let list = indexPath.section == 0 ? connections : closeConnections
+        let connection = list[indexPath.row]
+        return connection
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -46,12 +51,18 @@ class ConnectionListViewController: UITableViewController {
         return list.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let list = indexPath.section == 0 ? connections : closeConnections
-        let connection = list[indexPath.row]
-        
+        let connection = getConnection(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "connectionCell")!
         cell.textLabel?.text = connection.remoteEndpoint;
         cell.detailTextLabel?.text = dateFormatter.string(from: connection.createdTime)
         return cell;
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showConnectionDetail" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let controller = segue.destination as! ConnectionDetailViewController
+                controller.connection = getConnection(indexPath)
+            }
+        }
     }
 }
