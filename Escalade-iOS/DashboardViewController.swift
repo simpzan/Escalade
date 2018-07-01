@@ -20,7 +20,7 @@ class DashboardViewController: UITableViewController {
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(appWillEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
         nc.addObserver(self, selector: #selector(appDidEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
-        nc.addObserver(self, selector: #selector(updateCurrentServer), name: serversUpdatedNotification, object: nil)
+        nc.addObserver(self, selector: #selector(updateUI), name: serversUpdatedNotification, object: nil)
     }
     @objc func appWillEnterForeground() {
         DDLogInfo("appWillEnterForeground")
@@ -42,11 +42,16 @@ class DashboardViewController: UITableViewController {
         super.viewDidDisappear(animated)
         stopTrafficMonitor()
     }
+    
+    @objc func updateUI() {
+        connectionChanged()
+        updateCurrentServer()
+    }
 
     func connectionChanged() {
         let state = manager.status
         let enabled = [.connected, .disconnected, .invalid].contains(state)
-        connectSwitch.isEnabled = enabled // && servers.count > 0
+        connectSwitch.isEnabled = enabled && getCurrentServer() != nil
         let on = [.connected, .connecting, .reasserting].contains(state)
         connectSwitch.setOn(on, animated: true)
         NSLog("status changed to \(state.description), enabled: \(enabled), on: \(on)")
@@ -83,7 +88,7 @@ class DashboardViewController: UITableViewController {
     @IBOutlet weak var trafficCell: UITableViewCell!
     
     @objc func updateCurrentServer() {
-        let current = loadDefaults(key: currentServerKey)
+        let current = getCurrentServer()
         self.currentServerCell.textLabel?.text = current
         tableView.reloadData() // force update current server cell.
     }

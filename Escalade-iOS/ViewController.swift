@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         api.autoSelect { (result) in
             DDLogInfo("auto selelct result \(result)")
             self.servers = result
-            self.current = loadDefaults(key: currentServerKey)
+            self.current = getCurrentServer()
             self.tableView.reloadData()
             SVProgressHUD.dismiss()
         }
@@ -65,7 +65,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         servers = serverNames.map({ (server) -> (String, String) in
             return (server, "")
         })
-        current = loadDefaults(key: currentServerKey)
+        current = getCurrentServer()
         tableView.reloadData()
         return true
     }

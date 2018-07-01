@@ -17,8 +17,12 @@ public func resetData() {
     NotificationCenter.default.post(name: serversUpdatedNotification, object: nil)
 }
 
+public func getCurrentServer() -> String? {
+    return loadDefaults(key: currentServerKey)
+}
+
 func setDefaultCurrentServer(servers: [[String: String]]) {
-    if loadDefaults(key: currentServerKey) != nil { return }
+    if getCurrentServer() != nil { return }
     guard let server = servers.first?["remarks"] else { return DDLogError("invalid servers \(servers)") }
     saveDefaults(key: currentServerKey, value: server)
 }
