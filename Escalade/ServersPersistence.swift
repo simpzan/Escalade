@@ -9,6 +9,20 @@ import Foundation
 import CocoaLumberjackSwift
 import NEKit
 
+public let serversUpdatedNotification = Notification.Name("serversUpdated")
+
+public func resetData() {
+    defaults.removeObject(forKey: currentServerKey)
+    defaults.removeObject(forKey: serversKey)
+    NotificationCenter.default.post(name: serversUpdatedNotification, object: nil)
+}
+
+func setDefaultCurrentServer(servers: [[String: String]]) {
+    if loadDefaults(key: currentServerKey) != nil { return }
+    guard let server = servers.first?["remarks"] else { return DDLogError("invalid servers \(servers)") }
+    saveDefaults(key: currentServerKey, value: server)
+}
+
 public func importServers(url: URL) -> Bool {
     DDLogInfo("imported url \(url)")
     guard let data = try? Data(contentsOf: url) else {
@@ -25,6 +39,7 @@ public func importServers(url: URL) -> Bool {
     }
     
     defaults.set(servers, forKey: serversKey)
+    setDefaultCurrentServer(servers: servers)
     DDLogInfo("imported \(servers)")
     return true
 }

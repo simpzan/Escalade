@@ -57,21 +57,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func getConfigListViewController() -> ViewController? {
-        guard let navVC = window?.rootViewController as? UINavigationController else { return nil }
-        return navVC.viewControllers.first as? ViewController
-    }
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         guard importServers(url: url) else {
             SVProgressHUD.showError(withStatus: "failed to import servers")
             DDLogError("failed to import servers in \(url)")
             return false
         }
-        guard let vc = getConfigListViewController(), vc.loadConfig() else {
-            SVProgressHUD.showError(withStatus: "falied to load servers")
-            DDLogError("failed to load servers")
-            return false
-        }
+        NotificationCenter.default.post(name: serversUpdatedNotification, object: nil)
         SVProgressHUD.showSuccess(withStatus: "config file imported")
         return true
     }

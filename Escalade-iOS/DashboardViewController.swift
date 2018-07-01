@@ -20,6 +20,7 @@ class DashboardViewController: UITableViewController {
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(appWillEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
         nc.addObserver(self, selector: #selector(appDidEnterBackground), name: .UIApplicationDidEnterBackground, object: nil)
+        nc.addObserver(self, selector: #selector(updateCurrentServer), name: serversUpdatedNotification, object: nil)
     }
     @objc func appWillEnterForeground() {
         DDLogInfo("appWillEnterForeground")
@@ -81,9 +82,10 @@ class DashboardViewController: UITableViewController {
     let monitor = TrafficMonitorClient()
     @IBOutlet weak var trafficCell: UITableViewCell!
     
-    func updateCurrentServer() {
+    @objc func updateCurrentServer() {
         let current = loadDefaults(key: currentServerKey)
-        currentServerCell.textLabel?.text = current
+        self.currentServerCell.textLabel?.text = current
+        tableView.reloadData() // force update current server cell.
     }
     @IBOutlet weak var currentServerCell: UITableViewCell!
     
@@ -138,7 +140,7 @@ class DashboardViewController: UITableViewController {
     }
     
     @IBAction func openMenu(_ sender: Any) {
-        let actions = ["ReportIssue", "View log files", "Toggle proxy service", "Network Tests"]
+        let actions = ["ReportIssue", "View log files", "Toggle proxy service", "Network Tests", "Reset Data"]
         self.select(actions, title: "choose action", { (index) in
             switch index {
             case 0:
@@ -153,6 +155,8 @@ class DashboardViewController: UITableViewController {
                 self.manager.sendMessage(msg: "toggleProxyService")
             case 3:
                 self.networkRequestTests()
+            case 4:
+                resetData()
             default:
                 DDLogDebug("nothing")
             }

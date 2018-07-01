@@ -44,6 +44,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.tableView.reloadData()
             }
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(serversUpdated), name: serversUpdatedNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func serversUpdated() {
+        _ = loadConfig()
     }
 
     @IBOutlet weak var tableView: UITableView!
