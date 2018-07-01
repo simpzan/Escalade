@@ -11,8 +11,10 @@ import CocoaLumberjackSwift
 class ConnectionListViewController: UITableViewController {
     override func viewDidLoad() {
         updateList()
+        dateFormatter.dateFormat = "MM-dd HH:mm:ss:SSS"
     }
-    
+    let dateFormatter = DateFormatter()
+
     @IBAction func refreshConnectionList(_ sender: Any) {
         updateList()
     }
@@ -21,8 +23,11 @@ class ConnectionListViewController: UITableViewController {
         api.getConnections { (connections) in
             DDLogInfo("connections \(connections*)")
             guard let connections = connections else { return }
-            self.connections = connections.filter { $0.active }
-            self.closeConnections = connections.filter { !$0.active }
+            let sorted = connections.sorted { (left: ConnectionRecord, right: ConnectionRecord) -> Bool in
+                return left.createdTime > right.createdTime
+            }
+            self.connections = sorted.filter { $0.active }
+            self.closeConnections = sorted.filter { !$0.active }
             self.tableView.reloadData()
         }
     }
@@ -46,7 +51,7 @@ class ConnectionListViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "connectionCell")!
         cell.textLabel?.text = connection.remoteEndpoint;
-        cell.detailTextLabel?.text = "⬇︎ \(readableSize(connection.rx)), ⬆︎ \(readableSize(connection.tx))"
+        cell.detailTextLabel?.text = dateFormatter.string(from: connection.createdTime)
         return cell;
     }
 }
