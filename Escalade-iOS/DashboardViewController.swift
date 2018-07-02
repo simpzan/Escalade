@@ -119,7 +119,7 @@ class DashboardViewController: UITableViewController {
         func showResult() {
             let status = "China \(miliseconds(direct)), World \(miliseconds(proxy))"
             DDLogInfo("ping test \(status)")
-            if direct == -1 && proxy == -1 {
+            if direct < 0 && proxy < 0 {
                 connectivityCell.textLabel?.text = "ping test failed"
             } else {
                 connectivityCell.textLabel?.text = status
