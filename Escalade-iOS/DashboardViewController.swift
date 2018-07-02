@@ -24,11 +24,13 @@ class DashboardViewController: UITableViewController {
     }
     @objc func appWillEnterForeground() {
         DDLogInfo("appWillEnterForeground")
+        guard self.visible else { return }
         startTrafficMonitor()
         testConnectivity()
     }
     @objc func appDidEnterBackground() {
         DDLogInfo("appDidEnterBackground")
+        guard self.visible else { return }
         stopTrafficMonitor()
     }
     
@@ -187,5 +189,11 @@ class DashboardViewController: UITableViewController {
         default:
             DDLogInfo("")
         }
+    }
+}
+
+extension UIViewController {
+    public var visible: Bool {
+        return self.viewIfLoaded?.window != nil
     }
 }
