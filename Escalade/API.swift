@@ -145,6 +145,7 @@ let stopTrafficMonitorId = "stopTrafficMointor"
 class TrafficMonitorServer {
     init() {
         wormhole.listenForMessage(withIdentifier: startTrafficMonitorId) { (_) in
+            DDLogInfo("start traffic monitor")
             TrafficMonitor.shared.startUpdate { (rx: Int, tx: Int) in
                 DDLogDebug("rx \(rx), tx \(tx)")
                 let traffic: [String: Int] = [ "rx": rx, "tx": tx ]
@@ -152,6 +153,7 @@ class TrafficMonitorServer {
             }
         }
         wormhole.listenForMessage(withIdentifier: stopTrafficMonitorId) { (_) in
+            DDLogInfo("stop traffic monitor")
             TrafficMonitor.shared.stopUpdate()
         }
     }
