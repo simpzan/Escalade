@@ -20,14 +20,14 @@ class ConnectionListViewController: UITableViewController {
     }
     
     func updateList() {
-        api.getConnections { (connections) in
-            DDLogInfo("connections \(connections*)")
+        api.getConnections(from: closeConnections.count) { (connections) in
             guard let connections = connections else { return }
+            DDLogInfo("connections \(connections.count) \(connections)")
             let sorted = connections.sorted { (left: ConnectionRecord, right: ConnectionRecord) -> Bool in
                 return left.createdTime > right.createdTime
             }
             self.connections = sorted.filter { $0.active }
-            self.closeConnections = sorted.filter { !$0.active }
+            self.closeConnections += sorted.filter { !$0.active }
             self.tableView.reloadData()
         }
     }

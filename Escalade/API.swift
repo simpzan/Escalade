@@ -78,9 +78,17 @@ class APIServer {
             }
         }
         addAsyncAPI(getConnectionsId) { (input, done) in
-            let activeConnections = self.proxyService.proxyManager.dump()
-            let inactiveConnections = Historian.shared.connections
-            let connections = activeConnections + inactiveConnections
+            let fromNumber = input as? NSNumber
+            let from = fromNumber?.intValue ?? 0
+            let active = self.proxyService.proxyManager.dump()
+            let inactive = Historian.shared.connections
+            DDLogInfo("active \(active.count), inactive \(inactive.count)")
+            var wanted = [ConnectionRecord]()
+            let inactiveCount = inactive.count
+            if inactiveCount > from {
+                wanted = Array(inactive[from...inactiveCount - 1])
+            }
+            let connections = active + wanted
             let output = try? JSONEncoder().encode(connections)
             let result = output as NSData?
             done(result)
@@ -128,8 +136,8 @@ public class APIClient {
             callback(number.doubleValue)
         }
     }
-    func getConnections(callback:  @escaping ([ConnectionRecord]?) -> Void) {
-        callAsyncAPI(getConnectionsId) { (data) in
+    func getConnections(from: Int = 0, callback:  @escaping ([ConnectionRecord]?) -> Void) {
+        callAsyncAPI(getConnectionsId, obj: NSNumber(value: from)) { (data) in
             guard let result = data as? Data else { return callback(nil) }
             let connections = try? JSONDecoder().decode([ConnectionRecord].self, from: result)
             callback(connections)
