@@ -76,9 +76,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 DDLogError("setTunnelNetworkSettings error:\(error!)")
                 return
             }
-            updateCanGetClientProcessInfo()
             self.proxyService?.start()
             self.api?.start()
+            updateCanGetClientProcessInfo()
             completionHandler(nil)
         }
     }
