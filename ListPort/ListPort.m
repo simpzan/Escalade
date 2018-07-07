@@ -14,22 +14,28 @@
 typedef struct proc_fdinfo proc_fdinfo;
 typedef struct kinfo_proc kinfo_proc;
 typedef struct socket_fdinfo socket_fdinfo;
+typedef struct socket_info socket_info;
 
-BOOL isPort(proc_fdinfo *procFDInfo, int pid, int port) {
-    if (procFDInfo->proc_fdtype != PROX_FDTYPE_SOCKET) return NO;
-    
+BOOL isPort(int pid, int fd, uint32_t port) {
     socket_fdinfo socketInfo;
-    int bytesUsed = proc_pidfdinfo(pid, procFDInfo->proc_fd, PROC_PIDFDSOCKETINFO, &socketInfo, PROC_PIDFDSOCKETINFO_SIZE);
+    int bytesUsed = proc_pidfdinfo(pid, fd, PROC_PIDFDSOCKETINFO, &socketInfo, PROC_PIDFDSOCKETINFO_SIZE);
     if (bytesUsed != PROC_PIDFDSOCKETINFO_SIZE) return NO;
     
-    if (socketInfo.psi.soi_family == AF_INET && socketInfo.psi.soi_kind == SOCKINFO_TCP) {
-        int localPort = (int)ntohs(socketInfo.psi.soi_proto.pri_tcp.tcpsi_ini.insi_lport);
+    socket_info *psi = &socketInfo.psi;
+    int familiy = psi->soi_family;
+    if (familiy != AF_INET && familiy != AF_INET6) return NO;
+
+    int kind = psi->soi_kind;
+    if (kind == SOCKINFO_TCP && port <= UINT16_MAX) {
+        uint32_t localPort = (uint32_t)ntohs(psi->soi_proto.pri_tcp.tcpsi_ini.insi_lport);
         return port == localPort;
+    } else if (kind == SOCKINFO_IN && port > UINT16_MAX) {
+        uint32_t localPort = (uint32_t)ntohs(psi->soi_proto.pri_in.insi_lport);
+        return port == localPort + UINT16_MAX;
     }
-    // todo: inet6, udp port check.
     return NO;
 }
-BOOL isProcessUsingPort(int pid, int port) {
+BOOL isProcessUsingPort(int pid, uint32_t port) {
     // Figure out the size of the buffer needed to hold the list of open FDs
     int bufferSize = proc_pidinfo(pid, PROC_PIDLISTFDS, 0, 0, 0);
     if (bufferSize == -1) {
@@ -44,8 +50,10 @@ BOOL isProcessUsingPort(int pid, int port) {
     proc_pidinfo(pid, PROC_PIDLISTFDS, 0, procFDInfo, bufferSize);
     BOOL matched = NO;
     for (int i = 0; i < bufferSize / PROC_PIDLISTFD_SIZE; i++) {
-        matched = isPort(procFDInfo + i, pid, port);
-        if (matched) break;
+        if (procFDInfo[i].proc_fdtype == PROX_FDTYPE_SOCKET) {
+            matched = isPort(pid, procFDInfo[i].proc_fd, port);
+            if (matched) break;
+        }
     }
     free(procFDInfo);
     return matched;
@@ -98,7 +106,29 @@ NSArray *getProcesses() {
     return pids;
 }
 
-NSString *ListPort(int port, int *processId) {
+#include <spawn.h>
+extern char **environ;
+int executeCommand(char *cmd) {
+    pid_t pid;
+    char *argv[] = {"sh", "-c", cmd, NULL};
+    int status = posix_spawn(&pid, "/bin/sh", NULL, NULL, argv, environ);
+    if (status != 0) {
+        ERRNO("posix_spawn(%s)", cmd);
+        return -1;
+    }
+    int result = waitpid(pid, &status, 0);
+    if (result == -1) {
+        perror("waitpid");
+        return -1;
+    }
+    return 0;
+}
+
+NSString *ListPort(uint32_t port, int *processId) {
+    // char cmd[2014] = { 0 };
+    // sprintf(cmd, "lsof -nP | grep %u >> /tmp/lsof.log", port);
+    // executeCommand(cmd);
+
     NSArray *pids = getProcesses();
     if (!pids) return NULL;
     

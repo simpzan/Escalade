@@ -7,4 +7,4 @@
 
 #import <Foundation/Foundation.h>
 
-NSString *ListPortRPC(int port, int *processId);
+NSString *ListPortRPC(uint32_t port, int *processId);

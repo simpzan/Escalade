@@ -26,9 +26,9 @@ NSString *parseResponse(char *response, int *pid) {
     return [NSString stringWithUTF8String:space + 1];
 }
 
-NSString *rpc(int sock, int port, int *pid) {
+NSString *rpc(int sock, uint32_t port, int *pid) {
     char request[16] = { 0 };
-    sprintf(request, "%d\n", port);
+    sprintf(request, "%u\n", port);
     send(sock, request, strlen(request), 0);
 
     char response[1024] = { 0 };
@@ -60,7 +60,7 @@ int tcpConnect(const char *address, int port) {
     return sock;
 }
 
-NSString *ListPortRPC(int port, int *processId) {
+NSString *ListPortRPC(uint32_t port, int *processId) {
     int sock = tcpConnect("127.0.0.1", 9999);
     NSString *output = NULL;
     if (sock) output = rpc(sock, port, processId);

@@ -11,4 +11,4 @@
 #define LOG_E(format, args...) printf(format "\n", ##args)
 #define ERRNO(format, args...) printf(format " failed, %s\n", ##args, strerror(errno))
 
-NSString *ListPort(int port, int *processId);
+NSString *ListPort(uint32_t port, int *processId);
