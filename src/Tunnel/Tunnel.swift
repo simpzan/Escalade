@@ -33,6 +33,11 @@ public class Tunnel: NSObject, SocketDelegate {
     
     /// The proxy socket.
     var proxySocket: ProxySocket
+    public var clientPort: UInt16? {
+        return proxySocket.socket.sourcePort?.value;
+    }
+    public var clientPid: Int?
+    public var clientProgram: String?
     
     /// The adapter socket connecting to remote.
     var adapterSocket: AdapterSocket?
