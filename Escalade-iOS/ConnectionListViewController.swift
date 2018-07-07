@@ -11,7 +11,7 @@ import CocoaLumberjackSwift
 class ConnectionListViewController: UITableViewController {
     override func viewDidLoad() {
         updateList()
-        dateFormatter.dateFormat = "MM-dd HH:mm:ss:SSS"
+        dateFormatter.dateFormat = "MM-dd HH:mm:ss"
     }
     let dateFormatter = DateFormatter()
 
@@ -54,7 +54,9 @@ class ConnectionListViewController: UITableViewController {
         let connection = getConnection(indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "connectionCell")!
         cell.textLabel?.text = connection.remoteEndpoint;
-        cell.detailTextLabel?.text = dateFormatter.string(from: connection.createdTime)
+        let traffic = connection.rx + connection.tx
+        let time = dateFormatter.string(from: connection.createdTime)
+        cell.detailTextLabel?.text = "\(time), \(traffic) B"
         return cell;
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
