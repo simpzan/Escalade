@@ -17,8 +17,11 @@ class ConnectionDetailViewController: UITableViewController {
         createdTimeCell.textLabel?.text = connection?.createdTime.description(with: Locale.current)
         closedTimeCell.textLabel?.text = connection?.closedTime?.description(with: Locale.current)
         
-        guard let program = connection.program as NSString?, let pid = connection.pid else { return }
-        clientProcessCell.textLabel?.text = "\(pid) \(program.lastPathComponent)"
+        if let program = connection.program as NSString?, let pid = connection.pid {
+            clientProcessCell.textLabel?.text = "\(pid) \(program.lastPathComponent)"
+        } else if let ua = connection.userAgent {
+            clientProcessCell.textLabel?.text = ua
+        }
     }
     
     @IBOutlet weak var remoteCell: UITableViewCell!
