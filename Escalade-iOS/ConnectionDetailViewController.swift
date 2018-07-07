@@ -16,6 +16,9 @@ class ConnectionDetailViewController: UITableViewController {
         ruleCell.textLabel?.text = connection?.matchedRule
         createdTimeCell.textLabel?.text = connection?.createdTime.description(with: Locale.current)
         closedTimeCell.textLabel?.text = connection?.closedTime?.description(with: Locale.current)
+        
+        guard let program = connection.program as NSString?, let pid = connection.pid else { return }
+        clientProcessCell.textLabel?.text = "\(pid) \(program.lastPathComponent)"
     }
     
     @IBOutlet weak var remoteCell: UITableViewCell!
@@ -23,4 +26,5 @@ class ConnectionDetailViewController: UITableViewController {
     @IBOutlet weak var ruleCell: UITableViewCell!
     @IBOutlet weak var createdTimeCell: UITableViewCell!
     @IBOutlet weak var closedTimeCell: UITableViewCell!
+    @IBOutlet weak var clientProcessCell: UITableViewCell!
 }

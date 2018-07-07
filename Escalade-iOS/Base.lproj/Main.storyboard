@@ -192,6 +192,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eli-qb-mUK">
+                                        <rect key="frame" x="0.0" y="220" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eli-qb-mUK" id="8Sg-PI-ou8">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -201,6 +209,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="clientProcessCell" destination="eli-qb-mUK" id="20h-xd-Adl"/>
                         <outlet property="closedTimeCell" destination="hOM-VO-TMN" id="wCt-Ma-mVO"/>
                         <outlet property="createdTimeCell" destination="2hr-Tm-xAc" id="KSL-at-IRM"/>
                         <outlet property="remoteCell" destination="wum-wH-d5E" id="Fjz-CA-fqH"/>

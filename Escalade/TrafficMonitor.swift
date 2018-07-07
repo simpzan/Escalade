@@ -10,6 +10,13 @@ import Foundation
 import NEKit
 import CocoaLumberjackSwift
 
+var isListPortEnabled: Bool = {
+    var pid: Int32 = 0
+    let program = ListPortRPC(9990, &pid)
+    DDLogInfo("pid \(pid) \(program*)")
+    return program != nil && pid == getpid()
+}()
+
 class ESObserverFactory: ObserverFactory {
     override func getObserverForAdapterSocket(_ socket: AdapterSocket) -> Observer<AdapterSocketEvent>? {
         return ESAdapterSocketObserver()
@@ -67,6 +74,23 @@ class ESObserverFactory: ObserverFactory {
                  .adapterSocketWroteData:
                 DDLogDebug("\(event)")
             }
+            switch event {
+            case .opened(let tunnel):
+                if isListPortEnabled { getClientProcessInfo(tunnel: tunnel) }
+            default:
+                break
+            }
+        }
+        func getClientProcessInfo(tunnel: Tunnel) {
+            guard let clientPort = tunnel.clientPort else { return }
+            var pid: Int32 = -1;
+            guard let program = ListPortRPC(Int32(clientPort), &pid) else {
+                DDLogWarn("\(tunnel) client process not found for \(clientPort).")
+                return
+            }
+            DDLogInfo("\(tunnel) request from \(clientPort), process \(pid) \(program)")
+            tunnel.clientPid = Int(pid)
+            tunnel.clientProgram = program
         }
     }
     
