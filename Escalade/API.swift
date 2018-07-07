@@ -59,13 +59,13 @@ class APIServer {
         }
         addAsyncAPI(pingDirectId) { (input, done) in
             self.serverController.factory.testDirect(timeout: 1) { err, result in
-                DDLogInfo("testDirect \(err) \(result)")
+                DDLogInfo("testDirect \(err*) \(result)")
                 done(NSNumber(floatLiteral: result))
             }
         }
         addAsyncAPI(pingProxyId) { (input, done) in
             self.serverController.factory.testCurrent(timeout:1) { (err, result) in
-                DDLogInfo("testCurrent \(err) \(result)")
+                DDLogInfo("testCurrent \(err*) \(result)")
                 done(NSNumber(floatLiteral: result))
             }
         }
