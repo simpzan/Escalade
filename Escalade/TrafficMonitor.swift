@@ -10,12 +10,17 @@ import Foundation
 import NEKit
 import CocoaLumberjackSwift
 
-var isListPortEnabled: Bool = {
+func isListPortEnabled() -> Bool {
     var pid: Int32 = 0
     let program = ListPortRPC(9990, &pid)
     DDLogInfo("pid \(pid) \(program*)")
     return program != nil && pid == getpid()
-}()
+}
+public func updateCanGetClientProcessInfo() {
+    canGetClientProcessInfo = isListPortEnabled()
+}
+var canGetClientProcessInfo: Bool = false;
+
 
 class ESObserverFactory: ObserverFactory {
     override func getObserverForAdapterSocket(_ socket: AdapterSocket) -> Observer<AdapterSocketEvent>? {
@@ -76,7 +81,7 @@ class ESObserverFactory: ObserverFactory {
             }
             switch event {
             case .opened(let tunnel):
-                if isListPortEnabled { getClientProcessInfo(tunnel: tunnel) }
+                if canGetClientProcessInfo { getClientProcessInfo(tunnel: tunnel) }
             default:
                 break
             }
