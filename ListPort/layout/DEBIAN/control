@@ -1,0 +1,10 @@
+Package: com.simpzan.listport
+Name: listport
+Depends:
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: a command line tool and on-demand service to get process using a port.
+Maintainer: Samuel Zhang
+Author: Samuel Zhang
+Section: System
+Tag: role::hacker

@@ -5,7 +5,7 @@
     <key>Label</key>
     <string>com.simpzan.listport</string>
     <key>Program</key>
-    <string>/usr/local/bin/listport</string>
+    <string>/usr/bin/listport</string>
     <key>Sockets</key>
     <dict>
         <key>Listeners</key>
