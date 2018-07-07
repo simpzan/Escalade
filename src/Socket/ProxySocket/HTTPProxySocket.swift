@@ -113,6 +113,7 @@ public class HTTPProxySocket: ProxySocket {
         
     }
     
+    public var userAgent: String?
     // swiftlint:disable function_body_length
     // swiftlint:disable cyclomatic_complexity
     /**
@@ -141,6 +142,7 @@ public class HTTPProxySocket: ProxySocket {
             destinationHost = currentHeader.host
             destinationPort = currentHeader.port
             isConnectCommand = currentHeader.isConnect
+            userAgent = currentHeader["User-Agent"]
             
             if !isConnectCommand {
                 readStatus = .pendingFirstHeader

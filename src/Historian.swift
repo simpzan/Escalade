@@ -33,6 +33,7 @@ public struct ConnectionRecord: Codable {
     public let closedTime: Date?
     public let pid: Int?
     public let program: String?
+    public let userAgent: String?
     
     init(tunnel: Tunnel) {
         let session = tunnel.proxySocket.session
@@ -46,5 +47,6 @@ public struct ConnectionRecord: Codable {
         closedTime = tunnel.closedTime
         pid = tunnel.clientPid
         program = tunnel.clientProgram
+        userAgent = tunnel.userAgent
     }
 }

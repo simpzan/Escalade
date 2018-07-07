@@ -38,6 +38,7 @@ public class Tunnel: NSObject, SocketDelegate {
     }
     public var clientPid: Int?
     public var clientProgram: String?
+    public var userAgent: String?
     
     /// The adapter socket connecting to remote.
     var adapterSocket: AdapterSocket?
@@ -180,6 +181,9 @@ public class Tunnel: NSObject, SocketDelegate {
             return
         }
         
+        if let socket = proxySocket as? HTTPProxySocket {
+            userAgent = socket.userAgent
+        }
         let manager = RuleManager.currentManager
         let factory = manager.match(session)!
         adapterSocket = factory.getAdapterFor(session: session)
