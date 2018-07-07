@@ -152,6 +152,9 @@
 		76CA418E2090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
 		76CA418F2090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
 		76CA41902090B5DE008D2556 /* Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CA418C2090B5DD008D2556 /* Log.m */; };
+		76CC643B20F07DA100DFE4E7 /* ListPortProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CC643A20F07DA100DFE4E7 /* ListPortProxy.m */; };
+		76CC643C20F07DA100DFE4E7 /* ListPortProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CC643A20F07DA100DFE4E7 /* ListPortProxy.m */; };
+		76CC643D20F07DA100DFE4E7 /* ListPortProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 76CC643A20F07DA100DFE4E7 /* ListPortProxy.m */; };
 		76D5C68020B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
 		76D5C68120B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
 		76D5C68220B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
@@ -431,6 +434,8 @@
 		76CA418A2090B5DC008D2556 /* Escalade-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Escalade-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		76CA418B2090B5DD008D2556 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Log.h; sourceTree = "<group>"; };
 		76CA418C2090B5DD008D2556 /* Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Log.m; sourceTree = "<group>"; };
+		76CC643920F07DA100DFE4E7 /* ListPortProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListPortProxy.h; sourceTree = "<group>"; };
+		76CC643A20F07DA100DFE4E7 /* ListPortProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListPortProxy.m; sourceTree = "<group>"; };
 		76D5C67C20B71B5900D9C1BD /* Repeater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repeater.swift; sourceTree = "<group>"; };
 		76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PacketTunnel-iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DB4CBB1E6BF0B80019FA42 /* PacketTunnel_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel_iOS.entitlements; sourceTree = "<group>"; };
@@ -572,6 +577,8 @@
 				7610692220E9297A00DD6350 /* main.m */,
 				7610692D20E92CE800DD6350 /* ListPort.h */,
 				7610692E20E92CE800DD6350 /* ListPort.m */,
+				76CC643920F07DA100DFE4E7 /* ListPortProxy.h */,
+				76CC643A20F07DA100DFE4E7 /* ListPortProxy.m */,
 			);
 			path = ListPort;
 			sourceTree = "<group>";
@@ -1217,6 +1224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76CC643D20F07DA100DFE4E7 /* ListPortProxy.m in Sources */,
 				7610692F20E92CE900DD6350 /* ListPort.m in Sources */,
 				7610692320E9297A00DD6350 /* main.m in Sources */,
 			);
@@ -1239,6 +1247,7 @@
 				76D5C68220B71B5900D9C1BD /* Repeater.swift in Sources */,
 				761068F820E893A400DD6350 /* Utils.m in Sources */,
 				7636464D20E874E000F303EF /* HostEndpoint.m in Sources */,
+				76CC643B20F07DA100DFE4E7 /* ListPortProxy.m in Sources */,
 				76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */,
 				7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */,
 				761068F320E8933B00DD6350 /* NATProxyServer.swift in Sources */,
@@ -1343,6 +1352,7 @@
 				76B08C631E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				76CA41902090B5DE008D2556 /* Log.m in Sources */,
 				760C97F1208C5CFA00EBDB8A /* PacketTranslator.m in Sources */,
+				76CC643C20F07DA100DFE4E7 /* ListPortProxy.m in Sources */,
 				7642ED592094ADB7002DBA3C /* ConnectivityManager.m in Sources */,
 				763D3EA720DF90C80073C1E9 /* ServersPersistence.swift in Sources */,
 				760C97FD208C683200EBDB8A /* TCPPacket.m in Sources */,
