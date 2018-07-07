@@ -10,8 +10,14 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        if (argc < 2) return -1;
-        int port = atoi(argv[1]);
+        int port = -1;
+        if (argc >= 2) {
+            port = atoi(argv[1]);
+        } else {
+            scanf ("%d", &port);
+        }
+        if (port <= 0) return -1;
+        
         int pid = 0;
         NSString *program = ListPort(port, &pid);
         if (!program) {
