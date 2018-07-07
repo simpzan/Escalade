@@ -47,7 +47,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
 
     /// The source port.
     open var sourcePort: Port? {
-        return Port(port: socket.localPort)
+        return Port(port: socket.connectedPort)
     }
 
     /// The destination address.
