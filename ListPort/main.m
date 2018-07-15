@@ -6,25 +6,30 @@
 //
 
 #import <Foundation/Foundation.h>
+#include "ListPortProxy.h"
 #include "ListPort.h"
+
+typedef NSString *(*ListPortFunction)(uint32_t port, int *pid);
+
+int listProcessUsingPort(const char *arg, ListPortFunction fn) {
+    int port = atoi(arg);
+    if (port <= 0) return -1;
+
+    int pid = 0;
+    NSString *program = fn(port, &pid);
+    if (!program) {
+        LOG_E("NotFound");
+        return -1;
+    }
+    LOG_I("%d %s", pid, program.UTF8String);
+    return 0;
+}
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        int port = -1;
-        if (argc >= 2) {
-            port = atoi(argv[1]);
-        } else {
-            scanf ("%d", &port);
-        }
-        if (port <= 0) return -1;
-        
-        int pid = 0;
-        NSString *program = ListPort(port, &pid);
-        if (!program) {
-            LOG_E("NotFound");
-            return -1;
-        }
-        LOG_I("%d %s", pid, program.UTF8String);
+        if (argc < 2) return ListPortServer();
+        if (argc >= 3) return listProcessUsingPort(argv[2], &ListPortRPC);
+        return listProcessUsingPort(argv[1], &ListPort);
     }
     return 0;
 }

@@ -8,3 +8,7 @@
 #import <Foundation/Foundation.h>
 
 NSString *ListPortRPC(uint32_t port, int *processId);
+
+#ifdef LISTPORT
+int ListPortServer(void);
+#endif
