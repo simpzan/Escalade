@@ -91,6 +91,7 @@ class ESObserverFactory: ObserverFactory {
             var pid: Int32 = -1;
             guard let program = ListPortRPC(UInt32(clientPort), &pid) else {
                 DDLogWarn("\(tunnel) client process not found for \(clientPort).")
+                canGetClientProcessInfo = false
                 return
             }
             DDLogInfo("\(tunnel) request from \(clientPort), process \(pid) \(program)")
