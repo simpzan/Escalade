@@ -87,6 +87,14 @@
 		768D4A381E4B4ED000B73E10 /* Resolver.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A241E4B4E8B00B73E10 /* Resolver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		768D4A391E4B4ED000B73E10 /* Sodium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A251E4B4E8B00B73E10 /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		768D4A3B1E4B4ED000B73E10 /* Yaml.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A271E4B4E8B00B73E10 /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		769C46DC20FB4665002DC6FF /* DirectDomain.rule in Resources */ = {isa = PBXBuildFile; fileRef = 769C46DB20FB4665002DC6FF /* DirectDomain.rule */; };
+		769C46DD20FB4665002DC6FF /* DirectDomain.rule in Resources */ = {isa = PBXBuildFile; fileRef = 769C46DB20FB4665002DC6FF /* DirectDomain.rule */; };
+		769C46DE20FB4665002DC6FF /* DirectDomain.rule in Resources */ = {isa = PBXBuildFile; fileRef = 769C46DB20FB4665002DC6FF /* DirectDomain.rule */; };
+		769C46DF20FB4665002DC6FF /* DirectDomain.rule in Resources */ = {isa = PBXBuildFile; fileRef = 769C46DB20FB4665002DC6FF /* DirectDomain.rule */; };
+		769C46E120FB4696002DC6FF /* ProxyDomain.rule in Resources */ = {isa = PBXBuildFile; fileRef = 769C46E020FB4696002DC6FF /* ProxyDomain.rule */; };
+		769C46E220FB4696002DC6FF /* ProxyDomain.rule in Resources */ = {isa = PBXBuildFile; fileRef = 769C46E020FB4696002DC6FF /* ProxyDomain.rule */; };
+		769C46E320FB4696002DC6FF /* ProxyDomain.rule in Resources */ = {isa = PBXBuildFile; fileRef = 769C46E020FB4696002DC6FF /* ProxyDomain.rule */; };
+		769C46E420FB4696002DC6FF /* ProxyDomain.rule in Resources */ = {isa = PBXBuildFile; fileRef = 769C46E020FB4696002DC6FF /* ProxyDomain.rule */; };
 		76A184DE1E6C12F400C35C83 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A101E4B4AB900B73E10 /* NEKit.framework */; };
 		76A184DF1E6C13B600C35C83 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A101E4B4AB900B73E10 /* NEKit.framework */; };
 		76A184E31E6C149100C35C83 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */; };
@@ -402,6 +410,8 @@
 		768D4A241E4B4E8B00B73E10 /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = NEKit/Carthage/Build/Mac/Resolver.framework; sourceTree = "<group>"; };
 		768D4A251E4B4E8B00B73E10 /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = NEKit/Carthage/Build/Mac/Sodium.framework; sourceTree = "<group>"; };
 		768D4A271E4B4E8B00B73E10 /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/Mac/Yaml.framework; sourceTree = "<group>"; };
+		769C46DB20FB4665002DC6FF /* DirectDomain.rule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DirectDomain.rule; sourceTree = "<group>"; };
+		769C46E020FB4696002DC6FF /* ProxyDomain.rule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ProxyDomain.rule; sourceTree = "<group>"; };
 		76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = NEKit/Carthage/Build/iOS/CocoaLumberjack.framework; sourceTree = "<group>"; };
 		76A184D71E6C11FC00C35C83 /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = NEKit/Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = "<group>"; };
@@ -707,6 +717,8 @@
 				7642ED562094ADB7002DBA3C /* ConnectivityManager.h */,
 				7642ED572094ADB7002DBA3C /* ConnectivityManager.m */,
 				76D5C67C20B71B5900D9C1BD /* Repeater.swift */,
+				769C46DB20FB4665002DC6FF /* DirectDomain.rule */,
+				769C46E020FB4696002DC6FF /* ProxyDomain.rule */,
 			);
 			path = Escalade;
 			sourceTree = "<group>";
@@ -1080,7 +1092,9 @@
 			files = (
 				76312AC31E6BEE7C000B66C9 /* LaunchScreen.storyboard in Resources */,
 				76312AC01E6BEE7C000B66C9 /* Assets.xcassets in Resources */,
+				769C46DE20FB4665002DC6FF /* DirectDomain.rule in Resources */,
 				76312ABE1E6BEE7C000B66C9 /* Main.storyboard in Resources */,
+				769C46E320FB4696002DC6FF /* ProxyDomain.rule in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,6 +1111,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				769C46E220FB4696002DC6FF /* ProxyDomain.rule in Resources */,
+				769C46DD20FB4665002DC6FF /* DirectDomain.rule in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,8 +1122,10 @@
 			files = (
 				764185501E506C13003C7FFC /* dsa_pub.pem in Resources */,
 				76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */,
+				769C46DC20FB4665002DC6FF /* DirectDomain.rule in Resources */,
 				76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */,
 				76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */,
+				769C46E120FB4696002DC6FF /* ProxyDomain.rule in Resources */,
 				76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1116,6 +1134,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				769C46E420FB4696002DC6FF /* ProxyDomain.rule in Resources */,
+				769C46DF20FB4665002DC6FF /* DirectDomain.rule in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
