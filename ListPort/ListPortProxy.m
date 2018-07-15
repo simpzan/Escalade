@@ -64,12 +64,16 @@ int tcpListen(int port) {
         return -1;
     }
 
+    int reusePort = 1;
+    int result = setsockopt(listen_sock, SOL_SOCKET, SO_REUSEPORT, &reusePort, sizeof(reusePort));
+    if (result < 0) ERRNO("setsockopt(SO_REUSEPORT)");
+
     struct sockaddr_in server_address = { 0 };
     server_address.sin_family = AF_INET;
     server_address.sin_port = htons(port);
     server_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
-    int result = bind(listen_sock, (struct sockaddr *)&server_address, sizeof(server_address));
+    result = bind(listen_sock, (struct sockaddr *)&server_address, sizeof(server_address));
     if (result < 0) {
         ERRNO("bind(%s:%d)", "INADDR_ANY", port);
         return -1;
