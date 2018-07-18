@@ -138,21 +138,7 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
      - warning: This should only be called after the last read is finished, i.e., `delegate?.didReadData()` is called.
      */
     public func readData() {
-        guard !cancelled else {
-            return
-        }
-
-        connection!.readMinimumLength(1, maximumLength: Opt.MAXNWTCPSocketReadDataSize) { data, error in
-            guard error == nil else {
-                DDLogError("\(self) got an error when reading data: \(error!). \(self.state).")
-                self.queueCall {
-                    self.disconnect()
-                }
-                return
-            }
-
-            self.readCallback(data: data)
-        }
+        readMinimum(1, maxinum: Opt.MAXNWTCPSocketReadDataSize)
     }
 
     /**
@@ -162,20 +148,26 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
      - warning: This should only be called after the last read is finished, i.e., `delegate?.didReadData()` is called.
      */
     public func readDataTo(length: Int) {
+        readMinimum(length, maxinum: length)
+    }
+    private func readMinimum(_ mininum: Int, maxinum: Int) {
         guard !cancelled else {
             return
         }
-
-        connection!.readLength(length) { data, error in
-            guard error == nil else {
-                DDLogError("\(self) got an error when reading data: \(error!). \(self.state).")
+        connection!.readMinimumLength(mininum, maximumLength: maxinum) { data, error in
+            if let err = error as NSError?, err.code == ENOTCONN {
+                DDLogDebug("\(self) connection closed by remote.")
                 self.queueCall {
                     self.disconnect()
                 }
                 return
             }
-
-            self.readCallback(data: data)
+            if error != nil {
+                DDLogError("\(self) got an error when reading data: \(error!).")
+            }
+            if data != nil {
+                self.readCallback(data: data)
+            }
         }
     }
 
