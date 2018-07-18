@@ -76,7 +76,7 @@ public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
 
         // swiftlint:disable:next force_cast
         let payload = (packet.protocolParser as! UDPProtocolParser).payload
-        DDLogInfo("udp relay \(packet.description)")
+        DDLogDebug("udp relay \(packet.description)")
         socket.write(data: payload!)
     }
 

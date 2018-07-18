@@ -64,7 +64,7 @@ public class NWUDPSocket: NSObject {
                 let bytes = dataArray.reduce(0) { (acc: Int, data: Data) -> Int in
                     return data.count + acc
                 }
-                DDLogInfo("\(sSelf) read \(bytes) bytes.")
+                DDLogDebug("\(sSelf) read \(bytes) bytes.")
                 for data in dataArray {
                     sSelf.delegate?.didReceive(data: data, from: sSelf)
                 }
@@ -128,7 +128,7 @@ public class NWUDPSocket: NSObject {
         let bytes = pendingWriteData.reduce(0) { (acc: Int, data: Data) -> Int in
             return data.count + acc
         }
-        DDLogInfo("\(self) wrote \(bytes) bytes.")
+        DDLogDebug("\(self) wrote \(bytes) bytes.")
         self.pendingWriteData.removeAll(keepingCapacity: true)
     }
 

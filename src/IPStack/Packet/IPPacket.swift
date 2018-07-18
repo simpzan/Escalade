@@ -14,7 +14,8 @@ public enum TransportProtocol: UInt8 {
 /// - note: Only IPv4 is supported as of now.
 open class IPPacket {
     open var description: String {
-        return "\(sourceAddress) -> \(destinationAddress)";
+        guard let src = sourceAddress, let dst = destinationAddress else { return "" }
+        return "\(src) -> \(dst)";
     }
     /**
      Get the version of the IP Packet without parsing the whole packet.
