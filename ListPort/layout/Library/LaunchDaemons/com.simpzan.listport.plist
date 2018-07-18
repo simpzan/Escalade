@@ -6,22 +6,7 @@
     <string>com.simpzan.listport</string>
     <key>Program</key>
     <string>/usr/bin/listport</string>
-    <key>Sockets</key>
-    <dict>
-        <key>Listeners</key>
-        <dict>
-            <key>SockNodeName</key>
-            <string>localhost</string>
-            <key>SockServiceName</key>
-            <string>9999</string>
-            <key>SockPassive</key>
-            <true/>
-        </dict>
-    </dict>
-    <key>inetdCompatibility</key>
-    <dict>
-        <key>Wait</key>
-        <false/>
-    </dict>
+	<key>RunAtLoad</key>
+	<true/>
 </dict>
 </plist>
