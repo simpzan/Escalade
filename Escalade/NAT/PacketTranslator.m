@@ -48,10 +48,7 @@ static PacketTranslator *gInstance = nil;
         DDLogInfo(@"udp data %@", str);
         return nil;
     }
-    if (packet.protocol != 6) {
-        DDLogError(@"unknown protocol %d, %@", (int)packet.protocol, originalPacket);
-        return nil;
-    }
+    if (packet.protocol != 6) return NULL;
     
     NSString *direction = nil;
     if (packet.sourcePort == _proxyServerPort) {

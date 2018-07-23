@@ -171,6 +171,10 @@
 		76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */; };
 		76DB4CC11E6BF0B80019FA42 /* PacketTunnel-iOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */ = {isa = PBXBuildFile; fileRef = 76DCB6ED1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh */; };
+		76DD9F8321047F550045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
+		76DD9F8421047F550045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
+		76DD9F8821049FE30045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
+		76DD9F8921049FE40045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
 		76DDBBE920B2EB58003AE2EF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE720B2EB57003AE2EF /* Fabric.framework */; };
 		76DDBBEA20B2EB58003AE2EF /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE720B2EB57003AE2EF /* Fabric.framework */; };
 		76DDBBEB20B2EB58003AE2EF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */; };
@@ -457,6 +461,8 @@
 		76DCC54C1E6C11590097C95E /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = NEKit/Carthage/Build/iOS/Resolver.framework; sourceTree = "<group>"; };
 		76DCC54D1E6C11590097C95E /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = NEKit/Carthage/Build/iOS/Sodium.framework; sourceTree = "<group>"; };
 		76DCC54F1E6C11590097C95E /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/iOS/Yaml.framework; sourceTree = "<group>"; };
+		76DD9F8121047F550045D69E /* ICMPForwarder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ICMPForwarder.h; sourceTree = "<group>"; };
+		76DD9F8221047F550045D69E /* ICMPForwarder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ICMPForwarder.m; sourceTree = "<group>"; };
 		76DDBBE720B2EB57003AE2EF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PacketTunnel-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -719,6 +725,8 @@
 				76D5C67C20B71B5900D9C1BD /* Repeater.swift */,
 				769C46DB20FB4665002DC6FF /* DirectDomain.rule */,
 				769C46E020FB4696002DC6FF /* ProxyDomain.rule */,
+				76DD9F8121047F550045D69E /* ICMPForwarder.h */,
+				76DD9F8221047F550045D69E /* ICMPForwarder.m */,
 			);
 			path = Escalade;
 			sourceTree = "<group>";
@@ -1289,6 +1297,7 @@
 				7610690B20E8C26F00DD6350 /* ConnectionDetailViewController.swift in Sources */,
 				7679B6A61E7E715400477755 /* RPC.swift in Sources */,
 				761068F720E893A100DD6350 /* Checksum.m in Sources */,
+				76DD9F8821049FE30045D69E /* ICMPForwarder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1314,6 +1323,7 @@
 				76B711F020270F0F0020895A /* ServerController.swift in Sources */,
 				76B711FD202710CC0020895A /* ConfigurationManager.swift in Sources */,
 				76B711EF20270F080020895A /* ProxyServerManager.swift in Sources */,
+				76DD9F8321047F550045D69E /* ICMPForwarder.m in Sources */,
 				76B711FC2027106D0020895A /* Utils.swift in Sources */,
 				760C9820208C901F00EBDB8A /* HostEndpoint.m in Sources */,
 				760C9800208C684800EBDB8A /* Checksum.m in Sources */,
@@ -1354,6 +1364,7 @@
 				76B08C3B1E7CF84D00E6146E /* Utils.swift in Sources */,
 				76AA0E2D209ED0C700332E71 /* PacketTranslator.m in Sources */,
 				76AA0E2F209ED32B00332E71 /* HostEndpoint.m in Sources */,
+				76DD9F8921049FE40045D69E /* ICMPForwarder.m in Sources */,
 				76AA0E31209ED35100332E71 /* Utils.m in Sources */,
 				76B711DF202708730020895A /* RPC.swift in Sources */,
 			);
@@ -1378,6 +1389,7 @@
 				760C97FD208C683200EBDB8A /* TCPPacket.m in Sources */,
 				7679B6A71E7E715400477755 /* RPC.swift in Sources */,
 				760C981D208C774D00EBDB8A /* NATProxyServer.swift in Sources */,
+				76DD9F8421047F550045D69E /* ICMPForwarder.m in Sources */,
 				76B08C381E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76B08C361E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
 				76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */,

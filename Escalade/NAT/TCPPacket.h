@@ -19,6 +19,7 @@
 @property (nonatomic) uint16_t destinationPort;
 
 @property (nonatomic) uint8_t protocol;
+@property (nonatomic) uint16_t ipHeaderSize;
 
 - (NSData *)raw;
 - (NSData *)udpData;

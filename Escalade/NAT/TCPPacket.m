@@ -13,7 +13,6 @@
 @interface TCPPacket() {
     NSMutableData *_data;
     uint8_t *_bytes;
-    uint16_t _ipHeaderSize;
 }
 @end
 

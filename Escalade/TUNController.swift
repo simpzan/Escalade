@@ -33,6 +33,9 @@ class TUNController {
         let nat = PacketTranslator(interfaceIp: interfaceIp, fakeSourceIp: "192.0.2.3", proxyServerIp: httpProxyServer.address?.presentation, port: httpProxyServer.port.value)
         PacketTranslator.setInstance(nat)
         interface.register(stack: nat!)
+        
+        let icmp = ICMPForwarder()
+        interface.register(stack: icmp)
 //        let tcpStack = TCPStack.stack
 //        tcpStack.proxyServer = httpProxyServer
 //        interface.register(stack: tcpStack)
