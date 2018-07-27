@@ -63,6 +63,12 @@ BOOL sendICMP(NSData *packet, int fd, NSString *ip) {
     return sent == packet.length;
 }
 
+NSString *getRealIpAddress(NSString *fakeIp) {
+    DNSServer *server = [DNSServer currentServer];
+    NSString *originalIp = [server lookupOriginalIP:fakeIp];
+    return originalIp ? originalIp : fakeIp;
+}
+
 @implementation ICMPForwarder {
     int _fd;
     NSThread *_readThread;
@@ -76,7 +82,10 @@ BOOL sendICMP(NSData *packet, int fd, NSString *ip) {
 
     NSRange range = NSMakeRange(packet.ipHeaderSize, data.length - packet.ipHeaderSize);
     NSData *icmpData = [data subdataWithRange:range];
-    sendICMP(icmpData, _fd, packet.destinationAddress);
+    
+    NSString *originalIp = getRealIpAddress(packet.destinationAddress);
+    sendICMP(icmpData, _fd, originalIp);
+    
     return YES;
 }
 
