@@ -5,11 +5,11 @@ import CocoaLumberjackSwift
 /// A DNS server designed as an `IPStackProtocol` implementation which works with TUN interface.
 ///
 /// This class is thread-safe.
-open class DNSServer: DNSResolverDelegate, IPStackProtocol {
+open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
     /// Current DNS server.
     ///
     /// - warning: There is at most one DNS server running at the same time. If a DNS server is registered to `TUNInterface` then it must also be set here.
-    open static var currentServer: DNSServer?
+    @objc open static var currentServer: DNSServer?
 
     /// The address of DNS server.
     let serverAddress: IPAddress
@@ -202,6 +202,12 @@ open class DNSServer: DNSResolverDelegate, IPStackProtocol {
         return pool?.contains(ip: ipAddress) ?? false
     }
 
+    @objc open func lookupOriginalIP(_ ip: String) -> String? {
+        let address = IPAddress(fromString: ip)
+        guard let session = lookupFakeIP(address!) else { return nil }
+        
+        return session.realIP?.presentation ?? ""
+    }
     func lookupFakeIP(_ address: IPAddress) -> DNSSession? {
         var session: DNSSession?
         QueueFactory.executeOnQueueSynchronizedly {
