@@ -180,6 +180,19 @@ class DashboardViewController: UITableViewController {
         present(fileBrowser, animated: true)
     }
     
+    func pingTest() {
+        if !manager.connected {
+            SVProgressHUD.showError(withStatus: "VPN not enabled")
+            return
+        }
+        SVProgressHUD.showInfo(withStatus: "auto selecting...\nwill finish in 4 seconds")
+        api.autoSelect { (result) in
+            DDLogInfo("auto selelct result \(result)")
+            let current = result.first!
+            self.currentServerCell.textLabel?.text = "\(current.0), \(current.1)"
+            SVProgressHUD.dismiss()
+        }
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cellId = tableView.cellForRow(at: indexPath)?.reuseIdentifier else { return }
@@ -190,6 +203,8 @@ class DashboardViewController: UITableViewController {
             testConnectivity()
         case "logsCell":
             showLogFiles()
+        case "pingTestCell":
+            pingTest()
         default:
             break
         }
