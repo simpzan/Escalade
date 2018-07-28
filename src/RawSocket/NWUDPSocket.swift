@@ -19,7 +19,7 @@ public protocol NWUDPSocketDelegate: class {
 ///
 /// - note: This class is thread-safe.
 public class NWUDPSocket: NSObject {
-    private let session: NWUDPSession
+    private var session: NWUDPSession!
     private var pendingWriteData: [Data] = []
     private var writing = false
     private let queue: DispatchQueue = QueueFactory.getQueue()
@@ -41,16 +41,26 @@ public class NWUDPSocket: NSObject {
         remoteEndpoint = to
         guard let session = provider?.createUDPSession(to: to, from: nil) else { return nil }
         
-        self.session = session
         self.timeout = timeout
 
         super.init()
 
         if (timeout > 0) { createTimer() }
 
-        session.addObserver(self, forKeyPath: #keyPath(NWUDPSession.state), options: [.new], context: nil)
-        
-        session.setReadHandler({ [ weak self ] dataArray, error in
+        setupSession(session)
+    }
+    
+    private func setupSession(_ newSession: NWUDPSession) {
+        if session != nil {
+            session.removeObserver(self, forKeyPath: #keyPath(NWUDPSession.state))
+            session.removeObserver(self, forKeyPath: #keyPath(NWUDPSession.hasBetterPath))
+            session.cancel()
+            DDLogInfo("\(self) updating session, \(session) -> \(newSession).")
+        }
+        session = newSession;
+        newSession.addObserver(self, forKeyPath: #keyPath(NWUDPSession.state), options: [.new], context: nil)
+        newSession.addObserver(self, forKeyPath: #keyPath(NWUDPSession.hasBetterPath), options: [.new], context: nil)
+        newSession.setReadHandler({ [ weak self ] dataArray, error in
             self?.queueCall {
                 guard let sSelf = self else { return }
                 
@@ -96,16 +106,30 @@ public class NWUDPSocket: NSObject {
     
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         queueCall { [ weak self ] in
-            guard let this = self else { return }
-            DDLogInfo("\(this) session state changed to \(this.session.state).")
-            switch this.session.state {
-            case .cancelled:
-                this.delegate?.didCancel(socket: this)
-            case .ready:
-                this.checkWrite()
-            default:
-                break
+            guard let this = self, let key = keyPath else { return }
+            let value = this.session.value(forKeyPath: key)
+            DDLogInfo("\(this) session.\(key) changed to \(String(describing: value)).")
+            switch key {
+            case #keyPath(NWUDPSession.hasBetterPath): this.handlePathChange()
+            case #keyPath(NWUDPSession.state): this.handleStateChange()
+            default: break
             }
+        }
+    }
+    private func handleStateChange() {
+        switch session.state {
+        case .cancelled:
+            delegate?.didCancel(socket: self)
+        case .ready:
+            checkWrite()
+        default:
+            break
+        }
+    }
+    private func handlePathChange() {
+        if session.hasBetterPath {
+            let s = NWUDPSession(upgradeFor: session)
+            setupSession(s)
         }
     }
     
@@ -119,7 +143,8 @@ public class NWUDPSocket: NSObject {
         guard pendingWriteData.count > 0 else { return }
         
         writing = true
-        session.writeMultipleDatagrams(self.pendingWriteData) { [ weak self ] _ in
+        session.writeMultipleDatagrams(self.pendingWriteData) { [ weak self ] error in
+            if error != nil { DDLogError("\(String(describing: self)) writeMultipleDatagrams failed, \(error!).") }
             self?.queueCall {
                 self?.writing = false
                 self?.checkWrite()
@@ -177,6 +202,7 @@ public class NWUDPSocket: NSObject {
     
     deinit {
         session.removeObserver(self, forKeyPath: #keyPath(NWUDPSession.state))
+        session.removeObserver(self, forKeyPath: #keyPath(NWUDPSession.hasBetterPath))
         DDLogInfo("\(self) deinited.")
     }
     
