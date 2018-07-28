@@ -85,6 +85,7 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
                 lookupRemotely(session)
                 return
             }
+            DDLogDebug("dns response fakeIp \(session)")
             outputSession(session)
         case .real, .unknown:
             lookupRemotely(session)
@@ -127,12 +128,15 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
         }
 
         guard let ipPacket = IPPacket(packetData: packet) else {
+            DDLogError("invalid ip packet \(packet)")
             return false
         }
 
         guard let session = DNSSession(packet: ipPacket) else {
+            DDLogError("invalid dns session \(packet)")
             return false
         }
+        DDLogDebug("dns request \(session)")
 
         queue.async {
             self.lookup(session)
@@ -155,8 +159,25 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
         // The blocks scheduled with `dispatch_after` are ignored since they are hard to cancel. But there should be no consequence, everything will be released except for a few `IPAddress`es and the `queue` which will be released later.
     }
 
+    private func generateFakeResponse(_ session: DNSSession) -> DNSMessage? {
+        let response = DNSMessage()
+        response.transactionID = session.requestMessage.transactionID
+        response.messageType = .response
+        response.recursionAvailable = true
+        // since we only support ipv4 as of now, it must be an answer of type A
+        let arecord = DNSResource.ARecord(session.requestMessage.queries[0].name, TTL: UInt32(Opt.DNSFakeIPTTL), address: session.fakeIP!)
+        response.answers.append(arecord)
+        session.expireAt = Date().addingTimeInterval(Double(Opt.DNSFakeIPTTL))
+        guard response.buildMessage() else {
+            DDLogError("Failed to build DNS response.")
+            return nil
+        }
+        return response
+    }
     fileprivate func outputSession(_ session: DNSSession) {
+        DDLogDebug("dns response \(session)")
         guard let result = session.matchResult else {
+            DDLogError("no matched result")
             return
         }
 
@@ -168,20 +189,10 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
         case .real:
             udpParser.payload = session.realResponseMessage!.payload
         case .fake:
-            let response = DNSMessage()
-            response.transactionID = session.requestMessage.transactionID
-            response.messageType = .response
-            response.recursionAvailable = true
-            // since we only support ipv4 as of now, it must be an answer of type A
-            response.answers.append(DNSResource.ARecord(session.requestMessage.queries[0].name, TTL: UInt32(Opt.DNSFakeIPTTL), address: session.fakeIP!))
-            session.expireAt = Date().addingTimeInterval(Double(Opt.DNSFakeIPTTL))
-            guard response.buildMessage() else {
-                DDLogError("Failed to build DNS response.")
-                return
-            }
-
+            guard let response = generateFakeResponse(session) else { return }
             udpParser.payload = response.payload
         default:
+            DDLogError("unkown result \(result)")
             return
         }
         let ipPacket = IPPacket()
