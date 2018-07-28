@@ -90,7 +90,7 @@ static PacketTranslator *gInstance = nil;
 
 - (void)stop {
     DDLogInfo(@"%s", __FUNCTION__);
-    [_map removeAllObjects];
+//    [_map removeAllObjects];
 }
 
 + (void)setInstance:(PacketTranslator *)instance {
