@@ -158,6 +158,7 @@ class TrafficMonitorServer {
         }
     }
     deinit {
+        TrafficMonitor.shared.stopUpdate()
         wormhole.stopListeningForMessage(withIdentifier: startTrafficMonitorId)
         wormhole.stopListeningForMessage(withIdentifier: stopTrafficMonitorId)
     }
