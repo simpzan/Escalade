@@ -22,6 +22,7 @@
     if (self = [super init]) {
         _data = [data mutableCopy];
         _bytes = [_data mutableBytes];
+        _timeToLive = *(_bytes + 8);
         _protocol = *(_bytes + 9);
         _ipHeaderSize = (*_bytes & 0x0F) * 4;
     }

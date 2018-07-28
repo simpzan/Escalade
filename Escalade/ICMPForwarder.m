@@ -43,15 +43,17 @@ NSData *receiveICMP(int fd) {
         DDLogError(@"recvfrom failed, %d %s.", errno, strerror(errno));
         return NULL;
     }
-    DDLogDebug(@"received %zd bytes from %@", bytesRead, getAddressFull(&addr));
+    DDLogDebug(@"ICMPForwarder received %zd bytes from %@", bytesRead, getAddressFull(&addr));
     return [NSData dataWithBytes:buffer length:bytesRead];
 }
-BOOL sendICMP(NSData *packet, int fd, NSString *ip) {
+BOOL sendICMP(NSData *packet, int fd, NSString *ip, int ttl) {
     in_addr_t inaddr = inet_addr(ip.UTF8String);
     if (inaddr == INADDR_NONE) {
         DDLogError(@"invalid destination %@, %s", ip, strerror(errno));
         return NO;
     }
+    int result = setsockopt(fd, IPPROTO_IP, IP_TTL, &ttl, sizeof(ttl));
+    if (result != 0) DDLogError(@"failed to set ttl to %d, %s.", ttl, strerror(errno));
     
     struct sockaddr_in address;
     address.sin_family = AF_INET;
@@ -59,7 +61,7 @@ BOOL sendICMP(NSData *packet, int fd, NSString *ip) {
     struct sockaddr *addr = (struct sockaddr *)&address;
     ssize_t sent = sendto(fd, packet.bytes, packet.length, 0, addr, sizeof(address));
     if (sent == -1) DDLogError(@"sendto %@ failed, %s", ip, strerror(errno));
-    DDLogDebug(@"sent %zd bytes to %@", sent, ip);
+    DDLogDebug(@"ICMPForwarder sent %zd bytes to %@", sent, ip);
     return sent == packet.length;
 }
 
@@ -84,7 +86,7 @@ NSString *getRealIpAddress(NSString *fakeIp) {
     NSData *icmpData = [data subdataWithRange:range];
     
     NSString *originalIp = getRealIpAddress(packet.destinationAddress);
-    sendICMP(icmpData, _fd, originalIp);
+    sendICMP(icmpData, _fd, originalIp, packet.timeToLive);
     
     return YES;
 }
