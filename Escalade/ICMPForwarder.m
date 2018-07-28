@@ -60,7 +60,7 @@ BOOL sendICMP(NSData *packet, int fd, NSString *ip, int ttl) {
     address.sin_addr.s_addr = inaddr;
     struct sockaddr *addr = (struct sockaddr *)&address;
     ssize_t sent = sendto(fd, packet.bytes, packet.length, 0, addr, sizeof(address));
-    if (sent == -1) DDLogError(@"sendto %@ failed, %s", ip, strerror(errno));
+    if (sent == -1) DDLogError(@"sendto fd:%d, ip:%@ ttl:%d, packet:%@ failed, %s", fd, ip, ttl, packet, strerror(errno));
     DDLogDebug(@"ICMPForwarder sent %zd bytes to %@", sent, ip);
     return sent == packet.length;
 }
@@ -86,9 +86,9 @@ NSString *getRealIpAddress(NSString *fakeIp) {
     NSData *icmpData = [data subdataWithRange:range];
     
     NSString *originalIp = getRealIpAddress(packet.destinationAddress);
-    sendICMP(icmpData, _fd, originalIp, packet.timeToLive);
-    
-    return YES;
+    BOOL result = sendICMP(icmpData, _fd, originalIp, packet.timeToLive);
+    if (!result) DDLogError(@"ICMPForwarder, failed to send %@", packet);
+    return result;
 }
 
 - (void)readLoop {
