@@ -182,12 +182,16 @@ class DashboardViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        DDLogInfo("selected \(indexPath)")
-        switch indexPath.section {
-        case 0:
+        guard let cellId = tableView.cellForRow(at: indexPath)?.reuseIdentifier else { return }
+        
+        DDLogInfo("selected \(cellId)")
+        switch cellId {
+        case "connectivityCell":
             testConnectivity()
+        case "logsCell":
+            showLogFiles()
         default:
-            DDLogInfo("")
+            break
         }
     }
 }
