@@ -53,7 +53,7 @@ int tcpConnect(const char *address, int port) {
     if (result < 0) {
         ERRNO("connect(%s:%d)", address, port);
         close(sock);
-        return 0;
+        return -1;
     }
     return sock;
 }
