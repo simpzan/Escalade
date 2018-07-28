@@ -64,7 +64,7 @@ class ESObserverFactory: ObserverFactory {
         override open func signal(_ event: TunnelEvent) {
             switch event {
             case .receivedRequest:
-                DDLogInfo("\(event)")
+                DDLogDebug("\(event)")
             case .opened,
                  .connectedToRemote,
                  .updatingAdapterSocket:
