@@ -4,6 +4,7 @@ import CocoaLumberjackSwift
 public protocol DNSResolverProtocol: class {
     weak var delegate: DNSResolverDelegate? { get set }
     func resolve(session: DNSSession)
+    func start()
     func stop()
 }
 
@@ -12,24 +13,34 @@ public protocol DNSResolverDelegate: class {
 }
 
 public class UDPDNSResolver: NSObject, DNSResolverProtocol, NWUDPSocketDelegate {
-    let socket: NWUDPSocket
+    private var socket: NWUDPSocket! = nil
+    private let host: String
+    private let portNumber: Int
     public weak var delegate: DNSResolverDelegate?
 
     public init(address: IPAddress, port: Port) {
-        socket = NWUDPSocket(host: address.presentation, port: Int(port.value), timeout: 0)!
+        host = address.presentation
+        portNumber = Int(port.value)
         super.init()
-        socket.delegate = self
     }
 
     public func resolve(session: DNSSession) {
+        guard let socket = socket else { return DDLogError("DNSResolver is not started yet.") }
         let data: Data = session.requestMessage.payload
         DDLogVerbose("\(self) write \(data)")
         socket.write(data: data)
     }
 
+    public func start() {
+        socket = NWUDPSocket(host: host, port: portNumber, timeout: 0)!
+        socket.delegate = self
+        DDLogInfo("\(self) started");
+    }
     public func stop() {
-        DDLogInfo("\(self) stopping resolver")
         socket.disconnect()
+        socket.delegate = nil
+        socket = nil
+        DDLogInfo("\(self) stopped");
     }
 
     public func didReceive(data: Data, from: NWUDPSocket) {

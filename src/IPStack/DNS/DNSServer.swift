@@ -145,14 +145,16 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
     }
     
     public func start() {
-        
+        for resolver in resolvers {
+            resolver.start()
+        }
     }
 
     open func stop() {
         for resolver in resolvers {
             resolver.stop()
         }
-        resolvers = []
+//        resolvers = []
 
         pendingSessions = [:]
 //        fakeSessions = [:]
