@@ -14,13 +14,13 @@ public let groupId = "group.com.simpzan.Escalade.macOS"
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
     private lazy var proxyService: ProxyService? = {
-        guard let configString = loadDefaults(key: configKey) else {
-            DDLogError("load config string failed")
+        guard let adapterFactoryManager = createAdapterFactoryManager() else {
+            DDLogError("failed to load servers.")
             return nil
         }
-        
-        guard let config = loadConfiguration(content: configString) else { return nil }
-        return ProxyService(config: config, provider: self, defaults: defaults)
+        let service = ProxyService(adapterFactoryManager: adapterFactoryManager, provider: self, defaults: defaults)
+        DDLogInfo("loaded servers \(service.serverController.servers)")
+        return service
     }()
     var tunController: TUNController {
         return (proxyService?.tunController)!
@@ -29,9 +29,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         return proxyService!.serverController
     }
     lazy var api: APIServer? = {
-        return APIServer(self.serverController)
+        return APIServer(self.proxyService!)
     }()
-    
+
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
         DDLogInfo("startTunnel \(self) \(options*)")
         

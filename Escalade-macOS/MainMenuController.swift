@@ -206,7 +206,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     }
     private func startProxy() {
         proxyService?.stop()
-        proxyService = ProxyService(config: configManager.current!)
+        proxyService = ProxyService(adapterFactoryManager: createAdapterFactoryManager()!)
         proxyService.start()
         
         systemProxyController.port = port
@@ -304,7 +304,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         NSApp.terminate(nil)
     }
 
-    let manager = VPNManager()
+    let manager = VPNManager.shared
     func vpnInit() {
         manager.monitorStatus { (_) in
             let state = self.manager.status
