@@ -58,7 +58,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     func menuDidClose(_ menu: NSMenu) {
         trafficMonitor.stopUpdate()
     }
-    let trafficMonitor = TrafficMonitor.shared
+    let trafficMonitor = TrafficMonitorClient()
     @IBOutlet weak var networkTrafficItem: NSMenuItem!
 
 
