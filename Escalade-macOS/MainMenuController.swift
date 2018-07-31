@@ -33,9 +33,8 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         let _ = launchHelper.validate()
         updateStartAtLoginItem()
 
-        systemProxyController = SystemProxyController(configDir: configManager.configuraionFolder)
-        systemProxyController.startMonitor { enabled in
-            self.updateSystemProxyItem(enabled: enabled)
+        manager.monitorStatus { (_) in
+            self.connectionChanged()
         }
         listenReachabilityChange()
     }
@@ -65,17 +64,21 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
 
     // MARK: -
-    func updateSystemProxyItem(enabled: Bool) {
+    func connectionChanged() {
+        let enabled = manager.status == .connected
         NSLog("update system proxy state to \(enabled)")
         statusItem.button?.appearsDisabled = !enabled
         systemProxyItem.state = enabled ? .on : .off
     }
     @IBOutlet weak var systemProxyItem: NSMenuItem!
     @IBAction func systemProxyClicked(_ sender: Any) {
-        systemProxyController.enabled = !systemProxyController.enabled
+        if manager.connected {
+            manager.stopVPN()
+        } else {
+            manager.startVPN()
+        }
     }
-    var systemProxyController: SystemProxyController! = nil
-
+    let manager = VPNManager.shared
 
     // MARK: - configurations
     func showSetupGuideIfNeeded() {
@@ -89,29 +92,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
         NotificationCenter.default.post(name: serversUpdatedNotification, object: nil)
         sendNotification(title: "import done", text: "")
-    }
-    func showSetupGuide() {
-        guard let file = selectFile() else { return }
-
-        if !configManager.importConfig(file: file) {
-            _ = alert("invalid config file: \(file)")
-            return
-        }
-        startProxy()
-
-        var message = "Enable system proxy?"
-        let hint = "Setting system proxy requires administrator privileges." +
-"If you want to enable system proxy, please input your user password in the following system dialog.\n" +
-"This is required only for ONCE."
-        if systemProxyController.needInstall() {
-            message += "\n\(hint)"
-        }
-        systemProxyController.port = port
-        if confirm(message) {
-            systemProxyController.enabled = true
-        }
-
-        autoSelectClicked(nil)
     }
     func reloadConfigurations() -> Bool {
         if !configManager.reloadConfigurations() { return false }
@@ -227,9 +207,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         proxyService?.stop()
         proxyService = ProxyService(adapterFactoryManager: createAdapterFactoryManager()!)
         proxyService.start()
-        
-        systemProxyController.port = port
-        systemProxyController.load()
     }
     private var port: UInt16 {
         return proxyServerManager.port
@@ -322,23 +299,10 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     @IBAction func quitClicked(_ sender: Any) {
         NSApp.terminate(nil)
     }
-
-    let manager = VPNManager.shared
-    func vpnInit() {
-        manager.monitorStatus { (_) in
-            let state = self.manager.status
-            NSLog("status changed to \(state.rawValue)")
-        }
-    }
     
     @IBOutlet weak var testButton: NSMenuItem!
     @IBAction func test(_ sender: Any) {
         NSLog("connectClicked")
-        if manager.connected {
-            manager.stopVPN()
-        } else {
-            manager.startVPN()
-        }
     }
     func injected() {
         print("I've been injected-: \(self)")
