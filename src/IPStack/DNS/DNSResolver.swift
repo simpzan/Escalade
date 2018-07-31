@@ -25,21 +25,23 @@ public class UDPDNSResolver: NSObject, DNSResolverProtocol, NWUDPSocketDelegate 
     }
 
     public func resolve(session: DNSSession) {
-        guard let socket = socket else { return DDLogError("DNSResolver is not started yet.") }
+        guard let socket = socket else { return DDLogError("resolve: DNSResolver is not started yet.") }
         let data: Data = session.requestMessage.payload
         DDLogVerbose("\(self) write \(data)")
         socket.write(data: data)
     }
 
     public func start() {
+        guard socket == nil else { return DDLogError("start: DNSResolver is started already.") }
         socket = NWUDPSocket(host: host, port: portNumber, timeout: 0)!
         socket.delegate = self
         DDLogInfo("\(self) started");
     }
     public func stop() {
+        guard let socket = socket else { return DDLogError("stop: DNSResolver is not started yet.") }
         socket.disconnect()
         socket.delegate = nil
-        socket = nil
+        self.socket = nil
         DDLogInfo("\(self) stopped");
     }
 
