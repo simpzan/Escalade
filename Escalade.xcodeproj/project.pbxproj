@@ -59,6 +59,12 @@
 		765C83C6209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */; };
 		765C83C7209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */; };
 		765C83CB209F334800A13EC9 /* NEKit.framework in Embed NEKit */ = {isa = PBXBuildFile; fileRef = 768D4A101E4B4AB900B73E10 /* NEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		766B69F2211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B69F0211089AB0025E1E0 /* PacketTunnelProvider.swift */; };
+		766B69F3211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B69F0211089AB0025E1E0 /* PacketTunnelProvider.swift */; };
+		766B69F4211089FA0025E1E0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */; };
+		766B69F5211089FA0025E1E0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE720B2EB57003AE2EF /* Fabric.framework */; };
+		766B69F6211089FE0025E1E0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */; };
+		766B69F7211089FE0025E1E0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DDBBE720B2EB57003AE2EF /* Fabric.framework */; };
 		7673035520E787EE000087E3 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673034C20E749FF000087E3 /* DashboardViewController.swift */; };
 		7679B6921E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
 		7679B6931E7E601500477755 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6901E7E601500477755 /* API.swift */; };
@@ -142,7 +148,6 @@
 		76B711E820270D8B0020895A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A211E4B4E8B00B73E10 /* CocoaLumberjackSwift.framework */; };
 		76B711EC20270E3E0020895A /* TUNController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C3D1E7D3B7800E6146E /* TUNController.swift */; };
 		76B711ED20270E480020895A /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C611E7D4A7800E6146E /* ProxyService.swift */; };
-		76B711EE20270E950020895A /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B711CC2027059F0020895A /* PacketTunnelProvider.swift */; };
 		76B711EF20270F080020895A /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */; };
 		76B711F020270F0F0020895A /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
 		76B711F120270F2F0020895A /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7679B6A41E7E715400477755 /* RPC.swift */; };
@@ -173,7 +178,6 @@
 		76D5C68220B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
 		76D5C68320B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
 		76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
-		76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */; };
 		76DB4CC11E6BF0B80019FA42 /* PacketTunnel-iOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */ = {isa = PBXBuildFile; fileRef = 76DCB6ED1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh */; };
 		76DD9F8321047F550045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
@@ -400,6 +404,8 @@
 		76565112209360EE00D59160 /* UIViewController+ActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ActionSheet.m"; sourceTree = "<group>"; };
 		7656511D209360EE00D59160 /* UIViewController+ActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ActionSheet.h"; sourceTree = "<group>"; };
 		765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		766B69F0211089AB0025E1E0 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
+		766B69F1211089AB0025E1E0 /* PacketTunnel-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PacketTunnel-Bridging-Header.h"; sourceTree = "<group>"; };
 		7673034C20E749FF000087E3 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		7679B6901E7E601500477755 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		7679B6A41E7E715400477755 /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
@@ -437,7 +443,6 @@
 		76B08C3D1E7D3B7800E6146E /* TUNController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TUNController.swift; sourceTree = "<group>"; };
 		76B08C611E7D4A7800E6146E /* ProxyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyService.swift; sourceTree = "<group>"; };
 		76B711CA2027059F0020895A /* PacketTunnel-macOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PacketTunnel-macOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		76B711CC2027059F0020895A /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		76B711CE2027059F0020895A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76B711CF2027059F0020895A /* PacketTunnel_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel_macOS.entitlements; sourceTree = "<group>"; };
 		76B711E0202708E60020895A /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/Mac/MMWormhole.framework; sourceTree = "<group>"; };
@@ -458,7 +463,6 @@
 		76D5C67C20B71B5900D9C1BD /* Repeater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repeater.swift; sourceTree = "<group>"; };
 		76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PacketTunnel-iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76DB4CBB1E6BF0B80019FA42 /* PacketTunnel_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel_iOS.entitlements; sourceTree = "<group>"; };
-		76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		76DB4CBE1E6BF0B80019FA42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76DB4CCC1E6BF8870019FA42 /* asu_pid.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = asu_pid.entitlements; sourceTree = "<group>"; };
 		76DCB6ED1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = SystemProxyConfigInstaller.sh; sourceTree = "<group>"; };
@@ -470,7 +474,6 @@
 		76DD9F8221047F550045D69E /* ICMPForwarder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ICMPForwarder.m; sourceTree = "<group>"; };
 		76DDBBE720B2EB57003AE2EF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PacketTunnel-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		76F288A920A7D56900CA9A0D /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = Carthage/Build/iOS/FileBrowser.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -522,6 +525,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				766B69F4211089FA0025E1E0 /* Crashlytics.framework in Frameworks */,
+				766B69F5211089FA0025E1E0 /* Fabric.framework in Frameworks */,
 				76B711FB2027104C0020895A /* NEKit.framework in Frameworks */,
 				76A85A44202715B400F532BE /* NetworkExtension.framework in Frameworks */,
 				76B711F4202710460020895A /* CocoaAsyncSocket.framework in Frameworks */,
@@ -539,6 +544,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				766B69F6211089FE0025E1E0 /* Crashlytics.framework in Frameworks */,
+				766B69F7211089FE0025E1E0 /* Fabric.framework in Frameworks */,
 				76535A5420138B1B00DD8523 /* Sparkle.framework in Frameworks */,
 				76A85A45202715CB00F532BE /* NetworkExtension.framework in Frameworks */,
 				768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */,
@@ -640,6 +647,15 @@
 			path = RPC;
 			sourceTree = "<group>";
 		};
+		766B69EF211089AB0025E1E0 /* PacketTunnel */ = {
+			isa = PBXGroup;
+			children = (
+				766B69F0211089AB0025E1E0 /* PacketTunnelProvider.swift */,
+				766B69F1211089AB0025E1E0 /* PacketTunnel-Bridging-Header.h */,
+			);
+			path = PacketTunnel;
+			sourceTree = "<group>";
+		};
 		76841E831E505EA300685B0F /* EscaladeLaunchHelper-macOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,7 +755,6 @@
 		76B711CB2027059F0020895A /* PacketTunnel-macOS */ = {
 			isa = PBXGroup;
 			children = (
-				76B711CC2027059F0020895A /* PacketTunnelProvider.swift */,
 				76B711CE2027059F0020895A /* Info.plist */,
 				76B711CF2027059F0020895A /* PacketTunnel_macOS.entitlements */,
 			);
@@ -755,6 +770,7 @@
 				76277F171E4CF5D3006C06A6 /* SystemProxyConfig */,
 				76841E831E505EA300685B0F /* EscaladeLaunchHelper-macOS */,
 				76312AB71E6BEE7C000B66C9 /* Escalade-iOS */,
+				766B69EF211089AB0025E1E0 /* PacketTunnel */,
 				76DB4CB91E6BF0B80019FA42 /* PacketTunnel-iOS */,
 				76B711CB2027059F0020895A /* PacketTunnel-macOS */,
 				7610692120E9297A00DD6350 /* ListPort */,
@@ -801,10 +817,8 @@
 		76DB4CB91E6BF0B80019FA42 /* PacketTunnel-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				76DB4CBC1E6BF0B80019FA42 /* PacketTunnelProvider.swift */,
 				76DB4CBE1E6BF0B80019FA42 /* Info.plist */,
 				76DB4CBA1E6BF0B80019FA42 /* Supporting Files */,
-				76E880FF1E76B22B003CC239 /* PacketTunnel-iOS-Bridging-Header.h */,
 			);
 			path = "PacketTunnel-iOS";
 			sourceTree = "<group>";
@@ -1319,7 +1333,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76B711EE20270E950020895A /* PacketTunnelProvider.swift in Sources */,
 				760C97FC208C683200EBDB8A /* TCPPacket.m in Sources */,
 				76CA418E2090B5DE008D2556 /* Log.m in Sources */,
 				7642ED582094ADB7002DBA3C /* ConnectivityManager.m in Sources */,
@@ -1329,6 +1342,7 @@
 				76B711FD202710CC0020895A /* ConfigurationManager.swift in Sources */,
 				768FB8F7210E1FC900E90A1D /* TrafficMonitor.swift in Sources */,
 				768FB8F9210E1FDF00E90A1D /* ListPortProxy.m in Sources */,
+				766B69F2211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */,
 				76B711EF20270F080020895A /* ProxyServerManager.swift in Sources */,
 				76DD9F8321047F550045D69E /* ICMPForwarder.m in Sources */,
 				768FB8F2210E1F8800E90A1D /* ServersPersistence.swift in Sources */,
@@ -1394,6 +1408,7 @@
 				76CA41902090B5DE008D2556 /* Log.m in Sources */,
 				760C97F1208C5CFA00EBDB8A /* PacketTranslator.m in Sources */,
 				76CC643C20F07DA100DFE4E7 /* ListPortProxy.m in Sources */,
+				766B69F3211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */,
 				7642ED592094ADB7002DBA3C /* ConnectivityManager.m in Sources */,
 				763D3EA720DF90C80073C1E9 /* ServersPersistence.swift in Sources */,
 				760C97FD208C683200EBDB8A /* TCPPacket.m in Sources */,
@@ -1402,7 +1417,6 @@
 				76DD9F8421047F550045D69E /* ICMPForwarder.m in Sources */,
 				76B08C381E7CF84D00E6146E /* ServerController.swift in Sources */,
 				76B08C361E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
-				76DB4CBD1E6BF0B80019FA42 /* PacketTunnelProvider.swift in Sources */,
 				76B08C3C1E7CF84D00E6146E /* Utils.swift in Sources */,
 				760C9801208C684800EBDB8A /* Checksum.m in Sources */,
 				7679B6931E7E601500477755 /* API.swift in Sources */,
@@ -1918,6 +1932,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1944,7 +1959,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel-iOS/PacketTunnel-iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel/PacketTunnel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
@@ -1992,6 +2007,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2010,7 +2026,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel-iOS/PacketTunnel-iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel/PacketTunnel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 			};
@@ -2113,6 +2129,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2181,6 +2198,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2263,7 +2281,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel-iOS/PacketTunnel-iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel/PacketTunnel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
@@ -2321,7 +2339,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel-iOS/PacketTunnel-iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PacketTunnel/PacketTunnel-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

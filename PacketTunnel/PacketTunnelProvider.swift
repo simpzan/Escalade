@@ -14,7 +14,7 @@ import Crashlytics
 
 var crashlyticsInitialized = false
 
-public let groupId = "group.com.simpzan.Escalade.iOS"
+public let groupId = getAppGroupId()
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
     private lazy var proxyService: ProxyService? = {
