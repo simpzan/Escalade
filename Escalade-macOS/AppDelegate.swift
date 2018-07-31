@@ -25,9 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             _ = alert("Another app with same bundle id is already running! Please quit that app first.")
             NSApp.terminate(nil)
         } else {
-            if !mainMenuController.reloadConfigurations() {
-                mainMenuController.showSetupGuide()
-            }
+            mainMenuController.showSetupGuideIfNeeded()
         }
     }
 

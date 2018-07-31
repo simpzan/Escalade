@@ -36,13 +36,13 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         DDLogInfo("startTunnel \(self) \(options*)")
         
         self.addObserver(self, forKeyPath: "defaultPath", options: [.new], context: nil)
-//        proxyService?.start()
         
         setTunnelNetworkSettings(tunController.getTunnelSettings()) { (error) in
             if error != nil {
                 DDLogError("setTunnelNetworkSettings error:\(error!)")
                 return
             }
+            self.proxyService?.start()
             self.api?.start()
             completionHandler(nil)
         }

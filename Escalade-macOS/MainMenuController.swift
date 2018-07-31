@@ -78,6 +78,18 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
 
     // MARK: - configurations
+    func showSetupGuideIfNeeded() {
+        if getCurrentServer() != nil { return }
+        
+        guard let file = selectFile() else { return }
+        let url = URL(fileURLWithPath: file)
+        guard importServers(url: url) else {
+            return DDLogError("failed to import servers in \(url)")
+        }
+
+        NotificationCenter.default.post(name: serversUpdatedNotification, object: nil)
+        sendNotification(title: "import done", text: "")
+    }
     func showSetupGuide() {
         guard let file = selectFile() else { return }
 
@@ -178,13 +190,20 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         let menu = serversItem.submenu!
         menu.removeItems(withTag: tag)
         serversItem.title = "Servers"
-        guard let controller = serverController else { return }
+        
+        guard let current = getCurrentServer() else { return }
+        serversItem.title = "Server: \(current)"
 
-        let current = controller.currentServer
-        serversItem.title = "Server: \(current ?? "")"
-
-        let maxNameLength = controller.servers.map { $0.0.utf16.count as Int }.max()!
-        for (name, pingValue) in controller.servers {
+        guard let adapterFactoryManager = createAdapterFactoryManager() else {
+            DDLogError("failed to load servers")
+            return
+        }
+        let serverNames = adapterFactoryManager.selectFactory.servers
+        let servers = serverNames.map{ (server) -> (String, TimeInterval) in
+            return (server, 0)
+        }
+        let maxNameLength = servers.map { $0.0.utf16.count as Int }.max()!
+        for (name, pingValue) in servers {
             let action = #selector(serverClicked(sender:))
             let state = current == name
             let item = createMenuItem(title: "", tag: tag, state: state, action: action)
