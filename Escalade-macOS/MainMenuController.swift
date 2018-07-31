@@ -44,15 +44,13 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
 
     func menuWillOpen(_ menu: NSMenu) {
-        if serverController == nil { return }
-        
         updateConfigList()
         updateServerList()
         updateConnectivityInfo()
 
         if !reachability.isReachable { return }
 
-//        pingTest()
+        pingTest()
         trafficMonitor.startUpdate { rx, tx in
             self.networkTrafficItem.title = "⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s"
         }
@@ -190,9 +188,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         }
     }
     @IBOutlet weak var serversItem: NSMenuItem!
-    var serverController: ServerController! {
-        return proxyService?.serverController
-    }
     private var proxyServerManager: ProxyServerManager {
         return proxyService.proxyManager
     }
@@ -219,35 +214,34 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     let reachability = Reachability()!
 
     func updateConnectivityInfo() {
-        if serverController == nil { return }
-        let baiduPing = serverController.domesticPing
-        let googlePing = serverController.internationalPing
-        var title = ""
-        if !reachability.isReachable {
-            title = "No Network"
-        } else if baiduPing == -1 {
-            title = "No Internet"
-        } else if baiduPing == 0 || googlePing == 0 {
-            title = "Testing..."
-        } else {
-            title = "Baidu \(miliseconds(baiduPing)), Google \(miliseconds(googlePing))"
-        }
-        connectivityItem.title = title
     }
     @IBOutlet weak var connectivityItem: NSMenuItem!
 
     func pingTest() {
-        if !autoSelectItem.isEnabled { return }
-        print("pingTesting...")
-        autoSelectItem.isEnabled = false
-        let start = Date()
-        serverController.pingTest { err in
-            let cost = Date().timeIntervalSince(start)
-            delay(0.5 - cost) { // update at least 0.5s later to let user see the transition easily.
-                self.autoSelectItem.isEnabled = true
-                self.updateConnectivityInfo()
-                self.updateServerList()
-                print("pingTest done")
+        guard manager.connected else {
+            connectivityItem.title = "VPN disabled"
+            return
+        }
+        
+        var direct: Double = 0
+        var proxy: Double = 0
+        api.pingDirect { (result) in
+            direct = result ?? -1
+            showResult()
+        }
+        api.pingProxy { (result) in
+            proxy = result ?? -1
+            showResult()
+        }
+        DDLogInfo("ping testing...")
+        connectivityItem.title = "ping testing..."
+        func showResult() {
+            let status = "China \(miliseconds(direct)), World \(miliseconds(proxy))"
+            DDLogInfo("ping test \(status)")
+            if direct < 0 && proxy < 0 {
+                connectivityItem.title = "ping test failed"
+            } else {
+                connectivityItem.title = status
             }
         }
     }
