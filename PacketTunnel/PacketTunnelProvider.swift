@@ -51,7 +51,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
         let path = getContainerDir(groupId: groupId, subdir: "/Logs/")
         setupLog(logLevel, path)
-        
+        ObserverFactory.currentFactory = ESObserverFactory()
+
         timer = Repeater.every(.minutes(1)) { (repeater) in
             let memory = memoryUsage()
             let cpu = cpuUsage()
