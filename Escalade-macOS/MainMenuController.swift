@@ -28,7 +28,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         serversItem.target = self
 
         setupLog(.info, nil)
-        NSLog("log file \(getLogFilePath())")
 
         let _ = launchHelper.validate()
         updateStartAtLoginItem()
@@ -37,6 +36,8 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
             self.connectionChanged()
         }
         listenReachabilityChange()
+        
+        updateServerList()
     }
     @IBOutlet weak var mainMenu: NSMenu!
     let statusItem = NSStatusBar.system.statusItem(withLength: -1)
@@ -135,34 +136,26 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     // MARK: - servers
     @IBOutlet weak var autoSelectItem: NSMenuItem!
     @objc @IBAction func autoSelectClicked(_ sender: Any?) {
-        guard let controller = serverController else { return }
-        if !autoSelectItem.isEnabled { return }
+        guard manager.connected else { return }
+        guard autoSelectItem.isEnabled else { return }
         autoSelectItem.isEnabled = false
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
-        controller.autoSelect { err, server in
-            if err == nil && server != nil { // found ok, first time.
-                let id = controller.currentServer!
-                let ping = controller.internationalPing
-                let text = "auto selected \(id)(\(miliseconds(ping)))"
-                let title = "Servers Testing Finished"
-                sendNotification(title: title, text: text)
-                self.updateConnectivityInfo()
-            } else if err == nil && server == nil { // found ok, second time.
-                self.autoSelectItem.isEnabled = true
-                self.updateServerList()
-            } else if err != nil && server == nil { // found error.
-                let text = "Your network connection is not connected to the Internet."
-                let title = "Can't connect to Baidu"
-                sendNotification(title: title, text: text)
-                self.autoSelectItem.isEnabled = true
-                self.updateServerList()
-                self.updateConnectivityInfo()
-            }
+        api.autoSelect { (result) in
+            let selected = result.first!
+            let text = "auto selected \(selected.0)(\(selected.1))"
+            let title = "Servers Testing Finished"
+            sendNotification(title: title, text: text)
+            self.autoSelectItem.isEnabled = true
         }
     }
+    let api = APIClient.shared
     @objc func serverClicked(sender: NSMenuItem) {
-        let name = sender.representedObject as! String
-        serverController.currentServer = name
+        let server = sender.representedObject as! String
+        saveDefaults(key: currentServerKey, value: server)
+        if manager.connected {
+            let result = api.switchServer(server: server)
+            DDLogInfo("switch server result: \(result)")
+        }
         updateServerList()
     }
     func updateServerList() {
