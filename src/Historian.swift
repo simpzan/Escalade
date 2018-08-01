@@ -13,8 +13,8 @@ public class Historian {
     public var connections = [ConnectionRecord]()
     
     func record(tunnel: Tunnel) {
-        let record = ConnectionRecord(tunnel: tunnel)
-        connections.append(record)
+//        let record = ConnectionRecord(tunnel: tunnel)
+//        connections.append(record)
     }
     
 }
