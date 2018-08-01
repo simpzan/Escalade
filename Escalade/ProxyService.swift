@@ -62,16 +62,25 @@ class ProxyService {
         rules.append(allRule)
         return RuleManager(fromRules: rules)
     }
+    
+    private let queue = DispatchQueue(label: "com.simpzan.Escalade.ProxyServiceQueue")
+    public func start() {
+        queue.sync { self._start() }
+    }
+    public func stop() {
+        queue.sync { self._stop() }
+    }
 
-    func start() {
+    private func _start() {
+        guard !running else { return }
         DDLogInfo("starting")
         proxyManager.startProxyServers()
         tunController?.start()
         running = true
         DDLogInfo("started")
     }
-
-    func stop() {
+    private func _stop() {
+        guard running else { return }
         DDLogInfo("stopping")
         tunController?.stop()
         proxyManager.stopProxyServers()
