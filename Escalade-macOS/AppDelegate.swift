@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import Fabric
+import Crashlytics
 
 public let appId = "com.simpzan.Escalade.macOS"
 public let groupId = "group." + appId
@@ -18,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var mainMenuController: MainMenuController!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        Fabric.with([Crashlytics.self])
         let id = Bundle.main.bundleIdentifier!
         let runningApps = NSRunningApplication.runningApplications(withBundleIdentifier: id)
         if runningApps.count > 1 {
