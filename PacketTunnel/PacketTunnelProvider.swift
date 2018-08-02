@@ -44,6 +44,7 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 #if !DEBUG
         logLevel = .info
         if !crashlyticsInitialized {
+            UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
             Fabric.with([Crashlytics.self])
             crashlyticsInitialized = true
         }

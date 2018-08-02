@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var mainMenuController: MainMenuController!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
         Fabric.with([Crashlytics.self])
         let id = Bundle.main.bundleIdentifier!
         let runningApps = NSRunningApplication.runningApplications(withBundleIdentifier: id)
