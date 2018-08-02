@@ -32,6 +32,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         let _ = launchHelper.validate()
         updateStartAtLoginItem()
 
+        connectionChanged()
         manager.monitorStatus { (_) in
             self.connectionChanged()
         }
