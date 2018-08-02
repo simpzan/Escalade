@@ -29,6 +29,11 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
         setupLog(.info, nil)
 
+        if let adapterFactoryManager = createAdapterFactoryManager() {
+            let serverNames = adapterFactoryManager.selectFactory.servers
+            servers = serverNames.map{ (server) -> (String, String) in (server, "") }
+        }
+        
         let _ = launchHelper.validate()
         updateStartAtLoginItem()
 
@@ -94,6 +99,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     }
 
     // MARK: - servers
+    private var servers = [(String, String)]()
     @IBOutlet weak var autoSelectItem: NSMenuItem!
     @objc @IBAction func autoSelectClicked(_ sender: Any?) {
         guard manager.connected else { return }
@@ -101,6 +107,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         autoSelectItem.isEnabled = false
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
         api.autoSelect { (result) in
+            self.servers = result
             let selected = result.first!
             let text = "auto selected \(selected.0)(\(selected.1))"
             let title = "Servers Testing Finished"
@@ -127,14 +134,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         guard let current = getCurrentServer() else { return }
         serversItem.title = "Server: \(current)"
 
-        guard let adapterFactoryManager = createAdapterFactoryManager() else {
-            DDLogError("failed to load servers")
-            return
-        }
-        let serverNames = adapterFactoryManager.selectFactory.servers
-        let servers = serverNames.map{ (server) -> (String, TimeInterval) in
-            return (server, 0)
-        }
         let maxNameLength = servers.map { $0.0.utf16.count as Int }.max()!
         for (name, pingValue) in servers {
             let action = #selector(serverClicked(sender:))
@@ -142,7 +141,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
             let item = createMenuItem(title: "", tag: tag, state: state, action: action)
 
             let nameRightPadded = name.padding(toLength: maxNameLength, withPad: " ", startingAt: 0)
-            let title = "\(nameRightPadded) \t\(miliseconds(pingValue))"
+            let title = "\(nameRightPadded) \t\(pingValue)"
             let attr = [NSAttributedStringKey.font: NSFont.userFixedPitchFont(ofSize: 14.0)!]
             item.attributedTitle = NSAttributedString(string: title, attributes: attr)
             item.representedObject = name
@@ -150,18 +149,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         }
     }
     @IBOutlet weak var serversItem: NSMenuItem!
-    private var proxyServerManager: ProxyServerManager {
-        return proxyService.proxyManager
-    }
-    private func startProxy() {
-        proxyService?.stop()
-        proxyService = ProxyService(adapterFactoryManager: createAdapterFactoryManager()!)
-        proxyService.start()
-    }
-    private var port: UInt16 {
-        return proxyServerManager.port
-    }
-    private var proxyService: ProxyService! = nil
 
     func listenReachabilityChange() {
         func onReachabilityChange(_: Any) {
