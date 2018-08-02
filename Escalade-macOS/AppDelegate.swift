@@ -10,10 +10,6 @@ import Cocoa
 import Fabric
 import Crashlytics
 
-public let appId = "com.simpzan.Escalade.macOS"
-public let groupId = "group." + appId
-public let providerBundleIdentifier = appId + ".PacketTunnel"
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 

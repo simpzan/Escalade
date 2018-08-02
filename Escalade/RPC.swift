@@ -13,6 +13,7 @@ import CocoaLumberjackSwift
 let configKey = "config"
 let serversKey = "servers"
 let currentServerKey = "currentServer"
+let groupId = "group.\(getContainingAppId()!)"
 
 let defaults = UserDefaults(suiteName: groupId)!
 func saveDefaults(key: String, value: String) {

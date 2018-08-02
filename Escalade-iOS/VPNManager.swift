@@ -10,6 +10,8 @@ import Foundation
 import NetworkExtension
 import CocoaLumberjackSwift
 
+private let providerBundleIdentifier = "\(getContainingAppId()!).PacketTunnel"
+
 extension NEVPNStatus {
     var description: String {
         let descriptions = ["invalid", "disconnected", "connecting", "connected", "reasserting", "disconnecting"]

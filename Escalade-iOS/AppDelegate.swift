@@ -12,10 +12,6 @@ import SVProgressHUD
 import Fabric
 import Crashlytics
 
-public let appId = "com.simpzan.Escalade.iOS"
-public let groupId = "group." + appId
-public let providerBundleIdentifier = appId + ".PacketTunnel"
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -19,7 +19,6 @@ void setPort(void *data, uint16_t port);
 void delay(double delayInSeconds, void(^callback)(void));
 
 NSString *getContainingAppId(void);
-NSString *getSharedAppGroupId(void);
 
 @interface NSArray(Functional)
 - (NSArray *)mapObjectsUsingBlock:(id (^)(id obj, NSUInteger idx))block;

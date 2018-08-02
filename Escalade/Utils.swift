@@ -63,10 +63,3 @@ extension Optional {
         return "\(self!)"
     }
 }
-
-public func getAppGroupId() -> String {
-    var id = Bundle.main.bundleIdentifier!
-    let suffix = ".PacketTunnel"
-    if id.hasSuffix(suffix) { id = String(id.dropLast(suffix.count)) }
-    return "group.\(id)"
-}
