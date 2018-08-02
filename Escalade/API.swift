@@ -15,6 +15,7 @@ let autoSelectId = "autoSelect"
 let pingDirectId = "pingDirect"
 let pingProxyId = "pingProxy"
 let getConnectionsId = "getConnections"
+let getTunnelLogFileId = "getTunnelLogFile"
 
 class APIServer {
     let proxyService: ProxyService
@@ -48,6 +49,12 @@ class APIServer {
             self.serverController.currentServer = server
             return true as NSCoding?
         })
+        addAPI(getTunnelLogFileId) { (_) -> NSCoding? in
+            if let result = getLogFilePath() {
+                return result as NSCoding
+            }
+            return nil
+        }
         addAsyncAPI(autoSelectId) { (input, done) in
             self.serverController.autoSelect(callback: { (err, server) in
                 DDLogInfo("autoSelect callback \(err*) \(server*)")
@@ -115,6 +122,10 @@ public class APIClient {
     func switchServer(server: String) -> Bool {
         let result = callAPI(switchProxyId, obj: server as NSCoding?)
         return result as! Bool
+    }
+    public func getTunnelLogFile() -> String? {
+        guard let result = callAPI(getTunnelLogFileId) else { return nil }
+        return result as? String
     }
     public func pingDirect(callback: @escaping (Double?) -> Void) {
         callAsyncAPI(pingDirectId) { (result) in

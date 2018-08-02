@@ -211,7 +211,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     // MARK: -
 
     @IBAction func showLogClicked(_ sender: Any) {
-        if let logfile = getLogFilePath() {
+        if let logfile = api.getTunnelLogFile() {
             _ = runCommand(path: "/usr/bin/env", args: ["open", "-a", "Console", logfile])
         }
     }
