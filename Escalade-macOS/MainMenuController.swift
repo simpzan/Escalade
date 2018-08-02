@@ -45,13 +45,12 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
 
     func menuWillOpen(_ menu: NSMenu) {
-        updateConfigList()
         updateServerList()
         updateConnectivityInfo()
 
         if !reachability.isReachable { return }
 
-        pingTest()
+        connectivityTest()
         trafficMonitor.startUpdate { rx, tx in
             self.networkTrafficItem.title = "⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s"
         }
@@ -93,44 +92,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         NotificationCenter.default.post(name: serversUpdatedNotification, object: nil)
         sendNotification(title: "import done", text: "")
     }
-    func reloadConfigurations() -> Bool {
-        if !configManager.reloadConfigurations() { return false }
-
-        startProxy()
-        return true
-    }
-    @objc func configClicked(sender: NSMenuItem) {
-        let name = sender.title
-        if !configManager.setConfiguration(name: name) {
-            print("setConfiguration \(name) failed")
-        } else {
-            startProxy()
-        }
-    }
-    func updateConfigList() {
-        let menu = configurationsItem.submenu!
-        let tag = 11
-        menu.removeItems(withTag: tag)
-
-        let currentConfig = configManager.currentConfiguration
-        configurationsItem.title = "Config: \(currentConfig ?? "")"
-
-        for name in configManager.configurations {
-            let action = #selector(configClicked(sender:))
-            let state = currentConfig == name
-            let item = createMenuItem(title: name, tag: tag, state: state, action: action)
-            menu.addItem(item)
-        }
-    }
-    @IBAction func openConfigFolderClicked(_ sender: Any) {
-        NSWorkspace.shared.openFile(configManager.configuraionFolder)
-    }
-    @IBAction func reloadConfigClicked(_ sender: Any) {
-        _ = reloadConfigurations()
-    }
-    @IBOutlet weak var configurationsItem: NSMenuItem!
-    let configManager = ConfigurationManager()
-
 
     // MARK: - servers
     @IBOutlet weak var autoSelectItem: NSMenuItem!
@@ -218,7 +179,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     }
     @IBOutlet weak var connectivityItem: NSMenuItem!
 
-    func pingTest() {
+    func connectivityTest() {
         guard manager.connected else {
             connectivityItem.title = "VPN disabled"
             return
@@ -255,13 +216,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         }
     }
 
-
-    @IBAction func copyExportCommandClicked(_ sender: Any) {
-        let proxy = "http://127.0.0.1:\(port + 1)"
-        let content = "export https_proxy=\(proxy); export http_proxy=\(proxy)"
-        copyString(string: content)
-    }
-
     @IBAction func checkUpdatesClicked(_ sender: Any) {
         SUUpdater.shared().checkForUpdates(nil)
     }
@@ -287,14 +241,4 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     @IBAction func quitClicked(_ sender: Any) {
         NSApp.terminate(nil)
     }
-    
-    @IBOutlet weak var testButton: NSMenuItem!
-    @IBAction func test(_ sender: Any) {
-        NSLog("connectClicked")
-    }
-    func injected() {
-        print("I've been injected-: \(self)")
-        updateServerList()
-    }
-
 }

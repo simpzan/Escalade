@@ -659,13 +659,6 @@
 			path = "Escalade-iOS";
 			sourceTree = "<group>";
 		};
-		7636464E20E8792300F303EF /* RPC */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = RPC;
-			sourceTree = "<group>";
-		};
 		766B69EF211089AB0025E1E0 /* PacketTunnel */ = {
 			isa = PBXGroup;
 			children = (
@@ -751,7 +744,6 @@
 		76B08C2D1E7CF84D00E6146E /* Escalade */ = {
 			isa = PBXGroup;
 			children = (
-				7636464E20E8792300F303EF /* RPC */,
 				760C97F9208C675C00EBDB8A /* NAT */,
 				76B08C611E7D4A7800E6146E /* ProxyService.swift */,
 				763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */,
@@ -824,13 +816,13 @@
 			isa = PBXGroup;
 			children = (
 				76B711E62027098A0020895A /* Escalade.entitlements */,
+				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
 				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
 				76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */,
 				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
 				76277F201E4CF758006C06A6 /* SystemProxyController.swift */,
 				76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */,
-				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C4937A1E4A0C8A00A0D066 /* main.m */,
 				76C493651E4A0AA200A0D066 /* Info.plist */,
 				7641854F1E506C13003C7FFC /* dsa_pub.pem */,

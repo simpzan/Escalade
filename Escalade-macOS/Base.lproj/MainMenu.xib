@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -20,6 +20,11 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu autoenablesItems="NO" id="32I-cj-ef3">
             <items>
+                <menuItem title="System Proxy" keyEquivalent="s" id="Sdp-cf-5a9">
+                    <connections>
+                        <action selector="systemProxyClicked:" target="Fot-qt-aSu" id="9LE-nz-LKS"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Network Traffic" enabled="NO" toolTip="Network Traffic" id="ema-mF-xc1">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
@@ -39,33 +44,10 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Configurations" id="daz-V7-ed3">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Configurations" autoenablesItems="NO" id="dDZ-tb-SSh">
-                        <items>
-                            <menuItem title="Open Configuration Folder" keyEquivalent="o" id="hWg-Au-8eB">
-                                <connections>
-                                    <action selector="openConfigFolderClicked:" target="Fot-qt-aSu" id="Beu-ds-Mrl"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Reload Configuration" keyEquivalent="r" id="GgG-dd-42r">
-                                <connections>
-                                    <action selector="reloadConfigClicked:" target="Fot-qt-aSu" id="3cM-wo-luY"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="90a-dD-Ufh"/>
-                        </items>
-                    </menu>
-                </menuItem>
                 <menuItem title="Advanced" id="jWL-KD-XMj">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Advanced" autoenablesItems="NO" id="EVc-Yv-RoR">
                         <items>
-                            <menuItem title="System Proxy" keyEquivalent="s" id="Sdp-cf-5a9">
-                                <connections>
-                                    <action selector="systemProxyClicked:" target="Fot-qt-aSu" id="9LE-nz-LKS"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Start at Login" id="0DH-Er-RLY">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -75,11 +57,6 @@
                             <menuItem title="Show Log" keyEquivalent="l" id="9i8-pA-O7S">
                                 <connections>
                                     <action selector="showLogClicked:" target="Fot-qt-aSu" id="7rv-Uh-d0Y"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Copy Export Command" keyEquivalent="c" id="MsH-cB-EQV">
-                                <connections>
-                                    <action selector="copyExportCommandClicked:" target="Fot-qt-aSu" id="f2A-n6-cpW"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Check Updates" keyEquivalent="u" id="A1r-PL-ueR">
@@ -100,25 +77,18 @@
                         <action selector="quitClicked:" target="Fot-qt-aSu" id="0NX-7G-JhB"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Test" keyEquivalent="q" id="5mg-gS-8eQ">
-                    <connections>
-                        <action selector="test:" target="Fot-qt-aSu" id="EB0-6X-flN"/>
-                    </connections>
-                </menuItem>
             </items>
             <point key="canvasLocation" x="43.5" y="38.5"/>
         </menu>
         <customObject id="Fot-qt-aSu" customClass="MainMenuController" customModule="Escalade" customModuleProvider="target">
             <connections>
                 <outlet property="autoSelectItem" destination="BSC-Yd-CeE" id="i94-p4-v47"/>
-                <outlet property="configurationsItem" destination="daz-V7-ed3" id="lwc-Y1-IK8"/>
                 <outlet property="connectivityItem" destination="Ffx-Dh-25v" id="5Y3-Jk-8ZA"/>
                 <outlet property="mainMenu" destination="32I-cj-ef3" id="Pb2-1i-Z4K"/>
                 <outlet property="networkTrafficItem" destination="ema-mF-xc1" id="afh-h3-T0J"/>
                 <outlet property="serversItem" destination="mT5-4y-6tc" id="uaB-W6-4w5"/>
                 <outlet property="startAtLoginItem" destination="0DH-Er-RLY" id="VML-MK-mEu"/>
                 <outlet property="systemProxyItem" destination="Sdp-cf-5a9" id="ukC-ii-jwM"/>
-                <outlet property="testButton" destination="5mg-gS-8eQ" id="shB-9F-1kE"/>
             </connections>
         </customObject>
     </objects>
