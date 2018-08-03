@@ -450,7 +450,7 @@
 		76B711CF2027059F0020895A /* PacketTunnel_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PacketTunnel_macOS.entitlements; sourceTree = "<group>"; };
 		76B711E0202708E60020895A /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/Mac/MMWormhole.framework; sourceTree = "<group>"; };
 		76B711E62027098A0020895A /* Escalade.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Escalade.entitlements; sourceTree = "<group>"; };
-		76C4935B1E4A0AA100A0D066 /* Escalade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Escalade.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Escalade-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76C493601E4A0AA200A0D066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76C493631E4A0AA200A0D066 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -801,7 +801,7 @@
 		76C4935C1E4A0AA100A0D066 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				76C4935B1E4A0AA100A0D066 /* Escalade.app */,
+				76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */,
 				76277F161E4CF5D3006C06A6 /* SystemProxyConfig */,
 				76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */,
 				76312AB61E6BEE7C000B66C9 /* Escalade-iOS.app */,
@@ -995,7 +995,7 @@
 			);
 			name = "Escalade-macOS";
 			productName = "Escalade-macOS";
-			productReference = 76C4935B1E4A0AA100A0D066 /* Escalade.app */;
+			productReference = 76C4935B1E4A0AA100A0D066 /* Escalade-macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		76DB4CB71E6BF0B70019FA42 /* PacketTunnel-iOS */ = {
@@ -1890,6 +1890,8 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EscaladeAppGroupIdentifier = "com.simpzan.$(EscaladeProductName).iOS";
+				EscaladeProductName = DevEscalade;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
@@ -1915,7 +1917,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(EscaladeAppGroupIdentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1959,6 +1961,8 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EscaladeAppGroupIdentifier = "com.simpzan.$(EscaladeProductName).iOS";
+				EscaladeProductName = Escalade;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
@@ -1977,7 +1981,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(EscaladeAppGroupIdentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "Escalade-iOS/Escalade-iOS-Bridging-Header.h";
@@ -2021,6 +2025,7 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EscaladeProductName = DevEscalade;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2040,7 +2045,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.macOS.LaunchHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.$(EscaladeProductName).macOS.LaunchHelper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -2079,6 +2084,7 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EscaladeProductName = Escalade;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2091,7 +2097,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.macOS.LaunchHelper;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.$(EscaladeProductName).macOS.LaunchHelper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -2138,6 +2144,8 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EscaladeAppGroupIdentifier = "com.simpzan.$(EscaladeProductName).macOS";
+				EscaladeProductName = DevEscalade;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
@@ -2163,7 +2171,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.macOS.PacketTunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(EscaladeAppGroupIdentifier).PacketTunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -2214,6 +2222,8 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EscaladeAppGroupIdentifier = "com.simpzan.$(EscaladeProductName).macOS";
+				EscaladeProductName = Escalade;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
@@ -2232,7 +2242,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.macOS.PacketTunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(EscaladeAppGroupIdentifier).PacketTunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -2337,6 +2347,8 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EscaladeAppGroupIdentifier = "com.simpzan.$(EscaladeProductName).macOS";
+				EscaladeProductName = DevEscalade;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
@@ -2362,8 +2374,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.macOS;
-				PRODUCT_NAME = Escalade;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(EscaladeAppGroupIdentifier)";
+				PRODUCT_NAME = "Escalade-macOS";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -2407,6 +2419,8 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EscaladeAppGroupIdentifier = "com.simpzan.$(EscaladeProductName).macOS";
+				EscaladeProductName = Escalade;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
@@ -2425,8 +2439,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.macOS;
-				PRODUCT_NAME = Escalade;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(EscaladeAppGroupIdentifier)";
+				PRODUCT_NAME = "Escalade-macOS";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Escalade-macOS/Escalade-macOS-Bridging-Header.h";
@@ -2465,6 +2479,8 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EscaladeAppGroupIdentifier = "com.simpzan.$(EscaladeProductName).iOS";
+				EscaladeProductName = DevEscalade;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
@@ -2490,7 +2506,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.iOS.PacketTunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(EscaladeAppGroupIdentifier).PacketTunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -2532,6 +2548,8 @@
 				DEVELOPMENT_TEAM = LL5MM59PQ7;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EscaladeAppGroupIdentifier = "com.simpzan.$(EscaladeProductName).iOS";
+				EscaladeProductName = Escalade;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NEKit/Carthage/Build/iOS",
@@ -2550,7 +2568,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.simpzan.Escalade.iOS.PacketTunnel;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(EscaladeAppGroupIdentifier).PacketTunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
