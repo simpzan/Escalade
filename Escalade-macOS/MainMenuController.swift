@@ -29,10 +29,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
         setupLog(.info, nil)
 
-        if let adapterFactoryManager = createAdapterFactoryManager() {
-            let serverNames = adapterFactoryManager.selectFactory.servers
-            servers = serverNames.map{ (server) -> (String, String) in (server, "") }
-        }
+        loadServerList()
         
         let _ = launchHelper.validate()
         updateStartAtLoginItem()
@@ -95,6 +92,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         }
 
         NotificationCenter.default.post(name: serversUpdatedNotification, object: nil)
+        loadServerList()
         sendNotification(title: "import done", text: "")
     }
 
@@ -125,13 +123,19 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         }
         updateServerList()
     }
+    private func loadServerList() {
+        if let adapterFactoryManager = createAdapterFactoryManager() {
+            let serverNames = adapterFactoryManager.selectFactory.servers
+            servers = serverNames.map{ (server) -> (String, String) in (server, "") }
+        }
+    }
     func updateServerList() {
         let tag = 10
         let menu = serversItem.submenu!
         menu.removeItems(withTag: tag)
         serversItem.title = "Servers"
         
-        guard let current = getCurrentServer() else { return }
+        guard let current = getCurrentServer(), servers.count > 0 else { return }
         serversItem.title = "Server: \(current)"
 
         let maxNameLength = servers.map { $0.0.utf16.count as Int }.max()!
