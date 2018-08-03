@@ -17,7 +17,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     }
 
     override func awakeFromNib() {
-        statusItem.toolTip = "Escalade"
+        statusItem.toolTip = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String
         statusItem.image = NSImage(named: NSImage.Name(rawValue: "MenuBarIcon"))
         statusItem.menu = mainMenu
 
