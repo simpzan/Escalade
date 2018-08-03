@@ -20,7 +20,8 @@ class ProxyServerManager: NSObject {
         httpServer = GCDHTTPProxyServer(address: httpAddr, port: NEKit.Port(port: port + 1))
     }
 
-    public var port: UInt16 = 9990
+    public var port: UInt16 = 19990
+
     public let address: String = interfaceIp
 
     public let socks5Server: GCDProxyServer?
