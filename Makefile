@@ -5,3 +5,4 @@ CarthageBootstrap := carthage bootstrap --no-use-binaries --cache-builds --platf
 bootstrap:
 	cd NEKit && $(CarthageBootstrap)
 	$(CarthageBootstrap)
+	pod install
