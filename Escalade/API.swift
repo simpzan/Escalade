@@ -16,6 +16,7 @@ let pingDirectId = "pingDirect"
 let pingProxyId = "pingProxy"
 let getConnectionsId = "getConnections"
 let getTunnelLogFileId = "getTunnelLogFile"
+let toggleVerboseLoggingId = "toggleVerboseLogging"
 
 class APIServer {
     let proxyService: ProxyService
@@ -53,6 +54,17 @@ class APIServer {
             if let result = getLogFilePath() {
                 return result as NSCoding
             }
+            return nil
+        }
+        addAPI(toggleVerboseLoggingId) { (_) -> NSCoding? in
+            var level = DDLogLevel.info
+            switch ddLogLevel {
+            case .info: level = .verbose
+            default: level = .info
+            }
+            DDLogInfo("log level changing, \(ddLogLevel.rawValue) -> \(level.rawValue).")
+            ddLogLevel = level
+            defaultDebugLevel = level
             return nil
         }
         addAsyncAPI(autoSelectId) { (input, done) in
@@ -126,6 +138,9 @@ public class APIClient {
     public func getTunnelLogFile() -> String? {
         guard let result = callAPI(getTunnelLogFileId) else { return nil }
         return result as? String
+    }
+    public func toggleVerboseLogging() {
+        _ = callAPI(toggleVerboseLoggingId)
     }
     public func pingDirect(callback: @escaping (Double?) -> Void) {
         callAsyncAPI(pingDirectId) { (result) in

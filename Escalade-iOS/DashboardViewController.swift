@@ -147,7 +147,7 @@ class DashboardViewController: UITableViewController {
     }
     
     @IBAction func openMenu(_ sender: Any) {
-        let actions = ["ReportIssue", "View log files", "Toggle proxy service", "Network Tests", "Reset Data", "Connections"]
+        let actions = ["ReportIssue", "Toggle verbose logging", "Toggle proxy service", "Network Tests", "Reset Data", "Connections"]
         self.select(actions, title: "choose action", { (index) in
             switch index {
             case 0:
@@ -157,7 +157,7 @@ class DashboardViewController: UITableViewController {
                     self.manager.sendMessage(msg: "dumpTunnel")
                 })
             case 1:
-                self.showLogFiles()
+                self.api.toggleVerboseLogging()
             case 2:
                 self.manager.sendMessage(msg: "toggleProxyService")
             case 3:
