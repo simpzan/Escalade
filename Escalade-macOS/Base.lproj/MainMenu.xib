@@ -54,6 +54,12 @@
                                     <action selector="debugModeClicked:" target="Fot-qt-aSu" id="2PR-rg-Bzd"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Public Proxy" id="RFN-Ia-IAJ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="shareProxyClicked:" target="Fot-qt-aSu" id="ll8-DP-M7f"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Start at Login" id="8aU-a2-CyN">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -94,6 +100,7 @@
                 <outlet property="mainMenu" destination="32I-cj-ef3" id="Pb2-1i-Z4K"/>
                 <outlet property="networkTrafficItem" destination="ema-mF-xc1" id="afh-h3-T0J"/>
                 <outlet property="serversItem" destination="mT5-4y-6tc" id="uaB-W6-4w5"/>
+                <outlet property="shareProxyItem" destination="RFN-Ia-IAJ" id="Wgv-oY-5GE"/>
                 <outlet property="startAtLoginItem" destination="8aU-a2-CyN" id="0bx-Bb-BGJ"/>
                 <outlet property="systemProxyItem" destination="Sdp-cf-5a9" id="ukC-ii-jwM"/>
             </connections>

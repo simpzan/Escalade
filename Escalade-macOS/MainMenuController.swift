@@ -42,6 +42,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         
         updateServerList()
         updateDebugModeItem()
+        updateShareProxyItem()
     }
     @IBOutlet weak var mainMenu: NSMenu!
     let statusItem = NSStatusBar.system.statusItem(withLength: -1)
@@ -234,6 +235,16 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         debugModeItem.state = api.isVerboseLoggingEnabled() ? .on : .off
     }
     @IBOutlet weak var debugModeItem: NSMenuItem!
+    
+    private func updateShareProxyItem() {
+        shareProxyItem.state = api.getShareProxyInfo() != nil ? .on : .off
+    }
+    @IBAction func shareProxyClicked(_ sender: Any) {
+        let newState = shareProxyItem.state == .off
+        api.setShareProxyState(state: newState)
+        updateShareProxyItem()
+    }
+    @IBOutlet weak var shareProxyItem: NSMenuItem!
     
     @IBAction func helpClicked(_ sender: Any) {
         NSWorkspace.shared.open(URL(string: "https://github.com/simpzan/Escalade")!)

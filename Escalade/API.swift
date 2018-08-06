@@ -18,6 +18,8 @@ let getConnectionsId = "getConnections"
 let getTunnelLogFileId = "getTunnelLogFile"
 let toggleVerboseLoggingId = "toggleVerboseLogging"
 let isVerboseLoggingEnabledId = "isVerboseLoggingEnabled"
+let setShareProxyStateId = "setShareProxyState"
+let getShareProxyStateId = "getShareProxyState"
 
 class APIServer {
     let proxyService: ProxyService
@@ -71,6 +73,16 @@ class APIServer {
             case .verbose: return true as NSCoding
             default: return false as NSCoding
             }
+        }
+        addAPI(setShareProxyStateId) { (theState) -> NSCoding? in
+            let state = theState as! Bool
+            self.proxyService.proxyManager.setShareProxyState(state)
+            return nil
+        }
+        addAPI(getShareProxyStateId) { (_) -> NSCoding? in
+            let result = self.proxyService.proxyManager.getSharedProxyState()
+            if let state = result { return state as NSCoding }
+            return "" as NSCoding
         }
         addAsyncAPI(autoSelectId) { (input, done) in
             self.serverController.autoSelect(callback: { (err, server) in
@@ -150,6 +162,14 @@ public class APIClient {
     public func isVerboseLoggingEnabled() -> Bool {
         guard let result = callAPI(isVerboseLoggingEnabledId) as? Bool else { return false }
         return result
+    }
+    public func getShareProxyInfo() -> String? {
+        guard let result = callAPI(getShareProxyStateId) as? String else { return nil }
+        DDLogInfo("getShareProxyStateId \(result)")
+        return result.count == 0 ? nil : result
+    }
+    public func setShareProxyState(state: Bool) {
+        _ = callAPI(setShareProxyStateId, obj: state as NSCoding)
     }
     public func pingDirect(callback: @escaping (Double?) -> Void) {
         callAsyncAPI(pingDirectId) { (result) in
