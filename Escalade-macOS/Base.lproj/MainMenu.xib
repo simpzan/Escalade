@@ -12,7 +12,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Escalade" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Escalade_macOS" customModuleProvider="target">
             <connections>
                 <outlet property="mainMenuController" destination="Fot-qt-aSu" id="dHL-LI-Uqg"/>
             </connections>
@@ -48,10 +48,16 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Advanced" autoenablesItems="NO" id="EVc-Yv-RoR">
                         <items>
-                            <menuItem title="Start at Login" id="0DH-Er-RLY">
+                            <menuItem title="Debug Mode" id="0DH-Er-RLY">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="startAtLoginClicked:" target="Fot-qt-aSu" id="gL7-2s-IwR"/>
+                                    <action selector="debugModeClicked:" target="Fot-qt-aSu" id="2PR-rg-Bzd"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Start at Login" id="8aU-a2-CyN">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="startAtLoginClicked:" target="Fot-qt-aSu" id="0Hv-Gq-Bpj"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Show Log" keyEquivalent="l" id="9i8-pA-O7S">
@@ -80,14 +86,15 @@
             </items>
             <point key="canvasLocation" x="43.5" y="38.5"/>
         </menu>
-        <customObject id="Fot-qt-aSu" customClass="MainMenuController" customModule="Escalade" customModuleProvider="target">
+        <customObject id="Fot-qt-aSu" customClass="MainMenuController" customModule="Escalade_macOS" customModuleProvider="target">
             <connections>
                 <outlet property="autoSelectItem" destination="BSC-Yd-CeE" id="i94-p4-v47"/>
                 <outlet property="connectivityItem" destination="Ffx-Dh-25v" id="5Y3-Jk-8ZA"/>
+                <outlet property="debugModeItem" destination="0DH-Er-RLY" id="pe2-DJ-ixJ"/>
                 <outlet property="mainMenu" destination="32I-cj-ef3" id="Pb2-1i-Z4K"/>
                 <outlet property="networkTrafficItem" destination="ema-mF-xc1" id="afh-h3-T0J"/>
                 <outlet property="serversItem" destination="mT5-4y-6tc" id="uaB-W6-4w5"/>
-                <outlet property="startAtLoginItem" destination="0DH-Er-RLY" id="VML-MK-mEu"/>
+                <outlet property="startAtLoginItem" destination="8aU-a2-CyN" id="0bx-Bb-BGJ"/>
                 <outlet property="systemProxyItem" destination="Sdp-cf-5a9" id="ukC-ii-jwM"/>
             </connections>
         </customObject>

@@ -38,19 +38,14 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
     var timer: Repeater? = nil
     
     override func startTunnel(options: [String : NSObject]? = nil, completionHandler: @escaping (Error?) -> Void) {
-        var logLevel: DDLogLevel = .debug
+        setupLog()
 #if !DEBUG
-        logLevel = .info
         if !crashlyticsInitialized {
             UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
             Fabric.with([Crashlytics.self])
             crashlyticsInitialized = true
         }
 #endif
-
-        let path = getContainerDir(groupId: groupId, subdir: "/Logs/")
-        setupLog(logLevel, path)
-        ObserverFactory.currentFactory = ESObserverFactory()
 
         timer = Repeater.every(.minutes(1)) { (repeater) in
             let memory = memoryUsage()

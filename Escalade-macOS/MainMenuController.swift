@@ -41,6 +41,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         listenReachabilityChange()
         
         updateServerList()
+        updateDebugModeItem()
     }
     @IBOutlet weak var mainMenu: NSMenu!
     let statusItem = NSStatusBar.system.statusItem(withLength: -1)
@@ -225,7 +226,15 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     }
     let launchHelper = AutoLaunchHelper(identifier: "com.simpzan.Escalade.macOS.LaunchHelper")
 
-
+    @IBAction func debugModeClicked(_ sender: Any) {
+        api.toggleVerboseLogging()
+        updateDebugModeItem()
+    }
+    private func updateDebugModeItem() {
+        debugModeItem.state = api.isVerboseLoggingEnabled() ? .on : .off
+    }
+    @IBOutlet weak var debugModeItem: NSMenuItem!
+    
     @IBAction func helpClicked(_ sender: Any) {
         NSWorkspace.shared.open(URL(string: "https://github.com/simpzan/Escalade")!)
     }

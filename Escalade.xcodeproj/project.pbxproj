@@ -51,6 +51,10 @@
 		7636464D20E874E000F303EF /* HostEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C981F208C901F00EBDB8A /* HostEndpoint.m */; };
 		763D3EA620DF90C80073C1E9 /* ServersPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */; };
 		763D3EA720DF90C80073C1E9 /* ServersPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */; };
+		763E5DD1211880C20025F15E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763E5DD0211880C20025F15E /* Log.swift */; };
+		763E5DD2211880C20025F15E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763E5DD0211880C20025F15E /* Log.swift */; };
+		763E5DD3211880C20025F15E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763E5DD0211880C20025F15E /* Log.swift */; };
+		763E5DD4211880C20025F15E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763E5DD0211880C20025F15E /* Log.swift */; };
 		763F88C320E4F38500D781FB /* TrafficMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */; };
 		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
 		7642ED582094ADB7002DBA3C /* ConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7642ED572094ADB7002DBA3C /* ConnectivityManager.m */; };
@@ -398,6 +402,7 @@
 		76312AC21E6BEE7C000B66C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76312AC41E6BEE7C000B66C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersPersistence.swift; sourceTree = "<group>"; };
+		763E5DD0211880C20025F15E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7641854F1E506C13003C7FFC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		7642ED562094ADB7002DBA3C /* ConnectivityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectivityManager.h; sourceTree = "<group>"; };
 		7642ED572094ADB7002DBA3C /* ConnectivityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectivityManager.m; sourceTree = "<group>"; };
@@ -757,6 +762,7 @@
 				7679B6A41E7E715400477755 /* RPC.swift */,
 				76CA418B2090B5DD008D2556 /* Log.h */,
 				76CA418C2090B5DD008D2556 /* Log.m */,
+				763E5DD0211880C20025F15E /* Log.swift */,
 				7656510C2091FB8C00D59160 /* NetworkTests.h */,
 				7656510B2091FB8C00D59160 /* NetworkTests.m */,
 				7642ED562094ADB7002DBA3C /* ConnectivityManager.h */,
@@ -1518,6 +1524,7 @@
 				7679B6A61E7E715400477755 /* RPC.swift in Sources */,
 				761068F720E893A100DD6350 /* Checksum.m in Sources */,
 				76DD9F8821049FE30045D69E /* ICMPForwarder.m in Sources */,
+				763E5DD3211880C20025F15E /* Log.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1535,6 +1542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				760C97FC208C683200EBDB8A /* TCPPacket.m in Sources */,
+				763E5DD2211880C20025F15E /* Log.swift in Sources */,
 				76CA418E2090B5DE008D2556 /* Log.m in Sources */,
 				7642ED582094ADB7002DBA3C /* ConnectivityManager.m in Sources */,
 				76B711F120270F2F0020895A /* RPC.swift in Sources */,
@@ -1565,6 +1573,7 @@
 			files = (
 				76B08C621E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
+				763E5DD1211880C20025F15E /* Log.swift in Sources */,
 				768FB8F6210E1F8900E90A1D /* ServersPersistence.swift in Sources */,
 				76B08C3E1E7D3B7800E6146E /* TUNController.swift in Sources */,
 				76D5C68020B71B5900D9C1BD /* Repeater.swift in Sources */,
@@ -1600,6 +1609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76B08C341E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
+				763E5DD4211880C20025F15E /* Log.swift in Sources */,
 				76B08C3A1E7CF84D00E6146E /* TrafficMonitor.swift in Sources */,
 				76D5C68320B71B5900D9C1BD /* Repeater.swift in Sources */,
 				760C9821208C901F00EBDB8A /* HostEndpoint.m in Sources */,
