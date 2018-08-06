@@ -24,7 +24,9 @@ open class ProxyServer: NSObject, TunnelDelegate {
 
     /// The description of proxy server.
     open override var description: String {
-        return "<\(type) at \(address!.description):\(port.value)>"
+        var addr = "0.0.0.0"
+        if address != nil { addr = address!.description }
+        return "<\(type) at \(addr):\(port.value)>"
     }
 
     open var observer: Observer<ProxyServerEvent>?
