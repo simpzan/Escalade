@@ -20,6 +20,7 @@ let toggleVerboseLoggingId = "toggleVerboseLogging"
 let isVerboseLoggingEnabledId = "isVerboseLoggingEnabled"
 let setShareProxyStateId = "setShareProxyState"
 let getShareProxyStateId = "getShareProxyState"
+let getSystemStatusId = "getSystemStatus"
 
 class APIServer {
     let proxyService: ProxyService
@@ -83,6 +84,12 @@ class APIServer {
             let result = self.proxyService.proxyManager.getSharedProxyState()
             if let state = result { return state as NSCoding }
             return "" as NSCoding
+        }
+        addAPI(getSystemStatusId) { (_) -> NSCoding? in
+            let memory = memoryUsage()
+            let cpu = Int64(cpuUsage() * 1000)
+            let result: [String: Int64] = [ "memory": memory, "extensionCpu": cpu ]
+            return result as NSCoding
         }
         addAsyncAPI(autoSelectId) { (input, done) in
             self.serverController.autoSelect(callback: { (err, server) in
@@ -170,6 +177,10 @@ public class APIClient {
     }
     public func setShareProxyState(state: Bool) {
         _ = callAPI(setShareProxyStateId, obj: state as NSCoding)
+    }
+    public func getSystemStatus() -> [String: Int64]? {
+        let result = callAPI(getSystemStatusId)
+        return result as? [String: Int64]
     }
     public func pingDirect(callback: @escaping (Double?) -> Void) {
         callAsyncAPI(pingDirectId) { (result) in

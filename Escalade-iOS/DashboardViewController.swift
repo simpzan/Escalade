@@ -193,6 +193,19 @@ class DashboardViewController: UITableViewController {
             SVProgressHUD.dismiss()
         }
     }
+    private func showSystemStatus() {
+        guard let result = api.getSystemStatus() else { return }
+        let memory = Int(result["memory"]!)
+        let cpu = Double(result["extensionCpu"]!) / 1000
+        let extensionInfo = "extension: \(cpu)%, \(readableSize(memory))"
+        let appMemory = Int(memoryUsage())
+        let appCpu = cpuUsage()
+        let appInfo = "app: \(appCpu)%, \(readableSize(appMemory))"
+        let systemCpu = systemCpuUsage()
+        let systemInfo = String(format: "system: %.2f%%.", systemCpu)
+        self.select([extensionInfo, appInfo, systemInfo], title: "System Status") { (_) in
+        }
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cellId = tableView.cellForRow(at: indexPath)?.reuseIdentifier else { return }
@@ -205,6 +218,8 @@ class DashboardViewController: UITableViewController {
             showLogFiles()
         case "pingTestCell":
             pingTest()
+        case "systemStatusCell":
+            showSystemStatus()
         default:
             break
         }
