@@ -35,11 +35,18 @@ func readableSize(_ byteCount: Int) -> String {
     let units = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB", "BB", "NB", "DB", "CB"]
     let step = 1024
     var count = byteCount
+    var remaining = 0
+    var unitIndex = 0
     for i in 0...(units.count) {
-        if count < step { return "\(count)\(units[i])" }
+        if count < step {
+            unitIndex = i
+            break
+        }
+        remaining = count % step
         count /= step
     }
-    return ""
+    let fraction = remaining == 0 ? "" : ".\(remaining/102)"
+    return "\(count)\(fraction)\(units[unitIndex])"
 }
 
 extension Bundle {
