@@ -68,7 +68,9 @@ int _setupLog(DDLogLevel level, NSString *logDir) {
     fileLogger.logFormatter = [[ESLogFormatter alloc] init];
     fileLogger.rollingFrequency = 0;
     fileLogger.maximumFileSize = 0;
-//    fileLogger.doNotReuseLogFiles = YES;
+#ifndef DEBUG
+    fileLogger.doNotReuseLogFiles = YES;
+#endif
     fileLogger.logFileManager.maximumNumberOfLogFiles = 100;
     [DDLog addLogger:fileLogger withLevel:level];
     
