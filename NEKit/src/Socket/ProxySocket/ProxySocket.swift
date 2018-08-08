@@ -14,8 +14,10 @@ open class ProxySocket: NSObject, SocketProtocol, RawTCPSocketDelegate {
 
     open override var description: String {
         let address = Utils.address(of: self)
-        let sessionDescription = session == nil ? "" : " \(session!.host):\(session!.port)"
-        return String(format: "<%@ %p%@>", typeName, address, sessionDescription)
+        let sourcePort = socket.sourcePort?.value ?? 0
+        let source = sourcePort == 0 ? "" : " :\(sourcePort)"
+        let sessionDescription = session == nil ? "" : "->\(session!.host):\(session!.port)"
+        return String(format: "<%@ %p%@%@>", typeName, address, source, sessionDescription)
     }
 
     /**

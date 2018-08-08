@@ -18,6 +18,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
         if let socket = socket {
             self.socket = socket
             self.socket.setDelegate(nil, delegateQueue: QueueFactory.getQueue())
+            sourcePort = Port(port: socket.connectedPort)
         } else {
             self.socket = GCDAsyncSocket(delegate: nil, delegateQueue: QueueFactory.getQueue(), socketQueue: QueueFactory.getQueue())
             self.socket.isIPv6Enabled = false
@@ -46,9 +47,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
     }
 
     /// The source port.
-    open var sourcePort: Port? {
-        return Port(port: socket.connectedPort)
-    }
+    open var sourcePort: Port?
 
     /// The destination address.
     ///
@@ -233,6 +232,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
     }
 
     open func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
+        sourcePort = Port(port: port)
         log("connected");
         if !enableTLS {
             delegate?.didConnectWith(socket: self)
