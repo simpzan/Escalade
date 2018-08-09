@@ -19,6 +19,11 @@ public final class IPPool {
         currentEnd = range.startIP
     }
 
+    func reset() {
+        currentEnd = range.startIP
+        pool.removeAll()
+    }
+
     func fetchIP() -> IPAddress? {
         if pool.count == 0 {
             if range.contains(ip: currentEnd) {
