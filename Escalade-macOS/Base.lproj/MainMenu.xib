@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -69,11 +69,6 @@
                             <menuItem title="Show Log" keyEquivalent="l" id="9i8-pA-O7S">
                                 <connections>
                                     <action selector="showLogClicked:" target="Fot-qt-aSu" id="7rv-Uh-d0Y"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Check Updates" keyEquivalent="u" id="A1r-PL-ueR">
-                                <connections>
-                                    <action selector="checkUpdatesClicked:" target="Fot-qt-aSu" id="E6z-ah-R5U"/>
                                 </connections>
                             </menuItem>
                         </items>

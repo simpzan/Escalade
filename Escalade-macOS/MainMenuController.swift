@@ -8,7 +8,6 @@
 
 import Cocoa
 import CocoaLumberjackSwift
-import Sparkle
 
 class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDelegate {
 
@@ -207,10 +206,6 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         if let logfile = api.getTunnelLogFile() {
             _ = runCommand(path: "/usr/bin/env", args: ["open", "-a", "Console", logfile])
         }
-    }
-
-    @IBAction func checkUpdatesClicked(_ sender: Any) {
-        SUUpdater.shared().checkForUpdates(nil)
     }
 
     @IBAction func startAtLoginClicked(_ sender: Any) {

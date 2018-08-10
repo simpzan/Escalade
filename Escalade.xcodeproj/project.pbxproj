@@ -59,7 +59,6 @@
 		764185501E506C13003C7FFC /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 7641854F1E506C13003C7FFC /* dsa_pub.pem */; };
 		7642ED582094ADB7002DBA3C /* ConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7642ED572094ADB7002DBA3C /* ConnectivityManager.m */; };
 		7642ED592094ADB7002DBA3C /* ConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7642ED572094ADB7002DBA3C /* ConnectivityManager.m */; };
-		76535A5420138B1B00DD8523 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76535A5320138B1B00DD8523 /* Sparkle.framework */; };
 		7656510D2091FB8D00D59160 /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656510B2091FB8C00D59160 /* NetworkTests.m */; };
 		7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656510B2091FB8C00D59160 /* NetworkTests.m */; };
 		7656511E209360EF00D59160 /* UIViewController+ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 76565112209360EE00D59160 /* UIViewController+ActionSheet.m */; };
@@ -194,7 +193,6 @@
 		76DF1D751E6C172F0041646A /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54C1E6C11590097C95E /* Resolver.framework */; };
 		76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; };
 		76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; };
-		76E9990D2015B38B00A07852 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76535A5320138B1B00DD8523 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76F288AD20A7D56900CA9A0D /* FileBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F288A920A7D56900CA9A0D /* FileBrowser.framework */; };
 		7A1DC063967D3B06319AD080 /* Pods_EscaladeLaunchHelper_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D015B44032CAB5371CB67B7B /* Pods_EscaladeLaunchHelper_macOS.framework */; };
 		878A8F9D5D3D890CCDB4E48B /* Pods_ListPort.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4FB0816A48622B5533811 /* Pods_ListPort.framework */; };
@@ -329,7 +327,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				76B711E2202708F10020895A /* MMWormhole.framework in CopyFiles */,
-				76E9990D2015B38B00A07852 /* Sparkle.framework in CopyFiles */,
 				768D4A321E4B4ED000B73E10 /* NEKit.framework in CopyFiles */,
 				768D4A331E4B4ED000B73E10 /* CocoaAsyncSocket.framework in CopyFiles */,
 				768D4A341E4B4ED000B73E10 /* CocoaLumberjack.framework in CopyFiles */,
@@ -406,7 +403,6 @@
 		7641854F1E506C13003C7FFC /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		7642ED562094ADB7002DBA3C /* ConnectivityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectivityManager.h; sourceTree = "<group>"; };
 		7642ED572094ADB7002DBA3C /* ConnectivityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectivityManager.m; sourceTree = "<group>"; };
-		76535A5320138B1B00DD8523 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		7656510B2091FB8C00D59160 /* NetworkTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkTests.m; sourceTree = "<group>"; };
 		7656510C2091FB8C00D59160 /* NetworkTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkTests.h; sourceTree = "<group>"; };
 		76565112209360EE00D59160 /* UIViewController+ActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ActionSheet.m"; sourceTree = "<group>"; };
@@ -570,7 +566,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76535A5420138B1B00DD8523 /* Sparkle.framework in Frameworks */,
 				76A85A45202715CB00F532BE /* NetworkExtension.framework in Frameworks */,
 				768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */,
 				768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */,
@@ -718,7 +713,6 @@
 				7618845D201612BE00156F92 /* NetworkExtension.framework */,
 				761884582016128B00156F92 /* MMWormhole.framework */,
 				761884502016128B00156F92 /* SVProgressHUD.framework */,
-				76535A5320138B1B00DD8523 /* Sparkle.framework */,
 				76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */,
 				76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */,
 				76A184D71E6C11FC00C35C83 /* CocoaLumberjackSwift.framework */,
