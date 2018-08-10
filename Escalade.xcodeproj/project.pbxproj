@@ -41,7 +41,6 @@
 		7618845A2016128B00156F92 /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884582016128B00156F92 /* MMWormhole.framework */; };
 		7618845E201612BE00156F92 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7618845D201612BE00156F92 /* NetworkExtension.framework */; };
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
-		76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
 		76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */; };
 		76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312ABA1E6BEE7C000B66C9 /* ViewController.swift */; };
@@ -181,7 +180,6 @@
 		76D5C68320B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
 		76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
 		76DB4CC11E6BF0B80019FA42 /* PacketTunnel-iOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */ = {isa = PBXBuildFile; fileRef = 76DCB6ED1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh */; };
 		76DD9F8321047F550045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
 		76DD9F8421047F550045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
 		76DD9F8821049FE30045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
@@ -201,13 +199,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		76277F1D1E4CF637006C06A6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 76277F151E4CF5D3006C06A6;
-			remoteInfo = SystemProxyConfig;
-		};
 		76841E971E50602000685B0F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
@@ -391,6 +382,7 @@
 		76277F161E4CF5D3006C06A6 /* SystemProxyConfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SystemProxyConfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76277F201E4CF758006C06A6 /* SystemProxyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemProxyController.swift; sourceTree = "<group>"; };
+		762FED1F211DADF4003B1872 /* EscaladeLaunchHelper-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EscaladeLaunchHelper-macOS.entitlements"; sourceTree = "<group>"; };
 		76312AB61E6BEE7C000B66C9 /* Escalade-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Escalade-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76312ABA1E6BEE7C000B66C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -671,6 +663,7 @@
 		76841E831E505EA300685B0F /* EscaladeLaunchHelper-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				762FED1F211DADF4003B1872 /* EscaladeLaunchHelper-macOS.entitlements */,
 				76841E841E505EA300685B0F /* AppDelegate.h */,
 				76841E851E505EA300685B0F /* AppDelegate.m */,
 				76841E8A1E505EA300685B0F /* Assets.xcassets */,
@@ -989,7 +982,6 @@
 			);
 			dependencies = (
 				76841E981E50602000685B0F /* PBXTargetDependency */,
-				76277F1E1E4CF637006C06A6 /* PBXTargetDependency */,
 				768D4A1C1E4B4DF000B73E10 /* PBXTargetDependency */,
 				76B711D12027059F0020895A /* PBXTargetDependency */,
 			);
@@ -1048,6 +1040,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = LL5MM59PQ7;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					76B711C92027059F0020895A = {
 						CreatedOnToolsVersion = 9.1;
@@ -1197,9 +1194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				764185501E506C13003C7FFC /* dsa_pub.pem in Resources */,
-				76277F1F1E4CF648006C06A6 /* SystemProxyConfig in Resources */,
 				769C46DC20FB4665002DC6FF /* DirectDomain.rule in Resources */,
-				76DCB6EE1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh in Resources */,
 				76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */,
 				769C46E120FB4696002DC6FF /* ProxyDomain.rule in Resources */,
 				76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */,
@@ -1631,11 +1626,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		76277F1E1E4CF637006C06A6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 76277F151E4CF5D3006C06A6 /* SystemProxyConfig */;
-			targetProxy = 76277F1D1E4CF637006C06A6 /* PBXContainerItemProxy */;
-		};
 		76841E981E50602000685B0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76841E811E505EA300685B0F /* EscaladeLaunchHelper-macOS */;
@@ -2021,6 +2011,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "EscaladeLaunchHelper-macOS/EscaladeLaunchHelper-macOS.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2080,6 +2071,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "EscaladeLaunchHelper-macOS/EscaladeLaunchHelper-macOS.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
