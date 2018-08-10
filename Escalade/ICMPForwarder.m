@@ -74,6 +74,7 @@ NSString *getRealIpAddress(NSString *fakeIp) {
 @implementation ICMPForwarder {
     int _fd;
     NSThread *_readThread;
+    NSLock *_lock;
 }
 
 @synthesize outputFunc;
@@ -92,14 +93,17 @@ NSString *getRealIpAddress(NSString *fakeIp) {
 }
 
 - (void)readLoop {
+    [_lock lock];
     while (!_readThread.cancelled) {
         NSData *reply = receiveICMP(_fd);
         if (reply) outputFunc(@[reply], @[@AF_INET]);
     }
+    [_lock unlock];
 }
 
 - (void)start {
     _fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_ICMP);
+    _lock = [[NSLock alloc] init];
     _readThread = [[NSThread alloc] initWithTarget:self selector:@selector(readLoop) object:NULL];
     [_readThread start];
 }
@@ -107,6 +111,10 @@ NSString *getRealIpAddress(NSString *fakeIp) {
 - (void)stop {
     [_readThread cancel];
     close(_fd);
+    [_lock lock];
+    [_lock unlock];
+    _lock = NULL;
+    _readThread = NULL;
 }
 
 @end
