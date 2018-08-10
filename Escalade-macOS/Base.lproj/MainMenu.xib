@@ -74,6 +74,12 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Import Config" id="kTw-k6-Cwp">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="importConfigClicked:" target="Fot-qt-aSu" id="ORj-yh-fwv"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Help" keyEquivalent="h" id="j8m-ZB-cEn">
                     <connections>
                         <action selector="helpClicked:" target="Fot-qt-aSu" id="qfW-UV-Scv"/>

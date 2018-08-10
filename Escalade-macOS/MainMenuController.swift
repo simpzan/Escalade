@@ -83,9 +83,14 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     let manager = VPNManager.shared
 
     // MARK: - configurations
+    @IBAction func importConfigClicked(_ sender: Any) {
+        importConfigFile()
+    }
     func showSetupGuideIfNeeded() {
         if getCurrentServer() != nil { return }
-        
+        importConfigFile()
+    }
+    func importConfigFile() {
         guard let file = selectFile() else { return }
         let url = URL(fileURLWithPath: file)
         guard importServers(url: url) else {
@@ -95,6 +100,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         NotificationCenter.default.post(name: serversUpdatedNotification, object: nil)
         loadServerList()
         sendNotification(title: "import done", text: "")
+        if manager.connected { manager.stopVPN() }
     }
 
     // MARK: - servers
