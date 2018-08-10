@@ -13,7 +13,7 @@
 @end
 
 void NSURLSessionHttpTest(NSString *dataUrl);
-void dnsTest(NSString *domain);
+NSArray *dnsTest(NSString *domain);
 void udpSend(NSString *addr, uint16_t port, NSString *message);
 
 @interface GCDAsyncSocket(HttpTest) <GCDAsyncSocketDelegate>

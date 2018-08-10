@@ -7,3 +7,4 @@
 #import "ListPortProxy.h"
 #import "ICMPForwarder.h"
 #import "Utils.h"
+#import "NetworkTests.h"

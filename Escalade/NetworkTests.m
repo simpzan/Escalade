@@ -58,21 +58,17 @@ void udpSend(NSString *addr, uint16_t port, NSString *message) {
 #define   NI_MAXHOST 1025
 #endif
 
-void dnsTest(NSString *aDomain) {
+NSArray *dnsTest(NSString *aDomain) {
     const char *domain = [aDomain cStringUsingEncoding:NSUTF8StringEncoding];
+    NSMutableArray *ips = [NSMutableArray array];
     struct addrinfo *result;
-    struct addrinfo *res;
-    int error;
-    
-    /* resolve the domain name into a list of addresses */
-    error = getaddrinfo(domain, NULL, NULL, &result);
+    int error = getaddrinfo(domain, NULL, NULL, &result);
     if (error != 0) {
         NSLog(@"error in getaddrinfo: %s\n", gai_strerror(error));
-        return;
+        return ips;
     }
     
-    /* loop over all returned results and do inverse lookup */
-    for (res = result; res != NULL; res = res->ai_next) {
+    for (struct addrinfo *res = result; res != NULL; res = res->ai_next) {
         char hostname[NI_MAXHOST] = "";
         
         error = getnameinfo(res->ai_addr, res->ai_addrlen, hostname, NI_MAXHOST, NULL, 0, 0);
@@ -80,12 +76,13 @@ void dnsTest(NSString *aDomain) {
             NSLog(@"error in getnameinfo: %s\n", gai_strerror(error));
             continue;
         }
-        if (*hostname != '\0')
-            NSLog(@"hostname: %s\n", hostname);
+        if (*hostname != '\0') {
+            NSString *ip = [NSString stringWithUTF8String:hostname];
+            [ips addObject:ip];
+        }
     }
-    
     freeaddrinfo(result);
-    return;
+    return ips;
 }
 
 

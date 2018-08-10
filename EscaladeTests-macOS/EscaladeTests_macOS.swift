@@ -11,7 +11,7 @@ import Nimble
 class NetworkSpec: QuickSpec {
     override func spec() {
         it("dns ok") {
-            let result = [String]()
+            let result = dnsTest("simpzan.com") as! [String]
             expect(result).to(contain("159.89.119.178"))
         }
     }
