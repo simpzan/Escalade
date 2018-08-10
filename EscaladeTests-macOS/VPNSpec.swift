@@ -40,6 +40,22 @@ class VPNSpec: QuickSpec {
             it("ping qq ok, too.") {
                 self.urlSessionHttpPing(url: "http://qq.com")
             }
+            it("ping qq with socket ok.") {
+                self.socketHttpPing(url: "qq.com")
+            }
+            it("ping twitter with socket ok.") {
+                self.socketHttpPing(url: "twitter.com")
+            }
+        }
+    }
+    
+    func socketHttpPing(url: String) {
+        var socket: SocketHttpTest! = nil
+        waitUntil(timeout: 4) { (done) in
+            socket = SocketHttpTest(host: url, port: 80, callback: { (err:Error?, data) in
+                expect(err) == nil
+                done()
+            })
         }
     }
     

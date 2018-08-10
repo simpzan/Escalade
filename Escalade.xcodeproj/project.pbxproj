@@ -84,6 +84,7 @@
 		76841E9A1E50603B00685B0F /* EscaladeLaunchHelper-macOS.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76841E9C1E5060DE00685B0F /* AutoLaunchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */; };
 		768BD8BA211DCA4C005ECFFF /* VPNSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BD8B9211DCA4C005ECFFF /* VPNSpec.swift */; };
+		768BD8BF211DD6CB005ECFFF /* SocketSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BD8BE211DD6CB005ECFFF /* SocketSpec.swift */; };
 		768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
 		768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; };
 		768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; };
@@ -450,6 +451,7 @@
 		76841E8F1E505EA300685B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLaunchHelper.swift; sourceTree = "<group>"; };
 		768BD8B9211DCA4C005ECFFF /* VPNSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNSpec.swift; sourceTree = "<group>"; };
+		768BD8BE211DD6CB005ECFFF /* SocketSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketSpec.swift; sourceTree = "<group>"; };
 		768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NEKit.xcodeproj; path = NEKit/NEKit.xcodeproj; sourceTree = "<group>"; };
 		768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = NEKit/Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 			children = (
 				762FED26211DB70A003B1872 /* EscaladeTests_macOS.swift */,
 				768BD8B9211DCA4C005ECFFF /* VPNSpec.swift */,
+				768BD8BE211DD6CB005ECFFF /* SocketSpec.swift */,
 				762FED28211DB70A003B1872 /* Info.plist */,
 			);
 			path = "EscaladeTests-macOS";
@@ -1581,6 +1584,7 @@
 			files = (
 				762FED27211DB70A003B1872 /* EscaladeTests_macOS.swift in Sources */,
 				768BD8BA211DCA4C005ECFFF /* VPNSpec.swift in Sources */,
+				768BD8BF211DD6CB005ECFFF /* SocketSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
