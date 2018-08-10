@@ -42,6 +42,11 @@
 		7618845E201612BE00156F92 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7618845D201612BE00156F92 /* NetworkExtension.framework */; };
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
+		762FED27211DB70A003B1872 /* EscaladeTests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762FED26211DB70A003B1872 /* EscaladeTests_macOS.swift */; };
+		762FED30211DB7AB003B1872 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762FED2E211DB7AB003B1872 /* Nimble.framework */; };
+		762FED31211DB7AB003B1872 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762FED2F211DB7AB003B1872 /* Quick.framework */; };
+		762FED33211DB824003B1872 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762FED2E211DB7AB003B1872 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		762FED34211DB824003B1872 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762FED2F211DB7AB003B1872 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */; };
 		76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312ABA1E6BEE7C000B66C9 /* ViewController.swift */; };
 		76312ABE1E6BEE7C000B66C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76312ABC1E6BEE7C000B66C9 /* Main.storyboard */; };
@@ -199,6 +204,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		762FED29211DB70A003B1872 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76C4935A1E4A0AA100A0D066;
+			remoteInfo = "Escalade-macOS";
+		};
+		762FED35211DBC75003B1872 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76B711C92027059F0020895A;
+			remoteInfo = "PacketTunnel-macOS";
+		};
 		76841E971E50602000685B0F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
@@ -289,6 +308,17 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		762FED32211DB7D5003B1872 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				762FED33211DB824003B1872 /* Nimble.framework in CopyFiles */,
+				762FED34211DB824003B1872 /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		765C83CA209F331400A13EC9 /* Embed NEKit */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -383,6 +413,11 @@
 		76277F181E4CF5D3006C06A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		76277F201E4CF758006C06A6 /* SystemProxyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemProxyController.swift; sourceTree = "<group>"; };
 		762FED1F211DADF4003B1872 /* EscaladeLaunchHelper-macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EscaladeLaunchHelper-macOS.entitlements"; sourceTree = "<group>"; };
+		762FED24211DB70A003B1872 /* EscaladeTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EscaladeTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		762FED26211DB70A003B1872 /* EscaladeTests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscaladeTests_macOS.swift; sourceTree = "<group>"; };
+		762FED28211DB70A003B1872 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		762FED2E211DB7AB003B1872 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = NEKit/Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
+		762FED2F211DB7AB003B1872 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = NEKit/Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		76312AB61E6BEE7C000B66C9 /* Escalade-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Escalade-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76312ABA1E6BEE7C000B66C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -504,6 +539,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CACEF7EC83C16C45A13109B1 /* Pods_SystemProxyConfig.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		762FED21211DB70A003B1872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				762FED30211DB7AB003B1872 /* Nimble.framework in Frameworks */,
+				762FED31211DB7AB003B1872 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +674,15 @@
 			path = SystemProxyConfig;
 			sourceTree = "<group>";
 		};
+		762FED25211DB70A003B1872 /* EscaladeTests-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				762FED26211DB70A003B1872 /* EscaladeTests_macOS.swift */,
+				762FED28211DB70A003B1872 /* Info.plist */,
+			);
+			path = "EscaladeTests-macOS";
+			sourceTree = "<group>";
+		};
 		76312AB71E6BEE7C000B66C9 /* Escalade-iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,6 +750,8 @@
 		768D4A1E1E4B4E8B00B73E10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				762FED2E211DB7AB003B1872 /* Nimble.framework */,
+				762FED2F211DB7AB003B1872 /* Quick.framework */,
 				76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */,
 				76DDBBE720B2EB57003AE2EF /* Fabric.framework */,
 				76F288A920A7D56900CA9A0D /* FileBrowser.framework */,
@@ -785,6 +840,7 @@
 				76DB4CB91E6BF0B80019FA42 /* PacketTunnel-iOS */,
 				76B711CB2027059F0020895A /* PacketTunnel-macOS */,
 				7610692120E9297A00DD6350 /* ListPort */,
+				762FED25211DB70A003B1872 /* EscaladeTests-macOS */,
 				76C4935C1E4A0AA100A0D066 /* Products */,
 				768D4A1E1E4B4E8B00B73E10 /* Frameworks */,
 				861D756EB075AF84D61360A7 /* Pods */,
@@ -801,6 +857,7 @@
 				76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */,
 				76B711CA2027059F0020895A /* PacketTunnel-macOS.appex */,
 				7610692020E9297A00DD6350 /* ListPort */,
+				762FED24211DB70A003B1872 /* EscaladeTests-macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -902,6 +959,26 @@
 			productName = SystemProxyConfig;
 			productReference = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */;
 			productType = "com.apple.product-type.tool";
+		};
+		762FED23211DB70A003B1872 /* EscaladeTests-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 762FED2B211DB70A003B1872 /* Build configuration list for PBXNativeTarget "EscaladeTests-macOS" */;
+			buildPhases = (
+				762FED20211DB70A003B1872 /* Sources */,
+				762FED21211DB70A003B1872 /* Frameworks */,
+				762FED22211DB70A003B1872 /* Resources */,
+				762FED32211DB7D5003B1872 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				762FED36211DBC75003B1872 /* PBXTargetDependency */,
+				762FED2A211DB70A003B1872 /* PBXTargetDependency */,
+			);
+			name = "EscaladeTests-macOS";
+			productName = "EscaladeTests-macOS";
+			productReference = 762FED24211DB70A003B1872 /* EscaladeTests-macOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		76312AB51E6BEE7C000B66C9 /* Escalade-iOS */ = {
 			isa = PBXNativeTarget;
@@ -1017,7 +1094,7 @@
 		76C493511E4A0A8C00A0D066 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0910;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0920;
 				TargetAttributes = {
 					7610691F20E9297900DD6350 = {
@@ -1029,6 +1106,12 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = UGK9FAJ697;
 						ProvisioningStyle = Automatic;
+					};
+					762FED23211DB70A003B1872 = {
+						CreatedOnToolsVersion = 9.4.1;
+						DevelopmentTeam = LL5MM59PQ7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 76C4935A1E4A0AA100A0D066;
 					};
 					76312AB51E6BEE7C000B66C9 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1116,6 +1199,7 @@
 				76312AB51E6BEE7C000B66C9 /* Escalade-iOS */,
 				76DB4CB71E6BF0B70019FA42 /* PacketTunnel-iOS */,
 				7610691F20E9297900DD6350 /* ListPort */,
+				762FED23211DB70A003B1872 /* EscaladeTests-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1159,6 +1243,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		762FED22211DB70A003B1872 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76312AB41E6BEE7C000B66C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1481,6 +1572,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		762FED20211DB70A003B1872 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				762FED27211DB70A003B1872 /* EscaladeTests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76312AB21E6BEE7C000B66C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1626,6 +1725,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		762FED2A211DB70A003B1872 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76C4935A1E4A0AA100A0D066 /* Escalade-macOS */;
+			targetProxy = 762FED29211DB70A003B1872 /* PBXContainerItemProxy */;
+		};
+		762FED36211DBC75003B1872 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76B711C92027059F0020895A /* PacketTunnel-macOS */;
+			targetProxy = 762FED35211DBC75003B1872 /* PBXContainerItemProxy */;
+		};
 		76841E981E50602000685B0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76841E811E505EA300685B0F /* EscaladeLaunchHelper-macOS */;
@@ -1850,6 +1959,101 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		762FED2C211DB70A003B1872 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = LL5MM59PQ7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "EscaladeTests-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.EscaladeTests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Escalade-macOS.app/Contents/MacOS/Escalade-macOS";
+			};
+			name = Debug;
+		};
+		762FED2D211DB70A003B1872 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LL5MM59PQ7;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NEKit/Carthage/Build/Mac",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "EscaladeTests-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.EscaladeTests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Escalade-macOS.app/Contents/MacOS/Escalade-macOS";
 			};
 			name = Release;
 		};
@@ -2594,6 +2798,15 @@
 			buildConfigurations = (
 				76277F1B1E4CF5D3006C06A6 /* Debug */,
 				76277F1C1E4CF5D3006C06A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		762FED2B211DB70A003B1872 /* Build configuration list for PBXNativeTarget "EscaladeTests-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				762FED2C211DB70A003B1872 /* Debug */,
+				762FED2D211DB70A003B1872 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
