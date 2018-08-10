@@ -10,7 +10,7 @@ import Foundation
 import NetworkExtension
 import CocoaLumberjackSwift
 
-private let providerBundleIdentifier = "\(getContainingAppId()!).PacketTunnel"
+private let providerBundleIdentifier = Bundle.main.bundleIdentifier! + ".PacketTunnel"
 
 extension NEVPNStatus {
     var description: String {

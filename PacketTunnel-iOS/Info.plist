@@ -41,5 +41,7 @@
 			</dict>
 		</array>
 	</dict>
+	<key>EscaladeAppGroupIdentifier</key>
+	<string>group.$(EscaladeAppIdentifier)</string>
 </dict>
 </plist>

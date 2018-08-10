@@ -43,5 +43,7 @@
 			</dict>
 		</array>
 	</dict>
+	<key>EscaladeAppGroupIdentifier</key>
+	<string>$(TeamIdentifierPrefix)$(EscaladeAppIdentifier)</string>
 </dict>
 </plist>

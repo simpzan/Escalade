@@ -52,5 +52,7 @@
 	<string>https://simpzan.github.io/Escalade/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>EscaladeAppGroupIdentifier</key>
+	<string>$(TeamIdentifierPrefix)$(EscaladeAppIdentifier)</string>
 </dict>
 </plist>

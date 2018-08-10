@@ -13,7 +13,7 @@ import CocoaLumberjackSwift
 let configKey = "config"
 let serversKey = "servers"
 let currentServerKey = "currentServer"
-let groupId = "group.\(getContainingAppId()!)"
+let groupId = Bundle.main.infoDictionary!["EscaladeAppGroupIdentifier"] as! String
 
 let defaults = UserDefaults(suiteName: groupId)!
 func saveDefaults(key: String, value: String) {

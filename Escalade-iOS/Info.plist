@@ -91,5 +91,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>EscaladeAppGroupIdentifier</key>
+	<string>group.$(EscaladeAppIdentifier)</string>
 </dict>
 </plist>
