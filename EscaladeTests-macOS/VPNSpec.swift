@@ -46,6 +46,18 @@ class VPNSpec: QuickSpec {
             it("ping twitter with socket ok.") {
                 self.socketHttpPing(url: "twitter.com")
             }
+            
+            let fakeIpPrefix = "198.18."
+            it("dns baidu returns real ip.") {
+                let ips = dnsTest("baidu.com") as! [String]
+                NSLog("ips for baidu.com \(ips)")
+                let ip = ips[0]
+                expect(ip).notTo(beginWith(fakeIpPrefix))
+            }
+            it("dns google returns fake ip.") {
+                let ip = dnsTest("google.com").first as! String
+                expect(ip).to(beginWith(fakeIpPrefix))
+            }
         }
     }
     
