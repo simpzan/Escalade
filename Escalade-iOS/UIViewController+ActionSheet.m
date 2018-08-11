@@ -26,6 +26,7 @@
         callback(-1);
     }];
     [alert addAction:cancelButton];
+    if (alert.popoverPresentationController) alert.popoverPresentationController.sourceView = self.view;
     [self presentViewController:alert animated:YES completion:nil];
 }
 
@@ -47,6 +48,7 @@
         callback(NULL);
     }];
     [alert addAction:cancelButton];
+    if (alert.popoverPresentationController) alert.popoverPresentationController.sourceView = self.view;
     [self presentViewController:alert animated:YES completion:nil];
 }
 
