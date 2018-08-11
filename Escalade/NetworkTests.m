@@ -17,35 +17,47 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-void udpSend(NSString *addr, uint16_t port, NSString *message) {
-    const char *address = [addr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *msg = [message cStringUsingEncoding:NSUTF8StringEncoding];
-    int s;
-    struct sockaddr_in server;
-    
-    /* Create a datagram socket in the internet domain and use the
-     * default protocol (UDP).
-     */
-    if ((s = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
+typedef struct sockaddr sockaddr;
+static inline void setSocketTimeout(int socket, int seconds) {
+    struct timeval tv;
+    tv.tv_sec = seconds;
+    tv.tv_usec = 0;
+    int result = setsockopt(socket, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv));
+    if (result < 0) {
+        NSLog(@"setsockopt receive timeout to %ds failed, %d %s", seconds, errno, strerror(errno));
+    }
+    result = setsockopt(socket, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof(tv));
+    if (result < 0) {
+        NSLog(@"setsockopt send timeout to %d failed, %d %s", seconds, errno, strerror(errno));
+    }
+}
+static inline NSString *_udpSend(int socket, sockaddr *addr, NSString *msg) {
+    socklen_t addrSize = sizeof(sockaddr);
+    ssize_t result = sendto(socket, msg.UTF8String, msg.length, 0, addr, addrSize);
+    if (result < 0) {
+        NSLog(@"sendto() failed, %s", strerror(errno));
+        return NULL;
+    }
+    char tmp[1024] = {0};
+    result = recvfrom(socket, tmp, sizeof(tmp), 0, addr, &addrSize);
+    if (result < 0) NSLog(@"recvfrom error, %d %s", errno, strerror(errno));
+    return [NSString stringWithUTF8String:tmp];
+}
+NSString *udpSend(NSString *addr, uint16_t port, NSString *message) {
+    int s = socket(AF_INET, SOCK_DGRAM, 0);
+    if (s < 0) {
         NSLog(@"socket()");
-        return;
+        return NULL;
     }
-    
-    /* Set up the server name */
-    server.sin_family      = AF_INET;            /* Internet Domain    */
-    server.sin_port        = htons(port);               /* Server Port        */
-    server.sin_addr.s_addr = inet_addr(address); /* Server's Address   */
-    
-    /* Send the message in buf to the server */
-    if (sendto(s, msg, (strlen(msg)+1), 0,
-               (struct sockaddr *)&server, sizeof(server)) < 0) {
-        NSLog(@"sendto()");
-        return;
-    }
-    
-    /* Deallocate the socket */
+    setSocketTimeout(s, 3);
+    struct sockaddr_in server;
+    server.sin_family      = AF_INET;
+    server.sin_port        = htons(port);
+    server.sin_addr.s_addr = inet_addr(addr.UTF8String);
+    NSString *result = _udpSend(s, (sockaddr *)&server, message);
     close(s);
-    NSLog(@"udpSend %s:%d, %s", address, port, msg);
+    NSLog(@"sent '%@', received '%@'.", message, result);
+    return result;
 }
 
 #include <stdio.h>

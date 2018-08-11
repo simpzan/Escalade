@@ -58,6 +58,12 @@ class VPNSpec: QuickSpec {
                 let ip = dnsTest("google.com").first as! String
                 expect(ip).to(beginWith(fakeIpPrefix))
             }
+            
+            it("udp with ip ok") {
+                let request = "hello from EscaladeTests"
+                let response = udpSend("159.89.119.178", 8877, request)
+                expect(request) == response
+            }
         }
     }
     
