@@ -74,7 +74,7 @@ class DashboardViewController: UITableViewController {
     }
     let manager = VPNManager.shared
     @IBOutlet weak var connectSwitch: UISwitch!
-    @IBOutlet weak var connectivityCell: UITableViewCell!
+    @IBOutlet weak var connectivityLabel: UILabel!
     
     func startTrafficMonitor() {
         guard manager.connected else { return }
@@ -100,7 +100,7 @@ class DashboardViewController: UITableViewController {
 
     func testConnectivity() {
         guard manager.connected else {
-            connectivityCell.textLabel?.text = "VPN disabled"
+            connectivityLabel.text = "VPN disabled"
             return
         }
 
@@ -115,14 +115,14 @@ class DashboardViewController: UITableViewController {
             showResult()
         }
         DDLogInfo("ping testing...")
-        connectivityCell.textLabel?.text = "ping testing..."
+        connectivityLabel.text = "ping testing..."
         func showResult() {
             let status = "China \(miliseconds(direct)), World \(miliseconds(proxy))"
             DDLogInfo("ping test \(status)")
             if direct < 0 && proxy < 0 {
-                connectivityCell.textLabel?.text = "ping test failed"
+                connectivityLabel.text = "ping test failed"
             } else {
-                connectivityCell.textLabel?.text = status
+                connectivityLabel.text = status
             }
         }
     }
