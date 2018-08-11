@@ -104,30 +104,27 @@ class DashboardViewController: UITableViewController {
             return
         }
 
-        var direct: Double = 0
-        var proxy: Double = 0
+        direct = ""
+        proxy = ""
         api.pingDirect { (result) in
-            direct = result ?? -1
-            showResult()
+            self.direct = miliseconds(result ?? -1)
+            self.updateConnectivityInfo()
         }
         api.pingProxy { (result) in
-            proxy = result ?? -1
-            showResult()
+            self.proxy = miliseconds(result ?? -1)
+            self.updateConnectivityInfo()
         }
         DDLogInfo("ping testing...")
         connectivityLabel.text = "ping testing..."
-        func showResult() {
-            let status = "China \(miliseconds(direct)), World \(miliseconds(proxy))"
-            DDLogInfo("ping test \(status)")
-            if direct < 0 && proxy < 0 {
-                connectivityLabel.text = "ping test failed"
-            } else {
-                connectivityLabel.text = status
-            }
-        }
     }
-    
-    
+    func updateConnectivityInfo() {
+        let status = "China \(direct), World \(proxy)"
+        DDLogInfo("ping test \(status)")
+        connectivityLabel.text = status
+    }
+    var direct: String = ""
+    var proxy: String = ""
+
     func networkRequestTests() {
         let actions = ["GCDAsyncSocket_HTTP", "NSURLSession", "DNS", "UDP"]
         self.select(actions, title: "Network Tests") { (index) in
@@ -189,7 +186,9 @@ class DashboardViewController: UITableViewController {
         api.autoSelect { (result) in
             DDLogInfo("auto selelct result \(result)")
             let current = result.first!
-            self.currentServerCell.textLabel?.text = "\(current.0), \(current.1)"
+            self.proxy = current.1
+            self.updateConnectivityInfo()
+            self.currentServerCell.textLabel?.text = "\(current.0)"
             SVProgressHUD.dismiss()
         }
     }
