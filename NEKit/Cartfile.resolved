@@ -1,7 +1,7 @@
 github "Quick/Nimble" "v7.0.3"
 github "Quick/Quick" "v1.0.0"
 github "behrang/YamlSwift" "3.0.0"
-github "simpzan/CocoaAsyncSocket" "4705da6275ebdf98c822222460f5c5d6b1d72351"
+github "simpzan/CocoaAsyncSocket" "6532b0603a42bf41e6f7862cbcce68f19af5ec68"
 github "simpzan/CocoaLumberjack" "a0204fabe13f386f84bdc2734a9edfd7cea5051f"
 github "simpzan/MMDB-Swift" "0a45eb7531d4bd66e5899c47b708c3dca452417f"
 github "zhuhaow/Resolver" "0.1.3"
