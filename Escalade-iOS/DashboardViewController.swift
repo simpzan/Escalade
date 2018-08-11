@@ -58,9 +58,9 @@ class DashboardViewController: UITableViewController {
         connectSwitch.setOn(on, animated: true)
         NSLog("status changed to \(state.description), enabled: \(enabled), on: \(on)")
 
+        testConnectivity()
         if state == .connected {
             startTrafficMonitor()
-            testConnectivity()
         } else {
             stopTrafficMonitor()
         }
