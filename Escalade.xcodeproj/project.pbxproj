@@ -66,8 +66,6 @@
 		7656510D2091FB8D00D59160 /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656510B2091FB8C00D59160 /* NetworkTests.m */; };
 		7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656510B2091FB8C00D59160 /* NetworkTests.m */; };
 		7656511E209360EF00D59160 /* UIViewController+ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 76565112209360EE00D59160 /* UIViewController+ActionSheet.m */; };
-		765C83C6209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */; };
-		765C83C7209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */; };
 		765C83CB209F334800A13EC9 /* NEKit.framework in Embed NEKit */ = {isa = PBXBuildFile; fileRef = 768D4A101E4B4AB900B73E10 /* NEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		766B69F2211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B69F0211089AB0025E1E0 /* PacketTunnelProvider.swift */; };
 		766B69F3211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B69F0211089AB0025E1E0 /* PacketTunnelProvider.swift */; };
@@ -565,7 +563,6 @@
 				76A184E41E6C149100C35C83 /* CocoaLumberjack.framework in Frameworks */,
 				76A184E51E6C149100C35C83 /* CocoaLumberjackSwift.framework in Frameworks */,
 				76A184E71E6C149100C35C83 /* MMDB.framework in Frameworks */,
-				765C83C6209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */,
 				7618845A2016128B00156F92 /* MMWormhole.framework in Frameworks */,
 				76A184E81E6C149100C35C83 /* Resolver.framework in Frameworks */,
 				76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */,
@@ -624,7 +621,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				765C83C7209F0DF100A13EC9 /* CocoaAsyncSocket.framework in Frameworks */,
 				76DF1D6C1E6C172F0041646A /* CocoaAsyncSocket.framework in Frameworks */,
 				76DF1D6D1E6C172F0041646A /* CocoaLumberjack.framework in Frameworks */,
 				76DF1D6E1E6C172F0041646A /* CocoaLumberjackSwift.framework in Frameworks */,
@@ -692,16 +688,15 @@
 		76312AB71E6BEE7C000B66C9 /* Escalade-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				76CA418A2090B5DC008D2556 /* Escalade-iOS-Bridging-Header.h */,
-				76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */,
-				76107EC51E7D9BD800BC5E6F /* VPNManager.swift */,
-				7656511D209360EE00D59160 /* UIViewController+ActionSheet.h */,
-				76565112209360EE00D59160 /* UIViewController+ActionSheet.m */,
-				76312ABA1E6BEE7C000B66C9 /* ViewController.swift */,
+				76312ABC1E6BEE7C000B66C9 /* Main.storyboard */,
 				7673034C20E749FF000087E3 /* DashboardViewController.swift */,
+				76312ABA1E6BEE7C000B66C9 /* ViewController.swift */,
 				761068FB20E8A48900DD6350 /* ConnectionListViewController.swift */,
 				7610690A20E8C26F00DD6350 /* ConnectionDetailViewController.swift */,
-				76312ABC1E6BEE7C000B66C9 /* Main.storyboard */,
+				76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */,
+				7656511D209360EE00D59160 /* UIViewController+ActionSheet.h */,
+				76565112209360EE00D59160 /* UIViewController+ActionSheet.m */,
+				76CA418A2090B5DC008D2556 /* Escalade-iOS-Bridging-Header.h */,
 				76312ABF1E6BEE7C000B66C9 /* Assets.xcassets */,
 				76312AC11E6BEE7C000B66C9 /* LaunchScreen.storyboard */,
 				76312AC41E6BEE7C000B66C9 /* Info.plist */,
@@ -722,23 +717,15 @@
 		76841E831E505EA300685B0F /* EscaladeLaunchHelper-macOS */ = {
 			isa = PBXGroup;
 			children = (
-				762FED1F211DADF4003B1872 /* EscaladeLaunchHelper-macOS.entitlements */,
 				76841E841E505EA300685B0F /* AppDelegate.h */,
 				76841E851E505EA300685B0F /* AppDelegate.m */,
+				76841E881E505EA300685B0F /* main.m */,
 				76841E8A1E505EA300685B0F /* Assets.xcassets */,
 				76841E8C1E505EA300685B0F /* MainMenu.xib */,
+				762FED1F211DADF4003B1872 /* EscaladeLaunchHelper-macOS.entitlements */,
 				76841E8F1E505EA300685B0F /* Info.plist */,
-				76841E871E505EA300685B0F /* Supporting Files */,
 			);
 			path = "EscaladeLaunchHelper-macOS";
-			sourceTree = "<group>";
-		};
-		76841E871E505EA300685B0F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				76841E881E505EA300685B0F /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		768D4A061E4B4AB900B73E10 /* Products */ = {
@@ -806,6 +793,7 @@
 				76B08C301E7CF84D00E6146E /* ServerController.swift */,
 				76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */,
 				76B08C321E7CF84D00E6146E /* Utils.swift */,
+				76107EC51E7D9BD800BC5E6F /* VPNManager.swift */,
 				7679B6901E7E601500477755 /* API.swift */,
 				7679B6A41E7E715400477755 /* RPC.swift */,
 				76CA418B2090B5DD008D2556 /* Log.h */,
@@ -827,8 +815,8 @@
 		76B711CB2027059F0020895A /* PacketTunnel-macOS */ = {
 			isa = PBXGroup;
 			children = (
-				76B711CE2027059F0020895A /* Info.plist */,
 				76B711CF2027059F0020895A /* PacketTunnel_macOS.entitlements */,
+				76B711CE2027059F0020895A /* Info.plist */,
 			);
 			path = "PacketTunnel-macOS";
 			sourceTree = "<group>";
@@ -838,15 +826,15 @@
 			children = (
 				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
 				76B08C2D1E7CF84D00E6146E /* Escalade */,
-				76C4935D1E4A0AA100A0D066 /* Escalade-macOS */,
-				76277F171E4CF5D3006C06A6 /* SystemProxyConfig */,
-				76841E831E505EA300685B0F /* EscaladeLaunchHelper-macOS */,
 				76312AB71E6BEE7C000B66C9 /* Escalade-iOS */,
+				76C4935D1E4A0AA100A0D066 /* Escalade-macOS */,
+				762FED25211DB70A003B1872 /* EscaladeTests-macOS */,
 				766B69EF211089AB0025E1E0 /* PacketTunnel */,
 				76DB4CB91E6BF0B80019FA42 /* PacketTunnel-iOS */,
 				76B711CB2027059F0020895A /* PacketTunnel-macOS */,
+				76277F171E4CF5D3006C06A6 /* SystemProxyConfig */,
+				76841E831E505EA300685B0F /* EscaladeLaunchHelper-macOS */,
 				7610692120E9297A00DD6350 /* ListPort */,
-				762FED25211DB70A003B1872 /* EscaladeTests-macOS */,
 				76C4935C1E4A0AA100A0D066 /* Products */,
 				768D4A1E1E4B4E8B00B73E10 /* Frameworks */,
 				861D756EB075AF84D61360A7 /* Pods */,
@@ -871,20 +859,20 @@
 		76C4935D1E4A0AA100A0D066 /* Escalade-macOS */ = {
 			isa = PBXGroup;
 			children = (
-				76B711E62027098A0020895A /* Escalade.entitlements */,
 				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
 				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
 				76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */,
 				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
-				76277F201E4CF758006C06A6 /* SystemProxyController.swift */,
 				76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */,
-				76C4937A1E4A0C8A00A0D066 /* main.m */,
-				76C493651E4A0AA200A0D066 /* Info.plist */,
-				7641854F1E506C13003C7FFC /* dsa_pub.pem */,
+				76277F201E4CF758006C06A6 /* SystemProxyController.swift */,
 				76DCB6ED1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh */,
+				76C4937A1E4A0C8A00A0D066 /* main.m */,
 				76C493791E4A0C8900A0D066 /* Escalade-macOS-Bridging-Header.h */,
+				7641854F1E506C13003C7FFC /* dsa_pub.pem */,
 				76C493601E4A0AA200A0D066 /* Assets.xcassets */,
+				76B711E62027098A0020895A /* Escalade.entitlements */,
+				76C493651E4A0AA200A0D066 /* Info.plist */,
 			);
 			path = "Escalade-macOS";
 			sourceTree = "<group>";
@@ -892,18 +880,10 @@
 		76DB4CB91E6BF0B80019FA42 /* PacketTunnel-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				76DB4CBB1E6BF0B80019FA42 /* PacketTunnel_iOS.entitlements */,
 				76DB4CBE1E6BF0B80019FA42 /* Info.plist */,
-				76DB4CBA1E6BF0B80019FA42 /* Supporting Files */,
 			);
 			path = "PacketTunnel-iOS";
-			sourceTree = "<group>";
-		};
-		76DB4CBA1E6BF0B80019FA42 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				76DB4CBB1E6BF0B80019FA42 /* PacketTunnel_iOS.entitlements */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		861D756EB075AF84D61360A7 /* Pods */ = {
