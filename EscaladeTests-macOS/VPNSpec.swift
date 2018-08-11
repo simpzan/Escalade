@@ -64,6 +64,17 @@ class VPNSpec: QuickSpec {
                 let response = udpSend("159.89.119.178", 8877, request)
                 expect(request) == response
             }
+            it("udp with domain ok") {
+                let request = "hello from EscaladeTests with domain."
+                var socket: UdpSocketTest!
+                waitUntil(timeout: 10) { (done) in
+                    socket = UdpSocketTest(host: "simpzan.com", port: 8877, data: request) { (err, response) in
+                        expect(err) == nil
+                        expect(response) == request
+                        done()
+                    }
+                }
+            }
         }
     }
     
