@@ -294,6 +294,8 @@
 		76AE7C131E24834000DB0251 /* SelectAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C0C1E24830200DB0251 /* SelectAdapterFactory.swift */; };
 		76FF78DB211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */; };
 		76FF78DC211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */; };
+		76FF78DE211F050200AC6B90 /* GCDUDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DD211F050100AC6B90 /* GCDUDPSocket.swift */; };
+		76FF78DF211F050200AC6B90 /* GCDUDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DD211F050100AC6B90 /* GCDUDPSocket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -568,6 +570,7 @@
 		76AE7C0C1E24830200DB0251 /* SelectAdapterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAdapterFactory.swift; sourceTree = "<group>"; };
 		76AE7C0F1E24831600DB0251 /* SelectAdapterFactorySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAdapterFactorySpec.swift; sourceTree = "<group>"; };
 		76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawUDPSocketProtocol.swift; sourceTree = "<group>"; };
+		76FF78DD211F050100AC6B90 /* GCDUDPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDUDPSocket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -897,13 +900,14 @@
 		36B162121CDDA0EA00F24C97 /* RawSocket */ = {
 			isa = PBXGroup;
 			children = (
-				36B162181CDDA0EA00F24C97 /* GCDTCPSocket.swift */,
-				36B1621A1CDDA0EA00F24C97 /* NWTCPSocket.swift */,
-				36C63DF51CFFDCAF00A00CA2 /* NWUDPSocket.swift */,
 				366EB5CC1CE06B5E00E0E942 /* RawSocketFactory.swift */,
 				36B1621E1CDDA0EA00F24C97 /* RawTCPSocketProtocol.swift */,
-				76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */,
+				36B162181CDDA0EA00F24C97 /* GCDTCPSocket.swift */,
+				36B1621A1CDDA0EA00F24C97 /* NWTCPSocket.swift */,
 				36BC589A1CF2A3D400E0E367 /* TUNTCPSocket.swift */,
+				76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */,
+				76FF78DD211F050100AC6B90 /* GCDUDPSocket.swift */,
+				36C63DF51CFFDCAF00A00CA2 /* NWUDPSocket.swift */,
 			);
 			path = RawSocket;
 			sourceTree = "<group>";
@@ -1478,6 +1482,7 @@
 				366EB5C91CE061C500E0E942 /* RuleParser.swift in Sources */,
 				368CBDA61D7911FA003CEA62 /* RejectAdapter.swift in Sources */,
 				36B1622E1CDDA0EA00F24C97 /* SOCKS5ProxySocket.swift in Sources */,
+				76FF78DE211F050200AC6B90 /* GCDUDPSocket.swift in Sources */,
 				362347A31D82525200A047DE /* SOCKS5AdapterFactory.swift in Sources */,
 				36411A621D167AE0005F4108 /* AllRule.swift in Sources */,
 				36B162301CDDA0EA00F24C97 /* Utils.swift in Sources */,
@@ -1598,6 +1603,7 @@
 				36411A631D167AE0005F4108 /* AllRule.swift in Sources */,
 				368CBDA71D7911FA003CEA62 /* RejectAdapter.swift in Sources */,
 				36C48D5F1CF88EB60071804F /* DirectAdapter.swift in Sources */,
+				76FF78DF211F050200AC6B90 /* GCDUDPSocket.swift in Sources */,
 				362347A41D82525200A047DE /* SOCKS5AdapterFactory.swift in Sources */,
 				36C63E021D02BDEC00A00CA2 /* IPStackProtocol.swift in Sources */,
 				36C48D731CF88ED40071804F /* GCDTCPSocket.swift in Sources */,

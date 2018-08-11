@@ -45,12 +45,10 @@ open class RawSocketFactory {
         case .some(.nw):
             return NWUDPSocket()
         case .some(.gcd):
-            abort()
-//            return GCDUDPSocket()
+            return GCDUDPSocket()
         case nil:
             if RawSocketFactory.TunnelProvider == nil {
-                abort()
-//                return GCDUDPSocket()
+                return GCDUDPSocket()
             } else {
                 return NWUDPSocket()
             }
