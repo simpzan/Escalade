@@ -292,6 +292,8 @@
 		76AE7C111E24831600DB0251 /* SelectAdapterFactorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C0F1E24831600DB0251 /* SelectAdapterFactorySpec.swift */; };
 		76AE7C121E24833F00DB0251 /* SelectAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C0C1E24830200DB0251 /* SelectAdapterFactory.swift */; };
 		76AE7C131E24834000DB0251 /* SelectAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C0C1E24830200DB0251 /* SelectAdapterFactory.swift */; };
+		76FF78DB211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */; };
+		76FF78DC211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -565,6 +567,7 @@
 		76AE7C041E23A8C300DB0251 /* HttpPingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPingSpec.swift; sourceTree = "<group>"; };
 		76AE7C0C1E24830200DB0251 /* SelectAdapterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAdapterFactory.swift; sourceTree = "<group>"; };
 		76AE7C0F1E24831600DB0251 /* SelectAdapterFactorySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAdapterFactorySpec.swift; sourceTree = "<group>"; };
+		76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawUDPSocketProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -899,6 +902,7 @@
 				36C63DF51CFFDCAF00A00CA2 /* NWUDPSocket.swift */,
 				366EB5CC1CE06B5E00E0E942 /* RawSocketFactory.swift */,
 				36B1621E1CDDA0EA00F24C97 /* RawTCPSocketProtocol.swift */,
+				76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */,
 				36BC589A1CF2A3D400E0E367 /* TUNTCPSocket.swift */,
 			);
 			path = RawSocket;
@@ -1519,6 +1523,7 @@
 				366EB5CF1CE0742F00E0E942 /* ShadowsocksAdapter.swift in Sources */,
 				366EB5CD1CE06B5E00E0E942 /* RawSocketFactory.swift in Sources */,
 				36E44A021CF2ED4800185DBF /* TUNInterface.swift in Sources */,
+				76FF78DB211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */,
 				36A719F71D64078800DC35F5 /* ObserverFactory.swift in Sources */,
 				36A719F21D634EA600DC35F5 /* Observer.swift in Sources */,
 				3650FAEE1D27C8A900444E79 /* CCCrypto.swift in Sources */,
@@ -1638,6 +1643,7 @@
 				36C48D561CF88EB60071804F /* AdapterFactoryManager.swift in Sources */,
 				36C48D751CF88ED40071804F /* RawSocketFactory.swift in Sources */,
 				36C48D7C1CF88EDA0071804F /* RuleManager.swift in Sources */,
+				76FF78DC211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */,
 				36A719F81D64078800DC35F5 /* ObserverFactory.swift in Sources */,
 				36A719F31D634EA600DC35F5 /* Observer.swift in Sources */,
 				3650FAEF1D27C8A900444E79 /* CCCrypto.swift in Sources */,

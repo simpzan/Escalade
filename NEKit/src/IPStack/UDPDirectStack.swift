@@ -20,8 +20,8 @@ func == (left: ConnectInfo, right: ConnectInfo) -> Bool {
 }
 
 /// This stack tranmits UDP packets directly.
-public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
-    fileprivate var activeSockets: [ConnectInfo: NWUDPSocket] = [:]
+public class UDPDirectStack: IPStackProtocol, RawUDPSocketDelegate {
+    fileprivate var activeSockets: [ConnectInfo: RawUDPSocketProtocol] = [:]
     public var outputFunc: (([Data], [NSNumber]) -> Void)!
 
     fileprivate let queue: DispatchQueue = DispatchQueue(label: "NEKit.UDPDirectStack.SocketArrayQueue", attributes: [])
@@ -80,8 +80,8 @@ public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
         socket.write(data: payload!)
     }
 
-    fileprivate func findSocket(connectInfo: ConnectInfo?, socket: NWUDPSocket?) -> (ConnectInfo, NWUDPSocket)? {
-        var result: (ConnectInfo, NWUDPSocket)?
+    fileprivate func findSocket(connectInfo: ConnectInfo?, socket: RawUDPSocketProtocol?) -> (ConnectInfo, RawUDPSocketProtocol)? {
+        var result: (ConnectInfo, RawUDPSocketProtocol)?
 
         queue.sync {
             if connectInfo != nil {
@@ -110,7 +110,7 @@ public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
         return result
     }
 
-    fileprivate func findOrCreateSocketForPacket(_ packet: IPPacket) -> (ConnectInfo, NWUDPSocket)? {
+    fileprivate func findOrCreateSocketForPacket(_ packet: IPPacket) -> (ConnectInfo, RawUDPSocketProtocol)? {
         // swiftlint:disable:next force_cast
         let udpParser = packet.protocolParser as! UDPProtocolParser
         let connectInfo = ConnectInfo(sourceAddress: packet.sourceAddress, sourcePort: udpParser.sourcePort, destinationAddress: packet.destinationAddress, destinationPort: udpParser.destinationPort)
@@ -123,7 +123,8 @@ public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
             return nil
         }
 
-        guard let udpSocket = NWUDPSocket(host: session.host, port: session.port) else {
+        let udpSocket = RawSocketFactory.getRawUDPSocket()
+        guard udpSocket.bindEndpoint(session.host, UInt16(session.port)) else {
             return nil
         }
 
@@ -136,7 +137,7 @@ public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
         return (connectInfo, udpSocket)
     }
 
-    public func didReceive(data: Data, from: NWUDPSocket) {
+    public func didReceive(data: Data, from: RawUDPSocketProtocol) {
         guard let (connectInfo, _) = findSocket(connectInfo: nil, socket: from) else {
             return
         }
@@ -155,7 +156,7 @@ public class UDPDirectStack: IPStackProtocol, NWUDPSocketDelegate {
         outputFunc([packet.packetData], [NSNumber(value: AF_INET as Int32)])
     }
     
-    public func didCancel(socket: NWUDPSocket) {
+    public func didCancel(socket: RawUDPSocketProtocol) {
         guard let (info, _) = findSocket(connectInfo: nil, socket: socket) else {
             return
         }

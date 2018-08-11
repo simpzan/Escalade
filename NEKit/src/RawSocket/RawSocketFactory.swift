@@ -39,4 +39,21 @@ open class RawSocketFactory {
             }
         }
     }
+
+    open static func getRawUDPSocket(_ type: SocketBaseType? = nil) -> RawUDPSocketProtocol {
+        switch type {
+        case .some(.nw):
+            return NWUDPSocket()
+        case .some(.gcd):
+            abort()
+//            return GCDUDPSocket()
+        case nil:
+            if RawSocketFactory.TunnelProvider == nil {
+                abort()
+//                return GCDUDPSocket()
+            } else {
+                return NWUDPSocket()
+            }
+        }
+    }
 }

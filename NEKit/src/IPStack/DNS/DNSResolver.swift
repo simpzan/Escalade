@@ -12,8 +12,8 @@ public protocol DNSResolverDelegate: class {
     func didReceive(rawResponse: Data)
 }
 
-public class UDPDNSResolver: NSObject, DNSResolverProtocol, NWUDPSocketDelegate {
-    private var socket: NWUDPSocket! = nil
+public class UDPDNSResolver: NSObject, DNSResolverProtocol, RawUDPSocketDelegate {    
+    private var socket: RawUDPSocketProtocol! = nil
     private let host: String
     private let portNumber: Int
     public weak var delegate: DNSResolverDelegate?
@@ -33,7 +33,9 @@ public class UDPDNSResolver: NSObject, DNSResolverProtocol, NWUDPSocketDelegate 
 
     public func start() {
         guard socket == nil else { return DDLogError("start: DNSResolver is started already.") }
-        socket = NWUDPSocket(host: host, port: portNumber, timeout: 0)!
+        socket = RawSocketFactory.getRawUDPSocket()
+        socket.timeout = 0
+        _ = socket.bindEndpoint(host, UInt16(portNumber))
         socket.delegate = self
         DDLogInfo("\(self) started");
     }
@@ -45,12 +47,12 @@ public class UDPDNSResolver: NSObject, DNSResolverProtocol, NWUDPSocketDelegate 
         DDLogInfo("\(self) stopped");
     }
 
-    public func didReceive(data: Data, from: NWUDPSocket) {
+    public func didReceive(data: Data, from: RawUDPSocketProtocol) {
         DDLogVerbose("\(self) didReceive \(data)")
         delegate?.didReceive(rawResponse: data)
     }
     
-    public func didCancel(socket: NWUDPSocket) {
-        DDLogInfo("\(self) NWUDPSocket \(socket) closed")
+    public func didCancel(socket: RawUDPSocketProtocol) {
+        DDLogInfo("\(self) RawUDPSocketProtocol \(socket) closed")
     }
 }

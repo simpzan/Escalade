@@ -18,36 +18,26 @@ public protocol NWUDPSocketDelegate: class {
 /// The wrapper for NWUDPSession.
 ///
 /// - note: This class is thread-safe.
-public class NWUDPSocket: NSObject {
+public class NWUDPSocket: NSObject, RawUDPSocketProtocol {
     private var session: NWUDPSession!
     private var pendingWriteData: [Data] = []
     private var writing = false
     private let queue: DispatchQueue = QueueFactory.getQueue()
-    private let timeout: Int
-    private let remoteEndpoint: NWHostEndpoint
+    public var timeout: Int = Opt.UDPSocketActiveTimeout
+    private var remoteEndpoint: NWHostEndpoint! = nil
     
     /// The delegate instance.
-    public weak var delegate: NWUDPSocketDelegate?
-
-    /**
-     Create a new UDP socket connecting to remote.
-     
-     - parameter host: The host.
-     - parameter port: The port.
-     */
-    public init?(host: String, port: Int, timeout: Int = Opt.UDPSocketActiveTimeout) {
+    public weak var delegate: RawUDPSocketDelegate?
+    
+    public func bindEndpoint(_ host: String, _ port: UInt16) -> Bool {
         let provider = RawSocketFactory.TunnelProvider
         let to = NWHostEndpoint(hostname: host, port: "\(port)")
         remoteEndpoint = to
-        guard let session = provider?.createUDPSession(to: to, from: nil) else { return nil }
-        
-        self.timeout = timeout
-
-        super.init()
+        guard let session = provider?.createUDPSession(to: to, from: nil) else { return false }
+        setupSession(session)
 
         if (timeout > 0) { createTimer() }
-
-        setupSession(session)
+        return true
     }
     
     private func setupSession(_ newSession: NWUDPSession) {
