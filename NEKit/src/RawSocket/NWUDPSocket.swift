@@ -86,11 +86,10 @@ public class NWUDPSocket: NSObject, RawUDPSocketProtocol {
     }
     
     public func disconnect() {
-        queueCall { [ weak self ] in
-            guard let this = self else { return }
-            DDLogInfo("\(this) disconnecting...")
-            this.session.cancel()
-            this.destroyTimer()
+        queueCall {
+            DDLogInfo("\(self) disconnecting...")
+            self.session.cancel()
+            self.destroyTimer()
         }
     }
     
