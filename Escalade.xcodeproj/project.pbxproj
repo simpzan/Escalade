@@ -41,7 +41,6 @@
 		7615247C21204DA400F1A38B /* SocketTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BD8BE211DD6CB005ECFFF /* SocketTestHelpers.swift */; };
 		7615247E21204DAB00F1A38B /* VpnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7615246F21204B9F00F1A38B /* VpnTests.swift */; };
 		7615248421204EF900F1A38B /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7615248221204EF900F1A38B /* Nimble.framework */; };
-		7615248521204EF900F1A38B /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7615248321204EF900F1A38B /* Quick.framework */; };
 		7615248721204F0C00F1A38B /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7615248221204EF900F1A38B /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7615248821204F0C00F1A38B /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7615248321204EF900F1A38B /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7615248B212051AF00F1A38B /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7615248A212051AF00F1A38B /* NetworkTests.swift */; };
@@ -52,7 +51,6 @@
 		76277F191E4CF5D3006C06A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 76277F181E4CF5D3006C06A6 /* main.m */; };
 		76277F211E4CF758006C06A6 /* SystemProxyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76277F201E4CF758006C06A6 /* SystemProxyController.swift */; };
 		762FED30211DB7AB003B1872 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762FED2E211DB7AB003B1872 /* Nimble.framework */; };
-		762FED31211DB7AB003B1872 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 762FED2F211DB7AB003B1872 /* Quick.framework */; };
 		762FED33211DB824003B1872 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762FED2E211DB7AB003B1872 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		762FED34211DB824003B1872 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 762FED2F211DB7AB003B1872 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76312AB81E6BEE7C000B66C9 /* AppDelegate.swift */; };
@@ -570,7 +568,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7615248521204EF900F1A38B /* Quick.framework in Frameworks */,
 				7615248421204EF900F1A38B /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,7 +585,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				762FED30211DB7AB003B1872 /* Nimble.framework in Frameworks */,
-				762FED31211DB7AB003B1872 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
