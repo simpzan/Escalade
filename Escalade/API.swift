@@ -91,6 +91,14 @@ class APIServer {
             let result: [String: Int64] = [ "memory": memory, "extensionCpu": cpu ]
             return result as NSCoding
         }
+        addAPI("setProxyEnabled") { (input) -> NSCoding? in
+            guard let enabled = input as? Bool else { return nil }
+            enabled ? self.proxyService.start() : self.proxyService.stop()
+            return nil
+        }
+        addAPI("isProxyEnabled") { (_) -> NSCoding? in
+            return self.proxyService.running as NSCoding
+        }
         addAsyncAPI(autoSelectId) { (input, done) in
             self.serverController.autoSelect(callback: { (err, server) in
                 DDLogInfo("autoSelect callback \(err*) \(server*)")
@@ -200,6 +208,12 @@ public class APIClient {
             let connections = try? JSONDecoder().decode([ConnectionRecord].self, from: result)
             callback(connections)
         }
+    }
+    public func setProxyEnabled(_ enabled: Bool) {
+        _ = callAPI(#function, obj: enabled as NSCoding)
+    }
+    public func isProxyEnabled() -> Bool? {
+        return callAPI(#function) as? Bool
     }
 }
 

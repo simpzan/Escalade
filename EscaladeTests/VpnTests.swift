@@ -23,6 +23,8 @@ class VpnTests: XCTestCase {
     override func setUp() {
         super.setUp()
         NSLog("\(#function, #line)")
+        api.setProxyEnabled(true)
+        sleep(1)
     }
     override class func tearDown() {
         super.tearDown()
@@ -32,14 +34,11 @@ class VpnTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
         NSLog("\(#function, #line)")
+        api.setProxyEnabled(false)
+        sleep(1)
     }
-    
-    func testExample1() {
-        NSLog("\(#function, #line)")
-    }
-    func testExample2() {
-        NSLog("\(#function, #line)")
-    }
+    let api = APIClient.shared
+
     func testPingTwitterOk() {
         urlSessionHttpPing(url: "http://twitter.com")
     }
@@ -63,8 +62,8 @@ class VpnTests: XCTestCase {
         let ip = dnsTest("google.com").first as! String
         expect(ip).to(beginWith(fakeIpPrefix))
     }
-    func testDnsWithIpOk() {
-        let request = "hello from EscaladeTests"
+    func testUdpWithIpOk() {
+        let request = "hello from EscaladeTests with ip"
         let response = udpSend("159.89.119.178", 8877, request)
         expect(request) == response
     }
@@ -108,6 +107,7 @@ func socketHttpPing(url: String) {
     waitUntil(timeout: 4) { (done) in
         socket = SocketHttpTest(host: url, port: 80, callback: { (err:Error?, data) in
             expect(err) == nil
+            expect(data!.count) > 0
             done()
         })
     }
