@@ -38,6 +38,7 @@
 		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
 		7615244721200D5300F1A38B /* EscaladeTests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7615244621200D5300F1A38B /* EscaladeTests_iOS.swift */; };
+		7615247321204B9F00F1A38B /* VpnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7615246F21204B9F00F1A38B /* VpnTests.swift */; };
 		761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884502016128B00156F92 /* SVProgressHUD.framework */; };
 		7618845A2016128B00156F92 /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884582016128B00156F92 /* MMWormhole.framework */; };
 		7618845E201612BE00156F92 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7618845D201612BE00156F92 /* NetworkExtension.framework */; };
@@ -82,8 +83,7 @@
 		76841E8E1E505EA300685B0F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76841E8C1E505EA300685B0F /* MainMenu.xib */; };
 		76841E9A1E50603B00685B0F /* EscaladeLaunchHelper-macOS.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76841E9C1E5060DE00685B0F /* AutoLaunchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */; };
-		768BD8BA211DCA4C005ECFFF /* VPNSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BD8B9211DCA4C005ECFFF /* VPNSpec.swift */; };
-		768BD8BF211DD6CB005ECFFF /* SocketSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BD8BE211DD6CB005ECFFF /* SocketSpec.swift */; };
+		768BD8BF211DD6CB005ECFFF /* SocketTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BD8BE211DD6CB005ECFFF /* SocketTestHelpers.swift */; };
 		768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
 		768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; };
 		768D4A291E4B4E8B00B73E10 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; };
@@ -417,6 +417,7 @@
 		7615244421200D5300F1A38B /* EscaladeTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EscaladeTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7615244621200D5300F1A38B /* EscaladeTests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscaladeTests_iOS.swift; sourceTree = "<group>"; };
 		7615244821200D5300F1A38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7615246F21204B9F00F1A38B /* VpnTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VpnTests.swift; sourceTree = "<group>"; };
 		761884502016128B00156F92 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		761884582016128B00156F92 /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
 		7618845D201612BE00156F92 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/System/Library/Frameworks/NetworkExtension.framework; sourceTree = DEVELOPER_DIR; };
@@ -459,8 +460,7 @@
 		76841E8D1E505EA300685B0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		76841E8F1E505EA300685B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLaunchHelper.swift; sourceTree = "<group>"; };
-		768BD8B9211DCA4C005ECFFF /* VPNSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNSpec.swift; sourceTree = "<group>"; };
-		768BD8BE211DD6CB005ECFFF /* SocketSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketSpec.swift; sourceTree = "<group>"; };
+		768BD8BE211DD6CB005ECFFF /* SocketTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketTestHelpers.swift; sourceTree = "<group>"; };
 		768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NEKit.xcodeproj; path = NEKit/NEKit.xcodeproj; sourceTree = "<group>"; };
 		768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = NEKit/Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
@@ -704,9 +704,9 @@
 		762FED25211DB70A003B1872 /* EscaladeTests-macOS */ = {
 			isa = PBXGroup;
 			children = (
+				7615246F21204B9F00F1A38B /* VpnTests.swift */,
 				762FED26211DB70A003B1872 /* EscaladeTests_macOS.swift */,
-				768BD8B9211DCA4C005ECFFF /* VPNSpec.swift */,
-				768BD8BE211DD6CB005ECFFF /* SocketSpec.swift */,
+				768BD8BE211DD6CB005ECFFF /* SocketTestHelpers.swift */,
 				762FED28211DB70A003B1872 /* Info.plist */,
 			);
 			path = "EscaladeTests-macOS";
@@ -1631,9 +1631,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7615247321204B9F00F1A38B /* VpnTests.swift in Sources */,
 				762FED27211DB70A003B1872 /* EscaladeTests_macOS.swift in Sources */,
-				768BD8BA211DCA4C005ECFFF /* VPNSpec.swift in Sources */,
-				768BD8BF211DD6CB005ECFFF /* SocketSpec.swift in Sources */,
+				768BD8BF211DD6CB005ECFFF /* SocketTestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
