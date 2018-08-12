@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SampleTests</key>
+	<dict>
+		<key>BundleIdentifiersForCrashReportEmphasis</key>
+		<array>
+			<string>com.simpzan.EscaladeTests-iOS</string>
+		</array>
+		<key>CommandLineArguments</key>
+		<array/>
+		<key>DependentProductPaths</key>
+		<array>
+			<string>__TESTROOT__/Escalade-iOS.app/PlugIns/EscaladeTests-iOS.xctest</string>
+			<string>__TESTROOT__/Escalade-iOS.app</string>
+		</array>
+		<key>EnvironmentVariables</key>
+		<dict/>
+		<key>IsAppHostedTestBundle</key>
+		<true/>
+		<key>ProductModuleName</key>
+		<string>EscaladeTests_iOS</string>
+		<key>TestHostBundleIdentifier</key>
+		<string>com.simpzan.DevEscalade.iOS</string>
+		<key>TestBundleDestinationRelativePath</key>
+		<string>__TESTHOST__/PlugIns/EscaladeTests-iOS.xctest</string>
+		<key>UITargetAppBundleIdentifier</key>
+		<string>com.simpzan.DevEscalade.iOS</string>
+		<key>UseDestinationArtifacts</key>
+		<true/>
+		<key>TestingEnvironmentVariables</key>
+		<dict>
+			<key>DYLD_FRAMEWORK_PATH</key>
+			<string>__TESTROOT__:__PLATFORMS__/iPhoneOS.platform/Developer/Library/Frameworks:/Developer/Library/PrivateFrameworks</string>
+			<key>DYLD_LIBRARY_PATH</key>
+			<string>__TESTROOT__:__PLATFORMS__/iPhoneOS.platform/Developer/Library/Frameworks:/Developer/Library/PrivateFrameworks</string>
+			<key>DYLD_INSERT_LIBRARIES</key>
+			<string>/Developer/usr/lib/libMainThreadChecker.dylib</string>
+			<key>XCInjectBundleInto</key>
+			<string>__TESTHOST__/Escalade-iOS</string>
+			<key>XCODE_DBG_XPC_EXCLUSIONS</key>
+			<string>com.apple.dt.xctestSymbolicator</string>
+		</dict>
+		<key>ToolchainsSettingValue</key>
+		<array/>
+	</dict>
+</dict>
+</plist>
