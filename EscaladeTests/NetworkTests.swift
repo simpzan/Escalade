@@ -6,9 +6,11 @@
 //
 import XCTest
 import Nimble
+#if os(iOS)
+@testable import Escalade_iOS
+#else
 @testable import Escalade_macOS
-@testable import NEKit
-
+#endif
 
 class NetworkTests: XCTestSuite {
     func testDnsOk() {
