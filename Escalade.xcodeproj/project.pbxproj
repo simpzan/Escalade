@@ -37,6 +37,7 @@
 		7610692F20E92CE900DD6350 /* ListPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7610692E20E92CE800DD6350 /* ListPort.m */; };
 		76107EC21E7D8D0300BC5E6F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
 		76107EC61E7D9BD800BC5E6F /* VPNManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76107EC51E7D9BD800BC5E6F /* VPNManager.swift */; };
+		7615244721200D5300F1A38B /* EscaladeTests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7615244621200D5300F1A38B /* EscaladeTests_iOS.swift */; };
 		761884592016128B00156F92 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884502016128B00156F92 /* SVProgressHUD.framework */; };
 		7618845A2016128B00156F92 /* MMWormhole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761884582016128B00156F92 /* MMWormhole.framework */; };
 		7618845E201612BE00156F92 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7618845D201612BE00156F92 /* NetworkExtension.framework */; };
@@ -204,6 +205,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7615244921200D5300F1A38B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76312AB51E6BEE7C000B66C9;
+			remoteInfo = "Escalade-iOS";
+		};
 		762FED29211DB70A003B1872 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
@@ -406,6 +414,9 @@
 		7610692D20E92CE800DD6350 /* ListPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPort.h; sourceTree = "<group>"; };
 		7610692E20E92CE800DD6350 /* ListPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPort.m; sourceTree = "<group>"; };
 		76107EC51E7D9BD800BC5E6F /* VPNManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNManager.swift; sourceTree = "<group>"; };
+		7615244421200D5300F1A38B /* EscaladeTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EscaladeTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7615244621200D5300F1A38B /* EscaladeTests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscaladeTests_iOS.swift; sourceTree = "<group>"; };
+		7615244821200D5300F1A38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		761884502016128B00156F92 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		761884582016128B00156F92 /* MMWormhole.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMWormhole.framework; path = Carthage/Build/iOS/MMWormhole.framework; sourceTree = "<group>"; };
 		7618845D201612BE00156F92 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/System/Library/Frameworks/NetworkExtension.framework; sourceTree = DEVELOPER_DIR; };
@@ -533,6 +544,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				878A8F9D5D3D890CCDB4E48B /* Pods_ListPort.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7615244121200D5300F1A38B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +682,15 @@
 				76CC643A20F07DA100DFE4E7 /* ListPortProxy.m */,
 			);
 			path = ListPort;
+			sourceTree = "<group>";
+		};
+		7615244521200D5300F1A38B /* EscaladeTests-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				7615244621200D5300F1A38B /* EscaladeTests_iOS.swift */,
+				7615244821200D5300F1A38B /* Info.plist */,
+			);
+			path = "EscaladeTests-iOS";
 			sourceTree = "<group>";
 		};
 		76277F171E4CF5D3006C06A6 /* SystemProxyConfig */ = {
@@ -827,6 +854,7 @@
 				768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */,
 				76B08C2D1E7CF84D00E6146E /* Escalade */,
 				76312AB71E6BEE7C000B66C9 /* Escalade-iOS */,
+				7615244521200D5300F1A38B /* EscaladeTests-iOS */,
 				76C4935D1E4A0AA100A0D066 /* Escalade-macOS */,
 				762FED25211DB70A003B1872 /* EscaladeTests-macOS */,
 				766B69EF211089AB0025E1E0 /* PacketTunnel */,
@@ -852,6 +880,7 @@
 				76B711CA2027059F0020895A /* PacketTunnel-macOS.appex */,
 				7610692020E9297A00DD6350 /* ListPort */,
 				762FED24211DB70A003B1872 /* EscaladeTests-macOS.xctest */,
+				7615244421200D5300F1A38B /* EscaladeTests-iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -927,6 +956,24 @@
 			productName = ListPort;
 			productReference = 7610692020E9297A00DD6350 /* ListPort */;
 			productType = "com.apple.product-type.tool";
+		};
+		7615244321200D5300F1A38B /* EscaladeTests-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7615245021200D5400F1A38B /* Build configuration list for PBXNativeTarget "EscaladeTests-iOS" */;
+			buildPhases = (
+				7615244021200D5300F1A38B /* Sources */,
+				7615244121200D5300F1A38B /* Frameworks */,
+				7615244221200D5300F1A38B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7615244A21200D5300F1A38B /* PBXTargetDependency */,
+			);
+			name = "EscaladeTests-iOS";
+			productName = "EscaladeTests-iOS";
+			productReference = 7615244421200D5300F1A38B /* EscaladeTests-iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		76277F151E4CF5D3006C06A6 /* SystemProxyConfig */ = {
 			isa = PBXNativeTarget;
@@ -1088,6 +1135,12 @@
 						DevelopmentTeam = LL5MM59PQ7;
 						ProvisioningStyle = Automatic;
 					};
+					7615244321200D5300F1A38B = {
+						CreatedOnToolsVersion = 9.4.1;
+						DevelopmentTeam = LL5MM59PQ7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 76312AB51E6BEE7C000B66C9;
+					};
 					76277F151E4CF5D3006C06A6 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = UGK9FAJ697;
@@ -1186,6 +1239,7 @@
 				76DB4CB71E6BF0B70019FA42 /* PacketTunnel-iOS */,
 				7610691F20E9297900DD6350 /* ListPort */,
 				762FED23211DB70A003B1872 /* EscaladeTests-macOS */,
+				7615244321200D5300F1A38B /* EscaladeTests-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1229,6 +1283,13 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7615244221200D5300F1A38B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		762FED22211DB70A003B1872 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1550,6 +1611,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7615244021200D5300F1A38B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7615244721200D5300F1A38B /* EscaladeTests_iOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76277F121E4CF5D3006C06A6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1713,6 +1782,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7615244A21200D5300F1A38B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76312AB51E6BEE7C000B66C9 /* Escalade-iOS */;
+			targetProxy = 7615244921200D5300F1A38B /* PBXContainerItemProxy */;
+		};
 		762FED2A211DB70A003B1872 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76C4935A1E4A0AA100A0D066 /* Escalade-macOS */;
@@ -1852,6 +1926,94 @@
 				OTHER_CFLAGS = "-DLISTPORT";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		7615244B21200D5400F1A38B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = LL5MM59PQ7;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "EscaladeTests-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.EscaladeTests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Escalade-iOS.app/Escalade-iOS";
+			};
+			name = Debug;
+		};
+		7615244C21200D5400F1A38B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LL5MM59PQ7;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "EscaladeTests-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.simpzan.EscaladeTests-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Escalade-iOS.app/Escalade-iOS";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -2777,6 +2939,15 @@
 			buildConfigurations = (
 				7610692520E9297A00DD6350 /* Debug */,
 				7610692620E9297A00DD6350 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7615245021200D5400F1A38B /* Build configuration list for PBXNativeTarget "EscaladeTests-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7615244B21200D5400F1A38B /* Debug */,
+				7615244C21200D5400F1A38B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
