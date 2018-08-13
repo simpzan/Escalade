@@ -23,6 +23,7 @@ class ProxyService {
         let factory = adapterFactoryManager.selectFactory
         serverController = ServerController(selectFactory: factory, defaults: defaults)
 
+        _provider = provider
         if let provider = provider {
             tunController = TUNController(provider: provider, httpServer: proxyManager.socks5Server!)
         }
@@ -64,12 +65,24 @@ class ProxyService {
     }
     
     private let queue = DispatchQueue(label: "com.simpzan.Escalade.ProxyServiceQueue")
-    public func start() {
-        queue.sync { self._start() }
+    typealias ProxyServiceCallback = (Error?) -> Void
+    public func start(callback: ProxyServiceCallback? = nil) {
+        _provider?.setTunnelNetworkSettings(tunController?.getTunnelSettings()) { (error) in
+            if let err = error {
+                DDLogError("setTunnelNetworkSettings failed, \(err).")
+            } else {
+                self.queue.sync { self._start() }
+            }
+            callback?(error)
+        }
     }
-    public func stop() {
+    public func stop(callback: ProxyServiceCallback? = nil) {
         queue.sync { self._stop() }
+        _provider?.setTunnelNetworkSettings(nil) { (error) in
+            callback?(error)
+        }
     }
+    let _provider: NEPacketTunnelProvider?
 
     private func _start() {
         guard !running else { return }

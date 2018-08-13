@@ -24,12 +24,6 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         DDLogInfo("loaded servers \(service.serverController.servers)")
         return service
     }()
-    var tunController: TUNController {
-        return (proxyService?.tunController)!
-    }
-    var serverController: ServerController {
-        return proxyService!.serverController
-    }
     lazy var api: APIServer? = {
         return APIServer(self.proxyService!)
     }()
@@ -66,12 +60,11 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
                 self.proxyService?.restart()
             }
         }
-        setTunnelNetworkSettings(tunController.getTunnelSettings()) { (error) in
+        proxyService?.start { (error) in
             if error != nil {
                 DDLogError("setTunnelNetworkSettings error:\(error!)")
-                return
+                return completionHandler(error)
             }
-            self.proxyService?.start()
             self.api?.start()
             updateCanGetClientProcessInfo()
             completionHandler(nil)
@@ -82,9 +75,10 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         DDLogInfo("stopTunnel \(self) \(reason.description)")
         timer?.pause()
         connectivity.stopListening()
-        proxyService?.stop()
         api?.stop()
-        completionHandler()
+        proxyService?.stop { _ in
+            completionHandler()
+        }
     }
     
     private lazy var connectivity: ConnectivityManager! = {
