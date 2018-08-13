@@ -5,9 +5,11 @@ public struct Opt {
 
     // This is only used in finding the end of HTTP header (as of now). There is no limit on the length of http header, but Apache set it to 8KB
     public static var MAXNWTCPScanLength = 8912
-
+#if !DEBUG
     public static var DNSFakeIPTTL = 300
-
+#else
+    public static var DNSFakeIPTTL = 15
+#endif
     public static var DNSPendingSessionLifeTime = 10
 
     public static var UDPSocketActiveTimeout = 300
