@@ -216,6 +216,7 @@ class TrafficMonitor: NSObject {
     var timer: Timer!
     var callback: ((Int, Int) -> Void)?
     public func startUpdate(callback: @escaping (Int, Int) -> Void) {
+        guard timer == nil else { return }
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTraffic), userInfo: nil, repeats: true)
         RunLoop.current.add(timer, forMode: RunLoopMode.commonModes)
         self.callback = callback
