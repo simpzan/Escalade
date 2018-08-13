@@ -74,14 +74,7 @@ class VpnTests: XCTestCase {
     }
     func testUdpWithDomainOk() {
         let request = "hello from EscaladeTests with domain."
-        var socket: UdpSocketTest!
-        waitUntil(timeout: 4) { (done) in
-            socket = UdpSocketTest(host: "simpzan.com", port: 8877, data: request) { (err, response) in
-                expect(err) == nil
-                expect(response) == request
-                done()
-            }
-        }
+        udpSocketTest(request)
     }
 }
 
@@ -107,6 +100,16 @@ func ensureVpnDisabled() {
 }
 let vpn = VPNManager.shared
 
+func udpSocketTest(_ request: String) {
+    var socket: UdpSocketTest!
+    waitUntil(timeout: 4) { (done) in
+        socket = UdpSocketTest(host: "simpzan.com", port: 8877, data: request) { (err, response) in
+            expect(err) == nil
+            expect(response) == request
+            done()
+        }
+    }
+}
 func socketHttpPing(url: String) {
     var socket: SocketHttpTest! = nil
     waitUntil(timeout: 4) { (done) in
@@ -129,7 +132,7 @@ func urlSessionHttpPing(url: String) {
 func httpPing(url: String, done: @escaping (Bool) -> Void) {
     let task = URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, err) in
         NSLog("\(data) \(response) \(err)")
-        let res = response as! HTTPURLResponse
+        guard let res = response as? HTTPURLResponse else { return done(false) }
         done(res.statusCode == 200)
     }
     task.resume()
