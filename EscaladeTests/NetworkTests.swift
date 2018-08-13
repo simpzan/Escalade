@@ -12,7 +12,7 @@ import Nimble
 @testable import Escalade_macOS
 #endif
 
-class NetworkTests: XCTestSuite {
+class NetworkTests: XCTestCase {
     func testDnsOk() {
         let result = dnsTest("simpzan.com") as! [String]
         expect(result).to(contain("159.89.119.178"))
