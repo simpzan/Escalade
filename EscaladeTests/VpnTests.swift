@@ -14,22 +14,27 @@ import NetworkExtension
 @testable import Escalade_macOS
 #endif
 
+class VpnTests2: VpnTests {}
+
 class VpnTests: XCTestCase {
+    static var enableCalled = 0
+    static var disableCalled = 0
     override class func setUp() {
         super.setUp()
+        if (enableCalled == 0) { ensureVpnEnabled() }
+        enableCalled += 1
+    }
+    override class func tearDown() {
+        super.tearDown()
         NSLog("\(#function, #line)")
-        ensureVpnEnabled()
+        disableCalled += 1
+        if (disableCalled == 2) { ensureVpnDisabled() }
     }
     override func setUp() {
         super.setUp()
         NSLog("\(#function, #line)")
         api.setProxyEnabled(true)
         sleep(1)
-    }
-    override class func tearDown() {
-        super.tearDown()
-        NSLog("\(#function, #line)")
-        ensureVpnDisabled()
     }
     override func tearDown() {
         super.tearDown()
@@ -70,7 +75,7 @@ class VpnTests: XCTestCase {
     func testUdpWithDomainOk() {
         let request = "hello from EscaladeTests with domain."
         var socket: UdpSocketTest!
-        waitUntil(timeout: 10) { (done) in
+        waitUntil(timeout: 4) { (done) in
             socket = UdpSocketTest(host: "simpzan.com", port: 8877, data: request) { (err, response) in
                 expect(err) == nil
                 expect(response) == request
