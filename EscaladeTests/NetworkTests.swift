@@ -22,10 +22,11 @@ class NetworkTests: XCTestCase {
         var socket: GcdUdpSocketTest!
         waitUntil(timeout: 10) { (done) in
             socket = GcdUdpSocketTest(host: "simpzan.com", port: 8877, data: request) { (err, response) in
-                expect(err) == nil
+                expect(err).to(beNil())
                 expect(response) == request
                 done()
             }
+            _ = socket // to silence the compiler warning.
         }
     }
 }

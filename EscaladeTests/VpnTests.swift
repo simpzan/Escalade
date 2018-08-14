@@ -104,9 +104,10 @@ func udpSocketTest(_ request: String) {
     var socket: UdpSocketTest!
     waitUntil(timeout: 4) { (done) in
         socket = UdpSocketTest(host: "simpzan.com", port: 8877, data: request) { (err, response) in
-            expect(err) == nil
+            expect(err).to(beNil())
             expect(response) == request
             done()
+            _ = socket // to silence the compiler warning.
         }
     }
 }
@@ -114,9 +115,10 @@ func socketHttpPing(url: String) {
     var socket: SocketHttpTest! = nil
     waitUntil(timeout: 4) { (done) in
         socket = SocketHttpTest(host: url, port: 80, callback: { (err:Error?, data) in
-            expect(err) == nil
+            expect(err).to(beNil())
             expect(data!.count) > 0
             done()
+            _ = socket // to silence the compiler warning.
         })
     }
 }
@@ -131,9 +133,11 @@ func urlSessionHttpPing(url: String) {
 }
 func httpPing(url: String, done: @escaping (Bool) -> Void) {
     let task = URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, err) in
-        NSLog("\(data) \(response) \(err)")
-        guard let res = response as? HTTPURLResponse else { return done(false) }
-        done(res.statusCode == 200)
+        guard let res = response as? HTTPURLResponse else {
+            return done(false)
+        }
+        let result = res.statusCode == 200 && err == nil
+        done(result)
     }
     task.resume()
 }
