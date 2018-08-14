@@ -44,12 +44,13 @@ open class CCCrypto: StreamCryptoProtocol {
             }
         }
         self.cryptor = cryptor.pointee!
-        cryptor.deallocate(capacity: 1)
+        cryptor.deallocate()
     }
 
     open func update( _ data: inout Data) {
+        let dataSize = data.count
         _ = data.withUnsafeMutableBytes {
-            CCCryptorUpdate(cryptor, $0, data.count, $0, data.count, nil)
+            CCCryptorUpdate(cryptor, $0, dataSize, $0, dataSize, nil)
         }
     }
 

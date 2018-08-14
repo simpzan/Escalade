@@ -35,13 +35,14 @@ open class SodiumStreamCrypto: StreamCryptoProtocol {
             outputData = Data(count: data.count + padding)
             outputData.replaceSubrange(padding..<padding + data.count, with: data)
         }
-
+        
+        let outputDataSize = UInt64(outputData.count)
         switch algorithm {
         case .chacha20:
             _ = outputData.withUnsafeMutableBytes { outputPtr in
                 iv.withUnsafeBytes { ivPtr in
                     key.withUnsafeBytes { keyPtr in
-                        crypto_stream_chacha20_xor_ic(outputPtr, outputPtr, UInt64(outputData.count), ivPtr, UInt64(counter/blockSize), keyPtr)
+                        crypto_stream_chacha20_xor_ic(outputPtr, outputPtr, outputDataSize, ivPtr, UInt64(counter/blockSize), keyPtr)
                     }
                 }
             }
@@ -50,7 +51,7 @@ open class SodiumStreamCrypto: StreamCryptoProtocol {
             _ = outputData.withUnsafeMutableBytes { outputPtr in
                 iv.withUnsafeBytes { ivPtr in
                     key.withUnsafeBytes { keyPtr in
-                        crypto_stream_salsa20_xor_ic(outputPtr, outputPtr, UInt64(outputData.count), ivPtr, UInt64(counter/blockSize), keyPtr)
+                        crypto_stream_salsa20_xor_ic(outputPtr, outputPtr, outputDataSize, ivPtr, UInt64(counter/blockSize), keyPtr)
                     }
                 }
             }

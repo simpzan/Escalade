@@ -265,7 +265,7 @@ open class IPPacket {
     }
 
     func buildPacket() {
-        packetData = NSMutableData(length: Int(headerLength) + protocolParser.bytesLength) as Data!
+        packetData = NSMutableData(length: Int(headerLength) + protocolParser.bytesLength) as Data?
 
         // set header
         setPayloadWithUInt8(headerLength / 4 + version.rawValue << 4, at: 0)
