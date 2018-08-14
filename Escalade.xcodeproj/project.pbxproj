@@ -95,7 +95,6 @@
 		768D4A2C1E4B4E8B00B73E10 /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A231E4B4E8B00B73E10 /* MMDB.framework */; };
 		768D4A2D1E4B4E8B00B73E10 /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A241E4B4E8B00B73E10 /* Resolver.framework */; };
 		768D4A2E1E4B4E8B00B73E10 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A251E4B4E8B00B73E10 /* Sodium.framework */; };
-		768D4A301E4B4E8B00B73E10 /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A271E4B4E8B00B73E10 /* Yaml.framework */; };
 		768D4A321E4B4ED000B73E10 /* NEKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		768D4A331E4B4ED000B73E10 /* CocoaAsyncSocket.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		768D4A341E4B4ED000B73E10 /* CocoaLumberjack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A201E4B4E8B00B73E10 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -103,7 +102,6 @@
 		768D4A371E4B4ED000B73E10 /* MMDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A231E4B4E8B00B73E10 /* MMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		768D4A381E4B4ED000B73E10 /* Resolver.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A241E4B4E8B00B73E10 /* Resolver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		768D4A391E4B4ED000B73E10 /* Sodium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A251E4B4E8B00B73E10 /* Sodium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		768D4A3B1E4B4ED000B73E10 /* Yaml.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 768D4A271E4B4E8B00B73E10 /* Yaml.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		768FB8F2210E1F8800E90A1D /* ServersPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */; };
 		768FB8F6210E1F8900E90A1D /* ServersPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */; };
 		768FB8F7210E1FC900E90A1D /* TrafficMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */; };
@@ -125,7 +123,6 @@
 		76A184E71E6C149100C35C83 /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54B1E6C11590097C95E /* MMDB.framework */; };
 		76A184E81E6C149100C35C83 /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54C1E6C11590097C95E /* Resolver.framework */; };
 		76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; };
-		76A184EB1E6C149200C35C83 /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; };
 		76A416121E4F4A7C003C2CE2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
 		76A85A44202715B400F532BE /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A85A43202715B400F532BE /* NetworkExtension.framework */; };
 		76A85A45202715CB00F532BE /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A85A43202715B400F532BE /* NetworkExtension.framework */; };
@@ -136,8 +133,6 @@
 		76AA0E31209ED35100332E71 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C9803208C689000EBDB8A /* Utils.m */; };
 		76AA0E32209ED35400332E71 /* Checksum.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C97FE208C684800EBDB8A /* Checksum.m */; };
 		76B08C201E7CF73700E6146E /* UtilsCocoa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */; };
-		76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
-		76B08C341E7CF84D00E6146E /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
 		76B08C351E7CF84D00E6146E /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */; };
 		76B08C361E7CF84D00E6146E /* ProxyServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */; };
 		76B08C371E7CF84D00E6146E /* ServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C301E7CF84D00E6146E /* ServerController.swift */; };
@@ -168,10 +163,8 @@
 		76B711F6202710460020895A /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A231E4B4E8B00B73E10 /* MMDB.framework */; };
 		76B711F7202710460020895A /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A241E4B4E8B00B73E10 /* Resolver.framework */; };
 		76B711F8202710460020895A /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A251E4B4E8B00B73E10 /* Sodium.framework */; };
-		76B711FA202710460020895A /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A271E4B4E8B00B73E10 /* Yaml.framework */; };
 		76B711FB2027104C0020895A /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
 		76B711FC2027106D0020895A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C321E7CF84D00E6146E /* Utils.swift */; };
-		76B711FD202710CC0020895A /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
 		76C4935F1E4A0AA100A0D066 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */; };
 		76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76C493601E4A0AA200A0D066 /* Assets.xcassets */; };
 		76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76C493621E4A0AA200A0D066 /* MainMenu.xib */; };
@@ -188,7 +181,6 @@
 		76D5C68120B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
 		76D5C68220B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
 		76D5C68320B71B5900D9C1BD /* Repeater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5C67C20B71B5900D9C1BD /* Repeater.swift */; };
-		76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */; };
 		76DB4CC11E6BF0B80019FA42 /* PacketTunnel-iOS.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 76DB4CB81E6BF0B70019FA42 /* PacketTunnel-iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76DD9F8321047F550045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
 		76DD9F8421047F550045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
@@ -200,7 +192,6 @@
 		76DF1D721E6C172F0041646A /* MMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54B1E6C11590097C95E /* MMDB.framework */; };
 		76DF1D751E6C172F0041646A /* Resolver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54C1E6C11590097C95E /* Resolver.framework */; };
 		76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54D1E6C11590097C95E /* Sodium.framework */; };
-		76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76DCC54F1E6C11590097C95E /* Yaml.framework */; };
 		76F288AD20A7D56900CA9A0D /* FileBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76F288A920A7D56900CA9A0D /* FileBrowser.framework */; };
 		7A1DC063967D3B06319AD080 /* Pods_EscaladeLaunchHelper_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D015B44032CAB5371CB67B7B /* Pods_EscaladeLaunchHelper_macOS.framework */; };
 		878A8F9D5D3D890CCDB4E48B /* Pods_ListPort.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F4FB0816A48622B5533811 /* Pods_ListPort.framework */; };
@@ -378,7 +369,6 @@
 				768D4A371E4B4ED000B73E10 /* MMDB.framework in CopyFiles */,
 				768D4A381E4B4ED000B73E10 /* Resolver.framework in CopyFiles */,
 				768D4A391E4B4ED000B73E10 /* Sodium.framework in CopyFiles */,
-				768D4A3B1E4B4ED000B73E10 /* Yaml.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,7 +475,6 @@
 		768D4A231E4B4E8B00B73E10 /* MMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMDB.framework; path = NEKit/Carthage/Build/Mac/MMDB.framework; sourceTree = "<group>"; };
 		768D4A241E4B4E8B00B73E10 /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = NEKit/Carthage/Build/Mac/Resolver.framework; sourceTree = "<group>"; };
 		768D4A251E4B4E8B00B73E10 /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = NEKit/Carthage/Build/Mac/Sodium.framework; sourceTree = "<group>"; };
-		768D4A271E4B4E8B00B73E10 /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/Mac/Yaml.framework; sourceTree = "<group>"; };
 		769C46DB20FB4665002DC6FF /* DirectDomain.rule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DirectDomain.rule; sourceTree = "<group>"; };
 		769C46E020FB4696002DC6FF /* ProxyDomain.rule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ProxyDomain.rule; sourceTree = "<group>"; };
 		76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
@@ -530,7 +519,6 @@
 		76DCC54B1E6C11590097C95E /* MMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MMDB.framework; path = NEKit/Carthage/Build/iOS/MMDB.framework; sourceTree = "<group>"; };
 		76DCC54C1E6C11590097C95E /* Resolver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Resolver.framework; path = NEKit/Carthage/Build/iOS/Resolver.framework; sourceTree = "<group>"; };
 		76DCC54D1E6C11590097C95E /* Sodium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sodium.framework; path = NEKit/Carthage/Build/iOS/Sodium.framework; sourceTree = "<group>"; };
-		76DCC54F1E6C11590097C95E /* Yaml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Yaml.framework; path = NEKit/Carthage/Build/iOS/Yaml.framework; sourceTree = "<group>"; };
 		76DD9F8121047F550045D69E /* ICMPForwarder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ICMPForwarder.h; sourceTree = "<group>"; };
 		76DD9F8221047F550045D69E /* ICMPForwarder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ICMPForwarder.m; sourceTree = "<group>"; };
 		76DDBBE720B2EB57003AE2EF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -601,7 +589,6 @@
 				7618845A2016128B00156F92 /* MMWormhole.framework in Frameworks */,
 				76A184E81E6C149100C35C83 /* Resolver.framework in Frameworks */,
 				76A184E91E6C149100C35C83 /* Sodium.framework in Frameworks */,
-				76A184EB1E6C149200C35C83 /* Yaml.framework in Frameworks */,
 				76A184DF1E6C13B600C35C83 /* NEKit.framework in Frameworks */,
 				76F288AD20A7D56900CA9A0D /* FileBrowser.framework in Frameworks */,
 				4B77D6A7143A0355FC1969AE /* Pods_Escalade_iOS.framework in Frameworks */,
@@ -626,7 +613,6 @@
 				76B711F6202710460020895A /* MMDB.framework in Frameworks */,
 				76B711F7202710460020895A /* Resolver.framework in Frameworks */,
 				76B711F8202710460020895A /* Sodium.framework in Frameworks */,
-				76B711FA202710460020895A /* Yaml.framework in Frameworks */,
 				76B711F220270F520020895A /* MMWormhole.framework in Frameworks */,
 				76B711E720270D8B0020895A /* CocoaLumberjack.framework in Frameworks */,
 				76B711E820270D8B0020895A /* CocoaLumberjackSwift.framework in Frameworks */,
@@ -646,7 +632,6 @@
 				768D4A2D1E4B4E8B00B73E10 /* Resolver.framework in Frameworks */,
 				76B711E1202708E60020895A /* MMWormhole.framework in Frameworks */,
 				768D4A2E1E4B4E8B00B73E10 /* Sodium.framework in Frameworks */,
-				768D4A301E4B4E8B00B73E10 /* Yaml.framework in Frameworks */,
 				768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */,
 				436072DCF20FF6CDE24E67A6 /* Pods_Escalade_macOS.framework in Frameworks */,
 			);
@@ -662,7 +647,6 @@
 				76DF1D721E6C172F0041646A /* MMDB.framework in Frameworks */,
 				76DF1D751E6C172F0041646A /* Resolver.framework in Frameworks */,
 				76DF1D761E6C172F0041646A /* Sodium.framework in Frameworks */,
-				76DF1D781E6C172F0041646A /* Yaml.framework in Frameworks */,
 				76A184DE1E6C12F400C35C83 /* NEKit.framework in Frameworks */,
 				651329BF4B4898F726366AB3 /* Pods_PacketTunnel_iOS.framework in Frameworks */,
 			);
@@ -815,7 +799,6 @@
 				76DCC54B1E6C11590097C95E /* MMDB.framework */,
 				76DCC54C1E6C11590097C95E /* Resolver.framework */,
 				76DCC54D1E6C11590097C95E /* Sodium.framework */,
-				76DCC54F1E6C11590097C95E /* Yaml.framework */,
 				76A184EE1E6C149200C35C83 /* Nimble.framework */,
 				76A184EF1E6C149200C35C83 /* Quick.framework */,
 				768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */,
@@ -824,7 +807,6 @@
 				768D4A231E4B4E8B00B73E10 /* MMDB.framework */,
 				768D4A241E4B4E8B00B73E10 /* Resolver.framework */,
 				768D4A251E4B4E8B00B73E10 /* Sodium.framework */,
-				768D4A271E4B4E8B00B73E10 /* Yaml.framework */,
 				9CD110DF45973D1279335EB4 /* Pods_Escalade_iOS.framework */,
 				E2E4C31A14D14BB140959F43 /* Pods_Escalade_macOS.framework */,
 				D015B44032CAB5371CB67B7B /* Pods_EscaladeLaunchHelper_macOS.framework */,
@@ -1461,7 +1443,6 @@
 				"$(SRCROOT)/NEKit/Carthage/Build/iOS/MMDB.framework",
 				"$(SRCROOT)/NEKit/Carthage/Build/iOS/Resolver.framework",
 				"$(SRCROOT)/NEKit/Carthage/Build/iOS/Sodium.framework",
-				"$(SRCROOT)/NEKit/Carthage/Build/iOS/Yaml.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NEKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/FileBrowser.framework",
 			);
@@ -1680,7 +1661,6 @@
 				76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */,
 				7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */,
 				761068F320E8933B00DD6350 /* NATProxyServer.swift in Sources */,
-				76D8C14C1E7DA18200F9C6CE /* ConfigurationManager.swift in Sources */,
 				76CA418F2090B5DE008D2556 /* Log.m in Sources */,
 				763D3EA620DF90C80073C1E9 /* ServersPersistence.swift in Sources */,
 				761068F420E8934F00DD6350 /* PacketTranslator.m in Sources */,
@@ -1723,7 +1703,6 @@
 				76B711F120270F2F0020895A /* RPC.swift in Sources */,
 				760C9804208C689000EBDB8A /* Utils.m in Sources */,
 				76B711F020270F0F0020895A /* ServerController.swift in Sources */,
-				76B711FD202710CC0020895A /* ConfigurationManager.swift in Sources */,
 				768FB8F7210E1FC900E90A1D /* TrafficMonitor.swift in Sources */,
 				768FB8F9210E1FDF00E90A1D /* ListPortProxy.m in Sources */,
 				766B69F2211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */,
@@ -1747,7 +1726,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				76B08C621E7D4A7800E6146E /* ProxyService.swift in Sources */,
-				76B08C331E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
 				763E5DD1211880C20025F15E /* Log.swift in Sources */,
 				768FB8F6210E1F8900E90A1D /* ServersPersistence.swift in Sources */,
 				76B08C3E1E7D3B7800E6146E /* TUNController.swift in Sources */,
@@ -1783,7 +1761,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76B08C341E7CF84D00E6146E /* ConfigurationManager.swift in Sources */,
 				763E5DD4211880C20025F15E /* Log.swift in Sources */,
 				76B08C3A1E7CF84D00E6146E /* TrafficMonitor.swift in Sources */,
 				76D5C68320B71B5900D9C1BD /* Repeater.swift in Sources */,
