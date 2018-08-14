@@ -1,4 +1,5 @@
 import Foundation
+import CocoaLumberjackSwift
 
 public class SOCKS5ProxySocket: ProxySocket {
     enum SOCKS5ProxyReadStatus: CustomStringConvertible {
@@ -92,6 +93,10 @@ public class SOCKS5ProxySocket: ProxySocket {
         socket.readDataTo(length: 2)
     }
 
+    private let protocolVersion: UInt8 = 5
+    private let connectCmd: UInt8 = 1
+    private let noAuthMethod: UInt8 = 0
+
     // swiftlint:disable function_body_length
     // swiftlint:disable cyclomatic_complexity
     /**
@@ -108,33 +113,40 @@ public class SOCKS5ProxySocket: ProxySocket {
             delegate?.didRead(data: data, from: self)
         case .readingVersionIdentifierAndNumberOfMethods:
             data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) in
-                guard pointer.pointee == 5 else {
-                    // TODO: notify observer
+                let version = pointer.pointee
+                guard version == protocolVersion else {
+                    DDLogError("only socks5 supported, unknown version \(version).")
                     self.disconnect()
                     return
                 }
 
-                guard pointer.successor().pointee > 0 else {
-                    // TODO: notify observer
+                let methodCount = pointer.successor().pointee
+                guard methodCount > 0 else {
+                    DDLogError("socks5 methods count \(methodCount) should > 0.")
                     self.disconnect()
                     return
                 }
 
                 self.readStatus = .readingMethods
-                self.socket.readDataTo(length: Int(pointer.successor().pointee))
+                self.socket.readDataTo(length: Int(methodCount))
             }
         case .readingMethods:
-            // TODO: check for 0x00 in read data
+            guard data.contains(noAuthMethod) else {
+                DDLogError("only no-auth-required method supported, unknown methods \(data as NSData)")
+                return self.disconnect()
+            }
 
-            let response = Data(bytes: [0x05, 0x00])
+            let response = Data(bytes: [protocolVersion, noAuthMethod])
             // we would not be able to read anything before the data is written out, so no need to handle the dataWrote event.
             write(data: response)
             readStatus = .readingConnectHeader
             socket.readDataTo(length: 4)
         case .readingConnectHeader:
             data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) in
-                guard pointer.pointee == 5 && pointer.successor().pointee == 1 else {
-                    // TODO: notify observer
+                let version = pointer.pointee
+                let cmd = pointer.successor().pointee
+                guard version == protocolVersion && cmd == connectCmd else {
+                    DDLogError("version \(version) and cmd \(cmd) is not supported.")
                     self.disconnect()
                     return
                 }

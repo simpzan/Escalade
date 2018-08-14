@@ -15,7 +15,7 @@ public class SpeedAdapter: AdapterSocket, SocketDelegate {
 
         super.openSocketWith(session: session)
 
-        // FIXME: This is a temporary workaround for wechat which uses a wrong way to detect ipv6 by itself.
+        // This is a temporary workaround for wechat which uses a wrong way to detect ipv6 by itself.
         if session.isIPv6() {
             _cancelled = true
             // Note `socket` is nil so `didDisconnectWith(socket:)` will never be called.
