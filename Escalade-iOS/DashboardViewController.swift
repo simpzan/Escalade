@@ -46,6 +46,7 @@ class DashboardViewController: UITableViewController {
     }
     
     @objc func updateUI() {
+        if manager.connected { manager.stopVPN() }
         connectionChanged()
         updateCurrentServer()
     }
