@@ -139,14 +139,20 @@ class DashboardViewController: UITableViewController {
             case 3:
                 udpSend("159.89.119.178", 8877, "hello from iphone")
             default:
-                DDLogDebug("nothing to do")
+                break
             }
         }
     }
     
     @IBAction func openMenu(_ sender: Any) {
-        let actions = ["ReportIssue", "Toggle verbose logging", "Toggle proxy service", "Network Tests", "Reset Data", "Connections"]
-        self.select(actions, title: "choose action", { (index) in
+        let actions = ["ReportIssue", "Toggle verbose logging"]
+        let debugActions = ["Toggle proxy service", "Network Tests", "Reset Data"]
+#if !DEBUG
+        let allActions = actions
+#else
+        let allActions = actions + debugActions
+#endif
+        self.select(allActions, title: "choose action", { (index) in
             switch index {
             case 0:
                 self.getTextInput(withTitle: "What is the issue?", { (issue) in
@@ -162,10 +168,6 @@ class DashboardViewController: UITableViewController {
                 self.networkRequestTests()
             case 4:
                 resetData()
-            case 5:
-                self.api.getConnections { (connections) in
-                    DDLogInfo("connections \(connections*)")
-                }
             default:
                 DDLogDebug("nothing")
             }
