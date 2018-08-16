@@ -69,10 +69,16 @@ class DashboardViewController: UITableViewController {
     @IBAction func connectClicked(_ sender: Any) {
         if manager.connected {
             manager.stopVPN()
-        } else {
+        } else if reachability.isReachable {
             manager.startVPN()
+        } else {
+            SVProgressHUD.showError(withStatus: "No Internet, \nplease connect to Internet first.")
+            delay(0.3) {
+                self.connectSwitch.setOn(false, animated: true)
+            }
         }
     }
+    let reachability = Reachability()!
     let manager = VPNManager.shared
     @IBOutlet weak var connectSwitch: UISwitch!
     @IBOutlet weak var connectivityLabel: UILabel!

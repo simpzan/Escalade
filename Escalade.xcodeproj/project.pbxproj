@@ -87,6 +87,7 @@
 		76841E8E1E505EA300685B0F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76841E8C1E505EA300685B0F /* MainMenu.xib */; };
 		76841E9A1E50603B00685B0F /* EscaladeLaunchHelper-macOS.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76841E9C1E5060DE00685B0F /* AutoLaunchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */; };
+		7684C9FF2125BC11003DE5A6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
 		768BD8BF211DD6CB005ECFFF /* SocketTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BD8BE211DD6CB005ECFFF /* SocketTestHelpers.swift */; };
 		768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
 		768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; };
@@ -845,6 +846,7 @@
 				769C46E020FB4696002DC6FF /* ProxyDomain.rule */,
 				76DD9F8121047F550045D69E /* ICMPForwarder.h */,
 				76DD9F8221047F550045D69E /* ICMPForwarder.m */,
+				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
 			);
 			path = Escalade;
 			sourceTree = "<group>";
@@ -899,7 +901,6 @@
 			children = (
 				76C493621E4A0AA200A0D066 /* MainMenu.xib */,
 				76C493771E4A0B5E00A0D066 /* MainMenuController.swift */,
-				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
 				76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */,
 				76C4935E1E4A0AA100A0D066 /* AppDelegate.swift */,
 				76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */,
@@ -1659,6 +1660,7 @@
 				7636464D20E874E000F303EF /* HostEndpoint.m in Sources */,
 				76CC643B20F07DA100DFE4E7 /* ListPortProxy.m in Sources */,
 				76312AB91E6BEE7C000B66C9 /* AppDelegate.swift in Sources */,
+				7684C9FF2125BC11003DE5A6 /* Reachability.swift in Sources */,
 				7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */,
 				761068F320E8933B00DD6350 /* NATProxyServer.swift in Sources */,
 				76CA418F2090B5DE008D2556 /* Log.m in Sources */,
