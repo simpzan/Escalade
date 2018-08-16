@@ -145,8 +145,11 @@ class DashboardViewController: UITableViewController {
     }
     
     @IBAction func openMenu(_ sender: Any) {
-        let actions = ["ReportIssue", "Toggle verbose logging"]
-        let debugActions = ["Toggle proxy service", "Network Tests", "Reset Data"]
+        let loggingAction = api.isVerboseLoggingEnabled() ? "Disable" : "Enable"
+        let actions = ["ReportIssue", "\(loggingAction) verbose logging"]
+        let proxyEnabled = api.isProxyEnabled() ?? false
+        let proxyAction = proxyEnabled ? "Disable" : "Enable"
+        let debugActions = ["\(proxyAction) proxy service", "Network Tests", "Reset Data"]
 #if !DEBUG
         let allActions = actions
 #else
@@ -163,7 +166,7 @@ class DashboardViewController: UITableViewController {
             case 1:
                 self.api.toggleVerboseLogging()
             case 2:
-                self.manager.sendMessage(msg: "toggleProxyService")
+                self.api.setProxyEnabled(!proxyEnabled)
             case 3:
                 self.networkRequestTests()
             case 4:

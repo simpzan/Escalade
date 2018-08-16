@@ -21,6 +21,8 @@ let isVerboseLoggingEnabledId = "isVerboseLoggingEnabled"
 let setShareProxyStateId = "setShareProxyState"
 let getShareProxyStateId = "getShareProxyState"
 let getSystemStatusId = "getSystemStatus"
+let setProxyEnabledId = "setProxyEnabled"
+let isProxyEnabledId = "isProxyEnabled"
 
 class APIServer {
     let proxyService: ProxyService
@@ -91,12 +93,12 @@ class APIServer {
             let result: [String: Int64] = [ "memory": memory, "extensionCpu": cpu ]
             return result as NSCoding
         }
-        addAPI("setProxyEnabled") { (input) -> NSCoding? in
+        addAPI(setProxyEnabledId) { (input) -> NSCoding? in
             guard let enabled = input as? Bool else { return nil }
             enabled ? self.proxyService.start() : self.proxyService.stop()
             return nil
         }
-        addAPI("isProxyEnabled") { (_) -> NSCoding? in
+        addAPI(isProxyEnabledId) { (_) -> NSCoding? in
             return self.proxyService.running as NSCoding
         }
         addAsyncAPI(autoSelectId) { (input, done) in
@@ -210,10 +212,10 @@ public class APIClient {
         }
     }
     public func setProxyEnabled(_ enabled: Bool) {
-        _ = callAPI(#function, obj: enabled as NSCoding)
+        _ = callAPI(setProxyEnabledId, obj: enabled as NSCoding)
     }
     public func isProxyEnabled() -> Bool? {
-        return callAPI(#function) as? Bool
+        return callAPI(isProxyEnabledId) as? Bool
     }
 }
 
