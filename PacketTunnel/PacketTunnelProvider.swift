@@ -106,15 +106,15 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
 
     override func sleep(completionHandler: @escaping () -> Void) {
         DDLogInfo("about to sleep...")
-        timer?.pause()
-        proxyService?.stop()
+//        timer?.pause()
+//        proxyService?.stop()
         completionHandler()
     }
 
     override func wake() {
         DDLogInfo("about to wake...")
-        timer?.start()
-        proxyService?.start()
+//        timer?.start()
+//        proxyService?.start()
     }
 
     deinit {
