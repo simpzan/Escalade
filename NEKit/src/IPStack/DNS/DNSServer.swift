@@ -19,7 +19,9 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
 
     fileprivate let queue: DispatchQueue = QueueFactory.getQueue()
     fileprivate var fakeSessions: [IPAddress: DNSSession] = [:]
+    fileprivate var fakeSessionTasks: [IPAddress: DispatchSourceTimer] = [:]
     fileprivate var pendingSessions: [UInt16: DNSSession] = [:]
+    fileprivate var pendingSessionTasks: [UInt16: DispatchSourceTimer] = [:]
     fileprivate let pool: IPPool?
     fileprivate var resolvers: [DNSResolverProtocol] = []
 
@@ -48,11 +50,12 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
      - parameter delay:   How long should the fake IP be valid.
      */
     fileprivate func cleanUpFakeIP(_ address: IPAddress, after delay: Int) {
-        queue.asyncAfter(deadline: DispatchTime.now() + Double(Int64(delay) * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)) {
-            [weak self] in
+        let task = queue.runAfter(TimeInterval(delay)) { [weak self] in
             _ = self?.fakeSessions.removeValue(forKey: address)
+            _ = self?.fakeSessionTasks.removeValue(forKey: address)
             self?.pool?.release(ip: address)
         }
+        fakeSessionTasks[address] = task
     }
 
     /**
@@ -62,10 +65,12 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
      - parameter delay:   How long before the pending session be cleaned up.
      */
     fileprivate func cleanUpPendingSession(_ session: DNSSession, after delay: Int) {
-        queue.asyncAfter(deadline: DispatchTime.now() + Double(Int64(delay) * Int64(NSEC_PER_SEC)) / Double(NSEC_PER_SEC)) {
-            [weak self] in
-            _ = self?.pendingSessions.removeValue(forKey: session.requestMessage.transactionID)
+        let id = session.requestMessage.transactionID
+        let task = queue.runAfter(TimeInterval(delay)) { [weak self] in
+            _ = self?.pendingSessions.removeValue(forKey: id)
+            _ = self?.pendingSessionTasks.removeValue(forKey: id)
         }
+        pendingSessionTasks[id] = task
     }
 
     fileprivate func lookup(_ session: DNSSession) {
@@ -155,11 +160,13 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
             resolver.stop()
         }
 //        resolvers = []
-
+        pendingSessionTasks.forEach { (id, task) in task.cancel() }
+        pendingSessionTasks.removeAll()
         pendingSessions.removeAll()
+        fakeSessionTasks.forEach { (id, task) in task.cancel() }
+        fakeSessionTasks.removeAll()
         fakeSessions.removeAll()
         pool?.reset()
-        // The blocks scheduled with `dispatch_after` are ignored since they are hard to cancel. But there should be no consequence, everything will be released except for a few `IPAddress`es and the `queue` which will be released later.
     }
 
     private func generateFakeResponse(_ session: DNSSession) -> DNSMessage? {
