@@ -12,6 +12,46 @@ import Nimble
 @testable import Escalade_macOS
 #endif
 
+class LeakTest {
+    init() {
+        let address = Utils.address(of: self)
+        NSLog("\(address) \(#function, #line)")
+    }
+    deinit {
+        let address = Utils.address(of: self)
+        NSLog("\(address) \(#function, #line)")
+    }
+    func test() {
+    }
+}
+class DispatchQueueTests: QuickSpec {
+    override func spec() {
+        it("runAfter ok") {
+            let queue = DispatchQueue(label: "com.simpzan.test.2")
+            var runned = false
+            let task = queue.runAfter(1) {
+                runned = true
+            }
+            _ = task
+            sleep(2)
+            expect(runned) == true
+        }
+        it("runAfter cancel ok") {
+            let queue = DispatchQueue(label: "com.simpzan.test.3")
+            var runned = false
+            let test = LeakTest()
+            let task = queue.runAfter(100) {
+                runned = true
+                test.test()
+            }
+            task.cancel()
+            sleep(2)
+            expect(runned) == false
+            // check the log to ensure the LeakTest object is deinited once this code block completes.
+        }
+    }
+}
+
 class NetworkTests: QuickSpec {
     override func spec() {
         it("dns ok") {

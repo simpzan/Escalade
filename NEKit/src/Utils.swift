@@ -112,7 +112,23 @@ public struct Utils {
         }
     }
     
-    static func address<T: AnyObject>(of object: T) -> Int {
+    public static func address<T: AnyObject>(of object: T) -> Int {
         return unsafeBitCast(object, to: Int.self)
+    }
+}
+
+
+extension DispatchQueue {
+    public func runAfterAsyncAfterVersion(_ seconds: TimeInterval, execute work: @escaping () -> Void) -> DispatchWorkItem {
+        let task = DispatchWorkItem(block: work)
+        self.asyncAfter(deadline: .now() + seconds, execute: task)
+        return task
+    }
+    public func runAfter(_ seconds: TimeInterval, execute work: @escaping () -> Void) -> DispatchSourceTimer {
+        let oneShot = DispatchSource.makeTimerSource(queue: self)
+        oneShot.schedule(deadline: .now() + seconds)
+        oneShot.setEventHandler(handler: work)
+        oneShot.resume()
+        return oneShot
     }
 }
