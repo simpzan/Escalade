@@ -4,7 +4,7 @@
 //
 //  Created by simpzan on 2018/8/12.
 //
-import XCTest
+import Quick
 import Nimble
 import NetworkExtension
 
@@ -14,67 +14,69 @@ import NetworkExtension
 @testable import Escalade_macOS
 #endif
 
-class VpnTests2: VpnTests {}
+var disableVpnAfterTests = true
 
-class VpnTests: XCTestCase {
-    static var enableCalled = 0
-    static var disableCalled = 0
+class VPNTests: QuickSpec {
     override class func setUp() {
         super.setUp()
-        if (enableCalled == 0) { ensureVpnEnabled() }
-        enableCalled += 1
+        ensureVpnEnabled()
     }
     override class func tearDown() {
         super.tearDown()
-        NSLog("\(#function, #line)")
-        disableCalled += 1
-        if (disableCalled == 2) { ensureVpnDisabled() }
+        if disableVpnAfterTests { ensureVpnDisabled() }
     }
-    override func setUp() {
-        super.setUp()
-        NSLog("\(#function, #line)")
-        api.setProxyEnabled(true)
-        sleep(1)
-    }
-    override func tearDown() {
-        super.tearDown()
-        NSLog("\(#function, #line)")
-        api.setProxyEnabled(false)
-        sleep(1)
-    }
-    let api = APIClient.shared
-
-    func testPingTwitterOk() {
-        urlSessionHttpPing(url: "http://twitter.com")
-    }
-    func testPingQQOk() {
-        urlSessionHttpPing(url: "http://qq.com")
-    }
-    func pingQQWithSocketOk() {
-        socketHttpPing(url: "qq.com")
-    }
-    func pingTwitterWithSocketOk() {
-        socketHttpPing(url: "twitter.com")
-    }
-    let fakeIpPrefix = "198.18."
-    func testDnsBaiduReturnsRealIp() {
-        let ips = dnsTest("baidu.com") as! [String]
-        NSLog("ips for baidu.com \(ips)")
-        let ip = ips[0]
-        expect(ip).notTo(beginWith(fakeIpPrefix))
-    }
-    func testDnsGoogleReturnsFakeIp() {
-        let ip = dnsTest("google.com").first as! String
-        expect(ip).to(beginWith(fakeIpPrefix))
-    }
-    func testUdpWithIpOk() {
-        let request = "hello from EscaladeTests with ip"
-        let response = udpSend("159.89.119.178", 8877, request)
-        expect(request) == response
-    }
-    func testUdpWithDomainOk() {
-        let request = "hello from EscaladeTests with domain."
-        udpSocketTest(request)
+    override func spec() {
+        sharedExamples("vpn cases") {
+            let api = APIClient.shared
+            beforeEach {
+                api.setProxyEnabled(true)
+                usleep(500 * 1000)
+            }
+            afterEach {
+                api.setProxyEnabled(false)
+                usleep(500 * 1000)
+            }
+            it("ping twitter ok.") {
+                urlSessionHttpPing(url: "http://twitter.com")
+            }
+            it("ping baidu ok, too.") {
+                urlSessionHttpPing(url: "http://bdstatic.com")
+            }
+            it("ping baidu with socket ok.") {
+                socketHttpPing(url: "bdstatic.com")
+            }
+            it("ping twitter with socket ok.") {
+                socketHttpPing(url: "twitter.com")
+            }
+            
+            let fakeIpPrefix = "198.18."
+            it("dns baidu returns real ip.") {
+                let ips = dnsTest("baidu.com") as! [String]
+                NSLog("ips for baidu.com \(ips)")
+                let ip = ips[0]
+                expect(ip).notTo(beginWith(fakeIpPrefix))
+            }
+            it("dns google returns fake ip.") {
+                let ip = dnsTest("google.com").first as! String
+                expect(ip).to(beginWith(fakeIpPrefix))
+            }
+            
+            it("udp with ip ok") {
+                let request = "hello from EscaladeTests"
+                let response = udpSend("159.89.119.178", 8877, request)
+                expect(request) == response
+            }
+            it("udp with domain ok") {
+                let request = "hello from EscaladeTests with domain."
+                udpSocketTest(request)
+            }
+        }
+//        fcontext("leak tests") {
+//            itBehavesLike("vpn cases")
+//            disableVpnAfterTests = false
+//        }
+        itBehavesLike("vpn cases")
+        itBehavesLike("vpn cases")
     }
 }
 
@@ -113,9 +115,13 @@ func udpSocketTest(_ request: String) {
 }
 func socketHttpPing(url: String) {
     var socket: SocketHttpTest! = nil
-    waitUntil(timeout: 4) { (done) in
+    waitUntil(timeout: 6) { (done) in
         socket = SocketHttpTest(host: url, port: 80, callback: { (err:Error?, data) in
-            expect(err).to(beNil())
+            if let err = err {
+                let error = err as NSError
+                expect(error.code) == GCDAsyncSocketError.closedError.rawValue
+                NSLog("error \(error)")
+            }
             expect(data!.count) > 0
             done()
             _ = socket // to silence the compiler warning.
@@ -132,7 +138,10 @@ func urlSessionHttpPing(url: String) {
     })
 }
 func httpPing(url: String, done: @escaping (Bool) -> Void) {
-    let task = URLSession.shared.dataTask(with: URL(string: url)!) { (data, response, err) in
+    var request = URLRequest(url: URL(string: url)!)
+    request.httpMethod = "HEAD"
+    let task = URLSession.shared.dataTask(with: request) { (data, response, err) in
+//        NSLog("\(err) \(data) \(response)")
         guard let res = response as? HTTPURLResponse else {
             return done(false)
         }

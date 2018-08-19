@@ -4,7 +4,7 @@
 //
 //  Created by simpzan on 2018/8/10.
 //
-import XCTest
+import Quick
 import Nimble
 #if os(iOS)
 @testable import Escalade_iOS
@@ -12,21 +12,23 @@ import Nimble
 @testable import Escalade_macOS
 #endif
 
-class NetworkTests: XCTestCase {
-    func testDnsOk() {
-        let result = dnsTest("simpzan.com") as! [String]
-        expect(result).to(contain("159.89.119.178"))
-    }
-    func testGcdUdpSocketOk() {
-        let request = "hello from EscaladeTests with domain."
-        var socket: GcdUdpSocketTest!
-        waitUntil(timeout: 10) { (done) in
-            socket = GcdUdpSocketTest(host: "simpzan.com", port: 8877, data: request) { (err, response) in
-                expect(err).to(beNil())
-                expect(response) == request
-                done()
+class NetworkTests: QuickSpec {
+    override func spec() {
+        it("dns ok") {
+            let result = dnsTest("simpzan.com") as! [String]
+            expect(result).to(contain("159.89.119.178"))
+        }
+        it("GCDUDPSocket ok") {
+            let request = "hello from EscaladeTests with domain."
+            var socket: GcdUdpSocketTest!
+            waitUntil(timeout: 10) { (done) in
+                socket = GcdUdpSocketTest(host: "simpzan.com", port: 8877, data: request) { (err, response) in
+                    expect(err).to(beNil())
+                    expect(response) == request
+                    done()
+                }
+                _ = socket // to silence the compiler warning.
             }
-            _ = socket // to silence the compiler warning.
         }
     }
 }
