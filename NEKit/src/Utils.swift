@@ -132,3 +132,10 @@ extension DispatchQueue {
         return oneShot
     }
 }
+
+extension Error {
+    public var code: Int {
+        let err = self as NSError
+        return err.code
+    }
+}

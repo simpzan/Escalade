@@ -51,27 +51,25 @@ public class NWUDPSocket: NSObject, RawUDPSocketProtocol {
         newSession.addObserver(self, forKeyPath: #keyPath(NWUDPSession.state), options: [.new], context: nil)
         newSession.addObserver(self, forKeyPath: #keyPath(NWUDPSession.hasBetterPath), options: [.new], context: nil)
         newSession.setReadHandler({ [ weak self ] dataArray, error in
-            self?.queueCall {
-                guard let sSelf = self else { return }
-                
-                sSelf.updateActivityTimer()
-                
-                guard error == nil, let dataArray = dataArray else {
-                    DDLogError("\(sSelf) \(sSelf.session.state), Error when reading from remote server. \(error!) ")
-                    return
-                }
-                
-                let bytes = dataArray.reduce(0) { (acc: Int, data: Data) -> Int in
-                    return data.count + acc
-                }
-                DDLogDebug("\(sSelf) read \(bytes) bytes.")
-                for data in dataArray {
-                    sSelf.delegate?.didReceive(data: data, from: sSelf)
-                }
-            }
+            self?.queueCall { self?.onReadData(data: dataArray, error: error) }
         }, maxDatagrams: 32)
     }
     
+    private func onReadData(data: [Data]?, error: Error?) {
+        if let err = error {
+            if err.code != ECANCELED { DDLogError("\(self) \(session.state), read error, \(err).") }
+            return
+        }
+        updateActivityTimer()
+
+        guard let dataArray = data else {
+            return DDLogError("\(self) \(session.state), exception: both data and error are empty.")
+        }
+
+        let bytes = dataArray.reduce(0) { (acc: Int, data: Data) -> Int in data.count + acc }
+        DDLogDebug("\(self) read \(bytes) bytes.")
+        for data in dataArray { delegate?.didReceive(data: data, from: self) }
+    }
     /**
      Send data to remote.
      
@@ -97,7 +95,7 @@ public class NWUDPSocket: NSObject, RawUDPSocketProtocol {
         queueCall { [ weak self ] in
             guard let this = self, let key = keyPath else { return }
             let value = this.session.value(forKeyPath: key)
-            DDLogInfo("\(this) session.\(key) changed to \(String(describing: value)).")
+            DDLogDebug("\(this) session.\(key) changed to \(String(describing: value)).")
             switch key {
             case #keyPath(NWUDPSession.hasBetterPath): this.handlePathChange()
             case #keyPath(NWUDPSession.state): this.handleStateChange()
@@ -176,7 +174,7 @@ public class NWUDPSocket: NSObject, RawUDPSocketProtocol {
     
     private func checkStatus() {
         if timeout > 0 && Date().timeIntervalSince(lastActive) > TimeInterval(timeout) {
-            DDLogError("\(self) timeout, disconnect now.")
+            DDLogInfo("\(self) timeout, disconnect now.")
             disconnect()
         }
     }
