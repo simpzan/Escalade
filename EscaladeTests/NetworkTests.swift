@@ -24,16 +24,23 @@ class LeakTest {
     func test() {
     }
 }
+
+extension RunLoop {
+    func run(for seconds: TimeInterval) {
+        let date = Date(timeIntervalSinceNow: seconds)
+        self.run(until: date)
+    }
+}
 class DispatchQueueTests: QuickSpec {
     override func spec() {
         it("runAfter ok") {
             let queue = DispatchQueue(label: "com.simpzan.test.2")
             var runned = false
-            let task = queue.runAfter(1) {
+            let task = queue.runAfter(0.5) {
                 runned = true
             }
             _ = task
-            sleep(2)
+            RunLoop.current.run(for: 1)
             expect(runned) == true
         }
         it("runAfter cancel ok") {
