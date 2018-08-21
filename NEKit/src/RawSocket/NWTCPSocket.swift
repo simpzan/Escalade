@@ -155,15 +155,12 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
             return
         }
         connection!.readMinimumLength(mininum, maximumLength: maxinum) { data, error in
-            if let err = error as NSError?, err.code == ENOTCONN {
-                DDLogDebug("\(self) connection closed by remote.")
+            if let err = error {
+                DDLogError("\(self) got an error when reading data: \(err).")
                 self.queueCall {
                     self.disconnect()
                 }
                 return
-            }
-            if error != nil {
-                DDLogError("\(self) got an error when reading data: \(error!).")
             }
             if data != nil {
                 self.readCallback(data: data)
