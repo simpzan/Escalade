@@ -85,6 +85,12 @@ NSString *getRealIpAddress(NSString *fakeIp) {
 
     NSRange range = NSMakeRange(packet.ipHeaderSize, data.length - packet.ipHeaderSize);
     NSData *icmpData = [data subdataWithRange:range];
+    ICMPHeader *header = (ICMPHeader *)[icmpData bytes];
+    int destinationUnreachable = 3, portUnreachable = 3;
+    if (header->type == destinationUnreachable && header->code == portUnreachable) {
+        DDLogWarn(@"ignoring port unreachable icmp message, %@.", icmpData);
+        return YES;
+    }
     
     NSString *originalIp = getRealIpAddress(packet.destinationAddress);
     BOOL result = sendICMP(icmpData, _fd, originalIp, packet.timeToLive);
