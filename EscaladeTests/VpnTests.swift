@@ -43,7 +43,7 @@ class VPNTests: QuickSpec {
                 urlSessionHttpPing(url: "http://bdstatic.com")
             }
             it("ping baidu with socket ok.") {
-                socketHttpPing(url: "bdstatic.com")
+                socketHttpPing(url: "baidu.com")
             }
             it("ping twitter with socket ok.") {
                 socketHttpPing(url: "twitter.com")
