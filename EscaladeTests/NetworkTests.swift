@@ -101,7 +101,7 @@ class NetworkTests: QuickSpec {
     override func spec() {
         it("dns ok") {
             let result = dnsTest("simpzan.com") as! [String]
-            expect(result).to(contain("159.89.119.178"))
+            expect(result).to(contain("67.216.193.60"))
         }
         it("GCDUDPSocket ok") {
             let request = "hello from EscaladeTests with domain."

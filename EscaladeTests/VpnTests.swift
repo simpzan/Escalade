@@ -63,7 +63,7 @@ class VPNTests: QuickSpec {
             
             it("udp with ip ok") {
                 let request = "hello from EscaladeTests"
-                let response = udpSend("159.89.119.178", 8877, request)
+                let response = udpSend("67.216.193.60", 8877, request)
                 expect(request) == response
             }
             it("udp with domain ok") {
