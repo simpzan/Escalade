@@ -81,14 +81,9 @@ NSArray *dnsTest(NSString *aDomain) {
     }
     
     for (struct addrinfo *res = result; res != NULL; res = res->ai_next) {
-        char hostname[NI_MAXHOST] = "";
-        
-        error = getnameinfo(res->ai_addr, res->ai_addrlen, hostname, NI_MAXHOST, NULL, 0, 0);
-        if (error != 0) {
-            NSLog(@"error in getnameinfo: %s\n", gai_strerror(error));
-            continue;
-        }
-        if (*hostname != '\0') {
+        struct sockaddr_in *inAddr = (struct sockaddr_in *)res->ai_addr;
+        const char *hostname = inet_ntoa(inAddr->sin_addr);
+        if (hostname && hostname[0]) {
             NSString *ip = [NSString stringWithUTF8String:hostname];
             [ips addObject:ip];
         }
