@@ -328,7 +328,8 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
         let address = Utils.address(of: self)
         let typeName = String(describing: type(of: self))
         let endpoint = remoteEndpoint != nil ? " \(remoteEndpoint!)" : ""
-        return String(format: "<%@ %p%@>", typeName, address, endpoint)
+        let parent = delegate == nil ? 0 : Utils.address(of: delegate! as AnyObject)
+        return String(format: "<%@ %p %p %@>", typeName, address, parent, endpoint)
     }
 }
 

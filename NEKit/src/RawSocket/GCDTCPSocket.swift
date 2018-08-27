@@ -18,7 +18,10 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
         if let socket = socket {
             self.socket = socket
             self.socket.setDelegate(nil, delegateQueue: QueueFactory.getQueue())
-            sourcePort = Port(port: socket.connectedPort)
+            if socket.isConnected {
+                sourcePort = Port(port: socket.connectedPort)
+                sourceIPAddress = IPAddress(fromString: socket.connectedHost!)
+            }
         } else {
             self.socket = GCDAsyncSocket(delegate: nil, delegateQueue: QueueFactory.getQueue(), socketQueue: QueueFactory.getQueue())
             self.socket.isIPv6Enabled = false
@@ -39,13 +42,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
     }
 
     /// The source address.
-    open var sourceIPAddress: IPAddress? {
-        guard let localHost = socket.localHost else {
-            return nil
-        }
-        return IPAddress(fromString: localHost)
-    }
-
+    open var sourceIPAddress: IPAddress?
     /// The source port.
     open var sourcePort: Port?
 
@@ -226,6 +223,9 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
 
     open func socketDidDisconnect(_ socket: GCDAsyncSocket, withError err: Error?) {
         log("disconnected", done: true);
+        if let error = err, error.code != GCDAsyncSocketError.closedError.rawValue {
+            DDLogWarn("\(self) disconnected with error, \(error)")
+        }
         delegate?.didDisconnectWith(socket: self)
         delegate = nil
         socket.setDelegate(nil, delegateQueue: nil)
@@ -233,6 +233,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
 
     open func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
         sourcePort = Port(port: port)
+        sourceIPAddress = IPAddress(fromString: host)
         log("connected");
         if !enableTLS {
             delegate?.didConnectWith(socket: self)
@@ -284,4 +285,15 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
 
     public var verbose: Bool = false
 
+    private var endpoint: String? {
+        guard let port = sourcePort?.value, let host = sourceIPAddress?.presentation else { return nil }
+        return "\(host):\(port)"
+    }
+    open override var description: String {
+        let address = Utils.address(of: self)
+        let typeName = String(describing: type(of: self))
+        let endpoint = self.endpoint ?? ""
+        let parent = delegate == nil ? 0 : Utils.address(of: delegate! as AnyObject)
+        return String(format: "<%@ %p %p %@>", typeName, address, parent, endpoint)
+    }
 }
