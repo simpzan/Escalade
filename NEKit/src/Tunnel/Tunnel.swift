@@ -39,7 +39,15 @@ public class Tunnel: NSObject, SocketDelegate {
     public var clientPid: Int?
     public var clientProgram: String?
     public var userAgent: String?
-    
+    public var closedBy: ClosedSourceEnum {
+        get { return _closedBy ?? .none }
+        set { _closedBy = _closedBy ?? newValue }
+    }
+    public enum ClosedSourceEnum {
+        case proxy, adapter, tunnel, none
+    }
+    private var _closedBy: ClosedSourceEnum? = nil
+
     /// The adapter socket connecting to remote.
     var adapterSocket: AdapterSocket?
     
@@ -136,7 +144,7 @@ public class Tunnel: NSObject, SocketDelegate {
         guard !self.isCancelled else {
             return
         }
-        
+        self.closedBy = .tunnel
         self._cancelled = true
         self._status = .closing
         self._stopForwarding = true
@@ -214,6 +222,7 @@ public class Tunnel: NSObject, SocketDelegate {
     public func didDisconnectWith(socket: SocketProtocol) {
         if !isCancelled {
             _stopForwarding = true
+            self.closedBy = socket === proxySocket ? .proxy : .adapter
             close()
         }
         checkStatus()

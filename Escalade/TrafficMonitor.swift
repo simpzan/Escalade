@@ -142,7 +142,7 @@ class ESObserverFactory: ObserverFactory {
                  .stopped:
                 DDLogInfo("\(event)")
             case let .tunnelClosed(tunnel, onServer: server):
-                DDLogInfo("\(tunnel) closed, \(server.tunnels.count) sessions remaining.")
+                DDLogInfo("\(tunnel) closed by \(tunnel.closedBy), \(server.tunnels.count) sessions remaining.")
                 if tunnel.rx == 0 && tunnel.tx == 0 {
                     DDLogWarn("\(tunnel) didn't transfer any data.")
                 }
