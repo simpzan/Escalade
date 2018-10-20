@@ -33,8 +33,10 @@ class ServerController: NSObject {
             if name == nil { return }
             factory.current = name!
             saveCurrentServer(name: name!)
+            onCurrentServerChanged?()
         }
     }
+    public var onCurrentServerChanged: (() -> Void)? = nil
     private func saveCurrentServer(name: String) {
         defaults.set(name, forKey: currentServerKey)
     }
@@ -62,7 +64,7 @@ class ServerController: NSObject {
             self.factory.autoSelect(timeout: 2) { server in
                 if server != nil {
                     selected = server
-                    self.saveCurrentServer(name: server!)
+                    self.currentServer = server
                     callback(nil, server)
                 } else if selected != nil {
                     DDLogInfo("auto select: \(selected!) \(self.servers)")

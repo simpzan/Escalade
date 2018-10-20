@@ -86,6 +86,11 @@ class ProxyService {
 
     private func _start() {
         guard !running else { return }
+        
+        serverController.onCurrentServerChanged = { [weak self] in
+            self?.proxyManager.resetInactives()
+        }
+        
         DDLogInfo("starting")
         proxyManager.startProxyServers()
         tunController?.start()

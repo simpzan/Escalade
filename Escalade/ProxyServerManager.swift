@@ -63,6 +63,12 @@ class ProxyServerManager: NSObject {
         }
         return internalConnections
     }
+    public func resetInactives() {
+        DDLogInfo("reset inactive tunnels.")
+        socks5Server?.resetInactives()
+        httpServer?.resetInactives()
+        publicHttpProxyServer?.resetInactives()
+    }
 
     public func startProxyServers() {
         do {

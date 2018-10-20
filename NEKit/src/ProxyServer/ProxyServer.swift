@@ -75,6 +75,17 @@ open class ProxyServer: NSObject, TunnelDelegate {
             observer?.signal(.stopped(self))
         }
     }
+    
+    public func resetInactives() {
+        QueueFactory.executeOnQueueSynchronizedly {
+            for tunnel in tunnels {
+                if tunnel.rx == 0 {
+                    DDLogWarn("\(self), reset \(tunnel).")
+                    tunnel.forceClose()
+                }
+            }
+        }
+    }
 
     /**
      Delegate method when the proxy server accepts a new ProxySocket from local.
