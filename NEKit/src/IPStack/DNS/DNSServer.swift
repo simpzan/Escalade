@@ -120,6 +120,7 @@ open class DNSServer: NSObject, DNSResolverDelegate, IPStackProtocol {
      - returns: If the packet is taken in by this DNS server.
      */
     open func input(packet: Data, version: NSNumber?) -> Bool {
+        if IPPacket.peekFlags(packet) != 0 { DDLogWarn("fragmented ip packet, \(packet as NSData).") }
         guard IPPacket.peekProtocol(packet) == .udp else {
             return false
         }

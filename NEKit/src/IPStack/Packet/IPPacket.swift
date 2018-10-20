@@ -33,6 +33,12 @@ open class IPPacket {
         return IPVersion(rawValue: version)
     }
 
+    public static func peekFlags(_ data: Data) -> Int {
+        guard data.count >= 20 else { return -1 }
+
+        let result = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count).advanced(by: 6).pointee >> 5
+        return Int(result)
+    }
     /**
      Get the protocol of the IP Packet without parsing the whole packet.
      
