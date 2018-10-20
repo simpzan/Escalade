@@ -26,4 +26,9 @@ class QueueFactory {
             }
         }
     }
+    
+    static func delay(_ delay: Double, closure: @escaping () -> Void) {
+        let time = delay > 0 ? delay : 0;
+        getQueue().asyncAfter(deadline: .now() + time, execute: closure)
+    }
 }

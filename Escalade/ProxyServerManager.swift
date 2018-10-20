@@ -11,16 +11,31 @@ import NEKit
 import CocoaLumberjackSwift
 
 class ProxyServerManager: NSObject {
-
+    let delayFunc: ProxyServer.DelayFunc = {
+        let highWaterMark = 14 * 1024 * 1024
+        let memory = memoryUsage()
+        let ratio = Double(memory) / Double(highWaterMark)
+        if ratio < 0.8 { return 0 }
+        if ratio < 0.9 {
+            DDLogInfo("memory \(memory), \(ratio).")
+            return 0.2
+        }
+        DDLogWarn("memory \(memory), \(ratio).")
+        return 0.5
+    }
+    
     public init(thePort: UInt16 = 0) {
         if thePort > 0 { port = thePort }
         let addr = IPAddress(fromString: address)
         socks5Server = NATProxyServer(address: addr, port: NEKit.Port(port: port))
+        socks5Server?.delayFunc = delayFunc
         let httpAddr = IPAddress(fromString: "127.0.0.1")
         httpServer = GCDHTTPProxyServer(address: httpAddr, port: NEKit.Port(port: port + 1))
+        httpServer?.delayFunc = delayFunc
         
         if defaults.bool(forKey: shareProxyEnabledKey) {
             publicHttpProxyServer = GCDHTTPProxyServer(address: nil, port: Port(port: port + 2))
+            publicHttpProxyServer?.delayFunc = delayFunc
         }
     }
     var publicHttpProxyServer: GCDHTTPProxyServer? = nil

@@ -1,8 +1,11 @@
 import Foundation
 import Resolver
+import CocoaLumberjackSwift
 
 protocol TunnelDelegate : class {
     func tunnelDidClose(_ tunnel: Tunnel)
+    
+    func shouldDelay(_ tunnel: Tunnel) -> TimeInterval
 }
 
 /// The tunnel forwards data between local and remote.
@@ -213,10 +216,20 @@ public class Tunnel: NSObject, SocketDelegate {
             }
         }
         if readySignal == 2 {
-            _status = .forwarding
-            proxySocket.readData()
-            adapterSocket?.readData()
+            waitAndRun { [weak self] in
+                self?._status = .forwarding
+                self?.proxySocket.readData()
+                self?.adapterSocket?.readData()
+            }
         }
+    }
+    
+    func waitAndRun(fn: @escaping () -> Void) {
+        let delay = delegate?.shouldDelay(self) ?? 0
+        if delay == 0 { return fn() }
+        
+        DDLogInfo("\(self), wait \(delay)s.")
+        QueueFactory.delay(Double(delay), closure: fn)
     }
     
     public func didDisconnectWith(socket: SocketProtocol) {
@@ -259,7 +272,9 @@ public class Tunnel: NSObject, SocketDelegate {
                 return
             }
             QueueFactory.getQueue().asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(Opt.forwardReadInterval)) { [weak self] in
-                self?.adapterSocket?.readData()
+                self?.waitAndRun { [weak self] in
+                    self?.adapterSocket?.readData()
+                }
             }
         } else if let socket = socket as? AdapterSocket {
             observer?.signal(.adapterSocketWroteData(data, by: socket, on: self))
@@ -268,7 +283,9 @@ public class Tunnel: NSObject, SocketDelegate {
                 return
             }
             
-            proxySocket.readData()
+            waitAndRun { [weak self] in
+                self?.proxySocket.readData()
+            }
         }
     }
     
