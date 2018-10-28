@@ -128,38 +128,41 @@ NSData *aead_decrypt(const uint8_t *cipher, int length, NSData *nonce, NSData *k
     
     return cipherData;
 }
-- (int)_decrypted:(NSData *)cipherData :(NSMutableData *)outputData {
-    if (cipherData.length <= tag_len * 2 + chunk_size_len) return 0;
+- (NSData *)_decrypted:(const uint8_t *)cipherData :(NSUInteger)length {
+    if (length <= tag_len * 2 + chunk_size_len) return NULL;
 
     int cipherLengthLen = chunk_size_len + tag_len;
-    NSData *lengthData = aead_decrypt(cipherData.bytes, cipherLengthLen, nonce, subkey);
+    NSData *lengthData = aead_decrypt(cipherData, cipherLengthLen, nonce, subkey);
     uint16_t len = *(uint16_t *)lengthData.bytes;
     len = ntohs(len);
     int chunkLength = 2 * tag_len + chunk_size_len + len;
-    if (cipherData.length < chunkLength) return 0;
+    if (length < chunkLength) return NULL;
 
     sodium_increment(nonce.mutableBytes, nonce.length);
 
     int cipherPayloadLen = len + tag_len;
-    const uint8_t *cipherPayload = cipherData.bytes + cipherLengthLen;
+    const uint8_t *cipherPayload = cipherData + cipherLengthLen;
     NSData *payload = aead_decrypt(cipherPayload, cipherPayloadLen, nonce, subkey);
     sodium_increment(nonce.mutableBytes, nonce.length);
 
-    [outputData appendData:payload];
-    return chunkLength;
+    return payload;
 }
 - (NSData *)decrypted:(NSData *)cipherData {
     [buffer appendData:cipherData];
+    const uint8_t *buf = buffer.bytes;
+    NSUInteger bufLen = buffer.length;
     NSMutableData *plainData = [NSMutableData dataWithCapacity:buffer.length];
     while (true) {
-        int result = [self _decrypted:buffer :plainData];
-        if (result <= 0) break;
+        NSData *plain = [self _decrypted:buf :bufLen];
+        if (!plain) break;
         
-        NSUInteger len = buffer.length;
-        assert(result <= (int)len);
-        len -= (NSUInteger)result;
-        buffer = [NSMutableData dataWithBytes:buffer.bytes + result length:len];
+        NSUInteger chunkLen = plain.length + chunk_size_len + 2 * tag_len;
+        assert(bufLen >= chunkLen);
+        bufLen -= chunkLen;
+        buf += chunkLen;
+        [plainData appendData:plain];
     }
+    buffer = [NSMutableData dataWithBytes:buf length:bufLen];
     return plainData;
 }
 @end
