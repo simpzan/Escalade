@@ -33,10 +33,10 @@ open class IPPacket {
         return IPVersion(rawValue: version)
     }
 
-    public static func peekFlags(_ data: Data) -> Int {
+    public static func peekMoreFragmentsFlag(_ data: Data) -> Int {
         guard data.count >= 20 else { return -1 }
 
-        let result = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count).advanced(by: 6).pointee >> 5
+        let result = (data as NSData).bytes.bindMemory(to: UInt8.self, capacity: data.count).advanced(by: 6).pointee & 0x20
         return Int(result)
     }
     /**
