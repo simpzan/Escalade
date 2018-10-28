@@ -10,25 +10,66 @@
 #import <Sodium/Sodium.h>
 #import <CommonCrypto/CommonCrypto.h>
 
-static NSData *generateSubkey(NSData *masterKey, NSData *salt, const char *info) {
-    NSMutableData *prk = [NSMutableData dataWithLength:CC_SHA1_DIGEST_LENGTH];
-    CCHmac(kCCHmacAlgSHA1, salt.bytes, salt.length, masterKey.bytes, masterKey.length, prk.mutableBytes);
+@interface Hmac : NSObject
+- (instancetype)initWithAlgorithm:(CCHmacAlgorithm)algorithm key:(NSData *)key;
+- (instancetype)update:(NSData *)data;
+- (instancetype)updateWithBytes:(const uint8_t *)bytes length:(size_t)len;
+- (NSData *)final;
++ (NSData *)generateWithAgorithm:(CCHmacAlgorithm)algorithm key:(NSData *)key data:(NSData *)data;
+@end
+
+@implementation Hmac {
+    CCHmacContext _ctx;
+    CCHmacAlgorithm _algorithm;
+}
+- (instancetype)initWithAlgorithm:(CCHmacAlgorithm)algorithm key:(NSData *)key {
+    self = [super init];
+    CCHmacInit(&_ctx, algorithm, key.bytes, key.length);
+    _algorithm = algorithm;
+    return self;
+}
+- (instancetype)update:(NSData *)data {
+    CCHmacUpdate(&_ctx, data.bytes, data.length);
+    return self;
+}
+- (instancetype)updateWithBytes:(const uint8_t *)bytes length:(size_t)len {
+    CCHmacUpdate(&_ctx, bytes, len);
+    return self;
+}
+- (NSData *)final {
+    NSDictionary *lengths = @{
+        @(kCCHmacAlgSHA1):   @(CC_SHA1_DIGEST_LENGTH),
+        @(kCCHmacAlgMD5):    @(CC_MD5_DIGEST_LENGTH),
+        @(kCCHmacAlgSHA256): @(CC_SHA256_DIGEST_LENGTH),
+        @(kCCHmacAlgSHA384): @(CC_SHA384_DIGEST_LENGTH),
+        @(kCCHmacAlgSHA512): @(CC_SHA512_DIGEST_LENGTH),
+        @(kCCHmacAlgSHA224): @(CC_SHA224_DIGEST_LENGTH)
+    };
+    NSUInteger len = [lengths[@(_algorithm)] unsignedIntegerValue];
+    NSMutableData *result = [NSMutableData dataWithLength:len];
+    CCHmacFinal(&_ctx, result.mutableBytes);
+    return result;
+}
++ (NSData *)generateWithAgorithm:(CCHmacAlgorithm)algorithm key:(NSData *)key data:(NSData *)data {
+    Hmac *mac = [[Hmac alloc]initWithAlgorithm:algorithm key:key];
+    return [[mac update:data] final];
+}
+@end
+
+static NSData *generateSubkey(NSData *masterKey, NSData *salt, NSData *info) {
+    NSData *prk = [Hmac generateWithAgorithm:kCCHmacAlgSHA1 key:salt data:masterKey];
     
     NSMutableData *subkey = [NSMutableData data];
     NSUInteger length = 32;
     int count = (int)ceil(length / (float)CC_SHA1_DIGEST_LENGTH);
 
-    NSMutableData *mixin = [NSMutableData data];
+    NSData *mixin = [NSData data];
     for (uint8_t i=1; i<=count; ++i) {
-        CCHmacContext ctx;
-        CCHmacInit(&ctx, kCCHmacAlgSHA1, prk.bytes, prk.length);
-
-        CCHmacUpdate(&ctx, mixin.bytes, mixin.length);
-        CCHmacUpdate(&ctx, info, strlen(info));
-        CCHmacUpdate(&ctx, &i, 1);
-        
-        if (mixin.length == 0) [mixin increaseLengthBy:CC_SHA1_DIGEST_LENGTH];
-        CCHmacFinal(&ctx, mixin.mutableBytes);
+        Hmac *mac = [[Hmac alloc]initWithAlgorithm:kCCHmacAlgSHA1 key:prk];
+        [mac update:mixin];
+        [mac update:info];
+        [mac updateWithBytes:&i length:1];
+        mixin = [mac final];
         [subkey appendData:mixin];
     }
     return [subkey subdataWithRange:NSMakeRange(0, length)];
@@ -44,7 +85,7 @@ int chunk_size_len = 2;
 }
 - (instancetype)initWithMasterKey:(NSData *)key :(NSData *)salt {
     self = [super init];
-    const char *info = "ss-subkey";
+    NSData *info = [@"ss-subkey" dataUsingEncoding:NSUTF8StringEncoding];
     subkey = generateSubkey(key, salt, info);
     nonce = [NSMutableData dataWithLength:12];
     buffer = [NSMutableData data];
