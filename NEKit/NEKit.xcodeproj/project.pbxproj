@@ -285,7 +285,7 @@
 		76DE408921855A7B00F673B5 /* AEAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DE408721855A7B00F673B5 /* AEAD.m */; };
 		76DE408A21855A7B00F673B5 /* AEAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DE408721855A7B00F673B5 /* AEAD.m */; };
 		76DE408B21855A7B00F673B5 /* AEAD.h in Headers */ = {isa = PBXBuildFile; fileRef = 76DE408821855A7B00F673B5 /* AEAD.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		76DE408C21855A7B00F673B5 /* AEAD.h in Headers */ = {isa = PBXBuildFile; fileRef = 76DE408821855A7B00F673B5 /* AEAD.h */; };
+		76DE408C21855A7B00F673B5 /* AEAD.h in Headers */ = {isa = PBXBuildFile; fileRef = 76DE408821855A7B00F673B5 /* AEAD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		76FF78DB211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */; };
 		76FF78DC211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */; };
 		76FF78DE211F050200AC6B90 /* GCDUDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DD211F050100AC6B90 /* GCDUDPSocket.swift */; };
@@ -2006,6 +2006,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "NEKit-iOS/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.NEKit;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;
@@ -2039,6 +2040,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "NEKit-iOS/module.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.NEKit;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = iphoneos;

@@ -1,0 +1,6 @@
+framework module NEKit {
+  umbrella header "NEKit-iOS.h"
+
+  export *
+  module * { export * }
+}
