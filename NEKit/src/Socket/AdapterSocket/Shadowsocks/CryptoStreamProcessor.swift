@@ -127,7 +127,31 @@ extension ShadowsocksAdapter {
                     combinedKey.append(writeIV)
                     return CCCrypto(operation: .encrypt, mode: .rc4, algorithm: .rc4, initialVector: nil, key: MD5Hash.final(combinedKey))
                 }
+            case .CHACHA20IETFPOLY1305:
+                switch operation {
+                case .decrypt:
+                    return AEADCrypto(masterKey: key, salt: readIV, operation: .decrypt)
+                case .encrypt:
+                    return AEADCrypto(masterKey: key, salt: writeIV, operation: .encrypt)
+                }
             }
+        }
+    }
+}
+
+class AEADCrypto: StreamCryptoProtocol {
+    init(masterKey: Data, salt: Data, operation: CryptoOperation) {
+        cryptor = AEAD(masterKey: masterKey, salt)
+        self.operation = operation
+    }
+    let cryptor: AEAD
+    let operation: CryptoOperation
+    func update(_ data: inout Data) {
+        switch operation {
+            case .decrypt:
+                data = cryptor.decrypted(data)
+            default:
+                data = cryptor.encrypted(data)
         }
     }
 }

@@ -282,6 +282,10 @@
 		76AE7C081E23A94D00DB0251 /* HttpPingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C041E23A8C300DB0251 /* HttpPingSpec.swift */; };
 		76AE7C121E24833F00DB0251 /* SelectAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C0C1E24830200DB0251 /* SelectAdapterFactory.swift */; };
 		76AE7C131E24834000DB0251 /* SelectAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AE7C0C1E24830200DB0251 /* SelectAdapterFactory.swift */; };
+		76DE408921855A7B00F673B5 /* AEAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DE408721855A7B00F673B5 /* AEAD.m */; };
+		76DE408A21855A7B00F673B5 /* AEAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DE408721855A7B00F673B5 /* AEAD.m */; };
+		76DE408B21855A7B00F673B5 /* AEAD.h in Headers */ = {isa = PBXBuildFile; fileRef = 76DE408821855A7B00F673B5 /* AEAD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		76DE408C21855A7B00F673B5 /* AEAD.h in Headers */ = {isa = PBXBuildFile; fileRef = 76DE408821855A7B00F673B5 /* AEAD.h */; };
 		76FF78DB211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */; };
 		76FF78DC211EF97300AC6B90 /* RawUDPSocketProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */; };
 		76FF78DE211F050200AC6B90 /* GCDUDPSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FF78DD211F050100AC6B90 /* GCDUDPSocket.swift */; };
@@ -559,6 +563,8 @@
 		76AE7C041E23A8C300DB0251 /* HttpPingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpPingSpec.swift; sourceTree = "<group>"; };
 		76AE7C0C1E24830200DB0251 /* SelectAdapterFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAdapterFactory.swift; sourceTree = "<group>"; };
 		76AE7C0F1E24831600DB0251 /* SelectAdapterFactorySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectAdapterFactorySpec.swift; sourceTree = "<group>"; };
+		76DE408721855A7B00F673B5 /* AEAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAD.m; sourceTree = "<group>"; };
+		76DE408821855A7B00F673B5 /* AEAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAD.h; sourceTree = "<group>"; };
 		76FF78DA211EF97300AC6B90 /* RawUDPSocketProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawUDPSocketProtocol.swift; sourceTree = "<group>"; };
 		76FF78DD211F050100AC6B90 /* GCDUDPSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDUDPSocket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -805,6 +811,8 @@
 				3650FAF61D27D64500444E79 /* MD5Hash.swift */,
 				3650FAE41D27BA5300444E79 /* SodiumStreamCrypto.swift */,
 				3650FAE11D27BA0900444E79 /* StreamCryptoProtocol.swift */,
+				76DE408821855A7B00F673B5 /* AEAD.h */,
+				76DE408721855A7B00F673B5 /* AEAD.m */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -1103,6 +1111,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DE408B21855A7B00F673B5 /* AEAD.h in Headers */,
 				36463A341CDCD5EB0040579C /* NEKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1111,6 +1120,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DE408C21855A7B00F673B5 /* AEAD.h in Headers */,
 				36C48D501CF88DED0071804F /* NEKit-iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1237,7 +1247,7 @@
 					};
 					36463A2F1CDCD5EB0040579C = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					36A719971D5EEB4900DC35F5 = {
@@ -1246,7 +1256,7 @@
 					};
 					36C48D4C1CF88DED0071804F = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1421,6 +1431,7 @@
 				366EB5B91CDE150C00E0E942 /* ServerAdapterFactory.swift in Sources */,
 				36C63DF91D001FDA00A00CA2 /* IPPacket.swift in Sources */,
 				36C48DAC1CF9D6580071804F /* DNSEnums.swift in Sources */,
+				76DE408921855A7B00F673B5 /* AEAD.m in Sources */,
 				3664F0C01CE30957008BA6D8 /* StreamScanner.swift in Sources */,
 				36411A591D13988A005F4108 /* GCDHTTPProxyServer.swift in Sources */,
 				7610690820E8ADA300DD6350 /* Historian.swift in Sources */,
@@ -1539,6 +1550,7 @@
 				36B8936F1E17F97600881890 /* ResponseGenerator.swift in Sources */,
 				36C48D571CF88EB60071804F /* AdapterFactory.swift in Sources */,
 				36C63DFA1D001FDA00A00CA2 /* IPPacket.swift in Sources */,
+				76DE408A21855A7B00F673B5 /* AEAD.m in Sources */,
 				36C48DAD1CF9D6580071804F /* DNSEnums.swift in Sources */,
 				7610690920E8ADA300DD6350 /* Historian.swift in Sources */,
 				36411A5A1D13988A005F4108 /* GCDHTTPProxyServer.swift in Sources */,
@@ -1886,6 +1898,11 @@
 				INFOPLIST_FILE = "NEKit-macOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "-I/usr/local/opt/mbedtls/include/";
+				OTHER_LDFLAGS = (
+					"-lmbedcrypto",
+					"-L/usr/local/opt/mbedtls/lib/",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.NEKit;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
@@ -1915,6 +1932,11 @@
 				INFOPLIST_FILE = "NEKit-macOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "-I/usr/local/opt/mbedtls/include/";
+				OTHER_LDFLAGS = (
+					"-lmbedcrypto",
+					"-L/usr/local/opt/mbedtls/lib/",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = me.zhuhaow.NEKit;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;

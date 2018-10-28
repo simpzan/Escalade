@@ -187,6 +187,8 @@
 		76DD9F8421047F550045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
 		76DD9F8821049FE30045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
 		76DD9F8921049FE40045D69E /* ICMPForwarder.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DD9F8221047F550045D69E /* ICMPForwarder.m */; };
+		76DE407C218552FA00F673B5 /* SSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DE407B218552FA00F673B5 /* SSTests.swift */; };
+		76DE407D218552FA00F673B5 /* SSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DE407B218552FA00F673B5 /* SSTests.swift */; };
 		76DF1D6C1E6C172F0041646A /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D51E6C11FC00C35C83 /* CocoaAsyncSocket.framework */; };
 		76DF1D6D1E6C172F0041646A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D61E6C11FC00C35C83 /* CocoaLumberjack.framework */; };
 		76DF1D6E1E6C172F0041646A /* CocoaLumberjackSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76A184D71E6C11FC00C35C83 /* CocoaLumberjackSwift.framework */; };
@@ -524,6 +526,7 @@
 		76DD9F8221047F550045D69E /* ICMPForwarder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ICMPForwarder.m; sourceTree = "<group>"; };
 		76DDBBE720B2EB57003AE2EF /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		76DDBBE820B2EB57003AE2EF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		76DE407B218552FA00F673B5 /* SSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSTests.swift; sourceTree = "<group>"; };
 		76F288A920A7D56900CA9A0D /* FileBrowser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FileBrowser.framework; path = Carthage/Build/iOS/FileBrowser.framework; sourceTree = "<group>"; };
 		78F4FB0816A48622B5533811 /* Pods_ListPort.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ListPort.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		878E7EB8FB8B29671761B222 /* Pods-ListPort.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ListPort.release.xcconfig"; path = "Pods/Target Support Files/Pods-ListPort/Pods-ListPort.release.xcconfig"; sourceTree = "<group>"; };
@@ -725,6 +728,7 @@
 				7615246F21204B9F00F1A38B /* VpnTests.swift */,
 				7615248A212051AF00F1A38B /* NetworkTests.swift */,
 				768BD8BE211DD6CB005ECFFF /* SocketTestHelpers.swift */,
+				76DE407B218552FA00F673B5 /* SSTests.swift */,
 				762FED28211DB70A003B1872 /* Info.plist */,
 			);
 			path = EscaladeTests;
@@ -1626,6 +1630,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7615248C212051AF00F1A38B /* NetworkTests.swift in Sources */,
+				76DE407D218552FA00F673B5 /* SSTests.swift in Sources */,
 				7615247E21204DAB00F1A38B /* VpnTests.swift in Sources */,
 				7615247C21204DA400F1A38B /* SocketTestHelpers.swift in Sources */,
 			);
@@ -1644,6 +1649,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7615248B212051AF00F1A38B /* NetworkTests.swift in Sources */,
+				76DE407C218552FA00F673B5 /* SSTests.swift in Sources */,
 				7615247321204B9F00F1A38B /* VpnTests.swift in Sources */,
 				768BD8BF211DD6CB005ECFFF /* SocketTestHelpers.swift in Sources */,
 			);
