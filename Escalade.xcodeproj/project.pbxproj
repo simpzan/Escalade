@@ -88,6 +88,10 @@
 		76841E9A1E50603B00685B0F /* EscaladeLaunchHelper-macOS.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 76841E821E505EA300685B0F /* EscaladeLaunchHelper-macOS.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		76841E9C1E5060DE00685B0F /* AutoLaunchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */; };
 		7684C9FF2125BC11003DE5A6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A416111E4F4A7B003C2CE2 /* Reachability.swift */; };
+		768A3D6421984D90002168A9 /* EscaladeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A3D6321984D90002168A9 /* EscaladeService.swift */; };
+		768A3D6521984D90002168A9 /* EscaladeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A3D6321984D90002168A9 /* EscaladeService.swift */; };
+		768A3D6621984D90002168A9 /* EscaladeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A3D6321984D90002168A9 /* EscaladeService.swift */; };
+		768A3D6721984D90002168A9 /* EscaladeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768A3D6321984D90002168A9 /* EscaladeService.swift */; };
 		768BD8BF211DD6CB005ECFFF /* SocketTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768BD8BE211DD6CB005ECFFF /* SocketTestHelpers.swift */; };
 		768D4A1D1E4B4DF900B73E10 /* NEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A0E1E4B4AB900B73E10 /* NEKit.framework */; };
 		768D4A281E4B4E8B00B73E10 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */; };
@@ -470,6 +474,7 @@
 		76841E8D1E505EA300685B0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		76841E8F1E505EA300685B0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76841E9B1E5060DE00685B0F /* AutoLaunchHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoLaunchHelper.swift; sourceTree = "<group>"; };
+		768A3D6321984D90002168A9 /* EscaladeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscaladeService.swift; sourceTree = "<group>"; };
 		768BD8BE211DD6CB005ECFFF /* SocketTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketTestHelpers.swift; sourceTree = "<group>"; };
 		768D4A051E4B4AB900B73E10 /* NEKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NEKit.xcodeproj; path = NEKit/NEKit.xcodeproj; sourceTree = "<group>"; };
 		768D4A1F1E4B4E8B00B73E10 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/Mac/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
@@ -853,6 +858,7 @@
 				76107EC51E7D9BD800BC5E6F /* VPNManager.swift */,
 				7679B6901E7E601500477755 /* API.swift */,
 				7679B6A41E7E715400477755 /* RPC.swift */,
+				768A3D6321984D90002168A9 /* EscaladeService.swift */,
 				769C46DB20FB4665002DC6FF /* DirectDomain.rule */,
 				769C46E020FB4696002DC6FF /* ProxyDomain.rule */,
 				76DD9F8121047F550045D69E /* ICMPForwarder.h */,
@@ -1668,6 +1674,7 @@
 				76312ABB1E6BEE7C000B66C9 /* ViewController.swift in Sources */,
 				761068EF20E8932800DD6350 /* ProxyServerManager.swift in Sources */,
 				76D5C68220B71B5900D9C1BD /* Repeater.swift in Sources */,
+				768A3D6621984D90002168A9 /* EscaladeService.swift in Sources */,
 				761068F820E893A400DD6350 /* Utils.m in Sources */,
 				7636464D20E874E000F303EF /* HostEndpoint.m in Sources */,
 				76CC643B20F07DA100DFE4E7 /* ListPortProxy.m in Sources */,
@@ -1720,6 +1727,7 @@
 				768FB8F7210E1FC900E90A1D /* TrafficMonitor.swift in Sources */,
 				768FB8F9210E1FDF00E90A1D /* ListPortProxy.m in Sources */,
 				766B69F2211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */,
+				768A3D6521984D90002168A9 /* EscaladeService.swift in Sources */,
 				76B711EF20270F080020895A /* ProxyServerManager.swift in Sources */,
 				76DD9F8321047F550045D69E /* ICMPForwarder.m in Sources */,
 				768FB8F2210E1F8800E90A1D /* ServersPersistence.swift in Sources */,
@@ -1742,6 +1750,7 @@
 				76B08C621E7D4A7800E6146E /* ProxyService.swift in Sources */,
 				763E5DD1211880C20025F15E /* Log.swift in Sources */,
 				768FB8F6210E1F8900E90A1D /* ServersPersistence.swift in Sources */,
+				768A3D6421984D90002168A9 /* EscaladeService.swift in Sources */,
 				76B08C3E1E7D3B7800E6146E /* TUNController.swift in Sources */,
 				76D5C68020B71B5900D9C1BD /* Repeater.swift in Sources */,
 				76B08C351E7CF84D00E6146E /* ProxyServerManager.swift in Sources */,
@@ -1785,6 +1794,7 @@
 				76CA41902090B5DE008D2556 /* Log.m in Sources */,
 				760C97F1208C5CFA00EBDB8A /* PacketTranslator.m in Sources */,
 				76CC643C20F07DA100DFE4E7 /* ListPortProxy.m in Sources */,
+				768A3D6721984D90002168A9 /* EscaladeService.swift in Sources */,
 				766B69F3211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */,
 				7642ED592094ADB7002DBA3C /* ConnectivityManager.m in Sources */,
 				763D3EA720DF90C80073C1E9 /* ServersPersistence.swift in Sources */,
