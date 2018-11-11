@@ -488,7 +488,6 @@
 		76A416111E4F4A7B003C2CE2 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		76A85A43202715B400F532BE /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		76B08C1F1E7CF73700E6146E /* UtilsCocoa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsCocoa.swift; sourceTree = "<group>"; };
-		76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationManager.swift; sourceTree = "<group>"; };
 		76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProxyServerManager.swift; sourceTree = "<group>"; };
 		76B08C301E7CF84D00E6146E /* ServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerController.swift; sourceTree = "<group>"; };
 		76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrafficMonitor.swift; sourceTree = "<group>"; };
@@ -777,6 +776,23 @@
 			path = "EscaladeLaunchHelper-macOS";
 			sourceTree = "<group>";
 		};
+		768A3D6221982F41002168A9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				76B08C321E7CF84D00E6146E /* Utils.swift */,
+				7642ED562094ADB7002DBA3C /* ConnectivityManager.h */,
+				7642ED572094ADB7002DBA3C /* ConnectivityManager.m */,
+				76CA418B2090B5DD008D2556 /* Log.h */,
+				76CA418C2090B5DD008D2556 /* Log.m */,
+				763E5DD0211880C20025F15E /* Log.swift */,
+				76D5C67C20B71B5900D9C1BD /* Repeater.swift */,
+				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
+				7656510C2091FB8C00D59160 /* NetworkTests.h */,
+				7656510B2091FB8C00D59160 /* NetworkTests.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		768D4A061E4B4AB900B73E10 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,31 +842,21 @@
 		76B08C2D1E7CF84D00E6146E /* Escalade */ = {
 			isa = PBXGroup;
 			children = (
+				768A3D6221982F41002168A9 /* Utilities */,
 				760C97F9208C675C00EBDB8A /* NAT */,
 				76B08C611E7D4A7800E6146E /* ProxyService.swift */,
-				763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */,
-				76B08C2E1E7CF84D00E6146E /* ConfigurationManager.swift */,
-				76B08C3D1E7D3B7800E6146E /* TUNController.swift */,
 				76B08C2F1E7CF84D00E6146E /* ProxyServerManager.swift */,
+				76B08C3D1E7D3B7800E6146E /* TUNController.swift */,
 				76B08C301E7CF84D00E6146E /* ServerController.swift */,
+				763D3EA520DF90C80073C1E9 /* ServersPersistence.swift */,
 				76B08C311E7CF84D00E6146E /* TrafficMonitor.swift */,
-				76B08C321E7CF84D00E6146E /* Utils.swift */,
 				76107EC51E7D9BD800BC5E6F /* VPNManager.swift */,
 				7679B6901E7E601500477755 /* API.swift */,
 				7679B6A41E7E715400477755 /* RPC.swift */,
-				76CA418B2090B5DD008D2556 /* Log.h */,
-				76CA418C2090B5DD008D2556 /* Log.m */,
-				763E5DD0211880C20025F15E /* Log.swift */,
-				7656510C2091FB8C00D59160 /* NetworkTests.h */,
-				7656510B2091FB8C00D59160 /* NetworkTests.m */,
-				7642ED562094ADB7002DBA3C /* ConnectivityManager.h */,
-				7642ED572094ADB7002DBA3C /* ConnectivityManager.m */,
-				76D5C67C20B71B5900D9C1BD /* Repeater.swift */,
 				769C46DB20FB4665002DC6FF /* DirectDomain.rule */,
 				769C46E020FB4696002DC6FF /* ProxyDomain.rule */,
 				76DD9F8121047F550045D69E /* ICMPForwarder.h */,
 				76DD9F8221047F550045D69E /* ICMPForwarder.m */,
-				76A416111E4F4A7B003C2CE2 /* Reachability.swift */,
 			);
 			path = Escalade;
 			sourceTree = "<group>";
