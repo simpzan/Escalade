@@ -18,7 +18,8 @@ class ProxyService {
     var running = false;
 
     init?(provider: NEPacketTunnelProvider? = nil, defaults: UserDefaults = .standard) {
-        proxyManager = ProxyServerManager()
+        let host = provider != nil ? interfaceIp : "127.0.0.1"
+        proxyManager = ProxyServerManager(host: host, thePort: 19990)
 
         guard let adapterFactoryManager = createAdapterFactoryManager() else {
             DDLogError("failed to load servers.")
@@ -72,6 +73,11 @@ class ProxyService {
     private let queue = DispatchQueue(label: "com.simpzan.Escalade.ProxyServiceQueue")
     typealias ProxyServiceCallback = (Error?) -> Void
     public func start(callback: ProxyServiceCallback? = nil) {
+        if _provider == nil {
+            self.queue.sync { self._start() }
+            callback?(nil)
+            return
+        }
         _provider?.setTunnelNetworkSettings(tunController?.getTunnelSettings()) { (error) in
             if let err = error {
                 DDLogError("setTunnelNetworkSettings failed, \(err).")
@@ -83,6 +89,7 @@ class ProxyService {
     }
     public func stop(callback: ProxyServiceCallback? = nil) {
         queue.sync { self._stop() }
+        if _provider == nil { callback?(nil) }
         _provider?.setTunnelNetworkSettings(nil) { (error) in
             callback?(error)
         }

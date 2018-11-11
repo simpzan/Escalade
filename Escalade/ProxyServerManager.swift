@@ -24,8 +24,9 @@ class ProxyServerManager: NSObject {
         return 0.5
     }
     
-    public init(thePort: UInt16 = 0) {
-        if thePort > 0 { port = thePort }
+    public init(host: String, thePort: UInt16) {
+        address = host
+        port = thePort
         let addr = IPAddress(fromString: address)
         socks5Server = NATProxyServer(address: addr, port: NEKit.Port(port: port))
         socks5Server?.delayFunc = delayFunc
@@ -40,9 +41,8 @@ class ProxyServerManager: NSObject {
     }
     var publicHttpProxyServer: GCDHTTPProxyServer? = nil
 
-    public var port: UInt16 = 19990
-
-    public let address: String = interfaceIp
+    public var port: UInt16
+    public let address: String
 
     public let socks5Server: GCDProxyServer?
     public let httpServer: GCDHTTPProxyServer?
