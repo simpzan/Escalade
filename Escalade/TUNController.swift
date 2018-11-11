@@ -34,8 +34,8 @@ class TUNController {
         PacketTranslator.setInstance(nat)
         interface.register(stack: nat!)
         
-        let icmp = ICMPForwarder()
-        interface.register(stack: icmp)
+//        let icmp = ICMPForwarder()
+//        interface.register(stack: icmp)
 //        let tcpStack = TCPStack.stack
 //        tcpStack.proxyServer = httpProxyServer
 //        interface.register(stack: tcpStack)
