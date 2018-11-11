@@ -17,8 +17,13 @@ class ProxyService {
     var tunController: TUNController? = nil
     var running = false;
 
-    init(adapterFactoryManager: AdapterFactoryManager, provider: NEPacketTunnelProvider? = nil, defaults: UserDefaults = .standard) {
+    init?(provider: NEPacketTunnelProvider? = nil, defaults: UserDefaults = .standard) {
         proxyManager = ProxyServerManager()
+
+        guard let adapterFactoryManager = createAdapterFactoryManager() else {
+            DDLogError("failed to load servers.")
+            return nil
+        }
 
         let factory = adapterFactoryManager.selectFactory
         serverController = ServerController(selectFactory: factory, defaults: defaults)

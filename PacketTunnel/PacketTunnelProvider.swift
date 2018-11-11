@@ -16,12 +16,8 @@ var crashlyticsInitialized = false
 
 class PacketTunnelProvider: NEPacketTunnelProvider {
     private lazy var proxyService: ProxyService? = {
-        guard let adapterFactoryManager = createAdapterFactoryManager() else {
-            DDLogError("failed to load servers.")
-            return nil
-        }
-        let service = ProxyService(adapterFactoryManager: adapterFactoryManager, provider: self, defaults: defaults)
-        DDLogInfo("loaded servers \(service.serverController.servers)")
+        let service = ProxyService(provider: self, defaults: defaults)
+        DDLogInfo("loaded servers \(service?.serverController.servers)")
         return service
     }()
     lazy var api: APIServer? = {
