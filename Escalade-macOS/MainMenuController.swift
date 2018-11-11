@@ -120,7 +120,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         guard autoSelectItem.isEnabled else { return }
         autoSelectItem.isEnabled = false
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
-        api.autoSelect { (result) in
+        service.autoSelect { (result) in
             self.servers = result
             let selected = result.first!
             let text = "auto selected \(selected.0)(\(selected.1))"
@@ -129,12 +129,12 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
             self.autoSelectItem.isEnabled = true
         }
     }
-    let api = APIClient.shared
+
     @objc func serverClicked(sender: NSMenuItem) {
         let server = sender.representedObject as! String
         saveDefaults(key: currentServerKey, value: server)
         if service.isProxyRunning {
-            let result = api.switchServer(server: server)
+            let result = service.setCurrentServer(server: server)
             DDLogInfo("switch server result: \(result)")
         }
         updateServerList()
@@ -194,11 +194,11 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         
         var direct: Double = 0
         var proxy: Double = 0
-        api.pingDirect { (result) in
+        service.pingDirect { (result) in
             direct = result ?? -1
             showResult()
         }
-        api.pingProxy { (result) in
+        service.pingProxy { (result) in
             proxy = result ?? -1
             showResult()
         }
@@ -218,7 +218,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     // MARK: -
 
     @IBAction func showLogClicked(_ sender: Any) {
-        if let logfile = api.getTunnelLogFile() {
+        if let logfile = getLogFilePath() {
             _ = runCommand(path: "/usr/bin/env", args: ["open", "-a", "Console", logfile])
         }
     }
@@ -238,20 +238,20 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     let launchHelper = AutoLaunchHelper(identifier: "com.simpzan.Escalade.macOS.LaunchHelper")
 
     @IBAction func debugModeClicked(_ sender: Any) {
-        api.toggleVerboseLogging()
+//        api.toggleVerboseLogging()
         updateDebugModeItem()
     }
     private func updateDebugModeItem() {
-        debugModeItem.state = api.isVerboseLoggingEnabled() ? .on : .off
+//        debugModeItem.state = api.isVerboseLoggingEnabled() ? .on : .off
     }
     @IBOutlet weak var debugModeItem: NSMenuItem!
     
     private func updateShareProxyItem() {
-        shareProxyItem.state = api.getShareProxyInfo() != nil ? .on : .off
+        shareProxyItem.state = service.getSharedProxy() != nil ? .on : .off
     }
     @IBAction func shareProxyClicked(_ sender: Any) {
         let newState = shareProxyItem.state == .off
-        api.setShareProxyState(state: newState)
+        service.setSharedProxy(state: newState)
         updateShareProxyItem()
     }
     @IBOutlet weak var shareProxyItem: NSMenuItem!
