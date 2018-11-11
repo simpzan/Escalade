@@ -34,7 +34,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         updateStartAtLoginItem()
 
         connectionChanged()
-        manager.monitorStatus { (_) in
+        service.listenProxyStateChange { (state) in
             self.connectionChanged()
         }
         listenReachabilityChange()
@@ -67,21 +67,28 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
     // MARK: -
     func connectionChanged() {
-        let enabled = manager.status == .connected
+        let enabled = service.isProxyRunning
         NSLog("update system proxy state to \(enabled)")
         statusItem.button?.appearsDisabled = !enabled
         systemProxyItem.state = enabled ? .on : .off
     }
     @IBOutlet weak var systemProxyItem: NSMenuItem!
     @IBAction func systemProxyClicked(_ sender: Any) {
-        if manager.connected {
-            manager.stopVPN()
+        if service.isProxyRunning {
+            service.stopProxy { (err) in
+                if let error = err { DDLogError("stopProxy error, \(error)") }
+            }
         } else {
-            manager.startVPN()
+            service.startProxy { (err) in
+                if let error = err { DDLogError("startProxy error, \(error)") }
+            }
         }
     }
-    let manager = VPNManager.shared
 
+    private lazy var service: EscaladeService = {
+        return createEscaladeService()
+    }()
+    
     // MARK: - configurations
     @IBAction func importConfigClicked(_ sender: Any) {
         importConfigFile()
@@ -100,14 +107,16 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         NotificationCenter.default.post(name: serversUpdatedNotification, object: nil)
         loadServerList()
         sendNotification(title: "import done", text: "")
-        if manager.connected { manager.stopVPN() }
+        service.stopProxy { (err) in
+            if let error = err { DDLogError("stopProxy error, \(error)") }
+        }
     }
 
     // MARK: - servers
     private var servers = [(String, String)]()
     @IBOutlet weak var autoSelectItem: NSMenuItem!
     @objc @IBAction func autoSelectClicked(_ sender: Any?) {
-        guard manager.connected else { return }
+        guard service.isProxyRunning else { return }
         guard autoSelectItem.isEnabled else { return }
         autoSelectItem.isEnabled = false
         sendNotification(title: "Servers Testing Started", text: "It will finish in 4 seconds.")
@@ -124,7 +133,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     @objc func serverClicked(sender: NSMenuItem) {
         let server = sender.representedObject as! String
         saveDefaults(key: currentServerKey, value: server)
-        if manager.connected {
+        if service.isProxyRunning {
             let result = api.switchServer(server: server)
             DDLogInfo("switch server result: \(result)")
         }
@@ -178,7 +187,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var connectivityItem: NSMenuItem!
 
     func connectivityTest() {
-        guard manager.connected else {
+        guard service.isProxyRunning else {
             connectivityItem.title = "VPN disabled"
             return
         }
