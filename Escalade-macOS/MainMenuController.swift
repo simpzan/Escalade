@@ -38,7 +38,12 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
             self.connectionChanged()
         }
         listenReachabilityChange()
-        
+
+        systemProxyController.port = 19990
+        systemProxyController.startMonitor { (state) in
+            self.connectionChanged()
+        }
+
         updateServerList()
         updateDebugModeItem()
         updateShareProxyItem()
@@ -83,6 +88,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
             }
         }
     }
+    private let systemProxyController = SystemProxyController()
 
     private lazy var service: EscaladeService = {
         return createEscaladeService()
