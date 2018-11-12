@@ -19,7 +19,7 @@ class ProxyService {
 
     init?(provider: NEPacketTunnelProvider? = nil, defaults: UserDefaults = .standard) {
         let host = provider != nil ? interfaceIp : "127.0.0.1"
-        proxyManager = ProxyServerManager(host: host, thePort: 19990)
+        proxyManager = ProxyServerManager(host: host, thePort: listeningPort)
 
         guard let adapterFactoryManager = createAdapterFactoryManager() else {
             DDLogError("failed to load servers.")
