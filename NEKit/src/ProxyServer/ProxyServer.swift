@@ -123,7 +123,11 @@ open class ProxyServer: NSObject, TunnelDelegate {
     public typealias DelayFunc = () -> TimeInterval
     public var delayFunc: DelayFunc? = nil
     func shouldDelay(_ tunnel: Tunnel) -> TimeInterval {
+    #if os(iOS)
         return delayFunc?() ?? 0
+    #else
+        return 0
+    #endif
     }
     
     public func dump() -> [ConnectionRecord] {
