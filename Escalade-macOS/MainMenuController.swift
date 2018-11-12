@@ -44,6 +44,10 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
             self.connectionChanged()
         }
 
+        service.startProxy { (err) in
+            if let error = err { DDLogError("startProxy error, \(error)") }
+        }
+
         updateServerList()
         updateDebugModeItem()
         updateShareProxyItem()
@@ -71,22 +75,14 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
 
     // MARK: -
     func connectionChanged() {
-        let enabled = service.isProxyRunning
+        let enabled = systemProxyController.enabled
         NSLog("update system proxy state to \(enabled)")
         statusItem.button?.appearsDisabled = !enabled
         systemProxyItem.state = enabled ? .on : .off
     }
     @IBOutlet weak var systemProxyItem: NSMenuItem!
     @IBAction func systemProxyClicked(_ sender: Any) {
-        if service.isProxyRunning {
-            service.stopProxy { (err) in
-                if let error = err { DDLogError("stopProxy error, \(error)") }
-            }
-        } else {
-            service.startProxy { (err) in
-                if let error = err { DDLogError("startProxy error, \(error)") }
-            }
-        }
+        systemProxyController.enabled = !systemProxyController.enabled
     }
     private let systemProxyController = SystemProxyController()
 
