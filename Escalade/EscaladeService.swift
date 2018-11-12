@@ -24,9 +24,22 @@ public protocol EscaladeService {
     
     func pingDirect(callback: @escaping (Double?) -> Void)
     func pingProxy(callback: @escaping (Double?) -> Void)
+    
+    func startUpdate(callback: @escaping (Int, Int) -> Void)
+    func stopUpdate()
+
 }
 
 private class LocalEscaladeService: EscaladeService {
+
+    func stopUpdate() {
+        TrafficMonitor.shared.stopUpdate()
+    }
+    
+    func startUpdate(callback: @escaping (Int, Int) -> Void) {
+        TrafficMonitor.shared.startUpdate(callback: callback)
+    }
+    
     func getSharedProxy() -> String? {
         let result = service?.proxyManager.getSharedProxyState()
         return result

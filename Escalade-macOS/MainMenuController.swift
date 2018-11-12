@@ -54,14 +54,13 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         if !reachability.isReachable { return }
 
         connectivityTest()
-        trafficMonitor.startUpdate { rx, tx in
+        service.startUpdate { rx, tx in
             self.networkTrafficItem.title = "⬇︎ \(readableSize(rx))/s, ⬆︎ \(readableSize(tx))/s"
         }
     }
     func menuDidClose(_ menu: NSMenu) {
-        trafficMonitor.stopUpdate()
+        service.stopUpdate()
     }
-    let trafficMonitor = TrafficMonitorClient()
     @IBOutlet weak var networkTrafficItem: NSMenuItem!
 
 
