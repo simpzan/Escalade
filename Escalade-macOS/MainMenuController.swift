@@ -40,6 +40,7 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
         listenReachabilityChange()
 
         systemProxyController.port = listeningPort
+        systemProxyController.load()
         systemProxyController.startMonitor { (state) in
             self.connectionChanged()
         }
