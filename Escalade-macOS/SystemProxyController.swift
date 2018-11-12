@@ -10,8 +10,25 @@ import Cocoa
 import SystemConfiguration
 import CocoaLumberjackSwift
 
+func appDataDirectory() -> String {
+    let fm = FileManager.default
+    let appSupportDir = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+    let path = appSupportDir.appendingPathComponent("Escalade", isDirectory: true).relativePath
+
+    var isDir: ObjCBool = false
+    let exist = fm.fileExists(atPath: path, isDirectory: &isDir)
+    if exist && !isDir.boolValue {
+        try! fm.removeItem(atPath: path)
+        try! fm.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+    }
+    if !exist {
+        try! fm.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+    }
+    return path
+}
+
 class SystemProxyController {
-    public init(configDir: String) {
+    public init(configDir: String = appDataDirectory()) {
         toolPath = "\(configDir)/SystemProxyConfig"
     }
 
