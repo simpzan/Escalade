@@ -73,6 +73,10 @@
 		7656510E2091FB8D00D59160 /* NetworkTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7656510B2091FB8C00D59160 /* NetworkTests.m */; };
 		7656511E209360EF00D59160 /* UIViewController+ActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 76565112209360EE00D59160 /* UIViewController+ActionSheet.m */; };
 		765C83CB209F334800A13EC9 /* NEKit.framework in Embed NEKit */ = {isa = PBXBuildFile; fileRef = 768D4A101E4B4AB900B73E10 /* NEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7666457C2199BDB900BAD611 /* DirectIPs.rule in Resources */ = {isa = PBXBuildFile; fileRef = 766645782199BDB900BAD611 /* DirectIPs.rule */; };
+		7666457D2199BDB900BAD611 /* DirectIPs.rule in Resources */ = {isa = PBXBuildFile; fileRef = 766645782199BDB900BAD611 /* DirectIPs.rule */; };
+		7666457E2199BDB900BAD611 /* DirectIPs.rule in Resources */ = {isa = PBXBuildFile; fileRef = 766645782199BDB900BAD611 /* DirectIPs.rule */; };
+		7666457F2199BDB900BAD611 /* DirectIPs.rule in Resources */ = {isa = PBXBuildFile; fileRef = 766645782199BDB900BAD611 /* DirectIPs.rule */; };
 		766B69F2211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B69F0211089AB0025E1E0 /* PacketTunnelProvider.swift */; };
 		766B69F3211089AB0025E1E0 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766B69F0211089AB0025E1E0 /* PacketTunnelProvider.swift */; };
 		7673035520E787EE000087E3 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7673034C20E749FF000087E3 /* DashboardViewController.swift */; };
@@ -461,6 +465,7 @@
 		76565112209360EE00D59160 /* UIViewController+ActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ActionSheet.m"; sourceTree = "<group>"; };
 		7656511D209360EE00D59160 /* UIViewController+ActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ActionSheet.h"; sourceTree = "<group>"; };
 		765C83C5209F0DF100A13EC9 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = NEKit/Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		766645782199BDB900BAD611 /* DirectIPs.rule */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DirectIPs.rule; sourceTree = "<group>"; };
 		766B69F0211089AB0025E1E0 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		766B69F1211089AB0025E1E0 /* PacketTunnel-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PacketTunnel-Bridging-Header.h"; sourceTree = "<group>"; };
 		7673034C20E749FF000087E3 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -861,6 +866,7 @@
 				768A3D6321984D90002168A9 /* EscaladeService.swift */,
 				769C46DB20FB4665002DC6FF /* DirectDomain.rule */,
 				769C46E020FB4696002DC6FF /* ProxyDomain.rule */,
+				766645782199BDB900BAD611 /* DirectIPs.rule */,
 				76DD9F8121047F550045D69E /* ICMPForwarder.h */,
 				76DD9F8221047F550045D69E /* ICMPForwarder.m */,
 			);
@@ -1330,6 +1336,7 @@
 			files = (
 				76312AC31E6BEE7C000B66C9 /* LaunchScreen.storyboard in Resources */,
 				76312AC01E6BEE7C000B66C9 /* Assets.xcassets in Resources */,
+				7666457E2199BDB900BAD611 /* DirectIPs.rule in Resources */,
 				769C46DE20FB4665002DC6FF /* DirectDomain.rule in Resources */,
 				76312ABE1E6BEE7C000B66C9 /* Main.storyboard in Resources */,
 				769C46E320FB4696002DC6FF /* ProxyDomain.rule in Resources */,
@@ -1351,6 +1358,7 @@
 			files = (
 				769C46E220FB4696002DC6FF /* ProxyDomain.rule in Resources */,
 				769C46DD20FB4665002DC6FF /* DirectDomain.rule in Resources */,
+				7666457D2199BDB900BAD611 /* DirectIPs.rule in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1360,6 +1368,7 @@
 			files = (
 				764185501E506C13003C7FFC /* dsa_pub.pem in Resources */,
 				769C46DC20FB4665002DC6FF /* DirectDomain.rule in Resources */,
+				7666457C2199BDB900BAD611 /* DirectIPs.rule in Resources */,
 				76C493611E4A0AA200A0D066 /* Assets.xcassets in Resources */,
 				769C46E120FB4696002DC6FF /* ProxyDomain.rule in Resources */,
 				76C493641E4A0AA200A0D066 /* MainMenu.xib in Resources */,
@@ -1372,6 +1381,7 @@
 			files = (
 				769C46E420FB4696002DC6FF /* ProxyDomain.rule in Resources */,
 				769C46DF20FB4665002DC6FF /* DirectDomain.rule in Resources */,
+				7666457F2199BDB900BAD611 /* DirectIPs.rule in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

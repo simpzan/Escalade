@@ -53,6 +53,20 @@ class ProxyService {
             return nil
         }
     }
+    private func createIPRule(ruleFile: String, adapter: AdapterFactory) -> Rule? {
+        do {
+            let filepath = Bundle.main.path(forResource: ruleFile, ofType: "rule")!
+            let content = try String(contentsOfFile: filepath)
+            var ranges = content.components(separatedBy: CharacterSet.newlines)
+            ranges = ranges.filter {
+                !$0.isEmpty
+            }
+            return try IPRangeListRule(adapterFactory: adapter, ranges: ranges)
+        } catch let error {
+            DDLogError("Encounter error when parse IP range rule list file. \(error)")
+            return nil
+        }
+    }
     private func createDefaultRules(adapterFactoryManager: AdapterFactoryManager) -> RuleManager {
         var rules: [Rule] = []
         if let directRule = createDomainRule(ruleFile: "DirectDomain", adapter: adapterFactoryManager["direct"]!) {
@@ -60,6 +74,9 @@ class ProxyService {
         }
         if let proxyRule = createDomainRule(ruleFile: "ProxyDomain", adapter: adapterFactoryManager["proxy"]!) {
             rules.append(proxyRule)
+        }
+        if let ipRule = createIPRule(ruleFile: "DirectIPs", adapter: adapterFactoryManager["direct"]!) {
+            rules.append(ipRule)
         }
         let chinaRule = CountryRule(countryCode: "CN", match: true, adapterFactory: adapterFactoryManager["direct"]!)
         rules.append(chinaRule)
