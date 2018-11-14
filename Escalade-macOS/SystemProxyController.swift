@@ -144,7 +144,6 @@ class SystemProxyController {
         let state = enable ? "enable" : "disable"
         let args = [String(port), state]
         let out = runCommand(path: toolPath, args: args)
-        print(out)
     }
 
     public func needInstall() -> Bool {
@@ -157,6 +156,9 @@ class SystemProxyController {
         let installerPath = "\(Bundle.main.resourcePath!)/SystemProxyConfigInstaller.sh"
         let source = "do shell script \"bash \(installerPath)\" with administrator privileges"
         let appleScript = NSAppleScript(source: source)
-        return appleScript?.executeAndReturnError(nil) != nil
+        var info: NSDictionary? = nil
+        let result = appleScript?.executeAndReturnError(&info) != nil
+        if info != nil { DDLogError("install SystemProxyConfig failed, \(info!)") }
+        return result
     }
 }
