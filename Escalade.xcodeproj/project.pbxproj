@@ -10,6 +10,8 @@
 		436072DCF20FF6CDE24E67A6 /* Pods_Escalade_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E4C31A14D14BB140959F43 /* Pods_Escalade_macOS.framework */; };
 		4B77D6A7143A0355FC1969AE /* Pods_Escalade_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD110DF45973D1279335EB4 /* Pods_Escalade_iOS.framework */; };
 		651329BF4B4898F726366AB3 /* Pods_PacketTunnel_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2A2D298937352F0F3E71958 /* Pods_PacketTunnel_iOS.framework */; };
+		76064E5A219C5C3900E5791C /* SystemProxyConfig in Resources */ = {isa = PBXBuildFile; fileRef = 76277F161E4CF5D3006C06A6 /* SystemProxyConfig */; };
+		76064E5B219C5C3D00E5791C /* SystemProxyConfigInstaller.sh in Resources */ = {isa = PBXBuildFile; fileRef = 76DCB6ED1E4DDF8800C48901 /* SystemProxyConfigInstaller.sh */; };
 		760C97F0208C5CFA00EBDB8A /* PacketTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C97EF208C5CFA00EBDB8A /* PacketTranslator.m */; };
 		760C97F1208C5CFA00EBDB8A /* PacketTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C97EF208C5CFA00EBDB8A /* PacketTranslator.m */; };
 		760C97FC208C683200EBDB8A /* TCPPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 760C97FB208C683200EBDB8A /* TCPPacket.m */; };
@@ -211,6 +213,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		76064E55219C5C3100E5791C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76277F151E4CF5D3006C06A6;
+			remoteInfo = SystemProxyConfig;
+		};
 		7615244921200D5300F1A38B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 76C493511E4A0A8C00A0D066 /* Project object */;
@@ -1124,6 +1133,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				76064E56219C5C3100E5791C /* PBXTargetDependency */,
 				76841E981E50602000685B0F /* PBXTargetDependency */,
 				768D4A1C1E4B4DF000B73E10 /* PBXTargetDependency */,
 				76B711D12027059F0020895A /* PBXTargetDependency */,
@@ -1366,6 +1376,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76064E5B219C5C3D00E5791C /* SystemProxyConfigInstaller.sh in Resources */,
+				76064E5A219C5C3900E5791C /* SystemProxyConfig in Resources */,
 				764185501E506C13003C7FFC /* dsa_pub.pem in Resources */,
 				769C46DC20FB4665002DC6FF /* DirectDomain.rule in Resources */,
 				7666457C2199BDB900BAD611 /* DirectIPs.rule in Resources */,
@@ -1823,6 +1835,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		76064E56219C5C3100E5791C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 76277F151E4CF5D3006C06A6 /* SystemProxyConfig */;
+			targetProxy = 76064E55219C5C3100E5791C /* PBXContainerItemProxy */;
+		};
 		7615244A21200D5300F1A38B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 76312AB51E6BEE7C000B66C9 /* Escalade-iOS */;
