@@ -20,7 +20,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
             self.socket.setDelegate(nil, delegateQueue: QueueFactory.getQueue())
             if socket.isConnected {
                 sourcePort = Port(port: socket.connectedPort)
-                sourceIPAddress = IPAddress(fromString: socket.connectedHost!)
+                sourceIPAddress = IPAddress(fromString: socket.connectedHost ?? "")
             }
         } else {
             self.socket = GCDAsyncSocket(delegate: nil, delegateQueue: QueueFactory.getQueue(), socketQueue: QueueFactory.getQueue())
