@@ -258,6 +258,14 @@ class MainMenuController: NSObject, NSMenuDelegate, NSUserNotificationCenterDele
     }
     @IBOutlet weak var shareProxyItem: NSMenuItem!
     
+    @IBAction func copyExportCommandClicked(_ sender: Any) {
+        let port = listeningPort
+        let httpProxy = "http://127.0.0.1:\(port + 1)"
+        let socks5Proxy = "socks5://127.0.0.1:\(port)"
+        let content = "export https_proxy=\(httpProxy); export http_proxy=\(httpProxy); export ALL_PROXY=\(socks5Proxy)"
+        copyString(string: content)
+    }
+    
     @IBAction func helpClicked(_ sender: Any) {
         NSWorkspace.shared.open(URL(string: "https://github.com/simpzan/Escalade")!)
     }
