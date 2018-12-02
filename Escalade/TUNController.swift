@@ -12,7 +12,13 @@ import NetworkExtension
 import NEKit
 
 public let interfaceIp = "192.0.2.1"
+
+#if !DEBUG
 public let listeningPort: UInt16 = 19990
+#else
+public let listeningPort: UInt16 = 29990
+#endif
+
 
 class TUNController {
 
