@@ -134,14 +134,21 @@ extension ShadowsocksAdapter {
                 case .encrypt:
                     return AEADCrypto(masterKey: key, salt: writeIV, operation: .encrypt)
                 }
+            case .AES256GCM:
+                switch operation {
+                case .decrypt:
+                    return AEADCrypto(masterKey: key, salt: readIV, operation: .decrypt, algorithm: AEADAlgorithm.AES256GCM)
+                case .encrypt:
+                    return AEADCrypto(masterKey: key, salt: writeIV, operation: .encrypt, algorithm: AEADAlgorithm.AES256GCM)
+                }
             }
         }
     }
 }
 
 class AEADCrypto: StreamCryptoProtocol {
-    init(masterKey: Data, salt: Data, operation: CryptoOperation) {
-        cryptor = AEAD(masterKey: masterKey, salt)
+    init(masterKey: Data, salt: Data, operation: CryptoOperation, algorithm: AEADAlgorithm = AEADAlgorithm.CHACHA20IETFPOLY1305) {
+        cryptor = AEAD(masterKey: masterKey, salt, algorithm)
         self.operation = operation
     }
     let cryptor: AEAD

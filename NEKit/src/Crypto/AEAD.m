@@ -78,39 +78,57 @@ static NSData *generateSubkey(NSData *masterKey, NSData *salt, NSData *info) {
 NSUInteger tag_len = 16;
 NSUInteger chunk_size_len = 2;
 
-NSData *aead_encrypt(const uint8_t *plain, NSUInteger length, NSData *nonce, NSData *key) {
-    NSUInteger expectedLength = length + tag_len;
-    NSMutableData *cipher = [NSMutableData dataWithLength:expectedLength];
-    unsigned long long actualLength = 0;
-    int err = crypto_aead_chacha20poly1305_ietf_encrypt(cipher.mutableBytes, &actualLength,
-        plain, length, NULL, 0, NULL, nonce.bytes, key.bytes);
-    assert(err == 0);
-    assert(actualLength == expectedLength);
-    return cipher;
-}
-
-NSData *aead_decrypt(const uint8_t *cipher, NSUInteger length, NSData *nonce, NSData *key) {
-    NSUInteger expectedLength = length - tag_len;
-    NSMutableData *plain = [NSMutableData dataWithLength:expectedLength];
-    unsigned long long actualLength = 0;
-    int err = crypto_aead_chacha20poly1305_ietf_decrypt(plain.mutableBytes, &actualLength,
-        NULL, cipher, length, NULL, 0, nonce.bytes, key.bytes);
-    assert(err == 0);
-    assert(actualLength == expectedLength);
-    return plain;
-}
-
 @implementation AEAD {
     NSData *subkey;
     NSMutableData *nonce;
     NSMutableData *buffer;
+    crypto_aead_aes256gcm_state gcmState;
+    AEADAlgorithm algorithm;
 }
-- (instancetype)initWithMasterKey:(NSData *)key :(NSData *)salt {
+- (NSData *)aead_encrypt:(const uint8_t *)plain :(NSUInteger)length {
+    NSUInteger expectedLength = length + tag_len;
+    NSMutableData *cipher = [NSMutableData dataWithLength:expectedLength];
+    unsigned long long actualLength = 0;
+    int err = 0;
+    if (algorithm == AEAD_AES256GCM) {
+        err = crypto_aead_aes256gcm_encrypt_afternm(cipher.mutableBytes, &actualLength,
+                plain, length, NULL, 0, NULL, nonce.bytes, &gcmState);
+    } else {
+        err = crypto_aead_chacha20poly1305_ietf_encrypt(cipher.mutableBytes, &actualLength,
+                plain, length, NULL, 0, NULL, nonce.bytes, subkey.bytes);
+    }
+    assert(err == 0);
+    assert(actualLength == expectedLength);
+    return cipher;
+}
+- (NSData *)aead_decrypt:(const uint8_t *)cipher :(NSUInteger)length {
+    NSUInteger expectedLength = length - tag_len;
+    NSMutableData *plain = [NSMutableData dataWithLength:expectedLength];
+    unsigned long long actualLength = 0;
+    int err = 0;
+    if (algorithm == AEAD_AES256GCM) {
+        err = crypto_aead_aes256gcm_decrypt_afternm(plain.mutableBytes, &actualLength,
+                NULL, cipher, length, NULL, 0, nonce.bytes, &gcmState);
+    } else {
+        err = crypto_aead_chacha20poly1305_ietf_decrypt(plain.mutableBytes, &actualLength,
+                NULL, cipher, length, NULL, 0, nonce.bytes, subkey.bytes);
+    }
+    assert(err == 0);
+    assert(actualLength == expectedLength);
+    return plain;
+}
+- (instancetype)initWithMasterKey:(NSData *)key :(NSData *)salt :(AEADAlgorithm)algorithmName {
     self = [super init];
     NSData *info = [@"ss-subkey" dataUsingEncoding:NSUTF8StringEncoding];
     subkey = generateSubkey(key, salt, info);
     nonce = [NSMutableData dataWithLength:12];
     buffer = [NSMutableData data];
+    memset(&gcmState, 0, sizeof(gcmState));
+    algorithm = algorithmName;
+    if (algorithm == AEAD_AES256GCM) {
+        int error = crypto_aead_aes256gcm_beforenm(&gcmState, subkey.bytes);
+        if (error) NSLog(@"crypto_aead_aes256gcm_beforenm failed.");
+    }
     return self;
 }
 - (NSData *)encrypted:(NSData *)plainData {
@@ -118,11 +136,11 @@ NSData *aead_decrypt(const uint8_t *cipher, NSUInteger length, NSData *nonce, NS
     NSMutableData *cipherData = [NSMutableData dataWithCapacity:cipherLength];
     
     uint16_t len = htons(plainData.length);
-    NSData *lengthData = aead_encrypt((void *)&len, sizeof(len), nonce, subkey);
+    NSData *lengthData = [self aead_encrypt:(const uint8_t *)&len :sizeof(len)];
     [cipherData appendData:lengthData];
     sodium_increment(nonce.mutableBytes, nonce.length);
 
-    NSData *payload = aead_encrypt(plainData.bytes, plainData.length, nonce, subkey);
+    NSData *payload = [self aead_encrypt:plainData.bytes :plainData.length];
     [cipherData appendData:payload];
     sodium_increment(nonce.mutableBytes, nonce.length);
     
@@ -132,7 +150,7 @@ NSData *aead_decrypt(const uint8_t *cipher, NSUInteger length, NSData *nonce, NS
     if (length <= tag_len * 2 + chunk_size_len) return NULL;
 
     NSUInteger cipherLengthLen = chunk_size_len + tag_len;
-    NSData *lengthData = aead_decrypt(cipherData, cipherLengthLen, nonce, subkey);
+    NSData *lengthData = [self aead_decrypt:cipherData :cipherLengthLen];
     uint16_t len = *(uint16_t *)lengthData.bytes;
     len = ntohs(len);
     NSUInteger chunkLength = 2 * tag_len + chunk_size_len + len;
@@ -142,7 +160,7 @@ NSData *aead_decrypt(const uint8_t *cipher, NSUInteger length, NSData *nonce, NS
 
     NSUInteger cipherPayloadLen = len + tag_len;
     const uint8_t *cipherPayload = cipherData + cipherLengthLen;
-    NSData *payload = aead_decrypt(cipherPayload, cipherPayloadLen, nonce, subkey);
+    NSData *payload = [self aead_decrypt:cipherPayload :cipherPayloadLen];
     sodium_increment(nonce.mutableBytes, nonce.length);
 
     return payload;
