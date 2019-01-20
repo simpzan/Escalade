@@ -137,8 +137,11 @@ public class NWTCPSocket: NSObject, RawTCPSocketProtocol {
      
      - warning: This should only be called after the last read is finished, i.e., `delegate?.didReadData()` is called.
      */
-    public func readData() {
-        readMinimum(1, maxinum: Opt.MAXNWTCPSocketReadDataSize)
+    open func readData() {
+        readData(maxinum: Opt.MAXNWTCPSocketReadDataSize)
+    }
+    public func readData(maxinum: Int) {
+        readMinimum(1, maxinum: maxinum)
     }
 
     /**

@@ -66,6 +66,7 @@ public protocol RawTCPSocketProtocol : class {
      - warning: This should only be called after the last read is finished, i.e., `delegate?.didReadData()` is called.
      */
     func readData()
+    func readData(maxinum: Int)
 
     /**
      Read specific length of data from the socket.

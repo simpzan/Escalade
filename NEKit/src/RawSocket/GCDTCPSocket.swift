@@ -110,7 +110,10 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
      - warning: This should only be called after the last read is finished, i.e., `delegate?.didReadData()` is called.
      */
     open func readData() {
-        socket.readData(withTimeout: -1, tag: 0)
+        readData(maxinum: 0)
+    }
+    open func readData(maxinum: Int) {
+        socket.readData(withTimeout: -1, buffer: nil, bufferOffset: 0, maxLength: UInt(maxinum), tag: 0)
     }
 
     /**
