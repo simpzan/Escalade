@@ -23,7 +23,7 @@ public func setupLog() {
 public func setLogLevel(_ level: DDLogLevel) {
     DDLogInfo("log level changing, \(ddLogLevel.rawValue) -> \(level.rawValue).")
     ddLogLevel = level
-    defaultDebugLevel = level
+    dynamicLogLevel = level
     defaults.set(level.rawValue, forKey: logLevelKey)
 }
 
