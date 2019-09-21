@@ -110,7 +110,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
      - warning: This should only be called after the last read is finished, i.e., `delegate?.didReadData()` is called.
      */
     open func readData() {
-        readData(maxinum: 0)
+        readData(maxinum: Opt.MAXNWTCPSocketReadDataSize)
     }
     open func readData(maxinum: Int) {
         socket.readData(withTimeout: -1, buffer: nil, bufferOffset: 0, maxLength: UInt(maxinum), tag: 0)
@@ -133,7 +133,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
      - warning: This should only be called after the last read is finished, i.e., `delegate?.didReadData()` is called.
      */
     open func readDataTo(data: Data) {
-        readDataTo(data: data, maxLength: 0)
+        readDataTo(data: data, maxLength: Opt.MAXNWTCPSocketReadDataSize)
     }
 
     /**
@@ -144,7 +144,7 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
      - warning: This should only be called after the last read is finished, i.e., `delegate?.didReadData()` is called.
      */
     open func readDataTo(data: Data, maxLength: Int) {
-        readDataTo(data: data, withTimeout: -1)
+        readDataTo(data: data, withTimeout: -1, maxLength: maxLength)
     }
 
     // MARK: Other helper methods
@@ -187,8 +187,8 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
      - parameter timeout: Operation timeout.
      - warning: This should only be called after the last read is finished, i.e., `delegate?.didReadData()` is called.
      */
-    func readDataTo(data: Data, withTimeout timeout: Double) {
-        socket.readData(to: data, withTimeout: timeout, tag: 0)
+    func readDataTo(data: Data, withTimeout timeout: Double, maxLength: Int) {
+        socket.readData(to: data, withTimeout: timeout, maxLength: UInt(maxLength), tag: 0)
     }
 
     /**

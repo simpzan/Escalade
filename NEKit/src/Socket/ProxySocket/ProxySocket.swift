@@ -70,7 +70,7 @@ open class ProxySocket: NSObject, SocketProtocol, RawTCPSocketDelegate {
             return
         }
 
-        socket.readData(maxinum: Opt.MAXNWTCPSocketReadDataSize)
+        socket.readData()
     }
 
     /**
