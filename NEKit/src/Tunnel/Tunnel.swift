@@ -82,11 +82,17 @@ public class Tunnel: NSObject, SocketDelegate {
         return status.description
     }
     
-    override public var description: String {
+    open override var description: String {
+        let typeName = String(describing: type(of: self))
+        let address = Utils.address(of: self)
+        return String(format: "<%@ %p>", typeName, address)
+    }
+
+    override public var debugDescription: String {
         if let adapterSocket = adapterSocket {
-            return "<Tunnel \(proxySocket) \(adapterSocket) rx \(rx) tx \(tx)>"
+            return "<\(self) \(proxySocket) \(adapterSocket) rx \(rx) tx \(tx)>"
         } else {
-            return "<Tunnel \(proxySocket)>"
+            return "<\(self) \(proxySocket)>"
         }
     }
     
