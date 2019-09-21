@@ -163,8 +163,11 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
             return
         }
 
-        socket.write(data, withTimeout: timeout, tag: 0)
+        let address = Utils.address(of: self)
+        writingData[address] = data
+        socket.write(data, withTimeout: timeout, tag: address)
     }
+    private var writingData = [Int: Data]()
 
     /**
      Read specific length of data from the socket.
@@ -217,7 +220,9 @@ open class GCDTCPSocket: NSObject, GCDAsyncSocketDelegate, RawTCPSocketProtocol 
 
     // MARK: Delegate methods for GCDAsyncSocket
     open func socket(_ sock: GCDAsyncSocket, didWriteDataWithTag tag: Int) {
-        delegate?.didWrite(data: nil, by: self)
+        let data = writingData[tag]
+        writingData[tag] = nil
+        delegate?.didWrite(data: data, by: self)
     }
 
     open func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
